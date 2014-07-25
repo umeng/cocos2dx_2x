@@ -1,6 +1,8 @@
 package com.umeng.social;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +10,8 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -18,14 +22,12 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 import com.umeng.socialize.bean.SocializeConfig;
 import com.umeng.socialize.bean.SocializeEntity;
 import com.umeng.socialize.bean.StatusCode;
+import com.umeng.socialize.common.ResContainer;
+import com.umeng.socialize.common.ResContainer.ResType;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.controller.RequestType;
-import com.umeng.socialize.controller.UMFacebookHandler;
-import com.umeng.socialize.controller.UMFacebookHandler.PostType;
-import com.umeng.socialize.controller.UMInstagramHandler;
 import com.umeng.socialize.controller.UMServiceFactory;
 import com.umeng.socialize.controller.UMSocialService;
-import com.umeng.socialize.controller.UMYXHandler;
 import com.umeng.socialize.controller.listener.SocializeListeners.SnsPostListener;
 import com.umeng.socialize.controller.listener.SocializeListeners.SocializeClientListener;
 import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener;
@@ -335,19 +337,60 @@ public class CCUMSocialController {
 	 */
 	public static void setShareImageName(String imgName) {
 		Log.d(TAG, "#### 设置图片路径 :" + imgName);
+		UMImage shareImage = null;
+
 		// 网络图片
 		if (imgName.startsWith("http://") || imgName.startsWith("https://")) {
-			mController.setShareMedia(new UMImage(mActivity, imgName));
+			shareImage = new UMImage(mActivity, imgName);
+		} else if (imgName.startsWith("assets/")) {
+			AssetManager am = mActivity.getResources().getAssets();
+			String imageName = getFileName(imgName);
+			InputStream is = null;
+			if (!TextUtils.isEmpty(imageName)) {
+				try {
+					is = am.open(imageName);
+					shareImage = new UMImage(mActivity,
+							BitmapFactory.decodeStream(is));
+					is.close();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+					if (is != null) {
+						try {
+							is.close();
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+			}
+
+		} else if (imgName.startsWith("res/")) {
+			String imgNameWithFormat = getFileName(imgName);
+			if (!TextUtils.isEmpty(imgNameWithFormat)) {
+				int index = imgNameWithFormat.indexOf(".");
+				if (index > 0) {
+					String imgNameString = imgNameWithFormat
+							.substring(0, index);
+					int imgId = ResContainer.getResourceId(mActivity,
+							ResType.DRAWABLE, imgNameString);
+					shareImage = new UMImage(mActivity, imgId);
+				} else {
+					Log.e(TAG, "### 请检查你传递的图片路径 : " + imgName);
+				}
+			}
+
 		} else {
 			// 本地图片
 			File imgFile = new File(imgName);
 			if (!imgFile.exists()) {
 				Log.e(TAG, "### 要分享的本地图片不存在");
-				mController.setShareMedia(null);
 			} else {
-				mController.setShareMedia(new UMImage(mActivity, imgFile));
+				shareImage = new UMImage(mActivity, imgFile);
 			}
 		}
+
+		mController.setShareMedia(shareImage);
 	}
 
 	/**
