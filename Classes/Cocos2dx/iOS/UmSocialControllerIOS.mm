@@ -196,18 +196,16 @@ id getUIImageFromFilePath(const char* imagePath){
     id returnImage = nil;
     if (imagePath) {
         NSString *imageString = getNSStringFromCString(imagePath);
-        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
-            [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
+                                                             ofType:@"gif"];
+            returnImage = [NSData dataWithContentsOfFile:path];
+        } else if ([imageString rangeOfString:@"/"].length > 0){
+            returnImage = [NSData dataWithContentsOfFile:imageString];
         } else {
-            if ([imageString.lowercaseString hasSuffix:@".gif"]) {
-                returnImage = [NSData dataWithContentsOfFile:imageString];
-            } else if ([imageString rangeOfString:@"/"].length > 0){
-                returnImage = [NSData dataWithContentsOfFile:imageString];
-            } else {
-                returnImage = [UIImage imageNamed:imageString];
-            }
-            [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
+            returnImage = [UIImage imageNamed:imageString];
         }
+        [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
     }
     return returnImage;
 }
@@ -227,7 +225,14 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
         }
     }
     
-    id image = getUIImageFromFilePath(imagePath);
+    
+    id image = nil;
+    NSString *imageString = getNSStringFromCString(imagePath);
+    if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+    } else {
+        image = getUIImageFromFilePath(imagePath);
+    }
     
     UMSocialUIObject * delegate = nil;
     if (callback) {
@@ -266,7 +271,14 @@ void UmSocialControllerIOS::directShare(const char* text, const char* imagePath,
     }
     
     UMSocialUrlResource *urlResource = nil;
-    UIImage* image = getUIImageFromFilePath(imagePath);
+    id image = nil;
+    NSString *imageString = getNSStringFromCString(imagePath);
+    if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+        urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageString];
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+    } else {
+        image = getUIImageFromFilePath(imagePath);
+    }
     
     [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
    

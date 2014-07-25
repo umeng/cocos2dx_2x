@@ -131,6 +131,26 @@ bool isAuthorized(int platform){
     return isOauth == YES;
 }
 
+id getImageFromFilePath(const char* imagePath){
+    id returnImage = nil;
+    if (imagePath) {
+        NSString *imageString = getNSStringFromCStr(imagePath);
+        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
+                                                             ofType:@"gif"];
+            
+            returnImage = [NSData dataWithContentsOfFile:path];
+        } else if ([imageString rangeOfString:@"/"].length > 0){
+            returnImage = [NSData dataWithContentsOfFile:imageString];
+        } else {
+            returnImage = [UIImage imageNamed:imageString];
+        }
+        NSLog(@"return Image is %@",returnImage);
+        [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
+    }
+    return returnImage;
+}
+
 void openShareWithImagePath(int platform[], int platformNum, const char* text, const char* imagePath,ShareHandler callback)
 {
     if (AppKey == NULL) {
@@ -143,15 +163,12 @@ void openShareWithImagePath(int platform[], int platformNum, const char* text, c
         [array addObject:getPlatformNSString(platform[i])];
     }
     
-    UIImage* image = nil;
-    if(imagePath){
-        NSString *imageString = getNSStringFromCStr(imagePath);
-        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
-            [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
-        } else {
-            image = [UIImage imageNamed:getNSStringFromCStr(imagePath)];
-            [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
-        }
+    id image = nil;
+    NSString *imageString = getNSStringFromCStr(imagePath);
+    if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+    } else {
+        image = getImageFromFilePath(imagePath);
     }
     
     UMSocialCObject * delegate = nil;
@@ -193,16 +210,16 @@ void directShare(const char* text, const char* imagePath,int platform, ShareEven
         NSLog(@"请设置友盟AppKey到UMShareButton对象.");
         return ;
     }
-    UIImage* image = nil;
     UMSocialUrlResource *urlResource = nil;
-    if(imagePath){
-        NSString *imageString = [NSString stringWithUTF8String:imagePath];
-        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
-            urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageString];
-        } else {
-            image = [UIImage imageNamed:getNSStringFromCStr(imagePath)];
-        }
+    id image = nil;
+    NSString *imageString = getNSStringFromCStr(imagePath);
+    if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+        urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageString];
+        [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+    } else {
+        image = getImageFromFilePath(imagePath);
     }
+    
     [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
     
     NSString *shareText = nil;
