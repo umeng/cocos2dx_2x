@@ -330,13 +330,16 @@ public class CCUMSocialController {
 	}
 
 	/**
-	 * 设置要分享的图片路径或者url
+	 * 设置要分享的图片路径或者url,或者资源名
 	 * 
 	 * @param imgName
-	 *            图片的本地路径或者url, 如果是url则必须以http://或者https://开头
+	 *            图片的本地路径或者url,
+	 *            如果是url则必须以http://或者https://开头.assets下的图片资源需要传递assets
+	 *            /图片名，资源图片则需要传递res/图片名
 	 */
 	public static void setShareImageName(String imgName) {
 		Log.d(TAG, "#### 设置图片路径 :" + imgName);
+
 		UMImage shareImage = null;
 
 		// 网络图片
@@ -391,6 +394,18 @@ public class CCUMSocialController {
 		}
 
 		mController.setShareMedia(shareImage);
+	}
+
+	/**
+	 * 
+	 * @param fullname
+	 * @return
+	 */
+	private static String getFileName(String fullname) {
+		if (fullname.startsWith("assets/") || fullname.startsWith("res/")) {
+			return fullname.split("/")[1];
+		}
+		return "";
 	}
 
 	/**
