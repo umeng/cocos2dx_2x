@@ -6,6 +6,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
+//#include "UMSocialCSDK.h"
 
 //#if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 //
@@ -102,6 +103,17 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
 
 }
 
+void shareCallBack(int platform, int stCode, const char * errorMsg)
+{
+    printf("%s\n",errorMsg);
+}
+
+void authCallBack(int platform, int stCode,const char* usid, const char *token)
+{
+    printf("%d %d %s %s",platform,stCode,usid,token);
+}
+
+
 // on "init" you need to initialize your instance
 bool HelloWorld::init() {
 	//////////////////////////////
@@ -109,7 +121,9 @@ bool HelloWorld::init() {
 	if (!CCLayer::init()) {
 		return false;
 	}
-    
+//    setAppKey("4eaee02c527015373b000003");
+//    int platform[2] = {0,1};
+//    openShareWithImagePath(platform, 2, "share text", NULL, NULL);
     // ********************  设置友盟的app key以及相关的信息  ***********************************
 	// 获取CCUMSocialSDK对象, 如果使用的UMShareButton, 则通过UMShareButton对象的getSocialSDK()方法获取.
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
@@ -294,7 +308,7 @@ void HelloWorld::isAuthorizedShareCallback(CCObject* pSender) {
 	}
 }
 
-// 直接分享
+// 弹出分享面板
 void HelloWorld::menuShareCallback(CCObject* pSender) {
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	vector<int>* platforms = new vector<int>();
@@ -319,6 +333,9 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 	printf("CC_PLATFORM_IOS !!!\n");
+//    this->saveScreenshot();
+//    setAppKey("4eaee02c527015373b000003");
+//    int platform[2] = {SINA,TENCENT_WEIBO};
 	sdk->openShare("Umeng Social Cocos2d-x SDK V1.0","share.png", share_selector(shareCallback));
 #endif
 }
@@ -343,7 +360,8 @@ void HelloWorld::saveScreenshot() {
 		imagePath += "screenshot.png";
 		CCLog(imagePath.c_str());
 	}
-
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", imagePath.c_str(), share_selector(shareCallback));
 }
 
 void HelloWorld::menuCloseCallback(CCObject* pSender) {

@@ -11,33 +11,13 @@
 #import "UMSocialUIObject.h"
 #import <UIKit/UIKit.h>
 
-#if CC_ShareToQQOrQzone == 1
 #import "UMSocialQQHandler.h"
-#endif
-
-#if CC_ShareToWechat == 1
 #import "UMSocialWechatHandler.h"
-#endif
-
-#if CC_ShareToLaiWang == 1
 #import "UMSocialLaiwangHandler.h"
-#endif
-
-#if CC_ShareToYiXin == 1
 #import "UMSocialYiXinHandler.h"
-#endif
-
-#if CC_ShareToFacebook == 1
 #import "UMSocialFacebookHandler.h"
-#endif
-
-#if CC_ShareToTwitter == 1
 #import "UMSocialTwitterHandler.h"
-#endif
-
-#if CC_ShareToInstagram == 1
 #import "UMSocialInstagramHandler.h"
-#endif
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
@@ -212,9 +192,26 @@ bool UmSocialControllerIOS::isAuthorized(int platform){
     return isOauth == YES;
 }
 
-//void UmSocialControllerIOS::setSharePlatforms(vector<int>* platforms)
-//{
-//}
+id getUIImageFromFilePath(const char* imagePath){
+    id returnImage = nil;
+    if (imagePath) {
+        NSString *imageString = getNSStringFromCString(imagePath);
+        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+            [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+        } else {
+            if ([imageString.lowercaseString hasSuffix:@".gif"]) {
+                returnImage = [NSData dataWithContentsOfFile:imageString];
+            } else if ([imageString rangeOfString:@"/"].length > 0){
+                returnImage = [NSData dataWithContentsOfFile:imageString];
+            } else {
+                returnImage = [UIImage imageNamed:imageString];
+            }
+            [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
+        }
+    }
+    return returnImage;
+}
+
 
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const char* text, const char* imagePath,ShareEventHandler callback){
     
@@ -230,15 +227,7 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
         }
     }
     
-    UIImage* image = nil;
-    if(imagePath){
-        NSString *imageString = getNSStringFromCString(imagePath);
-        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
-            [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
-        } else {
-            image = [UIImage imageNamed:getNSStringFromCString(imagePath)];
-        }
-    }
+    id image = getUIImageFromFilePath(imagePath);
     
     UMSocialUIObject * delegate = nil;
     if (callback) {
@@ -253,15 +242,15 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
     if (text) {
         shareText = [NSString stringWithUTF8String:text];
     }
-    
+
+    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
+
     [UMSocialSnsService presentSnsIconSheetView:getViewController()
                                          appKey:appKey
                                       shareText:shareText
                                      shareImage:image
                                 shareToSnsNames:array
                                        delegate:delegate];
-    [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
-
 }
 
 void UmSocialControllerIOS::openLog(bool flag)
@@ -275,16 +264,10 @@ void UmSocialControllerIOS::directShare(const char* text, const char* imagePath,
         NSLog(@"请设置友盟AppKey到UMShareButton对象.");
         return ;
     }
-    UIImage* image = nil;
+    
     UMSocialUrlResource *urlResource = nil;
-    if(imagePath){
-        NSString *imageString = [NSString stringWithUTF8String:imagePath];
-        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
-            urlResource = [[UMSocialUrlResource alloc] initWithSnsResourceType:UMSocialUrlResourceTypeImage url:imageString];
-        } else {
-            image = [UIImage imageNamed:getNSStringFromCString(imagePath)];
-        }
-    }
+    UIImage* image = getUIImageFromFilePath(imagePath);
+    
     [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
    
     NSString *shareText = nil;
