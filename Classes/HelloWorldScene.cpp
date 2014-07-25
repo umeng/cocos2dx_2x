@@ -308,7 +308,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 //	platforms->push_back(INSTAGRAM);
 	platforms->push_back(QZONE);
 	platforms->push_back(QQ);
-	platforms->push_back(YIXIN_CIRCLE);
+	platforms->push_back(SMS);
 	platforms->push_back(YIXIN);
 	platforms->push_back(WEIXIN);
     platforms->push_back(TWITTER);
