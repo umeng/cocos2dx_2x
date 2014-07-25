@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 #include <map>
-//#include "UMSocialCSDK.h"
+#include "UMSocialCSDK.h"
 
 
 // 环境变量PATH在windows下和linux下的分割符定义
@@ -111,9 +111,6 @@ bool HelloWorld::init() {
 	if (!CCLayer::init()) {
 		return false;
 	}
-//    setAppKey("4eaee02c527015373b000003");
-//    int platform[2] = {0,1};
-//    openShareWithImagePath(platform, 2, "share text", NULL, NULL);
     // ********************  设置友盟的app key以及相关的信息  ***********************************
 	// 获取CCUMSocialSDK对象, 如果使用的UMShareButton, 则通过UMShareButton对象的getSocialSDK()方法获取.
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
@@ -266,6 +263,10 @@ void HelloWorld::directShareCallback(CCObject* pSender) {
 			"Umeng Social Cocos2d-x SDK -->  directShare   testing",
 			"sdfsd", share_selector(shareCallback));
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+//    setAppKey("4eaee02c527015373b000003");
+//    int platform[2] = {0,1};
+//    openShareWithImagePath(platform, 2, "share text", "cat.gif", NULL);
+
 	sdk->directShare(FACEBOOK, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
 #endif
 }
