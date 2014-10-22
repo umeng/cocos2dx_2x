@@ -5,8 +5,6 @@
 #include <iostream>
 #include <vector>
 #include <map>
-#include "UMSocialCSDK.h"
-
 
 // 环境变量PATH在windows下和linux下的分割符定义
 #ifdef _WIN32
@@ -318,8 +316,8 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatforms(platforms) ;
 	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	sdk->openShare("Umeng Social Cocos2d-x SDK V1.0 -->  openShare",
-			"http://www.umeng.com/images/pic/banner_module_social.png",
+	sdk->openShare("",
+			"http://www.umeng.com/images/pic/home/social/img-1.png",
 			share_selector(shareCallback));
 
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
