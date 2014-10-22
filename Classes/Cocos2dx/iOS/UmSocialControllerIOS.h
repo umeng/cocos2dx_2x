@@ -60,8 +60,8 @@ public:
     //设置QQ互联appid，appkey
     static void setQQAppIdAndAppKey(const char *appId,const char *appKey);
 
-    //设置微信appid
-    static void setWechatAppId(const char *appId);
+    //设置微信appid,appSecret
+    static void setWechatAppId(const char *appId, const char *appSecret);
 
     //设置来往appid，appkey
     static void setLaiwangAppInfo(const char *appId, const char *appKey, const char * appName);

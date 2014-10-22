@@ -108,9 +108,9 @@ void UmSocialControllerIOS::setQQAppIdAndAppKey(const char *appId,const char *ap
     #endif
 }
 
-void UmSocialControllerIOS::setWechatAppId(const char *appId){
+void UmSocialControllerIOS::setWechatAppId(const char *appId, const char *appSecret){
     #if CC_ShareToWechat == 1
-    [UMSocialWechatHandler setWXAppId:getNSStringFromCString(appId) url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:getNSStringFromCString(appId) appSecret:getNSStringFromCString(appSecret) url:@"http://www.umeng.com/social"];
     #endif
 }
 

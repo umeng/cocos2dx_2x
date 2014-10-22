@@ -114,8 +114,9 @@ public:
 	 * 设置微信和微信朋友圈的app id
 	 *
 	 * @param appid 微信或者微信朋友圈的appid
+     * @param appsecret 微信或者微信朋友圈的appsecret
 	 */
-	void setWeiXinAppId(const char* appid);
+	void setWeiXinAppId(const char* appid, const char* appsecret);
 
 	/**
 	 * 设置易信和易信朋友圈的app id

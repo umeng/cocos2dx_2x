@@ -118,7 +118,7 @@ bool HelloWorld::init() {
     //    // 设置友盟app key
     //    sdk->setAppKey("507fcab25270157b37000010");
 	sdk->setQQAppIdAndAppKey("100424468", "c7394704798a158208a74ab60104f0ba");
-	sdk->setWeiXinAppId("wx485ab7ca6a7e02d1");
+	sdk->setWeiXinAppId("wx485ab7ca6a7e02d1","db426a9829e4b49a0dcac7b4162da6b6");
     sdk->setYiXinAppKey("yx52dd5c14bbb3430b93e6f2dafcbcc68d");
 	sdk->setLaiwangAppInfo("设置来往和来往动态的app id", "设置来往和来往动态的app key", "我的应用名");
 	sdk->setFacebookAppId("567261760019884");

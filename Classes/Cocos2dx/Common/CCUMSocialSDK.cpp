@@ -240,14 +240,14 @@ void CCUMSocialSDK::setQQAppIdAndAppKey(const char* appid, const char* appKey) {
  *
  * @param appid
  */
-void CCUMSocialSDK::setWeiXinAppId(const char* appid) {
+void CCUMSocialSDK::setWeiXinAppId(const char* appid, const char* appsecret) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 	setWeiXinPlatformAppId(appid);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
-	UmSocialControllerIOS::setWechatAppId(appid);
+	UmSocialControllerIOS::setWechatAppId(appid,appsecret);
 
 #endif
 }
