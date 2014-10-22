@@ -483,25 +483,26 @@ public class CCUMSocialController {
 		} else if (target == SHARE_MEDIA.YIXIN) {
 			// 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
 			// true为易信朋友圈,
-//			UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY,
-//					false);
-//			yxHandler.setTargetUrl(TARGET_URL);
-//			// 添加易信平台到SDK
-//			yxHandler.addToSocialSDK();
+			// UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY,
+			// false);
+			// yxHandler.setTargetUrl(TARGET_URL);
+			// // 添加易信平台到SDK
+			// yxHandler.addToSocialSDK();
 
 		} else if (target == SHARE_MEDIA.YIXIN_CIRCLE) {
 			// 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
 			// true为易信朋友圈,
-//			UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY,
-//					true);
-//			yxHandler.setTargetUrl(TARGET_URL);
-//			// 添加易信朋友圈平台到SDK
-//			yxHandler.addToSocialSDK();
+			// UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY,
+			// true);
+			// yxHandler.setTargetUrl(TARGET_URL);
+			// // 添加易信朋友圈平台到SDK
+			// yxHandler.addToSocialSDK();
 		} else if (target == SHARE_MEDIA.LAIWANG) {
 			// 添加来往平台的支持
 			// UMLWHandler umLWHandler =
 			// UMLWService.supportLWPlatform(mActivity,
 			// LAIWANG_APPID, LAIWANG_APPKEY, TARGET_URL);
+			// umLWHandler.setContentURL(TARGET_URL);
 			// umLWHandler.setTitle("友盟社会化分享组件-来往动态");
 			// umLWHandler.setMessageFrom(LAIWANG_APP_NAME);
 			// umLWHandler.addToSocialSDK();
@@ -511,20 +512,21 @@ public class CCUMSocialController {
 			// .supportLWDynamicPlatform(mActivity, LAIWANG_APPID,
 			// LAIWANG_APPKEY, TARGET_URL);
 			// umlwDynamicHandler.setTitle("友盟社会化分享组件-来往");
+			// umlwDynamicHandler.setContentURL(TARGET_URL);
 			// // 设置消息来源
 			// umlwDynamicHandler.setMessageFrom(LAIWANG_APP_NAME);
 			// umlwDynamicHandler.addToSocialSDK();
 		} else if (target == SHARE_MEDIA.FACEBOOK) {
 			// facebook的支持
-//			UMFacebookHandler mFacebookHandler = new UMFacebookHandler(
-//					mActivity, FACEBOOK_APP_ID, PostType.FEED);
-//			mFacebookHandler.setTargetUrl(TARGET_URL);
-//			mFacebookHandler.addToSocialSDK();
+			// UMFacebookHandler mFacebookHandler = new UMFacebookHandler(
+			// mActivity, FACEBOOK_APP_ID, PostType.FEED);
+			// mFacebookHandler.setTargetUrl(TARGET_URL);
+			// mFacebookHandler.addToSocialSDK();
 		} else if (target == SHARE_MEDIA.INSTAGRAM) {
 			// 构建Instagram的Handler
-//			UMInstagramHandler instagramHandler = new UMInstagramHandler(
-//					mActivity);
-//			instagramHandler.addToSocialSDK();
+			// UMInstagramHandler instagramHandler = new UMInstagramHandler(
+			// mActivity);
+			// instagramHandler.addToSocialSDK();
 		} else if (target == SHARE_MEDIA.TWITTER) {
 			mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
 					true);
