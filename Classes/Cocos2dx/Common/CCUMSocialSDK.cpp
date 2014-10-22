@@ -35,8 +35,9 @@ CCUMSocialSDK* CCUMSocialSDK::_instance = NULL;
 CCUMSocialSDK::CCUMSocialSDK(const char* appKey) :
 		mPlatforms(new vector<int>()), _wrapperType("Cocos2d-x"), _wrapperVersion(
 				"1.0") {
-	initSDK();
+	
 	setAppKey(appKey);
+    initSDK();
 }
 
 /*

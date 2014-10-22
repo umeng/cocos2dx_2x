@@ -5,33 +5,57 @@
 	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
 	<false/>
 	<key>IDESourceControlProjectIdentifier</key>
-	<string>F83C49A9-180A-42D7-9572-2080C8E619D1</string>
+	<string>ADE117DC-2F3C-4AD0-BFE7-3EB32FF70E38</string>
 	<key>IDESourceControlProjectName</key>
 	<string>UmengGame</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
-		<key>056DC9FF-A3E7-41F7-B91F-C30A3CE54532</key>
-		<string>http://github.umeng.com/SDK/UmengSocialCocos2dxSDK.git</string>
 		<key>48A01F77-4655-4A6F-B8A3-95BB1C2AF9A0</key>
 		<string>https://github.com/cocos2d/cocos2d-x.git</string>
+		<key>852ED3691A47A99B0D19C820A500AE9772B2A44E</key>
+		<string>https://github.com/cocos2d/cocos2d-x.git</string>
+		<key>E6A38861-F642-4622-AF0A-4DECFCA05C5E</key>
+		<string>http://github.umeng.com/SDK/UmengSocialCocos2dxSDK.git</string>
+		<key>F78826EF98D12C3C6D269100EB52D2980BA2356B</key>
+		<string>http://yejiahuan%2540umeng.com@github.umeng.com/SDK/UmengSocialCocos2dxSDK.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>project/UmengSocialCocos2dxSDK/proj.ios/UmengGame.xcodeproj/project.xcworkspace</string>
+	<string>proj.ios/UmengGame.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
-		<key>056DC9FF-A3E7-41F7-B91F-C30A3CE54532</key>
-		<string>../../..</string>
 		<key>48A01F77-4655-4A6F-B8A3-95BB1C2AF9A0</key>
-		<string>../../../../..</string>
+		<string>../../../../cocos2d-x</string>
+		<key>852ED3691A47A99B0D19C820A500AE9772B2A44E</key>
+		<string>../../../..</string>
+		<key>E6A38861-F642-4622-AF0A-4DECFCA05C5E</key>
+		<string>../../../..</string>
+		<key>F78826EF98D12C3C6D269100EB52D2980BA2356B</key>
+		<string>../../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>http://github.umeng.com/SDK/UmengSocialCocos2dxSDK.git</string>
+	<string>http://yejiahuan%2540umeng.com@github.umeng.com/SDK/UmengSocialCocos2dxSDK.git</string>
 	<key>IDESourceControlProjectVersion</key>
-	<integer>110</integer>
+	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>48A01F77-4655-4A6F-B8A3-95BB1C2AF9A0</string>
+	<string>F78826EF98D12C3C6D269100EB52D2980BA2356B</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>852ED3691A47A99B0D19C820A500AE9772B2A44E</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>E6A38861-F642-4622-AF0A-4DECFCA05C5E</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
@@ -44,7 +68,7 @@
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
-			<string>056DC9FF-A3E7-41F7-B91F-C30A3CE54532</string>
+			<string>F78826EF98D12C3C6D269100EB52D2980BA2356B</string>
 			<key>IDESourceControlWCCName</key>
 			<string>UmengSocialCocos2dxSDK</string>
 		</dict>
