@@ -83,8 +83,8 @@ public:
 	 * @param imgName 要分享的图片的本地路径或者url, 如果是url必须则必须以http://或者https://开头
 	 * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
 	 */
-	void openShare(const char* text,
-			const char* imgName, ShareEventHandler callback);
+	void openShare(const char* text, const char* imgName,
+			ShareEventHandler callback);
 
 	/**
 	 * 直接分享到某个平台，不打开分享面板和内容编辑页面
@@ -114,9 +114,9 @@ public:
 	 * 设置微信和微信朋友圈的app id
 	 *
 	 * @param appid 微信或者微信朋友圈的appid
-     * @param appsecret 微信或者微信朋友圈的appsecret
+	 * @param appsecret 微信或者微信朋友圈的appsecret
 	 */
-	void setWeiXinAppId(const char* appid, const char* appsecret);
+	void setWeiXinAppInfo(const char* appid, const char* appsecret);
 
 	/**
 	 * 设置易信和易信朋友圈的app id
@@ -159,6 +159,24 @@ public:
 	 * @param flag 如果为true则开启log, 否则关闭.
 	 */
 	void setLogEnable(bool flag);
+
+	/**
+	 * 分平台设置分享内容
+	 * @param platform 平台的整形枚举
+	 * @param text 该平台分享内容的文本
+	 * @param imagePath 该平台分享内容的图片url链接、或者本地路径，或者资源名或者是asset中的图片.具体参考setShareImageName方法
+	 * @param title 分享时的标题, 默认为空字符串
+	 * @param targetUrl 分享消息被点击时跳转到的目标url ( 不是所有平台都支持此项功能 ) , 默认为空字符串
+	 */
+	void setPlatformShareContent(int platform, const char* text,
+			const char* imagePath, const char* title = "",
+			const char* targetUrl = "");
+
+	/**
+	 * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台.
+	 * @param  platform 要支持SSO授权的平台
+	 */
+	void setSsoAuthorization(int platform);
 
 private:
 	static CCUMSocialSDK *_instance;

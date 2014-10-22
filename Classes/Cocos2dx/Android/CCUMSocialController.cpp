@@ -327,13 +327,15 @@ void setQQAndQzoneAppIdWithAppKey(const char* appid, const char* appKey) {
  * 
  * @param appid
  */
-void setWeiXinPlatformAppId(const char* appid) {
+void setWeiXinPlatformInfo(const char* appid, const char* appsecret) {
 	JniMethodInfo mi;
-	bool isHave = getMethod(mi, "setWeiXinAppId", "(Ljava/lang/String;)V");
+	bool isHave = getMethod(mi, "setWeiXinAppInfo", "(Ljava/lang/String;Ljava/lang/String;)V");
 	if (isHave) {
 		jstring jAppid = mi.env->NewStringUTF(appid);
-		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, jAppid);
+		jstring jAppSecret = mi.env->NewStringUTF(appsecret);
+		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, jAppid, jAppSecret);
 		mi.env->DeleteLocalRef(jAppid);
+		mi.env->DeleteLocalRef(jAppSecret);
 		releaseMethod(mi);
 	}
 	CCLog("#### setWeiXinPlatformAppid");

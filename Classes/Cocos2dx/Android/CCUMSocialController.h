@@ -148,9 +148,10 @@ void setSocialPlatforms(vector<int>* platforms);
 /**
  * 设置微信和微信朋友圈的app id
  * 
- * @param appid
+ * @param appid 微信的app id
+ * @param appsecret 微信的appsecret
 */
-void setWeiXinPlatformAppId(const char* appid) ;
+void setWeiXinPlatformInfo(const char* appid,const char* appsecret) ;
 
 /**
 * 设置易信和易信朋友圈的app id
