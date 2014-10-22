@@ -33,6 +33,9 @@ import com.umeng.socialize.controller.listener.SocializeListeners.SocializeClien
 import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener;
 import com.umeng.socialize.db.OauthHelper;
 import com.umeng.socialize.exception.SocializeException;
+import com.umeng.socialize.media.CircleShareContent;
+import com.umeng.socialize.media.QQShareContent;
+import com.umeng.socialize.media.QZoneShareContent;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.net.utils.SocializeNetUtils;
 import com.umeng.socialize.sso.QZoneSsoHandler;
@@ -394,6 +397,17 @@ public class CCUMSocialController {
 		}
 
 		mController.setShareMedia(shareImage);
+//		
+//		CircleShareContent circleShareContent = new CircleShareContent(mController.getEntity().getShareContent()) ;
+//		circleShareContent.setShareMedia(shareImage);
+//		circleShareContent.setTitle("你的标题");
+//		mController.setShareMedia(circleShareContent) ;
+//		
+//		QZoneShareContent qZoneShareContent = new QZoneShareContent(mController.getEntity().getShareContent()) ;
+//		qZoneShareContent.setShareMedia(mController.getEntity().getMedia());
+//		qZoneShareContent.setTitle("你的标题");
+//		qZoneShareContent.setTargetUrl("http://你的target url");
+//		mController.setShareMedia(qZoneShareContent) ;
 	}
 
 	/**
