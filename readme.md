@@ -581,7 +581,7 @@ circleHandler.addToSocialSDK();
 
 
 ***iOS平台***     
-
+	需要设置Xcode的URL scheme，添加“URL Schemes”为微信appId，例如"wxd9a39c7122aa6516"
 
 
 
@@ -625,7 +625,9 @@ qZoneSsoHandler.addToSocialSDK();
 ```   
    这样，您就成功集成QQ或者QQ空间了。   
    
-***iOS平台***     
+***iOS平台***         
+	需要设置Xcode的URL scheme，添加“URL Schemes”为“QQ”+腾讯QQ互联应用appId转换成十六进制（不足8位前面补0），例如“QQ05FA957C”。生成十六进制方法：在命令行输入<div>echo 'ibase=10;obase=16;您的腾讯QQ互联应用Id'|bc</div>，并在QQ互联后台的URL schema中填入此字符串保持一致。  
+	若你只使用授权到qq或者QQ空间，需要设置Xcode的URL scheme的“URL Schemes”为"tencent"+腾讯开放平台appId。
 
 
 <b id=cocos2dx_platforms_laiwang_integration></b> 
@@ -677,8 +679,8 @@ umlwDynamicHandler.addToSocialSDK();
    
 ***iOS平台***     
 	针对于iOS平台，集成来往平台需要将Xcode的other linker flag设置为-all_load 。
-	但是如果您不需要集成来往，可以在Xcode中把UMSocial_Sdk_Extra_Frameworks下把LaiWang文件夹删除。并把UmSocialControllerIOS.h 头文件中把宏CC_ShareToLaiWang设置为0。
- 
+	但是如果您不需要集成来往，可以在Xcode中把UMSocial_Sdk_Extra_Frameworks下把LaiWang文件夹删除。并把UmSocialControllerIOS.h 头文件中把宏CC_ShareToLaiWang设置为0。  
+ 	需要设置Xcode的URL scheme，添加“URL Schemes”为来往AppId，“Identifier”为“Laiwang”
    
 <b id=cocos2dx_platforms_yixin_integration></b> 
 ### 4.1.4 集成易信和易信朋友圈
@@ -739,8 +741,8 @@ yxHandler.addToSocialSDK();
 * 其中分享回调接口SnsPostListener中的onComplete方法的第二个参数代表分享的状态码，当值为200时表示分享成功;其余的值则为分享失败。    
 
 ***iOS平台***    
-	iOS平台集成易信不需要其他的设置。如果您不需要集成易信，可以在Xcode中把UMSocial_Sdk_Extra_Frameworks下把YiXin文件夹删除。并把UmSocialControllerIOS.h 头文件中把宏CC_ShareToYiXin设置为0。
-
+	iOS平台集成易信不需要其他的设置。如果您不需要集成易信，可以在Xcode中把UMSocial_Sdk_Extra_Frameworks下把YiXin文件夹删除。并把UmSocialControllerIOS.h 头文件中把宏CC_ShareToYiXin设置为0。  
+	需要设置Xcode的URL scheme，添加“URL Schemes”为易信AppId。
       
 
  <b id=cocos2dx_platforms_facebook_integration></b> 
