@@ -113,7 +113,15 @@ void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
 	// 设置平台
 	setSocialPlatforms(mPlatforms);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	// TODO
+    //intagram和twitter打开开关
+    for (int i = 0; i < platforms->size(); i++) {
+        int platformType = platforms->at(i);
+        if (platformType == INSTAGRAM) {
+            UmSocialControllerIOS::openInstagram();
+        } else if (platformType == TWITTER) {
+            UmSocialControllerIOS::openTwitter();
+        }
+    }
 	UmSocialControllerIOS::setSharePlatforms(mPlatforms);
 #endif
 
