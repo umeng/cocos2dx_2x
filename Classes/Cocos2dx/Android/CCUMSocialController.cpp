@@ -481,10 +481,11 @@ void setShareTargetUrl(const char* url) {
 /**
  * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台.
  * @param  platform 要支持SSO授权的平台
+ * @param  redirectURL SSO授权回调地址
  */
-void supportSsoAuthorization(int platform) {
+void supportSsoAuthorization(int platform, const char* redirectURL) {
 	JniMethodInfo mi;
-	bool isHave = getMethod(mi, "supportSsoAuthorization", "(I)V");
+	bool isHave = getMethod(mi, "supportSsoAuthorization", "(ILjava/lang/String;)V");
 	if (isHave) {
 		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform);
 		releaseMethod(mi);
