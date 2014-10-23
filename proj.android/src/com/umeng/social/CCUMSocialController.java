@@ -27,17 +27,38 @@ import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener
 import com.umeng.socialize.exception.SocializeException;
 import com.umeng.socialize.facebook.controller.UMFacebookHandler;
 import com.umeng.socialize.facebook.controller.UMFacebookHandler.PostType;
+import com.umeng.socialize.facebook.media.FaceBookShareContent;
 import com.umeng.socialize.instagram.controller.UMInstagramHandler;
+import com.umeng.socialize.instagram.media.InstagramShareContent;
 import com.umeng.socialize.laiwang.controller.UMLWHandler;
+import com.umeng.socialize.laiwang.media.LWDynamicShareContent;
+import com.umeng.socialize.laiwang.media.LWShareContent;
+import com.umeng.socialize.media.BaseShareContent;
+import com.umeng.socialize.media.GooglePlusShareContent;
+import com.umeng.socialize.media.MailShareContent;
+import com.umeng.socialize.media.QQShareContent;
+import com.umeng.socialize.media.QZoneShareContent;
+import com.umeng.socialize.media.RenrenShareContent;
+import com.umeng.socialize.media.SinaShareContent;
+import com.umeng.socialize.media.SmsShareContent;
+import com.umeng.socialize.media.TencentWbShareContent;
+import com.umeng.socialize.media.TwitterShareContent;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.net.utils.SocializeNetUtils;
 import com.umeng.socialize.sso.QZoneSsoHandler;
+import com.umeng.socialize.sso.RenrenSsoHandler;
+import com.umeng.socialize.sso.SinaSsoHandler;
+import com.umeng.socialize.sso.TencentWBSsoHandler;
 import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.utils.Log;
 import com.umeng.socialize.utils.OauthHelper;
 import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
+import com.umeng.socialize.weixin.media.WeiXinShareContent;
 import com.umeng.socialize.yixin.controller.UMYXHandler;
+import com.umeng.socialize.yixin.media.YiXinCircleShareContent;
+import com.umeng.socialize.yixin.media.YiXinShareContent;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
@@ -120,6 +141,21 @@ public class CCUMSocialController {
      * 当前应用名称,用于显示在来往分享来源上
      */
     private static String LAIWANG_APP_NAME = "";
+
+    /**
+     * 人人网SSO的app id
+     */
+    private static String RENREN_APP_ID = "";
+
+    /**
+     * 人人网SSO的app key
+     */
+    private static String RENREN_APP_KEY = "";
+
+    /**
+     * 人人网SSO的app secret
+     */
+    private static String RENREN_APP_SECRET = "";
     /**
      * 在某些平台的分享中， 希望用户点击该分享内容跳转到的目标平台, 一般为app的官网或者下载地址
      */
@@ -343,11 +379,93 @@ public class CCUMSocialController {
      *            如果是url则必须以http://或者https://开头.assets下的图片资源需要传递assets
      *            /图片名，资源图片则需要传递res/图片名
      */
-    public static void setShareImageName(String imgName) {
+    public static void setShareImagePath(String imgName) {
         Log.d(TAG, "#### 设置图片路径 :" + imgName);
 
-        UMImage shareImage = null;
+        // 解析图片
+        UMImage shareImage = parseShareImage(imgName);
+        //
+        // // 网络图片
+        // if (imgName.startsWith("http://") || imgName.startsWith("https://"))
+        // {
+        // shareImage = new UMImage(mActivity, imgName);
+        // } else if (imgName.startsWith("assets/")) {
+        // AssetManager am = mActivity.getResources().getAssets();
+        // String imageName = getFileName(imgName);
+        // InputStream is = null;
+        // if (!TextUtils.isEmpty(imageName)) {
+        // try {
+        // is = am.open(imageName);
+        // shareImage = new UMImage(mActivity,
+        // BitmapFactory.decodeStream(is));
+        // is.close();
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // } finally {
+        // if (is != null) {
+        // try {
+        // is.close();
+        // } catch (IOException e) {
+        // e.printStackTrace();
+        // }
+        // }
+        // }
+        // }
+        //
+        // } else if (imgName.startsWith("res/")) {
+        // String imgNameWithFormat = getFileName(imgName);
+        // if (!TextUtils.isEmpty(imgNameWithFormat)) {
+        // int index = imgNameWithFormat.indexOf(".");
+        // if (index > 0) {
+        // String imgNameString = imgNameWithFormat
+        // .substring(0, index);
+        // int imgId = ResContainer.getResourceId(mActivity,
+        // ResType.DRAWABLE, imgNameString);
+        // shareImage = new UMImage(mActivity, imgId);
+        // } else {
+        // Log.e(TAG, "### 请检查你传递的图片路径 : " + imgName);
+        // }
+        // }
+        //
+        // } else {
+        // // 本地图片
+        // File imgFile = new File(imgName);
+        // if (!imgFile.exists()) {
+        // Log.e(TAG, "### 要分享的本地图片不存在");
+        // } else {
+        // shareImage = new UMImage(mActivity, imgFile);
+        // }
+        // }
 
+        mController.setShareMedia(shareImage);
+        //
+        // CircleShareContent circleShareContent = new
+        // CircleShareContent(mController.getEntity().getShareContent()) ;
+        // circleShareContent.setShareMedia(shareImage);
+        // circleShareContent.setTitle("你的标题");
+        // mController.setShareMedia(circleShareContent) ;
+        //
+        // QZoneShareContent qZoneShareContent = new
+        // QZoneShareContent(mController.getEntity().getShareContent()) ;
+        // qZoneShareContent.setShareMedia(mController.getEntity().getMedia());
+        // qZoneShareContent.setTitle("你的标题");
+        // qZoneShareContent.setTargetUrl("http://你的target url");
+        // mController.setShareMedia(qZoneShareContent) ;
+    }
+
+    /**
+     * 解析图片, 支持url图片、存在asserts下的图片、存放在sd卡路径下的图片以及资源图片。在用户传递参数时以不用的前缀传递即可.
+     * 
+     * @param imgName 图片的路径或者url地址
+     * @return
+     */
+    private static UMImage parseShareImage(String imgName) {
+
+        if (TextUtils.isEmpty(imgName)) {
+            Log.e(TAG, "您传递的分享图片路径为空");
+            return null;
+        }
+        UMImage shareImage = null;
         // 网络图片
         if (imgName.startsWith("http://") || imgName.startsWith("https://")) {
             shareImage = new UMImage(mActivity, imgName);
@@ -399,20 +517,7 @@ public class CCUMSocialController {
             }
         }
 
-        mController.setShareMedia(shareImage);
-        //
-        // CircleShareContent circleShareContent = new
-        // CircleShareContent(mController.getEntity().getShareContent()) ;
-        // circleShareContent.setShareMedia(shareImage);
-        // circleShareContent.setTitle("你的标题");
-        // mController.setShareMedia(circleShareContent) ;
-        //
-        // QZoneShareContent qZoneShareContent = new
-        // QZoneShareContent(mController.getEntity().getShareContent()) ;
-        // qZoneShareContent.setShareMedia(mController.getEntity().getMedia());
-        // qZoneShareContent.setTitle("你的标题");
-        // qZoneShareContent.setTargetUrl("http://你的target url");
-        // mController.setShareMedia(qZoneShareContent) ;
+        return shareImage;
     }
 
     /**
@@ -585,6 +690,159 @@ public class CCUMSocialController {
 
         Log.d(TAG, "@@@@ supportPlatfrom");
 
+    }
+
+    /**
+     * 设置平台独立的分享内容，例如你想使得新浪微博和QQ两个平台的分享内容不一样，那么则需要通过这种方式实现.
+     * 
+     * @param platformCode
+     * @param text
+     * @param imagePath
+     * @param title
+     * @param targetUrl
+     */
+    public static void setPlatformShareContent(int platformCode, String text, String imagePath,
+            String title, String targetUrl) {
+        SHARE_MEDIA platform = getPlatform(platformCode);
+        // 有效平台
+        if (isPlatformValid(platformCode)) {
+            // 分享内容对象
+            BaseShareContent shareContent = null;
+            // 要分享的图片
+            UMImage shareImage = parseShareImage(imagePath);
+            switch (platform) {
+                case SINA:// 新浪微博
+                    shareContent = new SinaShareContent();
+                    break;
+                case WEIXIN:// 微信
+                    shareContent = new WeiXinShareContent();
+                    break;
+                case WEIXIN_CIRCLE:// 微信朋友圈
+                    shareContent = new CircleShareContent();
+                    break;
+                case QQ:// QQ
+                    shareContent = new QQShareContent();
+                    break;
+                case QZONE:// QQ空间
+                    shareContent = new QZoneShareContent();
+                    break;
+                case TENCENT:// 腾讯微博
+                    shareContent = new TencentWbShareContent();
+                    break;
+                case RENREN:// 人人网
+                    shareContent = new RenrenShareContent();
+                    break;
+                case LAIWANG:// 来往
+                    shareContent = new LWShareContent();
+                    break;
+                case LAIWANG_DYNAMIC:// 来往动态
+                    shareContent = new LWDynamicShareContent();
+                    break;
+                case YIXIN:// 易信
+                    shareContent = new YiXinShareContent();
+                    break;
+                case YIXIN_CIRCLE:// 易信朋友圈
+                    shareContent = new YiXinCircleShareContent();
+                    break;
+                case FACEBOOK:// facebook
+                    FaceBookShareContent fbShareContent = new FaceBookShareContent(text);
+                    fbShareContent.setShareImage(shareImage);
+                    fbShareContent.setTitle(title);
+                    fbShareContent.setTargetUrl(targetUrl);
+                    mController.setShareMedia(fbShareContent);
+                    break;
+                case INSTAGRAM:// instagram
+                    InstagramShareContent insShareContent = new InstagramShareContent();
+                    insShareContent.setShareContent(text);
+                    insShareContent.setShareImage(shareImage);
+                    mController.setShareMedia(insShareContent);
+                    break;
+                case SMS:// 短信
+                    SmsShareContent smsShareContent = new SmsShareContent();
+                    smsShareContent.setShareContent(text);
+                    smsShareContent.setShareImage(shareImage);
+                    mController.setShareMedia(smsShareContent);
+                    break;
+                case EMAIL:// 邮件
+                    MailShareContent mailShareContent = new MailShareContent();
+                    mailShareContent.setShareContent(text);
+                    mailShareContent.setShareImage(shareImage);
+                    mController.setShareMedia(mailShareContent);
+                    break;
+                case TWITTER:// twitter
+                    shareContent = new TwitterShareContent();
+                    break;
+
+                case GOOGLEPLUS:// google plus
+                    shareContent = new GooglePlusShareContent();
+                    break;
+
+                default:
+                    break;
+            }
+
+            if (shareContent != null) {
+                // 设置文本内容
+                shareContent.setShareContent(text);
+                // 设置图片
+                shareContent.setShareMedia(shareImage);
+                // 设置title
+                shareContent.setTitle(title);
+                // 设置target url
+                shareContent.setTargetUrl(targetUrl);
+                // 设置分平台的分享内容
+                mController.setShareMedia(shareContent);
+            }
+        }
+
+    }
+
+    /**
+     * @param platform
+     */
+    public static void supportSsoAuthorization(int platform) {
+        if (!isPlatformValid(platform)) {
+            Log.d(TAG, "### 设置SSO授权时传入的平台参数有误，请检查~");
+            return;
+        }
+        SHARE_MEDIA share_platform = getPlatform(platform);
+        if (!isPlatformConfiged(share_platform)) {
+            Log.d(TAG, "### 设置SSO授权时传入的平台没有在SDK中配置，请先通过CCUMSocialSDK的setPlatforms函数添加该平台.");
+            return;
+        }
+
+        if (share_platform == SHARE_MEDIA.SINA) {
+            // 如果要添加新浪微博SSO授权，则需要拷贝/com/sina/sso文件件到你的src根目录下
+            mController.getConfig().setSsoHandler(new SinaSsoHandler());
+            Log.d(TAG, "### 设置新浪微博SSO");
+        } else if (share_platform == SHARE_MEDIA.RENREN) {
+            // 如果要添加人人网SSO授权，则需要拷贝以SocialSDK_renren开始两个jar包到libs目录
+            mController.getConfig().setSsoHandler(
+                    new RenrenSsoHandler(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
+                            RENREN_APP_SECRET));
+        }
+
+        if (share_platform == SHARE_MEDIA.TENCENT) {
+            // 添加腾讯微博SSO授权，则需要拷贝以SocialSDK_tencentWB开始两个jar包到libs目录
+            mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+        }
+
+    }
+
+    /**
+     * 设置人人网的app id等信息，必须在本地设置，且需要在调用setSsoAuthorization之前调用
+     * 
+     * @param appid
+     * @param appkey
+     * @param appSecret
+     */
+    public static void setRenrenAppInfo(String appid, String appkey, String appSecret) {
+        RENREN_APP_ID = appid;
+        RENREN_APP_KEY = appkey;
+        RENREN_APP_SECRET = appSecret;
+
+        Log.d(TAG, "### 人人网SSO, app id = " + RENREN_APP_ID + ", app key = " + RENREN_APP_KEY
+                + ", app secret = " + RENREN_APP_SECRET);
     }
 
     /**

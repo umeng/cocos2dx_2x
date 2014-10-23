@@ -120,7 +120,7 @@ void setShareTextContent(const char* text);
  * 设置要分享的图片的本地路径或者url
  * @param pathOrUrl 图片的本地路径或者url, 如果是url必须则必须以http://或者https://开头
  */
-void setShareImageName(const char* pathOrUrl);
+void setShareImagePath(const char* pathOrUrl);
 
 /*
  * 设置SDK支持的平台
@@ -152,6 +152,16 @@ void setSocialPlatforms(vector<int>* platforms);
  * @param appsecret 微信的appsecret
 */
 void setWeiXinPlatformInfo(const char* appid,const char* appsecret) ;
+
+/**
+ * 设置人人网的app id,app key,app secret信息
+ *
+ * @param appid 人人网的appid
+ * @param appKey 人人网的app key
+ * @param appsecret 人人网的appsecret
+ */
+void setRenrenAppInfo(const char* appid, const char* appkey,
+		const char* appsecret) ;
 
 /**
 * 设置易信和易信朋友圈的app id
@@ -200,6 +210,12 @@ void setShareTargetUrl(const char* url) ;
  * @param flag 如果为true则开启log, 否则关闭.
  */
  void setAndroidLogEnable(bool flag);
+
+ /**
+  * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台.
+  * @param  platform 要支持SSO授权的平台
+  */
+ void supportSsoAuthorization(int platform);
 
 // /**
 //  * 添加平台支持
