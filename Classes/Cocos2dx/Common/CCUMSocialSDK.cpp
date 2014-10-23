@@ -178,9 +178,16 @@ bool CCUMSocialSDK::isAuthorized(int platform) {
 
 /*
  * 打开分享面板
- * @param platforms 显示在分享面板上的所有平台,平台的定义参考CCUMTypeDef.h中的Platform枚举
  * @param text 要分享的文字内容
- * @param imgName 要分享的图片的本地路径或者url, 如果是url必须则必须以http://或者https://开头
+ * @param imgName
+ * 	 // *******************************************
+ 要分享的图片支持url图片、assets目录下的图片、资源图片和存放在sd卡目录下的图片。这四种图片对于前缀都有一定的要求，要求如下:
+ //
+ 1、url图片必须以"http://"或者"https://"开头,例如 : http://www.umeng.com/images/pic/home/feedback/banner.png；
+ 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
+ 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
+ 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
+ // *******************************************
  * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
  */
 void CCUMSocialSDK::openShare(const char* text, const char* imgName,
@@ -189,7 +196,7 @@ void CCUMSocialSDK::openShare(const char* text, const char* imgName,
 	// 设置分享内容
 	setShareTextContent(text);
 	// 设置图片内容
-	setShareImageName(imgName);
+	setShareImagePath(imgName);
 	// 打开分享面板
 	doOpenShare(callback);
 
@@ -202,7 +209,15 @@ void CCUMSocialSDK::openShare(const char* text, const char* imgName,
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义
  * @param text 要分享的文字内容
- * @param imgName 要分享的图片的本地路径或者url, 如果是url必须则必须以http://开头
+ * @param imgName
+ * 	 // *******************************************
+ 要分享的图片支持url图片、assets目录下的图片、资源图片和存放在sd卡目录下的图片。这四种图片对于前缀都有一定的要求，要求如下:
+ //
+ 1、url图片必须以"http://"或者"https://"开头,例如 : http://www.umeng.com/images/pic/home/feedback/banner.png；
+ 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
+ 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
+ 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
+ // *******************************************
  * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
  */
 void CCUMSocialSDK::directShare(int platform, const char* text,
@@ -210,7 +225,7 @@ void CCUMSocialSDK::directShare(int platform, const char* text,
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 	setShareTextContent(text);
-	setShareImageName(imgName);
+	setShareImagePath(imgName);
 	doDirectShare(platform, callback);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -373,6 +388,23 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 		const char* imagePath, const char* title, const char* targetUrl) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	// TODO
+	setPlatformDepShareContent(platform, text, imagePath, title, targetUrl);
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+	// TODO
+#endif
+}
+
+/*
+ * 设置人人网的app id,app key,app secret信息
+ *
+ * @param appid 人人网的appid
+ * @param appKey 人人网的app key
+ * @param appsecret 人人网的appsecret
+ */
+void CCUMSocialSDK::setRenrenAppInfo(const char* appid, const char* appkey,
+		const char* appsecret) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+	// TODO
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	// TODO
@@ -380,12 +412,14 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 }
 
 /*
- * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台.
+ * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台. 在设置SSO时请确保您在友盟官方绑定了这些平台的app id, app key等信息.
+ * 且人人网的app id, app key必须在本地先通过setRenrenAppInfo来设置.
  * @param  platform 要支持SSO授权的平台
  */
 void CCUMSocialSDK::setSsoAuthorization(int platform) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	// TODO
+	supportSsoAuthorization(platform);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	// TODO
