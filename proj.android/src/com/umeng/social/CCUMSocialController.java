@@ -648,7 +648,7 @@ public class CCUMSocialController {
                 // 添加来往平台的支持
                 UMLWHandler umLWHandler = new UMLWHandler(mActivity, LAIWANG_APPID, LAIWANG_APPKEY);
                 umLWHandler.setTargetUrl(TARGET_URL);
-                umLWHandler.setTitle("分享到来往动态");
+                umLWHandler.setTitle("分享到来往");
                 umLWHandler.setMessageFrom(LAIWANG_APP_NAME);
                 umLWHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.LAIWANG_DYNAMIC) {

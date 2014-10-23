@@ -111,14 +111,19 @@ bool HelloWorld::init() {
 	// 获取CCUMSocialSDK对象, 如果使用的UMShareButton, 则通过UMShareButton对象的getSocialSDK()方法获取.
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	sdk->setTargetUrl("http://www.umeng.com/social");
-	//    // 设置友盟app key
-	//    sdk->setAppKey("507fcab25270157b37000010");
+	//    // 设置QQ的app id, app key
 	sdk->setQQAppIdAndAppKey("100424468", "c7394704798a158208a74ab60104f0ba");
+	// 设置微信的app id, app key
 	sdk->setWeiXinAppInfo("wx485ab7ca6a7e02d1",
 			"f9cad1d153aaa97925a2e2b5fa63d59f");
+	// 设置易信的app key
 	sdk->setYiXinAppKey("yx52dd5c14bbb3430b93e6f2dafcbcc68d");
+	// 设置来往的app id等信息
 	sdk->setLaiwangAppInfo("设置来往和来往动态的app id", "设置来往和来往动态的app key", "我的应用名");
+	// 设置facebook的app id
 	sdk->setFacebookAppId("567261760019884");
+	// 设置人人网SSO授权的app id, app key, app secret
+	sdk->setRenrenAppInfo("人人网的app id", "人人网的app key", "人人网的app secret");
 	sdk->openTwitterForiOS();
 	// 设置用户点击一条图文分享时用户跳转到的目标页面, 一般为app主页或者下载页面
 
