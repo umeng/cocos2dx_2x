@@ -243,8 +243,8 @@ void setQQAppIdAndAppKey(const char *appId,const char *appKey){
     [UMSocialQQHandler setQQWithAppId:getNSStringFromCStr(appId) appKey:getNSStringFromCStr(appKey) url:@"http://www.umeng.com/social"];
 }
 
-void setWechatAppId(const char *appId){
-    [UMSocialWechatHandler setWXAppId:getNSStringFromCStr(appId) url:@"http://www.umeng.com/social"];
+void setWechatAppId(const char *appId, const char *appSecret){
+    [UMSocialWechatHandler setWXAppId:getNSStringFromCStr(appId) appSecret:getNSStringFromCStr(appSecret) url:@"http://www.umeng.com/social"];
 }
 
 

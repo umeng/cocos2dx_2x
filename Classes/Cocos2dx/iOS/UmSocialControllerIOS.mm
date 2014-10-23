@@ -18,6 +18,9 @@
 #import "UMSocialFacebookHandler.h"
 #import "UMSocialTwitterHandler.h"
 #import "UMSocialInstagramHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialTencentWeiboHandler.h"
+#import "UMSocialRenrenHandler.h"
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
@@ -114,6 +117,17 @@ void UmSocialControllerIOS::setWechatAppId(const char *appId, const char *appSec
     #endif
 }
 
+void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redirectURL){
+    if (platform == SINA) {
+        [UMSocialSinaHandler openSSOWithRedirectURL:getNSStringFromCString(redirectURL)];
+    }
+    if (platform == TENCENT_WEIBO) {
+        [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
+    }
+    if (platform == RENREN) {
+        [UMSocialRenrenHandler openSSO];
+    }
+}
 
 void UmSocialControllerIOS::setLaiwangAppInfo(const char *appId, const char *appKey, const char *appName){
     #if CC_ShareToLaiWang == 1
@@ -257,6 +271,19 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
                                 shareToSnsNames:array
                                        delegate:delegate];
 }
+
+void UmSocialControllerIOS::setSharePlatforms(vector<int>* platform)
+{
+    NSMutableArray* platformArray = [NSMutableArray array];
+    if (platform) {
+        for (unsigned int i = 0; i < platform->size(); i++) {
+            [platformArray addObject:getPlatformString(platform->at(i))];
+        }
+    }
+    NSLog(@"platformArray is %@",platformArray);
+    [UMSocialConfig setSnsPlatformNames:platformArray];
+}
+
 
 void UmSocialControllerIOS::openLog(bool flag)
 {
