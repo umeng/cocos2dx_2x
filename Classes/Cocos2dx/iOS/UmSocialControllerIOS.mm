@@ -258,6 +258,19 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
                                        delegate:delegate];
 }
 
+void UmSocialControllerIOS::setSharePlatforms(vector<int>* platform)
+{
+    NSMutableArray* platformArray = [NSMutableArray array];
+    if (platform) {
+        for (unsigned int i = 0; i < platform->size(); i++) {
+            [platformArray addObject:getPlatformString(platform->at(i))];
+        }
+    }
+    NSLog(@"platformArray is %@",platformArray);
+    [UMSocialConfig setSnsPlatformNames:platformArray];
+}
+
+
 void UmSocialControllerIOS::openLog(bool flag)
 {
     [UMSocialData openLog:flag];

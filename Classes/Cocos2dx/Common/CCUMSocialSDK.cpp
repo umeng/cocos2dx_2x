@@ -114,7 +114,7 @@ void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
 	setSocialPlatforms(mPlatforms);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	// TODO
-
+    UmSocialControllerIOS::setSharePlatforms(mPlatforms);
 #endif
 
 }
