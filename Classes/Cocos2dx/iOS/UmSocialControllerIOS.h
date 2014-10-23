@@ -66,6 +66,11 @@ public:
     //打开各个平台SSO开关,redirectURL
     static void openSSOAuthorization(int platform, const char *redirectURL);
     
+    //分别设置各个分享平台内容
+    static void setPlatformShareContent(int platform, const char* text,
+                                 const char* imagePath, const char* title,
+                                 const char* targetUrl);
+    
     //设置来往appid，appkey
     static void setLaiwangAppInfo(const char *appId, const char *appKey, const char * appName);
 

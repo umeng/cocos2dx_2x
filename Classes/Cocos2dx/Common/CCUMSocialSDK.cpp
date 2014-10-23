@@ -390,7 +390,7 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 	// TODO
 	setPlatformDepShareContent(platform, text, imagePath, title, targetUrl);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	// TODO
+    UmSocialControllerIOS::setPlatformShareContent(platform, text, imagePath, title, targetUrl);
 #endif
 }
 

@@ -129,6 +129,49 @@ void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redi
     }
 }
 
+id getUIImageFromFilePath(const char* imagePath){
+    id returnImage = nil;
+    if (imagePath) {
+        NSString *imageString = getNSStringFromCString(imagePath);
+        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
+                                                             ofType:@"gif"];
+            returnImage = [NSData dataWithContentsOfFile:path];
+        } else if ([imageString rangeOfString:@"/"].length > 0){
+            returnImage = [NSData dataWithContentsOfFile:imageString];
+        } else {
+            returnImage = [UIImage imageNamed:imageString];
+        }
+        [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
+    }
+    return returnImage;
+}
+
+void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* text,
+                                                                const char* imagePath, const char* title ,
+                                                    const char* targetUrl){
+    NSString *platformString = getPlatformString(platform);
+    UMSocialSnsData *platformData = [[UMSocialData defaultData].extConfig.snsDataDictionary valueForKey:platformString];
+    if (platformData) {
+        platformData.shareText = getNSStringFromCString(text);
+        NSString *imageString = getNSStringFromCString(imagePath);
+        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+            [platformData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+        } else {
+            UIImage * image = getUIImageFromFilePath(imagePath);
+            platformData.shareImage = image;
+        }
+        if ([platformData respondsToSelector:@selector(title)]) {
+            [platformData performSelector:@selector(setTitle:) withObject:getNSStringFromCString(title)];
+        }
+        if ([platformData respondsToSelector:@selector(url)]) {
+            [platformData performSelector:@selector(setUrl:) withObject:getNSStringFromCString(targetUrl)];
+        }
+    } else{
+        NSLog(@"pass platform type error!");
+    }
+}
+
 void UmSocialControllerIOS::setLaiwangAppInfo(const char *appId, const char *appKey, const char *appName){
     #if CC_ShareToLaiWang == 1
     [UMSocialLaiwangHandler setLaiwangAppId:getNSStringFromCString(appId) appSecret:getNSStringFromCString(appKey) appDescription:getNSStringFromCString(appName) urlStirng:@"http://www.umeng.com/social"];
@@ -205,25 +248,6 @@ bool UmSocialControllerIOS::isAuthorized(int platform){
     
     return isOauth == YES;
 }
-
-id getUIImageFromFilePath(const char* imagePath){
-    id returnImage = nil;
-    if (imagePath) {
-        NSString *imageString = getNSStringFromCString(imagePath);
-        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
-                                                             ofType:@"gif"];
-            returnImage = [NSData dataWithContentsOfFile:path];
-        } else if ([imageString rangeOfString:@"/"].length > 0){
-            returnImage = [NSData dataWithContentsOfFile:imageString];
-        } else {
-            returnImage = [UIImage imageNamed:imageString];
-        }
-        [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
-    }
-    return returnImage;
-}
-
 
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const char* text, const char* imagePath,ShareEventHandler callback){
     

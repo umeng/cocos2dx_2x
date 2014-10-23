@@ -110,7 +110,6 @@ bool HelloWorld::init() {
 	// ********************  设置友盟的app key以及相关的信息  ***********************************
 	// 获取CCUMSocialSDK对象, 如果使用的UMShareButton, 则通过UMShareButton对象的getSocialSDK()方法获取.
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
-    sdk->setSsoAuthorization(SINA, NULL);
 	sdk->setTargetUrl("http://www.umeng.com/social");
 	//    // 设置友盟app key
 	//    sdk->setAppKey("507fcab25270157b37000010");

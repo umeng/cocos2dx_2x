@@ -7,6 +7,7 @@
 */
 "button_cancel" = "Cancel";
 "button_ok" = "OK";
+"button_start" = "Start";
 
 "button_close" = "Close";
 "button_back" = "Back";
@@ -27,6 +28,7 @@
 "shareQQ_notInstall" = "Mobile QQ havn't be installed in your device";
 "shareQQ_openFail" = "Open Mobile QQ fail";
 "shareInstagram_openFail" = "Open Instagram fail";
+"shareClient_notInstall" = "Client not installed in your device";
 
 "shareList_title" = "Share To";
 "shareEdit_title" = "Share To ";
