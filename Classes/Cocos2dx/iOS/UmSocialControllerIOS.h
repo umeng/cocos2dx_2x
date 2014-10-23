@@ -63,6 +63,9 @@ public:
     //设置微信appid,appSecret
     static void setWechatAppId(const char *appId, const char *appSecret);
 
+    //打开各个平台SSO开关,redirectURL
+    static void openSSOAuthorization(int platform, const char *redirectURL);
+    
     //设置来往appid，appkey
     static void setLaiwangAppInfo(const char *appId, const char *appKey, const char * appName);
 

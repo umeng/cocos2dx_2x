@@ -41,6 +41,10 @@
 		D4EF94A015BD2D9800D803EB /* Icon-144.png in Resources */ = {isa = PBXBuildFile; fileRef = D4EF949F15BD2D9800D803EB /* Icon-144.png */; };
 		D508D6AF19F8B673001D68D3 /* libSocialYiXin.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D508D6A919F8B673001D68D3 /* libSocialYiXin.a */; };
 		D508D6B019F8B673001D68D3 /* libYixinSDK_V2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D508D6AA19F8B673001D68D3 /* libYixinSDK_V2.2.a */; };
+		D508D6BB19F8C2F7001D68D3 /* libSocialRenren.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D508D6B319F8C2F7001D68D3 /* libSocialRenren.a */; };
+		D508D6BC19F8C2F7001D68D3 /* RennSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D508D6B419F8C2F7001D68D3 /* RennSDK.framework */; };
+		D508D6BD19F8C2F7001D68D3 /* libSocialTencentWeibo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D508D6B719F8C2F7001D68D3 /* libSocialTencentWeibo.a */; };
+		D508D6BE19F8C2F7001D68D3 /* libTCWeiboSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D508D6B819F8C2F7001D68D3 /* libTCWeiboSDK.a */; };
 		D568332A18FE7BD90084AC3F /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D568332918FE7BD90084AC3F /* CoreTelephony.framework */; };
 		D568332C18FE7BF60084AC3F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D568332B18FE7BF60084AC3F /* libsqlite3.dylib */; };
 		D568332E18FE7C010084AC3F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D568332D18FE7C010084AC3F /* Security.framework */; };
@@ -153,6 +157,13 @@
 		D508D6AC19F8B673001D68D3 /* UMSocialYiXinHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialYiXinHandler.h; sourceTree = "<group>"; };
 		D508D6AD19F8B673001D68D3 /* YXApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXApi.h; sourceTree = "<group>"; };
 		D508D6AE19F8B673001D68D3 /* YXApiObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YXApiObject.h; sourceTree = "<group>"; };
+		D508D6B319F8C2F7001D68D3 /* libSocialRenren.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialRenren.a; sourceTree = "<group>"; };
+		D508D6B419F8C2F7001D68D3 /* RennSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = RennSDK.framework; sourceTree = "<group>"; };
+		D508D6B519F8C2F7001D68D3 /* UMSocialRenrenHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialRenrenHandler.h; sourceTree = "<group>"; };
+		D508D6B719F8C2F7001D68D3 /* libSocialTencentWeibo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libSocialTencentWeibo.a; sourceTree = "<group>"; };
+		D508D6B819F8C2F7001D68D3 /* libTCWeiboSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTCWeiboSDK.a; sourceTree = "<group>"; };
+		D508D6B919F8C2F7001D68D3 /* UMSocialTencentWeiboHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialTencentWeiboHandler.h; sourceTree = "<group>"; };
+		D508D6BA19F8C2F7001D68D3 /* WeiboApi.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboApi.h; sourceTree = "<group>"; };
 		D568332918FE7BD90084AC3F /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		D568332B18FE7BF60084AC3F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		D568332D18FE7C010084AC3F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -247,12 +258,16 @@
 				D508D6B019F8B673001D68D3 /* libYixinSDK_V2.2.a in Frameworks */,
 				D5746D6319F7A51C00EB111E /* libSocialFacebook.a in Frameworks */,
 				D5746D7019F7A55C00EB111E /* libSocialInstagram.a in Frameworks */,
+				D508D6BD19F8C2F7001D68D3 /* libSocialTencentWeibo.a in Frameworks */,
 				15A3DA6A1682F886002FB0C5 /* libcocos2dx.a in Frameworks */,
 				D5746D6719F7A51D00EB111E /* TencentOpenAPI.framework in Frameworks */,
+				D508D6BE19F8C2F7001D68D3 /* libTCWeiboSDK.a in Frameworks */,
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */,
+				D508D6BC19F8C2F7001D68D3 /* RennSDK.framework in Frameworks */,
 				D508D6AF19F8B673001D68D3 /* libSocialYiXin.a in Frameworks */,
+				D508D6BB19F8C2F7001D68D3 /* libSocialRenren.a in Frameworks */,
 				BF1712461292920000B8313A /* libxml2.dylib in Frameworks */,
 				BF1C47F01293687400B63C5D /* QuartzCore.framework in Frameworks */,
 				D44C620C132DFF330009C878 /* OpenAL.framework in Frameworks */,
@@ -465,6 +480,27 @@
 			path = YiXin;
 			sourceTree = "<group>";
 		};
+		D508D6B219F8C2F7001D68D3 /* Renren */ = {
+			isa = PBXGroup;
+			children = (
+				D508D6B319F8C2F7001D68D3 /* libSocialRenren.a */,
+				D508D6B419F8C2F7001D68D3 /* RennSDK.framework */,
+				D508D6B519F8C2F7001D68D3 /* UMSocialRenrenHandler.h */,
+			);
+			path = Renren;
+			sourceTree = "<group>";
+		};
+		D508D6B619F8C2F7001D68D3 /* TencentWeibo */ = {
+			isa = PBXGroup;
+			children = (
+				D508D6B719F8C2F7001D68D3 /* libSocialTencentWeibo.a */,
+				D508D6B819F8C2F7001D68D3 /* libTCWeiboSDK.a */,
+				D508D6B919F8C2F7001D68D3 /* UMSocialTencentWeiboHandler.h */,
+				D508D6BA19F8C2F7001D68D3 /* WeiboApi.h */,
+			);
+			path = TencentWeibo;
+			sourceTree = "<group>";
+		};
 		D5746D1F19F7A51C00EB111E /* umeng_ios_social_sdk_4.2_custom */ = {
 			isa = PBXGroup;
 			children = (
@@ -524,6 +560,8 @@
 		D5746D3C19F7A51C00EB111E /* UMSocial_Sdk_Extra_Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D508D6B219F8C2F7001D68D3 /* Renren */,
+				D508D6B619F8C2F7001D68D3 /* TencentWeibo */,
 				D508D6A819F8B673001D68D3 /* YiXin */,
 				D5746D6D19F7A55C00EB111E /* Instagram */,
 				D5746D3D19F7A51C00EB111E /* Facebook */,
@@ -813,6 +851,7 @@
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI\"",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
@@ -873,6 +912,8 @@
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Instagram",
+					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
+					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentWeibo",
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = UmengGame;
@@ -897,6 +938,7 @@
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI\"",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
+					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
 				);
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -955,6 +997,8 @@
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
 					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Instagram",
+					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
+					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentWeibo",
 				);
 				PRODUCT_NAME = UmengGame;
 				PROVISIONING_PROFILE = "";
