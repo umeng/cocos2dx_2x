@@ -801,7 +801,7 @@ public class CCUMSocialController {
     /**
      * @param platform
      */
-    public static void supportSsoAuthorization(int platform) {
+    public static void supportSsoAuthorization(int platform, String redirectURL) {
         if (!isPlatformValid(platform)) {
             Log.d(TAG, "### 设置SSO授权时传入的平台参数有误，请检查~");
             return;
@@ -815,6 +815,8 @@ public class CCUMSocialController {
         if (share_platform == SHARE_MEDIA.SINA) {
             // 如果要添加新浪微博SSO授权，则需要拷贝/com/sina/sso文件件到你的src根目录下
             mController.getConfig().setSsoHandler(new SinaSsoHandler());
+            //
+            mController.getConfig().setSinaCallbackUrl(redirectURL);
             Log.d(TAG, "### 设置新浪微博SSO");
         } else if (share_platform == SHARE_MEDIA.RENREN) {
             // 如果要添加人人网SSO授权，则需要拷贝以SocialSDK_renren开始两个jar包到libs目录
@@ -826,6 +828,7 @@ public class CCUMSocialController {
         if (share_platform == SHARE_MEDIA.TENCENT) {
             // 添加腾讯微博SSO授权，则需要拷贝以SocialSDK_tencentWB开始两个jar包到libs目录
             mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+            //
         }
 
     }
