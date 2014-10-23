@@ -493,6 +493,31 @@ void supportSsoAuthorization(int platform) {
 }
 
 /**
+ *
+ */
+void setPlatformDepShareContent(int platform, const char* text,
+		const char* imagePath, const char* title, const char* targetUrl) {
+	JniMethodInfo mi;
+	bool isHave =
+			getMethod(mi, "setPlatformShareContent",
+					"(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+	if (isHave) {
+		jstring text_content = mi.env->NewStringUTF(text);
+		jstring image = mi.env->NewStringUTF(imagePath);
+		jstring share_title = mi.env->NewStringUTF(title);
+		jstring share_target_url = mi.env->NewStringUTF(targetUrl);
+		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform,
+				text_content, image, share_title, share_target_url);
+		mi.env->DeleteLocalRef(text_content);
+		mi.env->DeleteLocalRef(image);
+		mi.env->DeleteLocalRef(share_title);
+		mi.env->DeleteLocalRef(share_target_url);
+		releaseMethod(mi);
+	}
+	CCLog("#### setPlatformDepShareContent");
+
+}
+/**
  *  是否开启log
  * @param flag 如果为true则开启log, 否则关闭.
  */

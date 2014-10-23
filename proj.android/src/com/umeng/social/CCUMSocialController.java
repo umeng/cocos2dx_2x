@@ -590,6 +590,7 @@ public class CCUMSocialController {
                 UMQQSsoHandler qqssoSsoHandler = new UMQQSsoHandler(mActivity, QQ_QZONE_APP_ID,
                         QQ_QZONE_APP_KEY);
                 qqssoSsoHandler.setTargetUrl(TARGET_URL);
+                qqssoSsoHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.QZONE) {
                 // Social Android sdk 3.3.6 及其以后的版本, 添加QQ空间的支持方式
                 // mSocializeConfig.setSsoHandler(new QZoneSsoHandler(mActivity,
@@ -600,7 +601,7 @@ public class CCUMSocialController {
                 QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(mActivity,
                         QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY);
                 qZoneSsoHandler.setTargetUrl(TARGET_URL);
-
+                qZoneSsoHandler.addToSocialSDK();
                 // Social Android sdk 3.3.6之前的版本添加QQ空间的支持方式
                 // mSocializeConfig.setSsoHandler(new
                 // QZoneSsoHandler(mActivity));

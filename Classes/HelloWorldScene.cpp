@@ -159,8 +159,8 @@ bool HelloWorld::init() {
 	CCMenuItemImage *pCloseItem = CCMenuItemImage::create("CloseNormal.png",
 			"CloseSelected.png", this,
 			menu_selector(HelloWorld::menuCloseCallback));
-	CCSize size(100, 100) ;
-	pCloseItem->setContentSize( size ) ;
+	CCSize size(100, 100);
+	pCloseItem->setContentSize(size);
 	pCloseItem->setPosition(
 			ccp(
 					origin.x + visibleSize.width
@@ -316,9 +316,16 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatforms(platforms);
 
 	// 设置新浪微博SSO登录
-	sdk->setSsoAuthorization(SINA);
+//	sdk->setSsoAuthorization(SINA);
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
 			"assets/CloseNormal.png", "sina-title");
+	//
+	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",
+			"assets/CloseNormal.png", "WEIXIN-title",
+			"http://blog.csdn.net/bboyfeiyu");
+	//
+	sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
+			"QQ-title", "http://blog.csdn.net/bboyfeiyu");
 
 	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)

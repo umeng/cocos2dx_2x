@@ -181,13 +181,13 @@ bool CCUMSocialSDK::isAuthorized(int platform) {
  * @param text 要分享的文字内容
  * @param imgName
  * 	 // *******************************************
-	 要分享的图片支持url图片、assets目录下的图片、资源图片和存放在sd卡目录下的图片。这四种图片对于前缀都有一定的要求，要求如下:
-	 //
-	 1、url图片必须以"http://"或者"https://"开头,例如 : http://www.umeng.com/images/pic/home/feedback/banner.png；
-	 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
-	 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
-	 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
-	 // *******************************************
+ 要分享的图片支持url图片、assets目录下的图片、资源图片和存放在sd卡目录下的图片。这四种图片对于前缀都有一定的要求，要求如下:
+ //
+ 1、url图片必须以"http://"或者"https://"开头,例如 : http://www.umeng.com/images/pic/home/feedback/banner.png；
+ 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
+ 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
+ 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
+ // *******************************************
  * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
  */
 void CCUMSocialSDK::openShare(const char* text, const char* imgName,
@@ -211,13 +211,13 @@ void CCUMSocialSDK::openShare(const char* text, const char* imgName,
  * @param text 要分享的文字内容
  * @param imgName
  * 	 // *******************************************
-	 要分享的图片支持url图片、assets目录下的图片、资源图片和存放在sd卡目录下的图片。这四种图片对于前缀都有一定的要求，要求如下:
-	 //
-	 1、url图片必须以"http://"或者"https://"开头,例如 : http://www.umeng.com/images/pic/home/feedback/banner.png；
-	 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
-	 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
-	 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
-	 // *******************************************
+ 要分享的图片支持url图片、assets目录下的图片、资源图片和存放在sd卡目录下的图片。这四种图片对于前缀都有一定的要求，要求如下:
+ //
+ 1、url图片必须以"http://"或者"https://"开头,例如 : http://www.umeng.com/images/pic/home/feedback/banner.png；
+ 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
+ 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
+ 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
+ // *******************************************
  * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
  */
 void CCUMSocialSDK::directShare(int platform, const char* text,
@@ -388,7 +388,7 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 		const char* imagePath, const char* title, const char* targetUrl) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	// TODO
-
+	setPlatformDepShareContent(platform, text, imagePath, title, targetUrl);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	// TODO
 #endif
