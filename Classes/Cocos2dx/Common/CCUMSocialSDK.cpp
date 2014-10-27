@@ -10,8 +10,8 @@
 
 #include <Cocos2dx/Common/CCUMSocialSDK.h>
 #include <platform/CCCommon.h>
-#include <platform/CCPlatformConfig.h>
-#include <platform/CCPlatformMacros.h>
+//#include <platform/CCPlatformConfig.h>
+//#include <platform/CCPlatformMacros.h>
 #include <stddef.h>
 //#include <vector>
 

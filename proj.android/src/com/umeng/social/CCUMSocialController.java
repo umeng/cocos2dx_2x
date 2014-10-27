@@ -552,9 +552,6 @@ public class CCUMSocialController {
     public static void supportPlatfrom(int platform) {
         final SHARE_MEDIA target = getPlatform(platform);
         // 判断target
-        if (target == null || target == SHARE_MEDIA.GENERIC) {
-            return;
-        }
         checkActivity();
 
         try {
@@ -647,12 +644,12 @@ public class CCUMSocialController {
                 mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
                         true);
             } else if (target == SHARE_MEDIA.SMS) { // 短信平台分享
-//                SmsHandler smsHandler = new SmsHandler();
-//                smsHandler.addToSocialSDK();
+            // SmsHandler smsHandler = new SmsHandler();
+            // smsHandler.addToSocialSDK();
             }
             else if (target == SHARE_MEDIA.EMAIL) { // 邮件分享
-//                EmailHandler emailHandler = new EmailHandler();
-//                emailHandler.addToSocialSDK();
+            // EmailHandler emailHandler = new EmailHandler();
+            // emailHandler.addToSocialSDK();
             } else {
                 Log.e(TAG,
                         target
@@ -850,10 +847,10 @@ public class CCUMSocialController {
                         if (target != null && target != SHARE_MEDIA.GENERIC) {
                             // 如果没有添加到SDK则添加到里面, 支持的平台有QQ,微信,微信朋友圈
                             // QQ空间为内置平台, 但是它必须使用客户端进行授权.
-                            if (!isPlatformConfiged(target)
-                                    || target == SHARE_MEDIA.QZONE) {
-                                supportPlatfrom(index);
-                            }
+                            // if (!isPlatformConfiged(target)
+                            // || target == SHARE_MEDIA.QZONE) {
+                            supportPlatfrom(index);
+                            // }
                             // 先将有效的平台缓存到列表中, 最后再转换为数组
                             cacheList.add(target);
                         }
