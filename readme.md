@@ -521,8 +521,9 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	与Android不用的是，iOS SDK中默认链接了各个平台所需的framework，如果您不需要某个平台，可以将该平台移除。    
 	
 <b id=cocos2dx_platforms_weixin_integration></b> 
-### 4.1.1 集成微信和微信朋友圈
-	注意，集成微信或者微信朋友圈之前，您必须到微信开放平台中申请app id,app key,并且正确填写应用的信息，对于Android平台您必须确保包名和APP的签名是正确的，然后通过审核后即可分享成功，否则将无法跳转到微信或者微信朋友圈的分享界面。
+### 4.1.1 集成微信和微信朋友圈     
+
+   注意，集成微信或者微信朋友圈之前，您必须到<a href="http://open.weixin.qq.com/" target="_blank">微信开放平台</a>中申请app id,app key,并且正确填写应用的信息，对于Android平台您必须确保包名和APP的签名是正确的，然后通过审核后即可分享成功，否则将无法跳转到微信或者微信朋友圈的分享界面。
 	要集成微信或者微信朋友圈，你需要在Cocos2d-x代码中添加如下代码 : 
 ```java
 	// 获取一个CCUMSocialSDK实例
@@ -571,7 +572,7 @@ circleHandler.addToSocialSDK();
 
 <b id=cocos2dx_platforms_qq_integration></b> 
 ### 4.1.2 集成QQ和QQ空间
-	注意，集成QQ或者QQ空间之前，您必须到腾讯开放平台中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。     
+	注意，集成QQ或者QQ空间之前，您必须到<a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。     
 	在Cocos2d-x游戏中通过如下代码添加QQ空间或者QQ的支持：
 ```java
 	// 获取一个CCUMSocialSDK实例
@@ -669,7 +670,7 @@ umlwDynamicHandler.addToSocialSDK();
 <b id=cocos2dx_platforms_yixin_integration></b> 
 ### 4.1.4 集成易信和易信朋友圈
            
-   在Cocos2d-x代码中，通过CCUMSocialSDK类的setYiXinAppKey("")函数来设置微信的App key，
+   首先到<a href="http://open.yixin.im/" target="_blank">易信开发平台</a>中获取app id, app key等信息。然后在Cocos2d-x代码中，通过CCUMSocialSDK类的setYiXinAppKey("")函数来设置微信的App key，
 ```java
 	// 获取一个CCUMSocialSDK实例
     CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
@@ -731,7 +732,7 @@ yxHandler.addToSocialSDK();
 
  <b id=cocos2dx_platforms_facebook_integration></b> 
 ### 4.1.5 集成Facebook       
- 在Cocos2d-x代码中首先需要设置facebook的app id，并且将facebook添加到sdk中, 代码如下 :
+ 首先到<a href="https://developers.facebook.com/">facebook开发者网站</a>(需翻墙)上创建应用，然后填写应用签名、包名等信息，然后获取app id等信息。在Cocos2d-x代码中首先需要设置facebook的app id，并且将facebook添加到sdk中, 代码如下 :
 ```java
 	// 获取一个CCUMSocialSDK实例
     CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
