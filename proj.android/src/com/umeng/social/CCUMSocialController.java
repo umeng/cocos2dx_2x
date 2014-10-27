@@ -25,40 +25,17 @@ import com.umeng.socialize.controller.listener.SocializeListeners.SnsPostListene
 import com.umeng.socialize.controller.listener.SocializeListeners.SocializeClientListener;
 import com.umeng.socialize.controller.listener.SocializeListeners.UMAuthListener;
 import com.umeng.socialize.exception.SocializeException;
-import com.umeng.socialize.facebook.controller.UMFacebookHandler;
-import com.umeng.socialize.facebook.controller.UMFacebookHandler.PostType;
-import com.umeng.socialize.facebook.media.FaceBookShareContent;
-import com.umeng.socialize.instagram.controller.UMInstagramHandler;
-import com.umeng.socialize.instagram.media.InstagramShareContent;
-import com.umeng.socialize.laiwang.controller.UMLWHandler;
-import com.umeng.socialize.laiwang.media.LWDynamicShareContent;
-import com.umeng.socialize.laiwang.media.LWShareContent;
 import com.umeng.socialize.media.BaseShareContent;
 import com.umeng.socialize.media.GooglePlusShareContent;
-import com.umeng.socialize.media.MailShareContent;
-import com.umeng.socialize.media.QQShareContent;
-import com.umeng.socialize.media.QZoneShareContent;
 import com.umeng.socialize.media.RenrenShareContent;
 import com.umeng.socialize.media.SinaShareContent;
-import com.umeng.socialize.media.SmsShareContent;
 import com.umeng.socialize.media.TencentWbShareContent;
 import com.umeng.socialize.media.TwitterShareContent;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.net.utils.SocializeNetUtils;
-import com.umeng.socialize.sso.QZoneSsoHandler;
-import com.umeng.socialize.sso.RenrenSsoHandler;
-import com.umeng.socialize.sso.SinaSsoHandler;
-import com.umeng.socialize.sso.TencentWBSsoHandler;
-import com.umeng.socialize.sso.UMQQSsoHandler;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.utils.Log;
 import com.umeng.socialize.utils.OauthHelper;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
-import com.umeng.socialize.weixin.media.CircleShareContent;
-import com.umeng.socialize.weixin.media.WeiXinShareContent;
-import com.umeng.socialize.yixin.controller.UMYXHandler;
-import com.umeng.socialize.yixin.media.YiXinCircleShareContent;
-import com.umeng.socialize.yixin.media.YiXinShareContent;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
@@ -582,103 +559,100 @@ public class CCUMSocialController {
 
         try {
             if (target == SHARE_MEDIA.QQ) {
-
-                // mSocializeConfig.supportQQPlatform(mActivity,
-                // QQ_QZONE_APP_ID,
-                // QQ_QZONE_APP_KEY, TARGET_URL);
                 // 添加QQ平台支持
-                UMQQSsoHandler qqssoSsoHandler = new UMQQSsoHandler(mActivity, QQ_QZONE_APP_ID,
-                        QQ_QZONE_APP_KEY);
-                qqssoSsoHandler.setTargetUrl(TARGET_URL);
-                qqssoSsoHandler.addToSocialSDK();
+                // UMQQSsoHandler qqssoSsoHandler = new
+                // UMQQSsoHandler(mActivity, QQ_QZONE_APP_ID,
+                // QQ_QZONE_APP_KEY);
+                // qqssoSsoHandler.setTargetUrl(TARGET_URL);
+                // qqssoSsoHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.QZONE) {
-                // Social Android sdk 3.3.6 及其以后的版本, 添加QQ空间的支持方式
-                // mSocializeConfig.setSsoHandler(new QZoneSsoHandler(mActivity,
-                // QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY));
-                // QZoneSsoHandler.setTargetUrl(TARGET_URL);
 
                 // 添加QQ空间平台的支持
-                QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(mActivity,
-                        QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY);
-                qZoneSsoHandler.setTargetUrl(TARGET_URL);
-                qZoneSsoHandler.addToSocialSDK();
-                // Social Android sdk 3.3.6之前的版本添加QQ空间的支持方式
-                // mSocializeConfig.setSsoHandler(new
-                // QZoneSsoHandler(mActivity));
+                // QZoneSsoHandler qZoneSsoHandler = new
+                // QZoneSsoHandler(mActivity,
+                // QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY);
+                // qZoneSsoHandler.setTargetUrl(TARGET_URL);
+                // qZoneSsoHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.WEIXIN) {
-                // 微信平台
-                // mSocializeConfig.supportWXPlatform(mActivity, WEIXIN_APP_ID,
-                // TARGET_URL);
 
-                // 需要添加微信secret TODO 添加secret参数
-                UMWXHandler wxHandler = new UMWXHandler(mActivity, WEIXIN_APP_ID, WEIXIN_APP_SECRET);
-                wxHandler.setTargetUrl(TARGET_URL);
-                wxHandler.addToSocialSDK();
+                // 添加微信
+                // UMWXHandler wxHandler = new UMWXHandler(mActivity,
+                // WEIXIN_APP_ID, WEIXIN_APP_SECRET);
+                // wxHandler.setTargetUrl(TARGET_URL);
+                // wxHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.WEIXIN_CIRCLE) {
-                // 微信朋友圈平台
-                // mSocializeConfig.supportWXCirclePlatform(mActivity,
-                // WEIXIN_APP_ID,
-                // TARGET_URL);
 
-                // 需要添加微信朋友圈平台secret TODO 添加secret参数
-                UMWXHandler circleHandler = new UMWXHandler(mActivity, WEIXIN_APP_ID,
-                        WEIXIN_APP_SECRET);
-                circleHandler.setTargetUrl(TARGET_URL);
-                // 设置为朋友圈平台
-                circleHandler.setToCircle(true);
-                circleHandler.addToSocialSDK();
+                // 需要添加微信朋友圈平台
+                // UMWXHandler circleHandler = new UMWXHandler(mActivity,
+                // WEIXIN_APP_ID,
+                // WEIXIN_APP_SECRET);
+                // circleHandler.setTargetUrl(TARGET_URL);
+                // // 设置为朋友圈平台
+                // circleHandler.setToCircle(true);
+                // circleHandler.addToSocialSDK();
 
             } else if (target == SHARE_MEDIA.YIXIN) {
                 // 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
                 // true为易信朋友圈,
-                UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY);
-                yxHandler.setTargetUrl(TARGET_URL);
-                // 添加易信平台到SDK
-                yxHandler.addToSocialSDK();
+                // UMYXHandler yxHandler = new UMYXHandler(mActivity,
+                // YIXIN_APPKEY);
+                // yxHandler.setTargetUrl(TARGET_URL);
+                // // 添加易信平台到SDK
+                // yxHandler.addToSocialSDK();
 
             } else if (target == SHARE_MEDIA.YIXIN_CIRCLE) {
                 // 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
                 // true为易信朋友圈,
-                UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY);
-                yxHandler.setToCircle(true);
-                yxHandler.setTargetUrl(TARGET_URL);
-                // 添加易信朋友圈平台到SDK
-                yxHandler.addToSocialSDK();
+                // UMYXHandler yxHandler = new UMYXHandler(mActivity,
+                // YIXIN_APPKEY);
+                // yxHandler.setToCircle(true);
+                // yxHandler.setTargetUrl(TARGET_URL);
+                // // 添加易信朋友圈平台到SDK
+                // yxHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.LAIWANG) {
                 // 添加来往平台的支持
-                UMLWHandler umLWHandler = new UMLWHandler(mActivity, LAIWANG_APPID, LAIWANG_APPKEY);
-                umLWHandler.setTargetUrl(TARGET_URL);
-                umLWHandler.setTitle("分享到来往");
-                umLWHandler.setMessageFrom(LAIWANG_APP_NAME);
-                umLWHandler.addToSocialSDK();
+                // UMLWHandler umLWHandler = new UMLWHandler(mActivity,
+                // LAIWANG_APPID, LAIWANG_APPKEY);
+                // umLWHandler.setTargetUrl(TARGET_URL);
+                // umLWHandler.setTitle("分享到来往");
+                // umLWHandler.setMessageFrom(LAIWANG_APP_NAME);
+                // umLWHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.LAIWANG_DYNAMIC) {
                 // 添加来往动态平台的支持
-                UMLWHandler umlwDynamicHandler = new UMLWHandler(mActivity, LAIWANG_APPID,
-                        LAIWANG_APPKEY);
-                // 设置为易信朋友圈平台
-                umlwDynamicHandler.setToCircle(true);
-                umlwDynamicHandler.setTitle("分享到来往动态");
-                umlwDynamicHandler.setTargetUrl(TARGET_URL);
-                // 设置消息来源
-                umlwDynamicHandler.setMessageFrom(LAIWANG_APP_NAME);
-                umlwDynamicHandler.addToSocialSDK();
+                // UMLWHandler umlwDynamicHandler = new UMLWHandler(mActivity,
+                // LAIWANG_APPID,
+                // LAIWANG_APPKEY);
+                // // 设置为易信朋友圈平台
+                // umlwDynamicHandler.setToCircle(true);
+                // umlwDynamicHandler.setTitle("分享到来往动态");
+                // umlwDynamicHandler.setTargetUrl(TARGET_URL);
+                // // 设置消息来源
+                // umlwDynamicHandler.setMessageFrom(LAIWANG_APP_NAME);
+                // umlwDynamicHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.FACEBOOK) {
                 // facebook的支持
-                UMFacebookHandler mFacebookHandler = new UMFacebookHandler(
-                        mActivity, FACEBOOK_APP_ID, PostType.FEED);
-                mFacebookHandler.setTargetUrl(TARGET_URL);
-                mFacebookHandler.addToSocialSDK();
+                // UMFacebookHandler mFacebookHandler = new UMFacebookHandler(
+                // mActivity, FACEBOOK_APP_ID, PostType.FEED);
+                // mFacebookHandler.setTargetUrl(TARGET_URL);
+                // mFacebookHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.INSTAGRAM) {
                 // 构建Instagram的Handler
-                UMInstagramHandler instagramHandler = new UMInstagramHandler(
-                        mActivity);
-                instagramHandler.addToSocialSDK();
+                // UMInstagramHandler instagramHandler = new UMInstagramHandler(
+                // mActivity);
+                // instagramHandler.addToSocialSDK();
             } else if (target == SHARE_MEDIA.TWITTER) {
                 mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
                         true);
             } else if (target == SHARE_MEDIA.GOOGLEPLUS) {
                 mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
                         true);
+            } else if (target == SHARE_MEDIA.SMS) { // 短信平台分享
+//                SmsHandler smsHandler = new SmsHandler();
+//                smsHandler.addToSocialSDK();
+            }
+            else if (target == SHARE_MEDIA.EMAIL) { // 邮件分享
+//                EmailHandler emailHandler = new EmailHandler();
+//                emailHandler.addToSocialSDK();
             } else {
                 Log.e(TAG,
                         target
@@ -716,16 +690,16 @@ public class CCUMSocialController {
                     shareContent = new SinaShareContent();
                     break;
                 case WEIXIN:// 微信
-                    shareContent = new WeiXinShareContent();
+                    // shareContent = new WeiXinShareContent();
                     break;
                 case WEIXIN_CIRCLE:// 微信朋友圈
-                    shareContent = new CircleShareContent();
+                    // shareContent = new CircleShareContent();
                     break;
                 case QQ:// QQ
-                    shareContent = new QQShareContent();
+                    // shareContent = new QQShareContent();
                     break;
                 case QZONE:// QQ空间
-                    shareContent = new QZoneShareContent();
+                    // shareContent = new QZoneShareContent();
                     break;
                 case TENCENT:// 腾讯微博
                     shareContent = new TencentWbShareContent();
@@ -734,41 +708,44 @@ public class CCUMSocialController {
                     shareContent = new RenrenShareContent();
                     break;
                 case LAIWANG:// 来往
-                    shareContent = new LWShareContent();
+                    // shareContent = new LWShareContent();
                     break;
                 case LAIWANG_DYNAMIC:// 来往动态
-                    shareContent = new LWDynamicShareContent();
+                    // shareContent = new LWDynamicShareContent();
                     break;
                 case YIXIN:// 易信
-                    shareContent = new YiXinShareContent();
+                    // shareContent = new YiXinShareContent();
                     break;
                 case YIXIN_CIRCLE:// 易信朋友圈
-                    shareContent = new YiXinCircleShareContent();
+                    // shareContent = new YiXinCircleShareContent();
                     break;
                 case FACEBOOK:// facebook
-                    FaceBookShareContent fbShareContent = new FaceBookShareContent(text);
-                    fbShareContent.setShareImage(shareImage);
-                    fbShareContent.setTitle(title);
-                    fbShareContent.setTargetUrl(targetUrl);
-                    mController.setShareMedia(fbShareContent);
+                    // FaceBookShareContent fbShareContent = new
+                    // FaceBookShareContent(text);
+                    // fbShareContent.setShareImage(shareImage);
+                    // fbShareContent.setTitle(title);
+                    // fbShareContent.setTargetUrl(targetUrl);
+                    // mController.setShareMedia(fbShareContent);
                     break;
                 case INSTAGRAM:// instagram
-                    InstagramShareContent insShareContent = new InstagramShareContent();
-                    insShareContent.setShareContent(text);
-                    insShareContent.setShareImage(shareImage);
-                    mController.setShareMedia(insShareContent);
+                    // InstagramShareContent insShareContent = new
+                    // InstagramShareContent();
+                    // insShareContent.setShareContent(text);
+                    // insShareContent.setShareImage(shareImage);
+                    // mController.setShareMedia(insShareContent);
                     break;
                 case SMS:// 短信
-                    SmsShareContent smsShareContent = new SmsShareContent();
-                    smsShareContent.setShareContent(text);
-                    smsShareContent.setShareImage(shareImage);
-                    mController.setShareMedia(smsShareContent);
+                    // SmsShareContent smsShareContent = new SmsShareContent();
+                    // smsShareContent.setShareContent(text);
+                    // smsShareContent.setShareImage(shareImage);
+                    // mController.setShareMedia(smsShareContent);
                     break;
                 case EMAIL:// 邮件
-                    MailShareContent mailShareContent = new MailShareContent();
-                    mailShareContent.setShareContent(text);
-                    mailShareContent.setShareImage(shareImage);
-                    mController.setShareMedia(mailShareContent);
+                    // MailShareContent mailShareContent = new
+                    // MailShareContent();
+                    // mailShareContent.setShareContent(text);
+                    // mailShareContent.setShareImage(shareImage);
+                    // mController.setShareMedia(mailShareContent);
                     break;
                 case TWITTER:// twitter
                     shareContent = new TwitterShareContent();
@@ -814,20 +791,20 @@ public class CCUMSocialController {
 
         if (share_platform == SHARE_MEDIA.SINA) {
             // 如果要添加新浪微博SSO授权，则需要拷贝/com/sina/sso文件件到你的src根目录下
-            mController.getConfig().setSsoHandler(new SinaSsoHandler());
+            // mController.getConfig().setSsoHandler(new SinaSsoHandler());
             //
             mController.getConfig().setSinaCallbackUrl(redirectURL);
             Log.d(TAG, "### 设置新浪微博SSO");
         } else if (share_platform == SHARE_MEDIA.RENREN) {
             // 如果要添加人人网SSO授权，则需要拷贝以SocialSDK_renren开始两个jar包到libs目录
-            mController.getConfig().setSsoHandler(
-                    new RenrenSsoHandler(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
-                            RENREN_APP_SECRET));
+            // mController.getConfig().setSsoHandler(
+            // new RenrenSsoHandler(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
+            // RENREN_APP_SECRET));
         }
 
         if (share_platform == SHARE_MEDIA.TENCENT) {
             // 添加腾讯微博SSO授权，则需要拷贝以SocialSDK_tencentWB开始两个jar包到libs目录
-            mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
+            // mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
             //
         }
 
