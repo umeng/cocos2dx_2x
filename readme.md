@@ -29,7 +29,7 @@
    该Cocos2d-x SDK目前支持ios和android平台。
  
 ## 前提   
-   该Cocos2d-x分享组件需要依赖友盟社会化组件sdk，因此在您集成时必须将iOS或者Android平台的SDK集成到您的工程中。
+   该Cocos2d-x分享组件需要依赖友盟社会化组件sdk，因此在您集成时必须将iOS或者Android平台的SDK集成到您的工程中,即压缩包中的Platforms目录下的Android和iOS两个文件夹。      
    如果你之前已经在友盟注册了应用，并获取到了Appkey，可以继续使用它。如果你尚未在友盟[友盟](http://www.umeng.com/)注册开发者账号，需要先注册，注册之后登录你的账号，点击**添加新应用**，填写完应用基本信息后，将进入"下载SDK并添加代码"页面，此页面即可得到Umeng Appkey。进入到"组件"一栏，选择左边的“社会化分享”，然后选择“设置”--“自定义设置”， 然后将你在各个平台获取到的app id和app secret填写到其中，并且保存。    
 
 <b id=social_cocos2dx></b>
@@ -133,10 +133,6 @@
             android:name="com.facebook.LoginActivity"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <meta-data
-            android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id" />  -->
 
 <!-- ###################添加UmengAppkey###################### -->
         <meta-data
@@ -535,8 +531,10 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 ```   
 
 <b id=cocos2dx_integration_more_platforms></b>
-## 4 添加更多平台 ( 按需集成 )
-
+## 4 添加更多平台 ( 按需集成 )     
+	为了减小集成友盟社会化组件SDK占用的内存空间，Android SDK中默认只添加了新浪微博、腾讯微博、人人网、豆瓣这几个平台。其他的平台则需要您手动添加到SDK中。     
+	与Android不用的是，iOS SDK中默认链接了各个平台所需的framework，如果您不需要某个平台，可以将该平台移除。    
+	
 <b id=cocos2dx_platforms_weixin_integration></b> 
 ### 4.1.1 集成微信和微信朋友圈
 	注意，集成微信或者微信朋友圈之前，您必须到微信开放平台中申请app id,app key,并且正确填写应用的信息，对于Android平台您必须确保包名和APP的签名是正确的，然后通过审核后即可分享成功，否则将无法跳转到微信或者微信朋友圈的分享界面。
