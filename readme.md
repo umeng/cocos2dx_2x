@@ -172,11 +172,8 @@ super.onActivityResult(requestCode, resultCode, data);
 
 #### 2.2.1 修改 Xcode 编译选项(cocos2d-x 3.x版本)
 
-使用cocos2d-x 3.x（发行版）版本新建的工程，需要修改应用编译架构，修改方法为：将Xcode中Build Settings的Architectures修改为`$(ARCHS_STANDARD_32_BIT)`，Valid Architectures删除arm64。另外你使用的cocos2d-x的SDK，应该使用带有32位版本的库文件。   
-
-若要编译64位版本应用，可以到[SDK下载页面](http://dev.umeng.com/social/ios/sdk-download)，选择64位包下载。并替换Platforms目录下的iOS文件夹的内容。
-
-**使用cocos2d-x 3.0以下版本新建的工程，默认编译成32位架构，忽略此步骤。**
+本SDK的库文件默认提供的是包含64位架构的库文件，可是少部分社交平台平台和功能不支持64位的架构，不支持的分享平台和功能有腾讯微博SSO、人人人网SSO、分享到来往等。  
+如果使用上述平台或者功能，并使用cocos2d-x 3.x（发行版）版本新建的工程，需要修改应用编译架构，修改方法为：将Xcode中Build Settings的Architectures修改为`$(ARCHS_STANDARD_32_BIT)`，Valid Architectures删除arm64。另外你使用的cocos2d-x的SDK库文件，应该使用带有32位版本的库文件。   
 
 #### 2.2.2 加入iOS SDK
 
@@ -856,8 +853,7 @@ smsHandler.addToSocialSDK();
 ```     	
 
 ***iOS平台***
-	iOS平台集成短信不再需要其他的设置。    
-	// TODO    
+	iOS平台集成短信不再需要其他的设置。     
 	
 <b id=cocos2dx_platforms_email_integration></b> 
 ### 4.1.9 集成邮件分享
@@ -884,8 +880,7 @@ smsHandler.addToSocialSDK();
 ```     	
 
 ***iOS平台***
-	iOS平台集成邮件不再需要其他的设置。    
-	// TODO    
+	iOS平台集成邮件不再需要其他的设置。       
 
 
 <b id=cocos2dx_sso_auth></b>
