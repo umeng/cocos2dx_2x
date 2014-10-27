@@ -572,7 +572,7 @@ circleHandler.addToSocialSDK();
 
 <b id=cocos2dx_platforms_qq_integration></b> 
 ### 4.1.2 集成QQ和QQ空间
-	注意，集成QQ或者QQ空间之前，您必须到<a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。     
+   注意，集成QQ或者QQ空间之前，您必须到<a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。     
 	在Cocos2d-x游戏中通过如下代码添加QQ空间或者QQ的支持：
 ```java
 	// 获取一个CCUMSocialSDK实例
