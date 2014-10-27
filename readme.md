@@ -13,9 +13,9 @@
 	* 4.4 [易信和易信朋友圈集成](#cocos2dx_platforms_yixin_integration)
 	* 4.5 [facebook集成](#cocos2dx_platforms_facebook_integration)
 	* 4.6 [instagram集成](#cocos2dx_platforms_instagram_integration)
-	* 4.6 [twitter集成](#cocos2dx_platforms_twitter_integration)
-	* 4.6 [短信分享集成](#cocos2dx_platforms_sms_integration)
-	* 4.6 [邮件分享集成](#cocos2dx_platforms_email_integration)
+	* 4.7 [twitter集成](#cocos2dx_platforms_twitter_integration)
+	* 4.8 [短信分享集成](#cocos2dx_platforms_sms_integration)
+	* 4.9 [邮件分享集成](#cocos2dx_platforms_email_integration)
 * 5.[设置SSO授权](#cocos2dx_sso_auth)
 	* 5.1 [新浪微博的SSO授权](#cocos2dx_sina_sso)
 	* 5.2 [腾讯微博的SSO授权](#cocos2dx_tencent_sso)
@@ -916,7 +916,7 @@ smsHandler.addToSocialSDK();
 ```    
 	这样新浪就支持SSO授权了。     
 	
-<b id=cocos2dx_renren_sso></b>
+<b id=cocos2dx_tencent_sso></b>
 ### 5.2 腾讯微博的SSO授权
 	针对于Android平台的腾讯微博SSO授权，您需要将压缩包内的Platforms/Android/sns_platforms/tencent_wb/目录下的jar包拷贝到您工程的libs目录下，并且添加到"build path"中。然后添加如下代码即可支持SSO授权 : 
 ```java
@@ -943,7 +943,7 @@ mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 	这样腾讯微博就支持SSO授权了。   
 
 
-<b id=cocos2dx_tencent_sso></b>
+<b id=cocos2dx_renren_sso></b>
 ### 5.3 人人网的SSO授权
 	针对于Android平台的人人网SSO授权，您需要将压缩包内的Platforms/Android/sns_platforms/renren/目录下的jar包拷贝到您工程的libs目录下，并且添加到"build path"中。然后添加如下代码即可支持SSO授权 : 
 ```java
