@@ -270,7 +270,10 @@ void HelloWorld::directShareCallback(CCObject* pSender) {
 //    int platform[2] = {0,1};
 //    openShareWithImagePath(platform, 2, "share text", "cat.gif", NULL);
 
-	sdk->directShare(FACEBOOK, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
+    sdk->setPlatformShareContent(SINA, "sina share 内容",
+                                 "assets/CloseNormal.png", "sina-title");
+
+	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
 #endif
 }
 
