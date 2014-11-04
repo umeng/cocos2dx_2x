@@ -93,7 +93,7 @@ void UmSocialControllerIOS::setTargetUrl(const char *targetUrl){
     [UMSocialData defaultData].extConfig.lwtimelineData.url =getNSStringFromCString(targetUrl);
     [UMSocialData defaultData].extConfig.yxsessionData.url =getNSStringFromCString(targetUrl);
     [UMSocialData defaultData].extConfig.yxtimelineData.url =getNSStringFromCString(targetUrl);
-    [UMSocialData defaultData].extConfig.facebookData.urlString =getNSStringFromCString(targetUrl);
+    [UMSocialData defaultData].extConfig.facebookData.url =getNSStringFromCString(targetUrl);
 }
 
 //bool UmSocialControllerIOS::openURL(const char *url){

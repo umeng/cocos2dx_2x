@@ -381,7 +381,7 @@ typedef enum {
 /**
  分享URL地址
  */
-@property (nonatomic, copy) NSString *urlString;
+@property (nonatomic, copy) NSString *url;
 
 @end
 

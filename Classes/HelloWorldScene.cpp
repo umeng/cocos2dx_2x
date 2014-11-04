@@ -318,6 +318,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	platforms->push_back(SMS);
 	platforms->push_back(YIXIN);
 	platforms->push_back(WEIXIN);
+    platforms->push_back(WEIXIN_CIRCLE);
 	platforms->push_back(TWITTER);
 	platforms->push_back(FACEBOOK);
 	// 设置平台
@@ -328,12 +329,17 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
 			"assets/CloseNormal.png", "sina-title");
 	//
-	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",
-			"assets/CloseNormal.png", "WEIXIN-title",
+	sdk->setPlatformShareContent(WEIXIN_CIRCLE, "WEIXIN share 内容",
+			"assets/CloseNormal.png", "WEIXIN share 标题",
 			"http://blog.csdn.net/bboyfeiyu");
 	//
 	sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
 			"QQ-title", "http://blog.csdn.net/bboyfeiyu");
+    
+    sdk->setPlatformShareContent(RENREN, "renren share 内容", "assets/CloseNormal.png",
+                                 "QQ-title", "http://blog.csdn.net/bboyfeiyu");
+    sdk->setPlatformShareContent(DOUBAN, "douban share 内容", "assets/CloseNormal.png",
+                                 "QQ-title", "http://blog.csdn.net/bboyfeiyu");
 
 	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
