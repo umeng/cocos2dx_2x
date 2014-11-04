@@ -78,6 +78,24 @@
 				<string>sina.4eaee02c527015373b000003</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>yx52dd5c14bbb3430b93e6f2dafcbcc68d</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>Laiwang</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>yx52dd5c14bbb3430b93e6f2dafcbcc68d</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1.0</string>

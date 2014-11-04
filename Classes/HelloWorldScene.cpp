@@ -317,6 +317,9 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	platforms->push_back(QQ);
 	platforms->push_back(SMS);
 	platforms->push_back(YIXIN);
+    platforms->push_back(YIXIN_CIRCLE);
+    platforms->push_back(LAIWANG);
+    platforms->push_back(LAIWANG_CIRCLE);
 	platforms->push_back(WEIXIN);
     platforms->push_back(WEIXIN_CIRCLE);
 	platforms->push_back(TWITTER);
