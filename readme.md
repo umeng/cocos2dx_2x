@@ -901,7 +901,7 @@ smsHandler.addToSocialSDK();
 	sdk->setPlatforms(platforms);
 
 	// 设置新浪微博SSO授权
-//	sdk->setSsoAuthorization(SINA);
+//	sdk->setSsoAuthorization(SINA,"http://sns.whalecloud.com/sina2/callback");
 ```     
 
 	最后找到com.umeng.social.CCUMSocialController类的supportSsoAuthorization(int platform, String redirectURL)函数，将支持新浪微博SSO授权的注释去掉，如下:
@@ -927,7 +927,7 @@ smsHandler.addToSocialSDK();
 	sdk->setPlatforms(platforms);
 
 	// 设置腾讯微博SSO授权
-//	sdk->setSsoAuthorization(TENCENT_WEIBO);
+//	sdk->setSsoAuthorization(TENCENT_WEIBO,"http://sns.whalecloud.com/tencent2/callback");
 ```     	
 
 	然后找到com.umeng.social.CCUMSocialController类的supportSsoAuthorization(int platform, String redirectURL)函数，将支持腾讯微博SSO授权的注释去掉，如下:
@@ -940,7 +940,8 @@ mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 
 
 <b id=cocos2dx_renren_sso></b>
-### 5.3 人人网的SSO授权
+### 5.3 人人网的SSO授权（仅支持Android)
+	由于人人网iOS SSO SDK在横屏下有问题，不支持人人网iOS的SSO授权。  
 	针对于Android平台的人人网SSO授权，您需要将压缩包内的Platforms/Android/sns_platforms/renren/目录下的jar包拷贝到您工程的libs目录下，并且添加到"build path"中。然后添加如下代码即可支持SSO授权 : 
 ```java
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
@@ -957,7 +958,7 @@ mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 	sdk->setRenrenAppInfo("人人网的app id", "人人网的app key", "人人网的app secret");
 	
 	// 最后设置人人网支持SSO授权
-//	sdk->setSsoAuthorization(RENREN);
+//	sdk->setSsoAuthorization(RENREN,NULL);
 ```     	
 	然后找到com.umeng.social.CCUMSocialController类的supportSsoAuthorization(int platform, String redirectURL)函数，将支持人人网SSO授权的注释去掉，如下:
 ```java
@@ -986,7 +987,6 @@ mController.getConfig().setSsoHandler(
 ```          
 
 	这样人人网就支持SSO授权了。   
-
 
 <b id=cocos2dx_platform_sharecontent></b>
 ## 6. 设置分平台的分享内容

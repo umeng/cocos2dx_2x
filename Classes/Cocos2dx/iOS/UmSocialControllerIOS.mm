@@ -125,7 +125,7 @@ void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redi
         [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
     }
     if (platform == RENREN) {
-        [UMSocialRenrenHandler openSSO];
+        NSLog(@"由于人人网iOS SDK在横屏下有问题,不支持人人网SSO授权.");
     }
 }
 
