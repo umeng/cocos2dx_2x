@@ -20,7 +20,6 @@
 #import "UMSocialInstagramHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "UMSocialTencentWeiboHandler.h"
-#import "UMSocialRenrenHandler.h"
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
@@ -93,7 +92,7 @@ void UmSocialControllerIOS::setTargetUrl(const char *targetUrl){
     [UMSocialData defaultData].extConfig.lwtimelineData.url =getNSStringFromCString(targetUrl);
     [UMSocialData defaultData].extConfig.yxsessionData.url =getNSStringFromCString(targetUrl);
     [UMSocialData defaultData].extConfig.yxtimelineData.url =getNSStringFromCString(targetUrl);
-    [UMSocialData defaultData].extConfig.facebookData.urlString =getNSStringFromCString(targetUrl);
+    [UMSocialData defaultData].extConfig.facebookData.url =getNSStringFromCString(targetUrl);
 }
 
 //bool UmSocialControllerIOS::openURL(const char *url){
@@ -125,7 +124,7 @@ void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redi
         [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
     }
     if (platform == RENREN) {
-        [UMSocialRenrenHandler openSSO];
+        NSLog(@"由于人人网iOS SDK在横屏下有问题,不支持人人网SSO授权.");
     }
 }
 
