@@ -195,8 +195,8 @@ public:
 	 * @param targetUrl 分享消息被点击时跳转到的目标url ( 不是所有平台都支持此项功能 ) , 默认为空字符串
 	 */
 	void setPlatformShareContent(int platform, const char* text,
-			const char* imagePath, const char* title = "",
-			const char* targetUrl = "");
+			const char* imagePath, const char* title = NULL,
+			const char* targetUrl = NULL);
 
 	/**
 	 * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台. 在设置SSO时请确保您在友盟官方绑定了这些平台的app id, app key等信息.iOS仅支持新浪微博、腾讯微博，不支持人人网平台。

@@ -20,7 +20,6 @@
 #import "UMSocialInstagramHandler.h"
 #import "UMSocialSinaHandler.h"
 #import "UMSocialTencentWeiboHandler.h"
-#import "UMSocialRenrenHandler.h"
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
