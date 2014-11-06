@@ -23,16 +23,15 @@ THE SOFTWARE.
  ****************************************************************************/
 package com.umeng.game;
 
-import org.cocos2dx.lib.Cocos2dxActivity;
-import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.umeng.social.CCUMSocialController;
-import com.umeng.socialize.sso.UMSsoHandler;
+
+import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 public class UmengGame extends Cocos2dxActivity {
 

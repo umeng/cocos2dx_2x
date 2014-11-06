@@ -143,25 +143,6 @@ public class CCUMSocialController {
     private static volatile String mShareText = "";
 
     /**
-     * 
-     */
-    private static final String ADD_TO_SDK_METHOD = "addToSocialSDK";
-    /**
-     * 
-     */
-    private static final String SET_TARGET_URL_METHOD = "setTargetUrl";
-
-    /**
-     * 
-     */
-    private static final String SET_TO_CIRCLE_METHOD = "setToCircle";
-
-    /**
-     * 
-     */
-    private static final String SET_LW_APP_NAME_METHOD = "setMessageFrom";
-
-    /**
      * 初始化SDK
      * 
      * @param activity 游戏的Cocos2dxActivity类型
@@ -871,6 +852,25 @@ public class CCUMSocialController {
                 parameterTypes, args, false);
 
     }
+
+    /**
+     * 
+     */
+    private static final String ADD_TO_SDK_METHOD = "addToSocialSDK";
+    /**
+     * 
+     */
+    private static final String SET_TARGET_URL_METHOD = "setTargetUrl";
+
+    /**
+     * 
+     */
+    private static final String SET_TO_CIRCLE_METHOD = "setToCircle";
+
+    /**
+     * 
+     */
+    private static final String SET_LW_APP_NAME_METHOD = "setMessageFrom";
 
     /**
      * @param platform
