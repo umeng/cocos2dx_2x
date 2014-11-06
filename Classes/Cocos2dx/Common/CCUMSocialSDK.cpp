@@ -395,7 +395,6 @@ void CCUMSocialSDK::setLogEnable(bool flag) {
 void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 		const char* imagePath, const char* title, const char* targetUrl) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	// TODO
 	setPlatformDepShareContent(platform, text, imagePath, title, targetUrl);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     UmSocialControllerIOS::setPlatformShareContent(platform, text, imagePath, title, targetUrl);

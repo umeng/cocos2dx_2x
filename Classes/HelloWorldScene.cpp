@@ -270,8 +270,8 @@ void HelloWorld::directShareCallback(CCObject* pSender) {
 //    int platform[2] = {0,1};
 //    openShareWithImagePath(platform, 2, "share text", "cat.gif", NULL);
 
-    sdk->setPlatformShareContent(SINA, "sina share 内容",
-                                 "assets/CloseNormal.png", "sina-title");
+	sdk->setPlatformShareContent(SINA, "sina share 内容",
+			"assets/CloseNormal.png", "sina-title");
 
 	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
 #endif
@@ -317,18 +317,18 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	platforms->push_back(QQ);
 	platforms->push_back(SMS);
 	platforms->push_back(YIXIN);
-    platforms->push_back(YIXIN_CIRCLE);
-    platforms->push_back(LAIWANG);
-    platforms->push_back(LAIWANG_CIRCLE);
+	platforms->push_back(YIXIN_CIRCLE);
+	platforms->push_back(LAIWANG);
+	platforms->push_back(LAIWANG_CIRCLE);
 	platforms->push_back(WEIXIN);
-    platforms->push_back(WEIXIN_CIRCLE);
+	platforms->push_back(WEIXIN_CIRCLE);
 	platforms->push_back(TWITTER);
 	platforms->push_back(FACEBOOK);
 	// 设置平台
 	sdk->setPlatforms(platforms);
 
 	// 设置新浪微博SSO登录
-//	sdk->setSsoAuthorization(SINA);
+	sdk->setSsoAuthorization(SINA, "");
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
 			"assets/CloseNormal.png", "sina-title");
 	//
@@ -338,15 +338,18 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	//
 	sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
 			"QQ-title", "http://blog.csdn.net/bboyfeiyu");
-    
-    sdk->setPlatformShareContent(RENREN, "renren share 内容", "assets/CloseNormal.png",
-                                 "QQ-title", "http://blog.csdn.net/bboyfeiyu");
-    sdk->setPlatformShareContent(DOUBAN, "douban share 内容", "assets/CloseNormal.png",
-                                 "QQ-title", "http://blog.csdn.net/bboyfeiyu");
+
+	sdk->setPlatformShareContent(RENREN, "renren share 内容",
+			"assets/CloseNormal.png", "QQ-title",
+			"http://blog.csdn.net/bboyfeiyu");
+	sdk->setPlatformShareContent(DOUBAN, "douban share 内容",
+			"assets/CloseNormal.png", "QQ-title",
+			"http://blog.csdn.net/bboyfeiyu");
 
 	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	sdk->openShare("", "http://www.umeng.com/images/pic/home/social/img-1.png",
+	sdk->openShare("这是文本分享内容",
+			"http://www.umeng.com/images/pic/home/social/img-1.png",
 			share_selector(shareCallback));
 
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)

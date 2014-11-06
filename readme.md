@@ -53,7 +53,7 @@
 <b id=cocos2dx_integration_android></b>
 ### 2.1 Android平台集成 
 #### 2.1.1 拷贝所需的jar包和资源文件          
-  解压Cocos2d-x SDK压缩包，进入到Platforms/Android/core文件夹下，将'libs'文件夹中的所有jar文件拷贝到工程中的libs目录中，并且将所有jar文件添加到build path中；
+  解压Cocos2d-x SDK压缩包，进入到Platforms/Android/core文件夹下，将'libs'文件夹中的所有jar文件拷贝到工程中的libs目录中，并且将所有jar文件添加到编译路径(build path)中；
   将Platforms/Android/core/res目录下的所有文件夹拷贝到你的项目工程res目录下对应的文件夹中, 如图所示 :    
   <img src="http://dev.umeng.com/system/resources/W1siZiIsIjIwMTQvMDUvMjkvMTZfMTZfNDJfMjg1X2NvY29zMmRfeF9kaXIucG5nIl1d/cocos2d-x-dir.png" width="500" height="400" style="border:1px solid black">    
   如果您还需要其他的社交平台，您需要按照[添加更多平台  ( 按需集成 )](#cocos2dx_integration_more_platforms)这个章节的步骤来进行手动添加。    
@@ -520,8 +520,8 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 <b id=cocos2dx_platforms_weixin_integration></b> 
 ### 4.1.1 集成微信和微信朋友圈     
 
-   注意，集成微信或者微信朋友圈之前，您必须到<a href="http://open.weixin.qq.com/" target="_blank">微信开放平台</a>中申请app id,app key,并且正确填写应用的信息，对于Android平台您必须确保包名和APP的签名是正确的，然后通过审核后即可分享成功，否则将无法跳转到微信或者微信朋友圈的分享界面。
-	要集成微信或者微信朋友圈，你需要在Cocos2d-x代码中添加如下代码 : 
+   <font color="red">注意，集成微信或者微信朋友圈之前，您必须到<a href="http://open.weixin.qq.com/" target="_blank">微信开放平台</a>中申请app id,app key,并且正确填写应用的信息，对于Android平台您必须确保包名和APP的签名是正确的，然后通过审核后即可分享成功，否则将无法跳转到微信或者微信朋友圈的分享界面。</font>       
+	要集成微信或者微信朋友圈，你需要在Cocos2d-x代码中添加如下代码 :    
 ```java
 	// 获取一个CCUMSocialSDK实例
     CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
@@ -541,26 +541,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 ***Android平台***
 	如果是在Android平台上添加微信或者微信朋友圈平台，需要将Platforms/Android/sns_platforms/weixin/libs目录下的文件拷贝到您工程中的libs目录中。还需要您到压缩包中的Platforms/Android/sns_platforms/weixin/目录下将wxapi目录拷贝到您的工程根包下面。
-	您的根包定义在AndroidManafest.xml的package属性中，例如我的package为com.umeng.game,那么wxapi就要放在com.umeng.game包下。此时，可能会在WXEntryActivity有错误，您重新import一下所需要的类即可。
-	您还需要到com.umeng.social.CCUMSocialController类的supportPlatfrom函数中找到添加微信或者微信朋友圈平台的代码段，将相应的注释去掉，并且导入(import)所需的类, 示例如下 :    
-   **添加微信平台**       
-```java
-UMWXHandler wxHandler = new UMWXHandler(mActivity, WEIXIN_APP_ID, WEIXIN_APP_SECRET);
-                wxHandler.setTargetUrl(TARGET_URL);
-                wxHandler.addToSocialSDK();
-```
-   
-   **添加微信朋友圈平台**    
-```java
-// 需要添加微信朋友圈平台secret TODO 添加secret参数
-UMWXHandler circleHandler = new UMWXHandler(mActivity, WEIXIN_APP_ID,
-                        WEIXIN_APP_SECRET);
-circleHandler.setTargetUrl(TARGET_URL);
-// 设置为朋友圈平台
-circleHandler.setToCircle(true);
-circleHandler.addToSocialSDK();
-```     
-
+	您的根包定义在AndroidManafest.xml的package属性中，例如我的package为com.umeng.game,那么wxapi就要放在com.umeng.game包下,因此其完整路径为com.umeng.game.wxapi.WXEntryActivity。此时，可能会在WXEntryActivity有错误，您重新import一下所需要的类即可。       
 
 ***iOS平台***     
 	需要设置Xcode的URL scheme，添加“URL Schemes”为微信appId，例如"wxd9a39c7122aa6516"
@@ -569,8 +550,8 @@ circleHandler.addToSocialSDK();
 
 <b id=cocos2dx_platforms_qq_integration></b> 
 ### 4.1.2 集成QQ和QQ空间
-   注意，集成QQ或者QQ空间之前，您必须到<a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。     
-	在Cocos2d-x游戏中通过如下代码添加QQ空间或者QQ的支持：
+   <font color="red">注意，集成QQ或者QQ空间之前，您必须到<a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。</font>              
+	在Cocos2d-x游戏中通过如下代码添加QQ空间或者QQ的支持：   
 ```java
 	// 获取一个CCUMSocialSDK实例
     CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
@@ -588,24 +569,7 @@ circleHandler.addToSocialSDK();
 ```    
 
 ***Android平台***      
-   	针对Android平台，需要将Platforms/Android/sns_platforms/qq_qzone/libs目录下的文件拷贝到您工程中的libs目录中。您还需要到com.umeng.social.CCUMSocialController类的supportPlatfrom函数中找到添加QQ或者QQ空间平台的代码段，将相应的注释去掉，并且导入(import)所需的类, 示例如下 :    
-   **添加QQ平台**       
-```java
-UMQQSsoHandler qqssoSsoHandler = new UMQQSsoHandler(mActivity, QQ_QZONE_APP_ID,
-                        QQ_QZONE_APP_KEY);
-qqssoSsoHandler.setTargetUrl(TARGET_URL);
-qqssoSsoHandler.addToSocialSDK();
-```
-   
-   **添加QQ空间平台**    
-```java
-// 添加QQ空间平台的支持
-QZoneSsoHandler qZoneSsoHandler = new QZoneSsoHandler(mActivity,
-                        QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY);
-qZoneSsoHandler.setTargetUrl(TARGET_URL);
-qZoneSsoHandler.addToSocialSDK();
-```   
-   这样，您就成功集成QQ或者QQ空间了。   
+   	针对Android平台，需要将Platforms/Android/sns_platforms/qq_qzone/libs目录下的文件拷贝到您工程中的libs目录中。这样，您就成功集成QQ或者QQ空间了。       
    
 ***iOS平台***         
 	需要设置Xcode的URL scheme，添加“URL Schemes”为“QQ”+腾讯QQ互联应用appId转换成十六进制（不足8位前面补0），例如“QQ05FA957C”。生成十六进制方法：在命令行输入<div>echo 'ibase=10;obase=16;您的腾讯QQ互联应用Id'|bc</div>，并在QQ互联后台的URL schema中填入此字符串保持一致。  
@@ -632,32 +596,7 @@ qZoneSsoHandler.addToSocialSDK();
 ```     
 
 ***Android平台***    
-   添加所需jar和资源，将Platforms/Android/sns_platforms/laiwang文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。   
-   	针对Android平台，您还需要到com.umeng.social.CCUMSocialController类的supportPlatfrom函数中找到添加来往或者来往动态平台的代码段，将相应的注释去掉，并且导入(import)所需的类, 示例如下 :    
-   **添加来往平台**       
-```java
-// 添加来往平台的支持
-UMLWHandler umLWHandler = new UMLWHandler(mActivity, LAIWANG_APPID, LAIWANG_APPKEY);
-umLWHandler.setTargetUrl(TARGET_URL);
-umLWHandler.setTitle("分享到来往");
-umLWHandler.setMessageFrom(LAIWANG_APP_NAME);
-umLWHandler.addToSocialSDK();
-```
-   
-   **添加来往动态平台**    
-```java
-// 添加来往动态平台的支持
-UMLWHandler umlwDynamicHandler = new UMLWHandler(mActivity, LAIWANG_APPID,
-                        LAIWANG_APPKEY);
-// 设置为易信朋友圈平台
-umlwDynamicHandler.setToCircle(true);
-umlwDynamicHandler.setTitle("分享到来往动态");
-umlwDynamicHandler.setTargetUrl(TARGET_URL);
-// 设置消息来源
-umlwDynamicHandler.setMessageFrom(LAIWANG_APP_NAME);
-umlwDynamicHandler.addToSocialSDK();
-```   
-   这样，您就成功集成来往或者来往动态了。   
+   添加所需jar和资源，将Platforms/Android/sns_platforms/laiwang文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。这样，您就成功集成来往或者来往动态了。        
    
 ***iOS平台***     
 	针对于iOS平台，集成来往平台需要将Xcode的other linker flag设置为-all_load 。
@@ -685,28 +624,7 @@ umlwDynamicHandler.addToSocialSDK();
 ```       
 
 ***Android平台***    
-    添加所需jar和资源，将SDK压缩包中Platforms/Android/sns_platforms/yixin文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。 
-   	您还需要到com.umeng.social.CCUMSocialController类, 然后在该类的supportPlatfrom函数中找到添加易信或者易信朋友圈平台的代码段，将相应的注释去掉，并且导入(import)所需的类, 示例如下 :        
-**添加易信平台**  
-```java
-// 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
-// true为易信朋友圈,
-UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY);
-yxHandler.setTargetUrl(TARGET_URL);
-// 添加易信平台到SDK
-yxHandler.addToSocialSDK();
-```    
-
-**添加易信朋友圈平台**    
-```java
-// 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
-// true为易信朋友圈,
-UMYXHandler yxHandler = new UMYXHandler(mActivity, YIXIN_APPKEY);
-yxHandler.setToCircle(true);
-yxHandler.setTargetUrl(TARGET_URL);
-// 添加易信朋友圈平台到SDK
-yxHandler.addToSocialSDK();
-```   
+    添加所需jar和资源，将SDK压缩包中Platforms/Android/sns_platforms/yixin文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。      
 
 **易信精确回调使用说明**    
 如果在您的项目中集成了易信或者易信朋友圈，并且您需要准确的分享回调 (建议添加)，则需要在AndroidManifest.xml中下注册下面的回调Activity。
@@ -746,16 +664,7 @@ yxHandler.addToSocialSDK();
 ```      
 
 **Android平台**    
-   针对于Android平台, 您需要添加所需jar和资源，将SDK压缩包中Platforms/Android/sns_platforms/facebook文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。并且在AndroidManifest.xml中添加facebook相关支持，见上文AndroidManifest.xml。 
-   在com.umeng.social.CCUMSocialController中的supportPlatfrom函数中找到添加facebook平台的代码段，将相应的注释去掉，并且导入(import)所需的类, 示例如下 :      
-```java
-// facebook的支持
-UMFacebookHandler mFacebookHandler = new UMFacebookHandler(
-                        mActivity, FACEBOOK_APP_ID, PostType.FEED);
-mFacebookHandler.setTargetUrl(TARGET_URL);
-mFacebookHandler.addToSocialSDK();
-```      
-	最后在AndroidManifest.xml中注册activity:
+   针对于Android平台, 您需要添加所需jar和资源，将SDK压缩包中Platforms/Android/sns_platforms/facebook文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。最后在AndroidManifest.xml中注册activity:      
 ```xml
         <!-- 如果使用，则必须添加以下activity和facebook_app_id (不使用facebook可以去掉) -->
         <activity
@@ -763,7 +672,7 @@ mFacebookHandler.addToSocialSDK();
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 ```         
-	集成完成。
+	这样就集成完成。      
 
 **iOS平台**  
 	iOS平台集成facebook不再需要其他的设置。但是如果您不需要集成Facebook，可以在Xcode中把UMSocial_Sdk_Extra_Frameworks下把Facebook文件夹删除。并把UmSocialControllerIOS.h 头文件中把宏CC_ShareToFacebook设置为0。
@@ -787,16 +696,7 @@ mFacebookHandler.addToSocialSDK();
 ```      
  
 **Android平台**
-	针对于Android平台，您还需要添加所需jar和资源，将SDK压缩包中Platforms/Android/sns_platforms/instagram文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。         
-   在com.umeng.social.CCUMSocialController中的supportPlatfrom函数中找到添加instagram平台的代码段，将相应的注释去掉，并且导入(import)所需的类,示例如下 :     
-   ***添加Instagram平台***   
-```java
-UMInstagramHandler instagramHandler = new UMInstagramHandler(
-			 mActivity);
-// 添加instagram平台 
-instagramHandler.addToSocialSDK();
-```      
-
+	针对于Android平台，您还需要添加所需jar和资源，将SDK压缩包中Platforms/Android/sns_platforms/instagram文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。     
 
 **iOS平台**  
 	iOS平台集成Instagram不再需要其他的设置。   
@@ -846,11 +746,7 @@ instagramHandler.addToSocialSDK();
 ```      
 
 ***Android平台***
-	将SDK压缩包中Platforms/Android/sns_platforms/sms文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。在com.umeng.social.CCUMSocialController中的supportPlatfrom函数中找到添加短信平台的代码段，将相应的注释去掉，并且导入(import)所需的类,示例如下 :
-```java
-SmsHandler smsHandler = new SmsHandler();
-smsHandler.addToSocialSDK();
-```     	
+	将SDK压缩包中Platforms/Android/sns_platforms/sms文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中即可。     
 
 ***iOS平台***
 	iOS平台集成短信不再需要其他的设置。     
@@ -873,11 +769,7 @@ smsHandler.addToSocialSDK();
 ```      
 
 ***Android平台***
-	将SDK压缩包中Platforms/Android/sns_platforms/email文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中。在com.umeng.social.CCUMSocialController中的supportPlatfrom函数中找到添加邮件平台的代码段，将相应的注释去掉，并且导入(import)所需的类,示例如下 :
-```java
- EmailHandler emailHandler = new EmailHandler();
- emailHandler.addToSocialSDK();
-```     	
+	将SDK压缩包中Platforms/Android/sns_platforms/email文件夹下的libs、res目录下的文件拷贝到工程中对应的文件夹中即可。        
 
 ***iOS平台***
 	iOS平台集成邮件不再需要其他的设置。       
@@ -900,16 +792,9 @@ smsHandler.addToSocialSDK();
 	// 添加平台到SDK中
 	sdk->setPlatforms(platforms);
 
-	// 设置新浪微博SSO授权
+	// 设置新浪微博SSO授权,参数2修改为你的授权回调地址
 //	sdk->setSsoAuthorization(SINA,"http://sns.whalecloud.com/sina2/callback");
 ```     
-
-	最后找到com.umeng.social.CCUMSocialController类的supportSsoAuthorization(int platform, String redirectURL)函数，将支持新浪微博SSO授权的注释去掉，如下:
-```java
-            mController.getConfig().setSsoHandler(new SinaSsoHandler());
-            // 设置授权回调地址
-            mController.getConfig().setSinaCallbackUrl(redirectURL);
-```    
 	这样新浪就支持SSO授权了。     
 	
 <b id=cocos2dx_tencent_sso></b>
@@ -926,15 +811,9 @@ smsHandler.addToSocialSDK();
 	// 添加平台到SDK中
 	sdk->setPlatforms(platforms);
 
-	// 设置腾讯微博SSO授权
+	// 设置腾讯微博SSO授权, 参数2修改为你的授权回调地址
 //	sdk->setSsoAuthorization(TENCENT_WEIBO,"http://sns.whalecloud.com/tencent2/callback");
-```     	
-
-	然后找到com.umeng.social.CCUMSocialController类的supportSsoAuthorization(int platform, String redirectURL)函数，将支持腾讯微博SSO授权的注释去掉，如下:
-```java
-mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
-
-```    
+```     
 
 	这样腾讯微博就支持SSO授权了。   
 
@@ -959,15 +838,7 @@ mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
 	
 	// 最后设置人人网支持SSO授权
 //	sdk->setSsoAuthorization(RENREN,NULL);
-```     	
-	然后找到com.umeng.social.CCUMSocialController类的supportSsoAuthorization(int platform, String redirectURL)函数，将支持人人网SSO授权的注释去掉，如下:
-```java
-mController.getConfig().setSsoHandler(
-                    new RenrenSsoHandler(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
-                           RENREN_APP_SECRET));
-
-```    
-
+```        
 	最后在AndroidManifest.xml中添加如下权限:
 ```xml
     <!-- renren sso Permission for Unit Test -->
@@ -985,7 +856,6 @@ mController.getConfig().setSsoHandler(
             android:name="com.renn.rennsdk.oauth.OAuthActivity"
             android:configChanges="orientation|navigation|keyboardHidden" />
 ```          
-
 	这样人人网就支持SSO授权了。   
 
 <b id=cocos2dx_platform_sharecontent></b>
@@ -1005,10 +875,7 @@ sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
 			"QQ-title", "http://blog.csdn.net/bboyfeiyu");
 ```    
 	该接口有五个参数，其中前三个参数为必填参数，分别为平台、文本内容、图片地址；后两个参数为选填，分别为分享时的标题、点击该条分享时跳转到的目标url,这两个属性主要在QQ、QQ空间、微信、微信朋友圈、来往、易信这几个平台上使用。
-	写完上面的代码，我们还需要到java代码的com.umeng.social.CCUMSocialController类中的setPlatformShareContent函数中的相关注释去掉，例如单独设置微信平台的分享内容，那么需要去掉以下注释
-```java
-           // shareContent = new WeiXinShareContent();
-```                	
+      	
 
 <b id=proguard></b>
 ## 7. Android混淆         
