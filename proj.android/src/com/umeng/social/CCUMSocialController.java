@@ -789,7 +789,7 @@ public class CCUMSocialController {
         //
         Object[] args = convertToArgsArray(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
                 RENREN_APP_SECRET);
-        // 添加FACEBOOK
+        // 添加renren
         Object object = addPlatform(SHARE_MEDIA.RENREN,
                 parameterTypes, args);
 
@@ -806,7 +806,7 @@ public class CCUMSocialController {
         Class<?>[] parameterTypes = convertToClassArray(Activity.class);
         //
         Object[] args = convertToArgsArray(mActivity);
-        // 添加FACEBOOK
+        // 添加INSTAGRAM
         Object object = addPlatform(SHARE_MEDIA.INSTAGRAM,
                 parameterTypes, args);
 
@@ -861,16 +861,6 @@ public class CCUMSocialController {
      * 
      */
     private static final String SET_LW_APP_NAME_METHOD = "setMessageFrom";
-
-    /**
-     * 目标平台的UMSsoHandler是否已经添加过,如果已经添加了该平台那么返回true,否则返回false.
-     * 
-     * @param platform 目标平台
-     * @return
-     */
-    // private static boolean isHandlerExsit(SHARE_MEDIA platform) {
-    // return mSocializeConfig.getSsoHandler(platform.getReqCode()) != null;
-    // }
 
     /**
      * 设置平台独立的分享内容，例如你想使得新浪微博和QQ两个平台的分享内容不一样，那么则需要通过这种方式实现.
@@ -998,6 +988,7 @@ public class CCUMSocialController {
             // 如果要添加新浪微博SSO授权，则需要拷贝/com/sina/sso文件件到你的src根目录下
             // mController.getConfig().setSsoHandler(new SinaSsoHandler());
             //
+            addPlatform(SHARE_MEDIA.SINA, null, null);
             mController.getConfig().setSinaCallbackUrl(redirectURL);
             Log.d(TAG, "### 设置新浪微博SSO");
         } else if (share_platform == SHARE_MEDIA.RENREN) {
