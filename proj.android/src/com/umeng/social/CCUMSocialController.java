@@ -36,6 +36,8 @@ import com.umeng.socialize.net.utils.SocializeNetUtils;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.utils.Log;
 import com.umeng.socialize.utils.OauthHelper;
+import com.umeng.socialize.weixin.controller.UMWXHandler;
+import com.umeng.socialize.weixin.media.CircleShareContent;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
 
@@ -44,6 +46,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * 友盟Social Android SDK的控制器, cocos2d-x sdk 通过jni代码调用相关的静态函数实现对应的功能.
@@ -137,6 +140,11 @@ public class CCUMSocialController {
      * 在某些平台的分享中， 希望用户点击该分享内容跳转到的目标平台, 一般为app的官网或者下载地址
      */
     private static String TARGET_URL = "http://www.umeng.com/social";
+
+    /**
+     * 
+     */
+    private static volatile String mShareText = "";
 
     /**
      * 初始化SDK
@@ -344,9 +352,9 @@ public class CCUMSocialController {
      * 
      * @param text
      */
-    public static void setShareContent(String text) {
-        Log.d(TAG, "#### 设置分享文字内容 :" + text);
-        mController.setShareContent(text);
+    public static void setShareContent(final String text) {
+        mShareText = text + new Random().nextInt(100);
+        mController.setShareContent(mShareText);
     }
 
     /**
@@ -356,71 +364,24 @@ public class CCUMSocialController {
      *            如果是url则必须以http://或者https://开头.assets下的图片资源需要传递assets
      *            /图片名，资源图片则需要传递res/图片名
      */
-    public static void setShareImagePath(String imgName) {
+    public static void setShareImagePath(final String imgName) {
         Log.d(TAG, "#### 设置图片路径 :" + imgName);
 
         // 解析图片
         UMImage shareImage = parseShareImage(imgName);
-        //
-        // // 网络图片
-        // if (imgName.startsWith("http://") || imgName.startsWith("https://"))
-        // {
-        // shareImage = new UMImage(mActivity, imgName);
-        // } else if (imgName.startsWith("assets/")) {
-        // AssetManager am = mActivity.getResources().getAssets();
-        // String imageName = getFileName(imgName);
-        // InputStream is = null;
-        // if (!TextUtils.isEmpty(imageName)) {
-        // try {
-        // is = am.open(imageName);
-        // shareImage = new UMImage(mActivity,
-        // BitmapFactory.decodeStream(is));
-        // is.close();
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // } finally {
-        // if (is != null) {
-        // try {
-        // is.close();
-        // } catch (IOException e) {
-        // e.printStackTrace();
-        // }
-        // }
-        // }
-        // }
-        //
-        // } else if (imgName.startsWith("res/")) {
-        // String imgNameWithFormat = getFileName(imgName);
-        // if (!TextUtils.isEmpty(imgNameWithFormat)) {
-        // int index = imgNameWithFormat.indexOf(".");
-        // if (index > 0) {
-        // String imgNameString = imgNameWithFormat
-        // .substring(0, index);
-        // int imgId = ResContainer.getResourceId(mActivity,
-        // ResType.DRAWABLE, imgNameString);
-        // shareImage = new UMImage(mActivity, imgId);
-        // } else {
-        // Log.e(TAG, "### 请检查你传递的图片路径 : " + imgName);
-        // }
-        // }
-        //
-        // } else {
-        // // 本地图片
-        // File imgFile = new File(imgName);
-        // if (!imgFile.exists()) {
-        // Log.e(TAG, "### 要分享的本地图片不存在");
-        // } else {
-        // shareImage = new UMImage(mActivity, imgFile);
-        // }
-        // }
-
+        // 将图片设置为通用分享内容
         mController.setShareMedia(shareImage);
-        //
-        // CircleShareContent circleShareContent = new
-        // CircleShareContent(mController.getEntity().getShareContent()) ;
-        // circleShareContent.setShareMedia(shareImage);
-        // circleShareContent.setTitle("你的标题");
-        // mController.setShareMedia(circleShareContent) ;
+
+        // 微信朋友圈分享内容
+        CircleShareContent circleShareContent = new CircleShareContent();
+        circleShareContent.setShareContent(mShareText);
+        circleShareContent.setShareMedia(shareImage);
+        circleShareContent.setTitle(mShareText);
+        // 单独设置朋友圈的分享内容
+        mController.setShareMedia(circleShareContent);
+
+        Log.d(TAG, "xxx 微信朋友圈分享内容 3 : " + circleShareContent.getShareContent());
+
         //
         // QZoneShareContent qZoneShareContent = new
         // QZoneShareContent(mController.getEntity().getShareContent()) ;
@@ -580,13 +541,13 @@ public class CCUMSocialController {
             } else if (target == SHARE_MEDIA.WEIXIN_CIRCLE) {
 
                 // 需要添加微信朋友圈平台
-                // UMWXHandler circleHandler = new UMWXHandler(mActivity,
-                // WEIXIN_APP_ID,
-                // WEIXIN_APP_SECRET);
-                // circleHandler.setTargetUrl(TARGET_URL);
-                // // 设置为朋友圈平台
-                // circleHandler.setToCircle(true);
-                // circleHandler.addToSocialSDK();
+                UMWXHandler circleHandler = new UMWXHandler(mActivity,
+                        WEIXIN_APP_ID,
+                        WEIXIN_APP_SECRET);
+                circleHandler.setTargetUrl(TARGET_URL);
+                // 设置为朋友圈平台
+                circleHandler.setToCircle(true);
+                circleHandler.addToSocialSDK();
 
             } else if (target == SHARE_MEDIA.YIXIN) {
                 // 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
@@ -644,12 +605,12 @@ public class CCUMSocialController {
                 mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
                         true);
             } else if (target == SHARE_MEDIA.SMS) { // 短信平台分享
-            // SmsHandler smsHandler = new SmsHandler();
-            // smsHandler.addToSocialSDK();
+                // SmsHandler smsHandler = new SmsHandler();
+                // smsHandler.addToSocialSDK();
             }
             else if (target == SHARE_MEDIA.EMAIL) { // 邮件分享
-            // EmailHandler emailHandler = new EmailHandler();
-            // emailHandler.addToSocialSDK();
+                // EmailHandler emailHandler = new EmailHandler();
+                // emailHandler.addToSocialSDK();
             } else {
                 Log.e(TAG,
                         target
