@@ -310,7 +310,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	platforms->push_back(SMS);
 	platforms->push_back(YIXIN);
 	platforms->push_back(WEIXIN);
-    platforms->push_back(TWITTER);
+    platforms->push_back(WEIXIN_CIRCLE);
     platforms->push_back(FACEBOOK);
 	// 设置平台
 	sdk->setPlatforms(platforms) ;
