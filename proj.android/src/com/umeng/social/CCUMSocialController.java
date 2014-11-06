@@ -2,6 +2,7 @@
 package com.umeng.social;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.AssetManager;
 import android.graphics.BitmapFactory;
@@ -36,7 +37,6 @@ import com.umeng.socialize.net.utils.SocializeNetUtils;
 import com.umeng.socialize.sso.UMSsoHandler;
 import com.umeng.socialize.utils.Log;
 import com.umeng.socialize.utils.OauthHelper;
-import com.umeng.socialize.weixin.controller.UMWXHandler;
 import com.umeng.socialize.weixin.media.CircleShareContent;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
@@ -45,7 +45,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -510,8 +512,7 @@ public class CCUMSocialController {
      * @param appkey 平台的appkey或者称为appid
      * @param targetUrl 用户点击分享内容时跳转的页面, 一般为APP主页或者下载页
      */
-    public static void supportPlatfrom(int platform) {
-        final SHARE_MEDIA target = getPlatform(platform);
+    public static void supportPlatfrom(SHARE_MEDIA target) {
         // 判断target
         checkActivity();
 
@@ -523,6 +524,9 @@ public class CCUMSocialController {
                 // QQ_QZONE_APP_KEY);
                 // qqssoSsoHandler.setTargetUrl(TARGET_URL);
                 // qqssoSsoHandler.addToSocialSDK();
+
+                addTencentPlatform(SHARE_MEDIA.QQ);
+
             } else if (target == SHARE_MEDIA.QZONE) {
 
                 // 添加QQ空间平台的支持
@@ -531,6 +535,9 @@ public class CCUMSocialController {
                 // QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY);
                 // qZoneSsoHandler.setTargetUrl(TARGET_URL);
                 // qZoneSsoHandler.addToSocialSDK();
+
+                addTencentPlatform(SHARE_MEDIA.QZONE);
+
             } else if (target == SHARE_MEDIA.WEIXIN) {
 
                 // 添加微信
@@ -538,16 +545,21 @@ public class CCUMSocialController {
                 // WEIXIN_APP_ID, WEIXIN_APP_SECRET);
                 // wxHandler.setTargetUrl(TARGET_URL);
                 // wxHandler.addToSocialSDK();
+
+                addWeiXinPlatform(false);
+
             } else if (target == SHARE_MEDIA.WEIXIN_CIRCLE) {
 
                 // 需要添加微信朋友圈平台
-                UMWXHandler circleHandler = new UMWXHandler(mActivity,
-                        WEIXIN_APP_ID,
-                        WEIXIN_APP_SECRET);
-                circleHandler.setTargetUrl(TARGET_URL);
-                // 设置为朋友圈平台
-                circleHandler.setToCircle(true);
-                circleHandler.addToSocialSDK();
+                // UMWXHandler circleHandler = new UMWXHandler(mActivity,
+                // WEIXIN_APP_ID,
+                // WEIXIN_APP_SECRET);
+                // circleHandler.setTargetUrl(TARGET_URL);
+                // // 设置为朋友圈平台
+                // circleHandler.setToCircle(true);
+                // circleHandler.addToSocialSDK();
+
+                addWeiXinPlatform(true);
 
             } else if (target == SHARE_MEDIA.YIXIN) {
                 // 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
@@ -558,6 +570,8 @@ public class CCUMSocialController {
                 // // 添加易信平台到SDK
                 // yxHandler.addToSocialSDK();
 
+                addYiXinPlatform(false);
+
             } else if (target == SHARE_MEDIA.YIXIN_CIRCLE) {
                 // 创建易信的handler, 参数2为你的app id, 参数3为是否是易信朋友圈平台, false为易信,
                 // true为易信朋友圈,
@@ -567,6 +581,9 @@ public class CCUMSocialController {
                 // yxHandler.setTargetUrl(TARGET_URL);
                 // // 添加易信朋友圈平台到SDK
                 // yxHandler.addToSocialSDK();
+
+                addYiXinPlatform(true);
+
             } else if (target == SHARE_MEDIA.LAIWANG) {
                 // 添加来往平台的支持
                 // UMLWHandler umLWHandler = new UMLWHandler(mActivity,
@@ -575,6 +592,9 @@ public class CCUMSocialController {
                 // umLWHandler.setTitle("分享到来往");
                 // umLWHandler.setMessageFrom(LAIWANG_APP_NAME);
                 // umLWHandler.addToSocialSDK();
+
+                addLaiwangPlatform(false);
+
             } else if (target == SHARE_MEDIA.LAIWANG_DYNAMIC) {
                 // 添加来往动态平台的支持
                 // UMLWHandler umlwDynamicHandler = new UMLWHandler(mActivity,
@@ -587,17 +607,26 @@ public class CCUMSocialController {
                 // // 设置消息来源
                 // umlwDynamicHandler.setMessageFrom(LAIWANG_APP_NAME);
                 // umlwDynamicHandler.addToSocialSDK();
+
+                addLaiwangPlatform(true);
+
             } else if (target == SHARE_MEDIA.FACEBOOK) {
                 // facebook的支持
                 // UMFacebookHandler mFacebookHandler = new UMFacebookHandler(
                 // mActivity, FACEBOOK_APP_ID, PostType.FEED);
                 // mFacebookHandler.setTargetUrl(TARGET_URL);
                 // mFacebookHandler.addToSocialSDK();
+
+                addFacebookPlatform();
+
             } else if (target == SHARE_MEDIA.INSTAGRAM) {
                 // 构建Instagram的Handler
                 // UMInstagramHandler instagramHandler = new UMInstagramHandler(
                 // mActivity);
                 // instagramHandler.addToSocialSDK();
+
+                addInstagramPlatform();
+
             } else if (target == SHARE_MEDIA.TWITTER) {
                 mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
                         true);
@@ -605,12 +634,12 @@ public class CCUMSocialController {
                 mSocializeConfig.supportAppPlatform(mActivity, target, DESCRIPTOR,
                         true);
             } else if (target == SHARE_MEDIA.SMS) { // 短信平台分享
-                // SmsHandler smsHandler = new SmsHandler();
-                // smsHandler.addToSocialSDK();
+
+                addPlatform(target, null, null);
             }
             else if (target == SHARE_MEDIA.EMAIL) { // 邮件分享
-                // EmailHandler emailHandler = new EmailHandler();
-                // emailHandler.addToSocialSDK();
+                //
+                addPlatform(target, null, null);
             } else {
                 Log.e(TAG,
                         target
@@ -624,6 +653,224 @@ public class CCUMSocialController {
         Log.d(TAG, "@@@@ supportPlatfrom");
 
     }
+
+    /**
+     * @param classes
+     * @return
+     */
+    private static Class<?>[] convertToClassArray(Class<?>... classes) {
+        Class<?>[] clzArray = new Class<?>[classes.length];
+        for (int i = 0; i < clzArray.length; i++) {
+            clzArray[i] = classes[i];
+        }
+
+        return clzArray;
+    }
+
+    /**
+     * @param args
+     * @return
+     */
+    private static Object[] convertToArgsArray(Object... args) {
+        Object[] argsArray = new Object[args.length];
+        for (int i = 0; i < argsArray.length; i++) {
+            argsArray[i] = args[i];
+            Log.d(TAG, "### 参数 : " + args[i]);
+        }
+
+        return argsArray;
+    }
+
+    /**
+     * 
+     */
+    private static void addWeiXinPlatform(boolean toCircle) {
+
+        SHARE_MEDIA platform = toCircle ? SHARE_MEDIA.WEIXIN_CIRCLE : SHARE_MEDIA.WEIXIN;
+        //
+        Class<?>[] parameterTypes = convertToClassArray(Context.class, String.class, String.class);
+        //
+        Object[] args = convertToArgsArray(mActivity, WEIXIN_APP_ID, WEIXIN_APP_SECRET);
+        // 添加微信或者微信朋友圈平台
+        Object object = addPlatform(platform, parameterTypes, args);
+        // 设置是否是微信朋友圈
+        ReflectUtils.invokeMethod(object, SET_TO_CIRCLE_METHOD, convertToClassArray(boolean.class),
+                convertToArgsArray(toCircle));
+
+        // 将平台添加到SDK中
+        ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+    }
+
+    /**
+     * 添加QQ或者QQ空间平台
+     */
+    private static void addTencentPlatform(SHARE_MEDIA platform) {
+
+        if (platform == SHARE_MEDIA.QQ || platform == SHARE_MEDIA.QZONE) {
+            //
+            Class<?>[] parameterTypes = convertToClassArray(Activity.class, String.class,
+                    String.class);
+            //
+            Object[] args = convertToArgsArray(mActivity, QQ_QZONE_APP_ID, QQ_QZONE_APP_KEY);
+            //
+            Object object = addPlatform(platform, parameterTypes, args);
+
+            // 将平台添加到SDK中
+            ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+        }
+    }
+
+    /**
+     * 添加易信平台
+     */
+    private static void addYiXinPlatform(boolean toCircle) {
+        //
+        SHARE_MEDIA platform = toCircle ? SHARE_MEDIA.YIXIN_CIRCLE : SHARE_MEDIA.YIXIN;
+
+        //
+        Class<?>[] parameterTypes = convertToClassArray(Context.class, String.class);
+        //
+        Object[] args = convertToArgsArray(mActivity, YIXIN_APPKEY);
+        // 添加易信或者易信朋友圈平台
+        Object object = addPlatform(platform, parameterTypes, args);
+
+        // 将平台添加到SDK中
+        ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+    }
+
+    /**
+     * 添加来往或者来往动态平台
+     */
+    private static void addLaiwangPlatform(boolean toCircle) {
+        //
+        SHARE_MEDIA platform = toCircle ? SHARE_MEDIA.LAIWANG_DYNAMIC : SHARE_MEDIA.LAIWANG;
+        //
+        Class<?>[] parameterTypes = convertToClassArray(Context.class, String.class, String.class);
+        //
+        Object[] args = convertToArgsArray(mActivity, LAIWANG_APPID, LAIWANG_APPKEY);
+        // 添加易信或者易信朋友圈平台
+        Object object = addPlatform(platform, parameterTypes, args);
+        // 设置是否是来往动态
+        ReflectUtils.invokeMethod(object, SET_TO_CIRCLE_METHOD, convertToClassArray(boolean.class),
+                convertToArgsArray(toCircle));
+        // 设置应用名称
+        ReflectUtils.invokeMethod(object, SET_LW_APP_NAME_METHOD,
+                convertToClassArray(String.class),
+                convertToArgsArray(LAIWANG_APP_NAME));
+
+        // 将平台添加到SDK中
+        ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+    }
+
+    /**
+     * 添加facebook平台
+     */
+    private static void addFacebookPlatform() {
+        //
+        Class<?>[] parameterTypes = convertToClassArray(Activity.class, String.class);
+        //
+        Object[] args = convertToArgsArray(mActivity, FACEBOOK_APP_ID);
+        // 添加FACEBOOK
+        Object object = addPlatform(SHARE_MEDIA.FACEBOOK,
+                parameterTypes, args);
+
+        // 将平台添加到SDK中
+        ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+
+    }
+
+    /**
+     * 
+     */
+    private static void addRenrenSso() {
+        //
+        Class<?>[] parameterTypes = convertToClassArray(Activity.class, String.class, String.class,
+                String.class);
+        //
+        Object[] args = convertToArgsArray(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
+                RENREN_APP_SECRET);
+        // 添加FACEBOOK
+        Object object = addPlatform(SHARE_MEDIA.RENREN,
+                parameterTypes, args);
+
+        // 将平台添加到SDK中
+        ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+
+    }
+
+    /**
+     * 添加facebook平台
+     */
+    private static void addInstagramPlatform() {
+        //
+        Class<?>[] parameterTypes = convertToClassArray(Activity.class);
+        //
+        Object[] args = convertToArgsArray(mActivity);
+        // 添加FACEBOOK
+        Object object = addPlatform(SHARE_MEDIA.INSTAGRAM,
+                parameterTypes, args);
+
+        // 将平台添加到SDK中
+        ReflectUtils.invokeMethod(object, ADD_TO_SDK_METHOD, null, null);
+
+    }
+
+    /**
+     * @param platform
+     * @param ssoHandleClassPath
+     * @param paramTypes
+     * @param args
+     * @return
+     */
+    private static Object addPlatform(SHARE_MEDIA platform,
+            Class<?>[] paramTypes, Object[] args) {
+        if (platform != null) {
+            Object objectHandler = ReflectUtils.newHandlerInstance(
+                    mHandlerClzPathMap.get(platform),
+                    paramTypes, args);
+
+            Log.d(TAG, "### 新添加的平台类型 : " + objectHandler);
+            // 设置target url
+            ReflectUtils.invokeMethod(objectHandler, SET_TARGET_URL_METHOD, new Class<?>[] {
+                    String.class
+            }, new String[] {
+                    TARGET_URL
+            });
+
+            return objectHandler;
+        }
+
+        return new Object();
+    }
+
+    /**
+     * 
+     */
+    private static final String ADD_TO_SDK_METHOD = "addToSocialSDK";
+    /**
+     * 
+     */
+    private static final String SET_TARGET_URL_METHOD = "setTargetUrl";
+
+    /**
+     * 
+     */
+    private static final String SET_TO_CIRCLE_METHOD = "setToCircle";
+
+    /**
+     * 
+     */
+    private static final String SET_LW_APP_NAME_METHOD = "setMessageFrom";
+
+    /**
+     * 目标平台的UMSsoHandler是否已经添加过,如果已经添加了该平台那么返回true,否则返回false.
+     * 
+     * @param platform 目标平台
+     * @return
+     */
+    // private static boolean isHandlerExsit(SHARE_MEDIA platform) {
+    // return mSocializeConfig.getSsoHandler(platform.getReqCode()) != null;
+    // }
 
     /**
      * 设置平台独立的分享内容，例如你想使得新浪微博和QQ两个平台的分享内容不一样，那么则需要通过这种方式实现.
@@ -758,12 +1005,16 @@ public class CCUMSocialController {
             // mController.getConfig().setSsoHandler(
             // new RenrenSsoHandler(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
             // RENREN_APP_SECRET));
+
+            addRenrenSso();
         }
 
         if (share_platform == SHARE_MEDIA.TENCENT) {
             // 添加腾讯微博SSO授权，则需要拷贝以SocialSDK_tencentWB开始两个jar包到libs目录
             // mController.getConfig().setSsoHandler(new TencentWBSsoHandler());
             //
+
+            addPlatform(SHARE_MEDIA.TENCENT, null, null);
         }
 
     }
@@ -804,15 +1055,9 @@ public class CCUMSocialController {
                     for (int i = 0; i < length; i++) {
                         int index = platforms[i];
                         SHARE_MEDIA target = getPlatform(index);
-                        Log.d(TAG, "### 平台 " + target);
+                        Log.d(TAG, "### 添加平台 " + target);
                         if (target != null && target != SHARE_MEDIA.GENERIC) {
-                            // 如果没有添加到SDK则添加到里面, 支持的平台有QQ,微信,微信朋友圈
-                            // QQ空间为内置平台, 但是它必须使用客户端进行授权.
-                            // if (!isPlatformConfiged(target)
-                            // || target == SHARE_MEDIA.QZONE) {
-                            supportPlatfrom(index);
-                            // }
-                            // 先将有效的平台缓存到列表中, 最后再转换为数组
+                            supportPlatfrom(target);
                             cacheList.add(target);
                         }
                     }
@@ -1171,6 +1416,10 @@ public class CCUMSocialController {
         return mPlatformsList.indexOf(platform);
     }
 
+    /**
+     * 
+     */
+    private static Map<SHARE_MEDIA, String> mHandlerClzPathMap = new HashMap<SHARE_MEDIA, String>();
     /*
 	 * 
 	 */
@@ -1179,6 +1428,7 @@ public class CCUMSocialController {
 	 * 
 	 */
     static {
+        // 添加平台到索引中
         mPlatformsList.add(0, SHARE_MEDIA.SINA);
         mPlatformsList.add(1, SHARE_MEDIA.WEIXIN);
         mPlatformsList.add(2, SHARE_MEDIA.WEIXIN_CIRCLE);
@@ -1196,6 +1446,42 @@ public class CCUMSocialController {
         mPlatformsList.add(14, SHARE_MEDIA.SMS);
         mPlatformsList.add(15, SHARE_MEDIA.EMAIL);
         mPlatformsList.add(16, SHARE_MEDIA.TENCENT);
+
+        // 添加各个Sso handler类的绝对路径
+        mHandlerClzPathMap.put(SHARE_MEDIA.WEIXIN,
+                "com.umeng.socialize.weixin.controller.UMWXHandler");
+        mHandlerClzPathMap.put(SHARE_MEDIA.WEIXIN_CIRCLE,
+                "com.umeng.socialize.weixin.controller.UMWXHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.QQ, "com.umeng.socialize.sso.UMQQSsoHandler");
+        mHandlerClzPathMap.put(SHARE_MEDIA.QZONE, "com.umeng.socialize.sso.QZoneSsoHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.SINA, "com.umeng.socialize.sso.SinaHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.RENREN, "com.umeng.socialize.sso.RenrenSsoHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.LAIWANG,
+                "com.umeng.socialize.laiwang.controller.UMLWHandler");
+        mHandlerClzPathMap.put(SHARE_MEDIA.LAIWANG_DYNAMIC,
+                "com.umeng.socialize.laiwang.controller.UMLWHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.YIXIN,
+                "com.umeng.socialize.yixin.controller.UMYXHandler");
+        mHandlerClzPathMap.put(SHARE_MEDIA.YIXIN_CIRCLE,
+                "com.umeng.socialize.yixin.controller.UMYXHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.FACEBOOK,
+                "com.umeng.socialize.facebook.controller.UMFacebookHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.INSTAGRAM,
+                "com.umeng.socialize.instagtam.controller.UMInstagramHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.SMS, "com.umeng.socialize.sso.SmsHandler");
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.EMAIL, "com.umeng.socialize.sso.EmailHandler");
+
+        //
+        mHandlerClzPathMap.put(SHARE_MEDIA.TENCENT, "com.umeng.socialize.sso.TencentWBSsoHandler");
     }
 
 }
