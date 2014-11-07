@@ -647,7 +647,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
  <b id=cocos2dx_platforms_facebook_integration></b> 
 ### 4.1.5 集成Facebook       
- 首先到<a href="https://developers.facebook.com/">facebook开发者网站</a>(需翻墙)上创建应用，然后填写应用签名、包名等信息，然后获取app id等信息。在Cocos2d-x代码中首先需要设置facebook的app id，并且将facebook添加到sdk中, 代码如下 :
+ 首先到<a href="https://developers.facebook.com/">facebook开发者网站</a>(需翻墙)上创建应用，然后填写应用签名、包名等信息，然后获取app id等信息,通过facebook审核以后即可进行分享。在Cocos2d-x代码中首先需要设置facebook的app id，并且将facebook添加到sdk中, 代码如下 :
 ```java
 	// 获取一个CCUMSocialSDK实例
     CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
