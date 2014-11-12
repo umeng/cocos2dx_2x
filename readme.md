@@ -469,10 +469,10 @@ CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
 sdk->authorize(RENREN, auth_selector(authCallback));
 
 // 判断某个平台是否授权
-// sdk->isAuthorized(RENREN);
+ sdk->isAuthorized(RENREN);
 
 // 删除某个平台的授权
-// sdk->deleteAuthorization(RENREN, auth_selector(authCallback));
+ sdk->deleteAuthorization(RENREN, auth_selector(authCallback));
 ```     
 
 #### 3.2 授权回调说明
@@ -860,7 +860,8 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 <b id=cocos2dx_platform_sharecontent></b>
 ## 6. 设置分平台的分享内容
-	通过CCUMSocialSDK的directShare和openShare函数设置的分享内容都是各个平台通用的，即所有平台的分享内容都是一样的。在某些情况下，你需要某些平台的分享内容与其他平台的不一样，那么您可以使用如下接口来设置 : 
+	通过CCUMSocialSDK的directShare和openShare函数设置的分享内容都是各个平台通用的，即所有平台的分享内容都是一样的。
+	在某些情况下，你需要某些平台的分享内容与其他平台的不一样，那么您可以使用如下接口来设置 : 
 ```java
 CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 // 设置新浪微博的分享内容
