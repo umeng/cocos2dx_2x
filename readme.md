@@ -793,7 +793,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	sdk->setPlatforms(platforms);
 
 	// 设置新浪微博SSO授权,参数2修改为你的授权回调地址
-//	sdk->setSsoAuthorization(SINA,"http://sns.whalecloud.com/sina2/callback");
+	sdk->setSsoAuthorization(SINA,"http://sns.whalecloud.com/sina2/callback");
 ```     
 	这样新浪就支持SSO授权了。     
 	
@@ -812,7 +812,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	sdk->setPlatforms(platforms);
 
 	// 设置腾讯微博SSO授权, 参数2修改为你的授权回调地址
-//	sdk->setSsoAuthorization(TENCENT_WEIBO,"http://sns.whalecloud.com/tencent2/callback");
+	sdk->setSsoAuthorization(TENCENT_WEIBO,"http://sns.whalecloud.com/tencent2/callback");
 ```     
 
 	这样腾讯微博就支持SSO授权了。   
@@ -837,7 +837,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	sdk->setRenrenAppInfo("人人网的app id", "人人网的app key", "人人网的app secret");
 	
 	// 最后设置人人网支持SSO授权
-//	sdk->setSsoAuthorization(RENREN,NULL);
+	sdk->setSsoAuthorization(RENREN,NULL);
 ```        
 	最后在AndroidManifest.xml中添加如下权限:
 ```xml
