@@ -539,7 +539,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	sdk->setPlatforms(platforms) ;
 ```    
 
-***Android平台***
+***Android平台***     
 	如果是在Android平台上添加微信或者微信朋友圈平台，需要将Platforms/Android/sns_platforms/weixin/libs目录下的文件拷贝到您工程中的libs目录中。还需要您到压缩包中的Platforms/Android/sns_platforms/weixin/目录下将wxapi目录拷贝到您的工程根包下面。
 	您的根包定义在AndroidManafest.xml的package属性中，例如我的package为com.umeng.game,那么wxapi就要放在com.umeng.game包下,因此其完整路径为com.umeng.game.wxapi.WXEntryActivity。此时，可能会在WXEntryActivity有错误，您重新import一下所需要的类即可。       
 
