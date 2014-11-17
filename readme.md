@@ -779,7 +779,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 ## 5. 设置SSO授权
 <b id=cocos2dx_sina_sso></b>
 ### 5.1 新浪微博的SSO授权
-	要使用新浪微博SSO授权，首先您需要在新浪微博开放平台填写游戏的相关信息。如有问题，请参考文档和友盟BBS的社会化分享板块。
+   要使用新浪微博SSO授权，首先您需要在新浪微博开放平台填写游戏的相关信息。如有问题，请<a href="http://dev.umeng.com/social/android/detail-share/sso#SSO_2_1" target="_blank">新浪微博SSO授权设置</a>。               
 	针对于Android平台需要支持新浪微博SSO授权，首先您需要将压缩包下的platforms/Android/sns_platforms/sina/src/目录下的com文件夹拷贝到工程中的src目下，并且将libs目录下的SocialSDK_sina.jar拷贝到工程中的libs目录下。然后通过如下代码支持新浪微博的SSO授权 :
 ```java
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
