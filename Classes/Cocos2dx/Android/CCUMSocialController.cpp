@@ -485,9 +485,13 @@ void setShareTargetUrl(const char* url) {
  */
 void supportSsoAuthorization(int platform, const char* redirectURL) {
 	JniMethodInfo mi;
-	bool isHave = getMethod(mi, "supportSsoAuthorization", "(ILjava/lang/String;)V");
+	bool isHave = getMethod(mi, "supportSsoAuthorization",
+			"(ILjava/lang/String;)V");
 	if (isHave) {
-		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform);
+		jstring callbackUrl = mi.env->NewStringUTF(redirectURL);
+		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform,
+				callbackUrl);
+		mi.env->DeleteLocalRef(callbackUrl);
 		releaseMethod(mi);
 	}
 	CCLog("#### supportSsoAuthorization");
