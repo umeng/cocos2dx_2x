@@ -155,7 +155,7 @@ void setWeiXinPlatformInfo(const char* appid, const char* appsecret);
  * @param appKey 人人网的app key
  * @param appsecret 人人网的appsecret
  */
-void setRenrenAppInfo(const char* appid, const char* appkey,
+void setRenrenSsoAppInfo(const char* appid, const char* appkey,
 		const char* appsecret);
 
 /**

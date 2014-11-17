@@ -113,15 +113,15 @@ void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
 	// 设置平台
 	setSocialPlatforms(mPlatforms);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    //intagram和twitter打开开关
-    for (int i = 0; i < platforms->size(); i++) {
-        int platformType = platforms->at(i);
-        if (platformType == INSTAGRAM) {
-            UmSocialControllerIOS::openInstagram();
-        } else if (platformType == TWITTER) {
-            UmSocialControllerIOS::openTwitter();
-        }
-    }
+	//intagram和twitter打开开关
+	for (int i = 0; i < platforms->size(); i++) {
+		int platformType = platforms->at(i);
+		if (platformType == INSTAGRAM) {
+			UmSocialControllerIOS::openInstagram();
+		} else if (platformType == TWITTER) {
+			UmSocialControllerIOS::openTwitter();
+		}
+	}
 	UmSocialControllerIOS::setSharePlatforms(mPlatforms);
 #endif
 
@@ -397,7 +397,7 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	setPlatformDepShareContent(platform, text, imagePath, title, targetUrl);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    UmSocialControllerIOS::setPlatformShareContent(platform, text, imagePath, title, targetUrl);
+	UmSocialControllerIOS::setPlatformShareContent(platform, text, imagePath, title, targetUrl);
 #endif
 }
 
@@ -411,8 +411,7 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
 void CCUMSocialSDK::setRenrenAppInfo(const char* appid, const char* appkey,
 		const char* appsecret) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	// TODO
-
+	setRenrenSsoAppInfo(appid, appkey, appsecret);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	// TODO
 #endif

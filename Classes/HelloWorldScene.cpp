@@ -123,7 +123,8 @@ bool HelloWorld::init() {
 	// 设置facebook的app id
 	sdk->setFacebookAppId("567261760019884");
 	// 设置人人网SSO授权的app id, app key, app secret
-	sdk->setRenrenAppInfo("人人网的app id", "人人网的app key", "人人网的app secret");
+	sdk->setRenrenAppInfo("272694", "44b2d8a028fe499db326c77a6ec24350",
+			"e2fd480e33104a5da5c6249480d39d90");
 	sdk->openTwitterForiOS();
 	// 设置用户点击一条图文分享时用户跳转到的目标页面, 一般为app主页或者下载页面
 
@@ -328,7 +329,8 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatforms(platforms);
 
 	// 设置新浪微博SSO登录
-	sdk->setSsoAuthorization(SINA, "");
+	sdk->setSsoAuthorization(RENREN, "http://sns.whalecloud.com");
+	//
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
 			"assets/CloseNormal.png", "sina-title");
 	//

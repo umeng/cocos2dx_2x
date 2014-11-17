@@ -352,8 +352,11 @@ public class CCUMSocialController {
             // mController.getConfig().setSsoHandler(
             // new RenrenSsoHandler(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
             // RENREN_APP_SECRET));
-
             addRenrenSso();
+
+            Log.d(TAG,
+                    "### 设置人人网 SSO : "
+                            + mSocializeConfig.getSsoHandler(SHARE_MEDIA.RENREN.getReqCode()));
         }
 
         if (share_platform == SHARE_MEDIA.TENCENT) {
@@ -828,7 +831,7 @@ public class CCUMSocialController {
      */
     private static void addRenrenSso() {
         //
-        Class<?>[] parameterTypes = convertToClassArray(Activity.class, String.class, String.class,
+        Class<?>[] parameterTypes = convertToClassArray(Context.class, String.class, String.class,
                 String.class);
         //
         Object[] args = convertToArgsArray(mActivity, RENREN_APP_ID, RENREN_APP_KEY,
@@ -836,7 +839,6 @@ public class CCUMSocialController {
         // 添加renren
         addPlatformToSDK(SHARE_MEDIA.RENREN,
                 parameterTypes, args, false);
-
     }
 
     /**
@@ -886,7 +888,7 @@ public class CCUMSocialController {
                     mHandlerClzPathMap.get(platform),
                     paramTypes, args);
 
-            Log.d(TAG, "### 新添加的平台类型 : " + objectHandler);
+            Log.d(TAG, "zzz 新添加的平台类型 : " + objectHandler + ", platform : " + platform);
             // 设置target url
             ReflectUtils.invokeMethod(objectHandler, SET_TARGET_URL_METHOD, new Class<?>[] {
                     String.class
@@ -900,7 +902,8 @@ public class CCUMSocialController {
                     convertToArgsArray(toCircle));
             // 将平台添加到SDK中
             ReflectUtils.invokeMethod(objectHandler, ADD_TO_SDK_METHOD, null, null);
-
+            Log.d("", "zzz SsoHandler 是否添加成功 ? "
+                    + mController.getConfig().getSsoHandler(platform.getReqCode()));
             return objectHandler;
         }
 
