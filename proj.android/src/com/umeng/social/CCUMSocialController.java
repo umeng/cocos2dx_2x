@@ -791,7 +791,7 @@ public class CCUMSocialController {
         //
         Object[] args = convertToArgsArray(mActivity, YIXIN_APPKEY);
         // 添加易信或者易信朋友圈平台
-        addPlatformToSDK(platform, parameterTypes, args, false);
+        addPlatformToSDK(platform, parameterTypes, args, toCircle);
 
     }
 
@@ -806,7 +806,7 @@ public class CCUMSocialController {
         //
         Object[] args = convertToArgsArray(mActivity, LAIWANG_APPID, LAIWANG_APPKEY);
         // 添加易信或者易信朋友圈平台
-        Object object = addPlatformToSDK(platform, parameterTypes, args, false);
+        Object object = addPlatformToSDK(platform, parameterTypes, args, toCircle);
         // 设置应用名称
         ReflectUtils.invokeMethod(object, SET_LW_APP_NAME_METHOD,
                 convertToClassArray(String.class), convertToArgsArray(LAIWANG_APP_NAME));

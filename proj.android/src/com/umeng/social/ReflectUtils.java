@@ -33,6 +33,7 @@
 package com.umeng.social;
 
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -57,6 +58,7 @@ public final class ReflectUtils {
         }
         try {
             Method method = object.getClass().getMethod(methodName, parameterTypes);
+            Log.d("", "### 找到 " + methodName + ", obj : " + object);
             method.invoke(object, args);
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
