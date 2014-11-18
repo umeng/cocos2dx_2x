@@ -1408,10 +1408,6 @@ public class CCUMSocialController {
                 "com.umeng.socialize.instagram.media.InstagramShareContent");
         //
         mShareContentClzPathMap
-                .put(SHARE_MEDIA.EMAIL, "com.umeng.socialize.media.MailShareContent");
-
-        //
-        mShareContentClzPathMap
                 .put(SHARE_MEDIA.DOUBAN, "com.umeng.socialize.media.DoubanShareContent");
         //
         mShareContentClzPathMap
@@ -1429,6 +1425,13 @@ public class CCUMSocialController {
 
         mShareContentClzPathMap
                 .put(SHARE_MEDIA.TWITTER, "com.umeng.socialize.media.TwitterShareContent");
+
+        mShareContentClzPathMap
+                .put(SHARE_MEDIA.SMS, "com.umeng.socialize.media.SmsShareContent");
+
+        //
+        mShareContentClzPathMap
+                .put(SHARE_MEDIA.EMAIL, "com.umeng.socialize.media.MailShareContent");
     }
 
     /*
