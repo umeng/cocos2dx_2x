@@ -322,14 +322,9 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	platforms->push_back(LAIWANG);
 	platforms->push_back(LAIWANG_CIRCLE);
 	platforms->push_back(WEIXIN);
-<<<<<<< HEAD
-    platforms->push_back(WEIXIN_CIRCLE);
-    platforms->push_back(FACEBOOK);
-=======
 	platforms->push_back(WEIXIN_CIRCLE);
 	platforms->push_back(TWITTER);
 	platforms->push_back(FACEBOOK);
->>>>>>> social-android-4.1
 	// 设置平台
 	sdk->setPlatforms(platforms);
 
