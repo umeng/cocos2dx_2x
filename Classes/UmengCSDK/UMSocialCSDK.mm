@@ -93,7 +93,7 @@ void setTargetUrl(const char *targetUrl){
     [UMSocialData defaultData].extConfig.lwtimelineData.url =getNSStringFromCStr(targetUrl);
     [UMSocialData defaultData].extConfig.yxsessionData.url =getNSStringFromCStr(targetUrl);
     [UMSocialData defaultData].extConfig.yxtimelineData.url =getNSStringFromCStr(targetUrl);
-    [UMSocialData defaultData].extConfig.facebookData.urlString =getNSStringFromCStr(targetUrl);
+    [UMSocialData defaultData].extConfig.facebookData.url =getNSStringFromCStr(targetUrl);
 }
 
 void authorize(int platform, AuthHandler callback){
@@ -243,8 +243,8 @@ void setQQAppIdAndAppKey(const char *appId,const char *appKey){
     [UMSocialQQHandler setQQWithAppId:getNSStringFromCStr(appId) appKey:getNSStringFromCStr(appKey) url:@"http://www.umeng.com/social"];
 }
 
-void setWechatAppId(const char *appId){
-    [UMSocialWechatHandler setWXAppId:getNSStringFromCStr(appId) url:@"http://www.umeng.com/social"];
+void setWechatAppId(const char *appId, const char *appSecret){
+    [UMSocialWechatHandler setWXAppId:getNSStringFromCStr(appId) appSecret:getNSStringFromCStr(appSecret) url:@"http://www.umeng.com/social"];
 }
 
 

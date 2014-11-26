@@ -44,8 +44,8 @@ void openLog(int flag);
 //设置QQ互联appid，appkey
 void setQQAppIdAndAppKey(const char *appId,const char *appKey);
 
-//设置微信appid
-void setWechatAppId(const char *appId);
+//设置微信appid，appsecret
+void setWechatAppId(const char *appId, const char *appSecret);
 
 //设置来往appid，appkey
 void setLaiwangAppInfo(const char *appId, const char *appKey, const char * appName);

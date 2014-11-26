@@ -24,20 +24,19 @@ extern "C" {
  * Function : 授权开始的回调函数, jint参数为要授权的平台
  * Signature: (I)V
  */
-JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeStart
-  (JNIEnv *, jclass, jint);
-
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeStart(
+		JNIEnv *, jclass, jint);
 
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnAuthorizeComplete
  * Function : 授权结束的回调函数, 参数二的jint为要授权的平台, 参数三的jint为返回码,其中200为授权成功, 
- 				jobjectArray为授权成功时返回的数据,长度为2, 第一个数据为token, 第二个数据为过期时间。
- 				如果授权失败则返回的长度为1,包含了错误信息.
+ jobjectArray为授权成功时返回的数据,长度为2, 第一个数据为token, 第二个数据为过期时间。
+ 如果授权失败则返回的长度为1,包含了错误信息.
  * Signature: ([Ljava/lang/String;I)V
  */
-JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeComplete
-  (JNIEnv *, jclass, jint, jint, jobjectArray);
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeComplete(
+		JNIEnv *, jclass, jint, jint, jobjectArray);
 
 /*
  * Class:     com_umeng_social_CCUMSocialController
@@ -45,8 +44,8 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeCom
  * Function : 开始分享的回调函数
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart
-  (JNIEnv *, jclass);
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
+		JNIEnv *, jclass);
 
 /*
  * Class:     com_umeng_social_CCUMSocialController
@@ -54,9 +53,8 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart
  * Function : 分享结束的回调函数, 参数2为分享的平台; 参数3为返回码, 200为分享成功.
  * Signature: (IILjava/lang/String;)V
  */
-JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareComplete
-  (JNIEnv *, jclass, jint, jint, jstring);
-
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareComplete(
+		JNIEnv *, jclass, jint, jint, jstring);
 
 /*
  * 获取某个方法的对象
@@ -77,7 +75,7 @@ void releaseMethod(JniMethodInfo &mi);
  * @param appKey 友盟app key
  */
 void setUmengAppkey(const char* appkey);
-        
+
 /*
  * 对某平台进行授权
  * @param platfrom 要授权的平台, 参考CCUMTypeDef.h中的Platform枚举定义
@@ -89,26 +87,25 @@ void doAuthorize(int platform, AuthEventHandler callback);
  * @param  	callback 删除授权的回调, 具体参考CCUMTypeDef.h中的定义
  */
 void deletePlatformAuthorization(int platform, AuthEventHandler callback);
-    
+
 /*
  * 判断某平台是否已经授权
  * @param platform 要判定的平台, 参考CCUMTypeDef.h中的Platform枚举定义
  */
 bool isPlatformAuthorized(int platform);
-    
+
 /*
  * 打开分享面板
  * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
  */
 void doOpenShare(ShareEventHandler callback);
-    
+
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义
  * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
  */
 void doDirectShare(int platform, ShareEventHandler callback);
-
 
 /*
  * 设置要分享的文字内容
@@ -120,7 +117,7 @@ void setShareTextContent(const char* text);
  * 设置要分享的图片的本地路径或者url
  * @param pathOrUrl 图片的本地路径或者url, 如果是url必须则必须以http://或者https://开头
  */
-void setShareImageName(const char* pathOrUrl);
+void setShareImagePath(const char* pathOrUrl);
 
 /*
  * 设置SDK支持的平台
@@ -128,77 +125,98 @@ void setShareImageName(const char* pathOrUrl);
  */
 void setSocialPlatforms(vector<int>* platforms);
 
-
 /**
  * 初始化Cocos2dx SDK
  * 
  * @param type 类型
  @param version 版本号
  */
- void initCocos2dxSDKFromJni(const char* type, const char* version) ;
-
+void initCocos2dxSDKFromJni(const char* type, const char* version);
 
 /**
  * 设置QQ互联平台的的app id,包括QQ和QQ空间
  * 
  * @param appid
  */
- void setQQAndQzoneAppIdWithAppKey(const char* appid, const char* appKey) ; 
+void setQQAndQzoneAppIdWithAppKey(const char* appid, const char* appKey);
 
 /**
  * 设置微信和微信朋友圈的app id
  * 
- * @param appid
-*/
-void setWeiXinPlatformAppId(const char* appid) ;
+ * @param appid 微信的app id
+ * @param appsecret 微信的appsecret
+ */
+void setWeiXinPlatformInfo(const char* appid, const char* appsecret);
 
 /**
-* 设置易信和易信朋友圈的app id
-* 
-* @param appid
-*/
-void setYiXinPlatformAppKey(const char* appid) ;
+ * 设置人人网的app id,app key,app secret信息
+ *
+ * @param appid 人人网的appid
+ * @param appKey 人人网的app key
+ * @param appsecret 人人网的appsecret
+ */
+void setRenrenSsoAppInfo(const char* appid, const char* appkey,
+		const char* appsecret);
+
+/**
+ * 设置易信和易信朋友圈的app id
+ *
+ * @param appid
+ */
+void setYiXinPlatformAppKey(const char* appid);
 
 /**
  * 设置来往和来往动态的app id
  * 
  * @param appid
  */
- void setLaiwangPlatformAppId(const char* appid);
+void setLaiwangPlatformAppId(const char* appid);
 
 /**
-* 设置来往和来往动态的app key
-* 
-* @param appid
-*/
-void setLaiwangPlatformAppKey(const char* appkey) ;
+ * 设置来往和来往动态的app key
+ *
+ * @param appid
+ */
+void setLaiwangPlatformAppKey(const char* appkey);
 
 /**
-* 设置来往和来往动态的app key
-* 
-* @param appid
-*/
-void setLaiwangPlatformAppName(const char* appName) ;
+ * 设置来往和来往动态的app key
+ *
+ * @param appid
+ */
+void setLaiwangPlatformAppName(const char* appName);
 
 /**
-* 设置facebook app id
-* 
-* @param appid
-*/
+ * 设置facebook app id
+ *
+ * @param appid
+ */
 void setFacebookPlatformAppId(const char* appId);
-
 
 /*
  * 设置SDK的target url, 即用户点击某条分享时跳转到的目标页面
  * @param url 用户点击某条分享时跳转到的目标页面通常为app的主页或者下载链接等
  */
-void setShareTargetUrl(const char* url) ;
+void setShareTargetUrl(const char* url);
 
 /**
  *  是否开启log
  * @param flag 如果为true则开启log, 否则关闭.
  */
- void setAndroidLogEnable(bool flag);
+void setAndroidLogEnable(bool flag);
+
+/**
+ * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台.
+ * @param  platform 要支持SSO授权的平台
+ * @param  redirectURL SSO授权回调地址
+ */
+void supportSsoAuthorization(int platform, const char* redirectURL);
+
+/**
+ *
+ */
+void setPlatformDepShareContent(int platform, const char* text,
+		const char* imagePath, const char* title, const char* targetUrl);
 
 // /**
 //  * 添加平台支持
@@ -206,10 +224,8 @@ void setShareTargetUrl(const char* url) ;
 //  */
 // void supportPlatform(int platform) ;
 
+void getData(JNIEnv *env, jobjectArray data, map<string, string>& outputMap);
 
-void getData(JNIEnv *env, jobjectArray data, map<string, string>& outputMap) ;
-
-    
 #ifdef __cplusplus
 }
 #endif

@@ -18,6 +18,8 @@
 #import "UMSocialFacebookHandler.h"
 #import "UMSocialTwitterHandler.h"
 #import "UMSocialInstagramHandler.h"
+#import "UMSocialSinaHandler.h"
+#import "UMSocialTencentWeiboHandler.h"
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
@@ -90,7 +92,7 @@ void UmSocialControllerIOS::setTargetUrl(const char *targetUrl){
     [UMSocialData defaultData].extConfig.lwtimelineData.url =getNSStringFromCString(targetUrl);
     [UMSocialData defaultData].extConfig.yxsessionData.url =getNSStringFromCString(targetUrl);
     [UMSocialData defaultData].extConfig.yxtimelineData.url =getNSStringFromCString(targetUrl);
-    [UMSocialData defaultData].extConfig.facebookData.urlString =getNSStringFromCString(targetUrl);
+    [UMSocialData defaultData].extConfig.facebookData.url =getNSStringFromCString(targetUrl);
 }
 
 //bool UmSocialControllerIOS::openURL(const char *url){
@@ -108,12 +110,66 @@ void UmSocialControllerIOS::setQQAppIdAndAppKey(const char *appId,const char *ap
     #endif
 }
 
-void UmSocialControllerIOS::setWechatAppId(const char *appId){
+void UmSocialControllerIOS::setWechatAppId(const char *appId, const char *appSecret){
     #if CC_ShareToWechat == 1
-    [UMSocialWechatHandler setWXAppId:getNSStringFromCString(appId) url:@"http://www.umeng.com/social"];
+    [UMSocialWechatHandler setWXAppId:getNSStringFromCString(appId) appSecret:getNSStringFromCString(appSecret) url:@"http://www.umeng.com/social"];
     #endif
 }
 
+void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redirectURL){
+    if (platform == SINA) {
+        [UMSocialSinaHandler openSSOWithRedirectURL:getNSStringFromCString(redirectURL)];
+    }
+    if (platform == TENCENT_WEIBO) {
+        [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
+    }
+    if (platform == RENREN) {
+        NSLog(@"由于人人网iOS SDK在横屏下有问题,不支持人人网SSO授权.");
+    }
+}
+
+id getUIImageFromFilePath(const char* imagePath){
+    id returnImage = nil;
+    if (imagePath) {
+        NSString *imageString = getNSStringFromCString(imagePath);
+        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
+                                                             ofType:@"gif"];
+            returnImage = [NSData dataWithContentsOfFile:path];
+        } else if ([imageString rangeOfString:@"/"].length > 0){
+            returnImage = [NSData dataWithContentsOfFile:imageString];
+        } else {
+            returnImage = [UIImage imageNamed:imageString];
+        }
+        [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
+    }
+    return returnImage;
+}
+
+void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* text,
+                                                                const char* imagePath, const char* title ,
+                                                    const char* targetUrl){
+    NSString *platformString = getPlatformString(platform);
+    UMSocialSnsData *platformData = [[UMSocialData defaultData].extConfig.snsDataDictionary valueForKey:platformString];
+    if (platformData) {
+        platformData.shareText = getNSStringFromCString(text);
+        NSString *imageString = getNSStringFromCString(imagePath);
+        if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
+            [platformData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
+        } else {
+            UIImage * image = getUIImageFromFilePath(imagePath);
+            platformData.shareImage = image;
+        }
+        if ([platformData respondsToSelector:@selector(title)]) {
+            [platformData performSelector:@selector(setTitle:) withObject:getNSStringFromCString(title)];
+        }
+        if ([platformData respondsToSelector:@selector(url)]) {
+            [platformData performSelector:@selector(setUrl:) withObject:getNSStringFromCString(targetUrl)];
+        }
+    } else{
+        NSLog(@"pass platform type error!");
+    }
+}
 
 void UmSocialControllerIOS::setLaiwangAppInfo(const char *appId, const char *appKey, const char *appName){
     #if CC_ShareToLaiWang == 1
@@ -192,25 +248,6 @@ bool UmSocialControllerIOS::isAuthorized(int platform){
     return isOauth == YES;
 }
 
-id getUIImageFromFilePath(const char* imagePath){
-    id returnImage = nil;
-    if (imagePath) {
-        NSString *imageString = getNSStringFromCString(imagePath);
-        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
-                                                             ofType:@"gif"];
-            returnImage = [NSData dataWithContentsOfFile:path];
-        } else if ([imageString rangeOfString:@"/"].length > 0){
-            returnImage = [NSData dataWithContentsOfFile:imageString];
-        } else {
-            returnImage = [UIImage imageNamed:imageString];
-        }
-        [UMSocialData defaultData].urlResource.resourceType = UMSocialUrlResourceTypeDefault;
-    }
-    return returnImage;
-}
-
-
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const char* text, const char* imagePath,ShareEventHandler callback){
     
     if (m_appKey.empty()) {
@@ -257,6 +294,19 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
                                 shareToSnsNames:array
                                        delegate:delegate];
 }
+
+void UmSocialControllerIOS::setSharePlatforms(vector<int>* platform)
+{
+    NSMutableArray* platformArray = [NSMutableArray array];
+    if (platform) {
+        for (unsigned int i = 0; i < platform->size(); i++) {
+            [platformArray addObject:getPlatformString(platform->at(i))];
+        }
+    }
+    NSLog(@"platformArray is %@",platformArray);
+    [UMSocialConfig setSnsPlatformNames:platformArray];
+}
+
 
 void UmSocialControllerIOS::openLog(bool flag)
 {

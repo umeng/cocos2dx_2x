@@ -49,7 +49,7 @@ public:
     static void openShareWithImagePath(vector<int>* platform, const char* text, const char* imagePath,ShareEventHandler callback);
     
 //    //设置分享的平台
-//    static void setSharePlatforms(vector<int>* platform);
+    static void setSharePlatforms(vector<int>* platform);
     
     //直接分享到各个社交平台
     static void directShare(const char* text, const char* imagePath, int platform, ShareEventHandler callback);
@@ -60,9 +60,17 @@ public:
     //设置QQ互联appid，appkey
     static void setQQAppIdAndAppKey(const char *appId,const char *appKey);
 
-    //设置微信appid
-    static void setWechatAppId(const char *appId);
+    //设置微信appid,appSecret
+    static void setWechatAppId(const char *appId, const char *appSecret);
 
+    //打开各个平台SSO开关,redirectURL
+    static void openSSOAuthorization(int platform, const char *redirectURL);
+    
+    //分别设置各个分享平台内容
+    static void setPlatformShareContent(int platform, const char* text,
+                                 const char* imagePath, const char* title,
+                                 const char* targetUrl);
+    
     //设置来往appid，appkey
     static void setLaiwangAppInfo(const char *appId, const char *appKey, const char * appName);
 
