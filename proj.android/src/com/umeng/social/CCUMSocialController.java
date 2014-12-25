@@ -846,7 +846,7 @@ public class CCUMSocialController {
      */
     private static void addInstagramPlatform() {
         //
-        Class<?>[] parameterTypes = convertToClassArray(Activity.class);
+        Class<?>[] parameterTypes = convertToClassArray(Context.class);
         //
         Object[] args = convertToArgsArray(mActivity);
         // 添加INSTAGRAM
@@ -896,10 +896,13 @@ public class CCUMSocialController {
                     TARGET_URL
             });
 
-            // setToCircle
-            ReflectUtils.invokeMethod(objectHandler, SET_TO_CIRCLE_METHOD,
-                    convertToClassArray(boolean.class),
-                    convertToArgsArray(toCircle));
+            if (isNeedSetToCircle(platform)) {
+                // setToCircle
+                ReflectUtils.invokeMethod(objectHandler, SET_TO_CIRCLE_METHOD,
+                        convertToClassArray(boolean.class),
+                        convertToArgsArray(toCircle));
+            }
+
             // 将平台添加到SDK中
             ReflectUtils.invokeMethod(objectHandler, ADD_TO_SDK_METHOD, null, null);
             Log.d("", "zzz SsoHandler 是否添加成功 ? "
@@ -908,6 +911,11 @@ public class CCUMSocialController {
         }
 
         return new Object();
+    }
+
+    private static boolean isNeedSetToCircle(SHARE_MEDIA platform) {
+        return platform == SHARE_MEDIA.WEIXIN_CIRCLE || platform == SHARE_MEDIA.LAIWANG_DYNAMIC
+                || platform == SHARE_MEDIA.YIXIN_CIRCLE;
     }
 
     /**
@@ -946,7 +954,7 @@ public class CCUMSocialController {
                     for (int i = 0; i < length; i++) {
                         int index = platforms[i];
                         SHARE_MEDIA target = getPlatform(index);
-                        Log.d(TAG, "### 添加平台 " + target);
+                        Log.d(TAG, "### 添加平台 --> " + target);
                         if (target != null && target != SHARE_MEDIA.GENERIC) {
                             supportPlatfrom(target);
                             cacheList.add(target);
@@ -1368,7 +1376,7 @@ public class CCUMSocialController {
                 "com.umeng.socialize.facebook.controller.UMFacebookHandler");
         //
         mHandlerClzPathMap.put(SHARE_MEDIA.INSTAGRAM,
-                "com.umeng.socialize.instagtam.controller.UMInstagramHandler");
+                "com.umeng.socialize.instagram.controller.UMInstagramHandler");
         //
         mHandlerClzPathMap.put(SHARE_MEDIA.SMS, "com.umeng.socialize.sso.SmsHandler");
         //
