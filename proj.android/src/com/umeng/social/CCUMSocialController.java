@@ -842,7 +842,7 @@ public class CCUMSocialController {
     }
 
     /**
-     * 添加facebook平台
+     * 添加instagram平台
      */
     private static void addInstagramPlatform() {
         //
