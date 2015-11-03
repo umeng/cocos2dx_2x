@@ -337,7 +337,10 @@
 			isa = PBXGroup;
 			children = (
 				D5746D1F19F7A51C00EB111E /* umeng_ios_social_sdk_4.2_custom */,
-				5EC27BAB18D56F1100617DB1 /* UmengSocial */,
+				D5E82A7019822EE600DE63A1 /* UmengCSDK */,
+				D5E82A6B19822E1800DE63A1 /* Common */,
+				D5E82A6719822DF500DE63A1 /* ShareButton */,
+				D5E82A6019822DDE00DE63A1 /* iOS */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
@@ -428,18 +431,6 @@
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		5EC27BAB18D56F1100617DB1 /* UmengSocial */ = {
-			isa = PBXGroup;
-			children = (
-				D5E82A7019822EE600DE63A1 /* UmengCSDK */,
-				D5E82A6B19822E1800DE63A1 /* Common */,
-				D5E82A6719822DF500DE63A1 /* ShareButton */,
-				D5E82A6019822DDE00DE63A1 /* iOS */,
-			);
-			name = UmengSocial;
-			path = ../Classes/UmengSocial;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -645,7 +636,7 @@
 				D5E82A6419822DDE00DE63A1 /* UMSocialUIObject.mm */,
 			);
 			name = iOS;
-			path = ../Cocos2dx/iOS;
+			path = ../Classes/Cocos2dx/iOS;
 			sourceTree = "<group>";
 		};
 		D5E82A6719822DF500DE63A1 /* ShareButton */ = {
@@ -655,7 +646,7 @@
 				D5E82A6919822DF500DE63A1 /* UMShareButton.h */,
 			);
 			name = ShareButton;
-			path = ../Cocos2dx/ShareButton;
+			path = ../Classes/Cocos2dx/ShareButton;
 			sourceTree = "<group>";
 		};
 		D5E82A6B19822E1800DE63A1 /* Common */ = {
@@ -666,7 +657,7 @@
 				D5E82A6E19822E1800DE63A1 /* CCUMTypeDef.h */,
 			);
 			name = Common;
-			path = ../Cocos2dx/Common;
+			path = ../Classes/Cocos2dx/Common;
 			sourceTree = "<group>";
 		};
 		D5E82A7019822EE600DE63A1 /* UmengCSDK */ = {
@@ -678,7 +669,7 @@
 				D5E82A7419822EE600DE63A1 /* UMSocialCSDK.mm */,
 			);
 			name = UmengCSDK;
-			path = ../UmengCSDK;
+			path = ../Classes/UmengCSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -840,13 +831,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI\"",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -872,7 +857,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios/Simulation\"",
-					"\"$(SRCROOT)/../Classes",
+					"\"$(SRCROOT)/../Classes \"$(SRCROOT)/../Classes/Cocos2dx\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -887,27 +872,7 @@
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Facebook\"",
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Twitter\"",
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Instagram\"",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_3.3.8",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Facebook",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Instagram",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/LaiWang",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Twitter",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/UMSocial_ScreenShot_Sdk",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/UMSocial_Shake_Sdk",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_4.2",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Facebook",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/LaiWang",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Sina",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Twitter",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Instagram",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentWeibo",
+					"\"$(SRCROOT)/../Classes/Cocos2dx\"/**",
 				);
 				OTHER_CFLAGS = "-O2";
 				PRODUCT_NAME = UmengGame;
@@ -927,13 +892,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI\"",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_INLINES_ARE_PRIVATE_EXTERN = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -957,7 +916,7 @@
 					"\"$(SRCROOT)/../../../cocos2dx/platform/third_party/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios\"",
 					"\"$(SRCROOT)/../../../cocos2dx/platform/ios/Simulation\"",
-					"\"$(SRCROOT)/../Classes",
+					"\"$(SRCROOT)/../Classes \"$(SRCROOT)/../Classes/Cocos2dx\"",
 				);
 				INFOPLIST_FILE = Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
@@ -972,27 +931,7 @@
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Facebook\"",
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Twitter\"",
 					"\"$(SRCROOT)/../Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Instagram\"",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_3.3.8",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Facebook",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Instagram",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/LaiWang",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Twitter",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/UMSocial_ScreenShot_Sdk",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/UMSocial_Shake_Sdk",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_3.3.8_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_4.2",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Facebook",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/LaiWang",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Sina",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentOpenAPI",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Twitter",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Wechat",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/YiXin",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Instagram",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/Renren",
-					"/Users/yeahugo/Documents/project/publicProject/cocos2d-x/project/UmengSocialCocos2dxSDK/Classes/umeng_ios_social_sdk_4.2_custom/UMSocial_Sdk_Extra_Frameworks/TencentWeibo",
+					"\"$(SRCROOT)/../Classes/Cocos2dx\"/**",
 				);
 				PRODUCT_NAME = UmengGame;
 				PROVISIONING_PROFILE = "";
