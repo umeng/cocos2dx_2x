@@ -19,7 +19,9 @@
 #import "UMSocialTwitterHandler.h"
 #import "UMSocialInstagramHandler.h"
 #import "UMSocialSinaHandler.h"
-#import "UMSocialTencentWeiboHandler.h"
+//#import "UMSocialTencentWeiboHandler.h"
+
+#define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
@@ -121,7 +123,7 @@ void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redi
         [UMSocialSinaHandler openSSOWithRedirectURL:getNSStringFromCString(redirectURL)];
     }
     if (platform == TENCENT_WEIBO) {
-        [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
+//        [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
     }
     if (platform == RENREN) {
         NSLog(@"由于人人网iOS SDK在横屏下有问题,不支持人人网SSO授权.");
@@ -192,10 +194,13 @@ void UmSocialControllerIOS::setFacebookAppId(const char *appId){
 }
 
 
-void UmSocialControllerIOS::openTwitter(){
+void UmSocialControllerIOS::openTwitter(const char *appKey, const char* appSecret){
     #if CC_ShareToTwitter == 1
     [UMSocialTwitterHandler openTwitter];
-    #endif
+#endif
+    if (UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"7.0")) {
+        [UMSocialTwitterHandler setTwitterAppKey:getNSStringFromCString(appKey) withSecret:getNSStringFromCString(appSecret)];
+    }
 }
 
 void UmSocialControllerIOS::openInstagram()

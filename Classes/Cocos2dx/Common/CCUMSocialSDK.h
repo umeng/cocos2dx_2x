@@ -168,11 +168,12 @@ public:
 	 */
 	void setFacebookAppId(const char *appid);
 
-	/** Deprecated，使用'setPlatforms'方法传入相应平台参数进行控制
-	 * 打开Twitter开关，只对iOS平台生效
-	 *
+    /**  设置twitter应用key、secret
+	 *   打开Twitter开关，只对iOS平台生效
+	 *  @param appKey   twitter应用的app key
+     *  @param appSecret   twitter应用的app secret
 	 */
-	void openTwitterForiOS();
+	void openTwitterForiOS(const char *appKey, const char* appSecret);
 
 	/** Deprecated，使用'setPlatforms'方法传入相应平台参数进行控制
 	 * 打开Instagram开关，只对iOS平台生效

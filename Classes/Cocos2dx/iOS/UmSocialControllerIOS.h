@@ -81,7 +81,7 @@ public:
     static void setFacebookAppId(const char *appId);
 
     //打开Twitter的开关
-    static void openTwitter();
+    static void openTwitter(const char *appKey, const char* appSecret);
 
     //打开Instagram的开关
     static void openInstagram();

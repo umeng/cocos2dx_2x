@@ -114,18 +114,18 @@ bool HelloWorld::init() {
 	//    // 设置QQ的app id, app key
 	sdk->setQQAppIdAndAppKey("100424468", "c7394704798a158208a74ab60104f0ba");
 	// 设置微信的app id, app key
-	sdk->setWeiXinAppInfo("wx485ab7ca6a7e02d1",
-			"f9cad1d153aaa97925a2e2b5fa63d59f");
+	sdk->setWeiXinAppInfo("wxdc1e388c3822c80b",
+			"a393c1527aaccb95f3a4c88d6d1455f6");
 	// 设置易信的app key
 	sdk->setYiXinAppKey("yx52dd5c14bbb3430b93e6f2dafcbcc68d");
 	// 设置来往的app id等信息
 	sdk->setLaiwangAppInfo("设置来往和来往动态的app id", "设置来往和来往动态的app key", "我的应用名");
 	// 设置facebook的app id
-	sdk->setFacebookAppId("567261760019884");
+	sdk->setFacebookAppId("506027402887373");
 	// 设置人人网SSO授权的app id, app key, app secret
 	sdk->setRenrenAppInfo("272694", "44b2d8a028fe499db326c77a6ec24350",
 			"e2fd480e33104a5da5c6249480d39d90");
-	sdk->openTwitterForiOS();
+	sdk->openTwitterForiOS("fB5tvRpna1CKK97xZUslbxiet", "YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K");
 	// 设置用户点击一条图文分享时用户跳转到的目标页面, 一般为app主页或者下载页面
 
 	CCSize visibleSize = CCDirector::sharedDirector()->getVisibleSize();

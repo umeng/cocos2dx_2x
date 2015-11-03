@@ -113,15 +113,13 @@ void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
 	// 设置平台
 	setSocialPlatforms(mPlatforms);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	//intagram和twitter打开开关
+	//intagram打开开关
 	for (int i = 0; i < platforms->size(); i++) {
 		int platformType = platforms->at(i);
 		if (platformType == INSTAGRAM) {
 			UmSocialControllerIOS::openInstagram();
-		} else if (platformType == TWITTER) {
-			UmSocialControllerIOS::openTwitter();
-		}
-	}
+        }
+    }
 	UmSocialControllerIOS::setSharePlatforms(mPlatforms);
 #endif
 
@@ -352,9 +350,9 @@ void CCUMSocialSDK::setFacebookAppId(const char *appid) {
  * 针对iOS平台打开分享到Twitter的开关
  *
  */
-void CCUMSocialSDK::openTwitterForiOS() {
+void CCUMSocialSDK::openTwitterForiOS(const char *appKey, const char* appSecret) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::openTwitter();
+	UmSocialControllerIOS::openTwitter(appKey, appSecret);
 #endif
 }
 

@@ -58,6 +58,7 @@
 		63B824261BE89B12003A2812 /* libYixinSDK_V2.2.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B824041BE89B12003A2812 /* libYixinSDK_V2.2.a */; };
 		63B8242A1BE89BB5003A2812 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B824291BE89BB5003A2812 /* CoreData.framework */; };
 		63B8242C1BE89BC1003A2812 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B8242B1BE89BC1003A2812 /* CoreText.framework */; };
+		63B8242F1BE8AB51003A2812 /* TwitterKitResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 63B8242E1BE8AB51003A2812 /* TwitterKitResources.bundle */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
@@ -201,6 +202,7 @@
 		63B824271BE89BA7003A2812 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		63B824291BE89BB5003A2812 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		63B8242B1BE89BC1003A2812 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		63B8242E1BE8AB51003A2812 /* TwitterKitResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = TwitterKitResources.bundle; sourceTree = "<group>"; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
@@ -588,6 +590,7 @@
 		63B823F61BE89B12003A2812 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				63B8242D1BE8AB51003A2812 /* Resources */,
 				63B823F71BE89B12003A2812 /* Fabric.framework */,
 				63B823F81BE89B12003A2812 /* libSocialTwitter.a */,
 				63B823F91BE89B12003A2812 /* TwitterCore.framework */,
@@ -619,6 +622,15 @@
 				63B824071BE89B12003A2812 /* YXApiObject.h */,
 			);
 			path = YiXin;
+			sourceTree = "<group>";
+		};
+		63B8242D1BE8AB51003A2812 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				63B8242E1BE8AB51003A2812 /* TwitterKitResources.bundle */,
+			);
+			name = Resources;
+			path = ../../../../Classes/umeng_ios_social_sdk/UMSocial_Sdk_Extra_Frameworks/Twitter/TwitterKit.framework/Resources;
 			sourceTree = "<group>";
 		};
 		78C7DDAA14EBA5050085D0C2 /* Resources */ = {
@@ -767,6 +779,7 @@
 				7855E0E1153FEF240059DD9A /* Default.png in Resources */,
 				D4EF949A15BD2D8B00D803EB /* Icon-57.png in Resources */,
 				D5E82A7A1982379700DE63A1 /* cat.gif in Resources */,
+				63B8242F1BE8AB51003A2812 /* TwitterKitResources.bundle in Resources */,
 				D4EF949C15BD2D8E00D803EB /* Icon-114.png in Resources */,
 				63B824101BE89B12003A2812 /* UMSLoginViewController.xib in Resources */,
 				D5E82A7819822FBE00DE63A1 /* dog.gif in Resources */,
