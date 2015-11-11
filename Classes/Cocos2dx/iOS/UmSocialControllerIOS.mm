@@ -240,6 +240,9 @@ void UmSocialControllerIOS::authorize(int platform, AuthEventHandler callback){
 void UmSocialControllerIOS::deleteAuthorization(int platform, AuthEventHandler callback){
     [[UMSocialDataService defaultDataService] requestUnOauthWithType:getPlatformString(platform)  completion:^(UMSocialResponseEntity *response){
         if (callback) {
+            if (response.responseCode == UMSResponseCodeSuccess) {
+                response.responseCode = (UMSResponseCode)-1;
+            }
             map<string,string> loginData;
             loginData.insert(pair<string,string>("msg","deleteOauth"));
             callback(platform, (int)response.responseCode,loginData);
