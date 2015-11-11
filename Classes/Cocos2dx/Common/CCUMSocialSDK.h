@@ -88,6 +88,7 @@ public:
 	 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
 	 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
 	 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
+     5、iOS平台直接传递图片名路径或引用路径即可，例如：myimage.png;
 	 // *******************************************
 	 * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
 	 */
@@ -106,6 +107,7 @@ public:
 	 2、assets目录下的图片必须以"assets/"开头,cocos2d-x的资源图片默认会添加到该目录只, 例如 : assets/CloseNornal.png;
 	 3、资源图片即放在工程中的res/drawable中的图片, 必须以"res/"开头，例如 : res/myimage.png;
 	 4、sd卡目录下的图片即存放在本地目录的图片，此时传递绝对路径即可，例如 : /sdcard/myimage.jpg;
+     5、iOS平台直接传递图片名路径或引用路径即可，例如：myimage.png
 	 // *******************************************
 	 * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
 	 */
