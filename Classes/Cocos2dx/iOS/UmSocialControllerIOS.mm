@@ -165,8 +165,10 @@ void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* te
         if ([platformData respondsToSelector:@selector(title)]) {
             [platformData performSelector:@selector(setTitle:) withObject:getNSStringFromCString(title)];
         }
-        if ([platformData respondsToSelector:@selector(url)]) {
-            [platformData performSelector:@selector(setUrl:) withObject:getNSStringFromCString(targetUrl)];
+        if (targetUrl != NULL && strlen(targetUrl) > 0) {
+            if ([platformData respondsToSelector:@selector(url)]) {
+                [platformData performSelector:@selector(setUrl:) withObject:getNSStringFromCString(targetUrl)];
+            }
         }
     } else{
         NSLog(@"pass platform type error!");
