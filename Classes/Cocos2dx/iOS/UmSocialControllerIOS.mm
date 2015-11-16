@@ -162,8 +162,11 @@ void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* te
             UIImage * image = getUIImageFromFilePath(imagePath);
             platformData.shareImage = image;
         }
-        if ([platformData respondsToSelector:@selector(title)]) {
-            [platformData performSelector:@selector(setTitle:) withObject:getNSStringFromCString(title)];
+        
+        if (title != NULL && strlen(title) > 0) {
+            if ([platformData respondsToSelector:@selector(title)]) {
+                [platformData performSelector:@selector(setTitle:) withObject:getNSStringFromCString(title)];
+            }
         }
         if (targetUrl != NULL && strlen(targetUrl) > 0) {
             if ([platformData respondsToSelector:@selector(url)]) {
