@@ -80,7 +80,8 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
 		CCLog("#### HelloWorld 分享成功 --> Cocos2d-x SDK ");
 	} else {
 		result = "分享失败";
-		CCLog("#### HelloWorld 分享出错 --> Cocos2d-x SDK ");
+        CCLog("#### HelloWorld 分享出错 --> Cocos2d-x SDK ");
+        cout << errorMsg << endl;
 	}
 
 	istringstream is;
