@@ -139,7 +139,8 @@ id getUIImageFromFilePath(const char* imagePath){
                                                              ofType:@"gif"];
             returnImage = [NSData dataWithContentsOfFile:path];
         } else if ([imageString rangeOfString:@"/"].length > 0){
-            returnImage = [NSData dataWithContentsOfFile:imageString];
+            NSString *path = [[NSBundle mainBundle] pathForResource:imageString ofType:nil];
+            returnImage = [NSData dataWithContentsOfFile:path];
         } else {
             returnImage = [UIImage imageNamed:imageString];
         }
