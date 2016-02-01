@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">cc_sdk_demo</string>
     <string name="fb_app_id">567261760019884</string>
+    <string name="facebook_app_id">487692214752558</string>
 </resources>

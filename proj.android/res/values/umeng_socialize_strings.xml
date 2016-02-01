@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
     <string name="pull_to_refresh_pull_label" translatable="false">向下拉动可以刷新</string>
@@ -68,37 +68,28 @@
     <string name="umeng_socialize_send_btn_str">发送</string>
     <string name="umeng_socialize_img_des"></string>
     <string name="umeng_socialize_share">分享</string>
-    <string name="com_facebook_loading">Loading...</string>
 
-    <!-- laiwang string -->
-    <string name="umeng_socialize_text_laiwang_key">来往</string>
-    <string name="umeng_socialize_text_laiwang_dynamic_key">来往动态</string>
-    <string name="umeng_socialize_laiwang_default_content">友盟社会化组件（SDK）让移动应用快速整合社交分享功能</string>
+    <string name="umeng_socialize_mail">邮件</string>
+    <string name="umeng_socialize_sms">短信</string>
+    <string name="umeng_socialize_sina">新浪</string>
+    <string name="umeng_socialize_text_yixin_key">易信</string>
+    <string name="umeng_socialize_text_yixincircle_key">易信朋友圈</string>
 
-    <!-- facebook string -->
-    <string name="com_facebook_dialogloginactivity_ok_button">OK</string>
-    <string name="com_facebook_loginview_log_out_button">Log out</string>
-    <string name="com_facebook_loginview_log_in_button">Log in with Facebook</string>
-    <string name="com_facebook_loginview_logged_in_as">Logged in as: %1$s</string>
-    <string name="com_facebook_loginview_logged_in_using_facebook">Logged in using Facebook</string>
-    <string name="com_facebook_loginview_log_out_action">Log out</string>
-    <string name="com_facebook_loginview_cancel_action">Cancel</string>
-    <string name="com_facebook_logo_content_description">Facebook Logo</string>
-    <string name="com_facebook_usersettingsfragment_log_in_button">Log in&#8230;</string>
-    <string name="com_facebook_usersettingsfragment_logged_in">Logged in</string>
-    <string name="com_facebook_usersettingsfragment_not_logged_in">Not logged in</string>
-    <string name="com_facebook_placepicker_subtitle_format">%1$s • %2$,d were here</string>
-    <string name="com_facebook_placepicker_subtitle_catetory_only_format">%1$s</string>
-    <string name="com_facebook_placepicker_subtitle_were_here_only_format">%1$,d were here</string>
-    <string name="com_facebook_picker_done_button_text">Done</string>
-    <string name="com_facebook_choose_friends">Choose Friends</string>
-    <string name="com_facebook_nearby">Nearby</string>
-    <string name="com_facebook_internet_permission_error_title">AndroidManifest Error</string>
-    <string name="com_facebook_internet_permission_error_message">WebView login requires INTERNET permission</string>
-    <string name="com_facebook_requesterror_web_login">Your Facebook account is locked. Please log into www.facebook.com to continue.</string>
-    <string name="com_facebook_requesterror_relogin">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_password_changed">Your Facebook password has changed. Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_reconnect">Please log into this app again to reconnect your Facebook account.</string>
-    <string name="com_facebook_requesterror_permissions">This app doesn’t have permission to do this. To change permissions, try logging into the app again.</string>
-
+    <string name="umeng_socialize_text_laiwangdynamic_key">来往动态</string>
+    <string name="umeng_socialize_text_evernote_key">印象笔记</string>
+    <string name="umeng_socialize_text_ydnote_key">有道云笔记</string>
+    <string name="umeng_socialize_text_facebook_key">facebook</string>
+    <string name="umeng_socialize_text_twitter_key">twitter</string>
+    <string name="umeng_socialize_text_instagram_key">instagram</string>
+    <string name="umeng_socialize_text_pinterest_key">pinterest</string>
+    <string name="umeng_socialize_text_pocket_key">pocket</string>
+    <string name="umeng_socialize_text_linkedin_key">Linkedin</string>
+    <string name="umeng_socialize_text_foursquare_key">Foursquare</string>
+    <string name="umeng_socialize_text_whatsapp_key">WhatsApp</string>
+    <string name="umeng_socialize_text_line_key">LINE</string>
+    <string name="umeng_socialize_text_flickr_key">Flickr</string>
+    <string name="umeng_socialize_text_tumblr_key">Tumblr</string>
+    <string name="umeng_socialize_text_alipay_key">支付宝</string>
+    <string name="umeng_socialize_text_kakao_key">Kakao Talk</string>
+    <string name="umeng_socialize_text_googleplus_key">GooglePlus</string>
 </resources>

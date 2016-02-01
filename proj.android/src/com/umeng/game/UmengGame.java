@@ -23,6 +23,9 @@ THE SOFTWARE.
  ****************************************************************************/
 package com.umeng.game;
 
+import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -30,8 +33,6 @@ import android.util.Log;
 
 import com.umeng.social.CCUMSocialController;
 
-import org.cocos2dx.lib.Cocos2dxActivity;
-import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 public class UmengGame extends Cocos2dxActivity {
 
@@ -47,9 +48,7 @@ public class UmengGame extends Cocos2dxActivity {
 	 */
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-
 		mActivity = this;
-
 		CCUMSocialController.initSocialSDK(mActivity, "com.umeng.social");
 
 		Log.d("", "####  UmengGame onCreate");

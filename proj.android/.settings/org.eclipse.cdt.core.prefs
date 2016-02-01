@@ -1,0 +1,6 @@
+eclipse.preferences.version=1
+environment/project/com.android.toolchain.gcc.292757829/NDK_MODULE_PATH/delimiter=\:
+environment/project/com.android.toolchain.gcc.292757829/NDK_MODULE_PATH/operation=append
+environment/project/com.android.toolchain.gcc.292757829/NDK_MODULE_PATH/value=/Users/umeng/Documents/cocos/cocos2d-x-2.2.6
+environment/project/com.android.toolchain.gcc.292757829/append=true
+environment/project/com.android.toolchain.gcc.292757829/appendContributed=true

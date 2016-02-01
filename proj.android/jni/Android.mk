@@ -12,7 +12,7 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/Cocos2dx/Android/CCUMSocialController.cpp  \
                    ../../Classes/Cocos2dx/ShareButton/UMShareButton.cpp \
                    ../../Classes/Cocos2dx/Common/CCUMSocialSDK.cpp 
-                   
+                 
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 
@@ -21,7 +21,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
 LOCAL_WHOLE_STATIC_LIBRARIES += chipmunk_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
-
+include  $(LOCAL_PATH)/prebuild/Androiduse.mk
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,cocos2dx)
