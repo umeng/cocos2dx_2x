@@ -2,6 +2,10 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
+include $(CLEAR_VARS)  
+LOCAL_MODULE := libweibosdkcore  
+LOCAL_SRC_FILES := prebuilt/armeabi/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)  
 LOCAL_MODULE := cocos2dcpp_shared
 
 LOCAL_MODULE_FILENAME := libcocos2dcpp
@@ -21,7 +25,7 @@ LOCAL_WHOLE_STATIC_LIBRARIES += cocosdenshion_static
 LOCAL_WHOLE_STATIC_LIBRARIES += box2d_static
 LOCAL_WHOLE_STATIC_LIBRARIES += chipmunk_static
 LOCAL_WHOLE_STATIC_LIBRARIES += cocos_extension_static
-include  $(LOCAL_PATH)/prebuild/Androiduse.mk
+
 include $(BUILD_SHARED_LIBRARY)
 
 $(call import-module,cocos2dx)
