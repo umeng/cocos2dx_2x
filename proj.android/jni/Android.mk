@@ -4,7 +4,7 @@ include $(CLEAR_VARS)
 
 include $(CLEAR_VARS)  
 LOCAL_MODULE := libweibosdkcore  
-LOCAL_SRC_FILES := prebuilt/armeabi/libweibosdkcore.so
+LOCAL_SRC_FILES := prebuild/armeabi/libweibosdkcore.so
 include $(PREBUILT_SHARED_LIBRARY)  
 LOCAL_MODULE := cocos2dcpp_shared
 
