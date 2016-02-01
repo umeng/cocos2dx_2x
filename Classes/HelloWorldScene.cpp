@@ -285,7 +285,7 @@ void HelloWorld::authorizeCallback(CCObject* pSender) {
 	static int count = 0;
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	CCLog("授权");
-	sdk->authorize(TENCENT_WEIBO, auth_selector(authCallback));
+	sdk->authorize(QQ, auth_selector(authCallback));
 }
 
 // 删除某个平台的按钮回调
@@ -299,7 +299,7 @@ void HelloWorld::deleteAuthorizeCallback(CCObject* pSender) {
 void HelloWorld::isAuthorizedShareCallback(CCObject* pSender) {
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	CCLog("@@@@ 判断新浪微博是否授权");
-	bool isAuthorized = sdk->isAuthorized(SINA);
+	bool isAuthorized = sdk->isAuthorized(QQ);
 	if (isAuthorized) {
 		CCLog("@@ 新浪微博已经授权");
 	} else {
@@ -339,9 +339,10 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 			"assets/CloseNormal.png", "WEIXIN share 标题",
 			"http://blog.csdn.net/bboyfeiyu");
 	//
-	sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
-			"QQ-title", "http://blog.csdn.net/bboyfeiyu");
-
+	sdk->setPlatformShareContent(QQ, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png",
+			"", "");
+	sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png",
+				"", "");
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",
 			"assets/CloseNormal.png", "QQ-title",
 			"http://blog.csdn.net/bboyfeiyu");
@@ -377,12 +378,11 @@ void HelloWorld::saveScreenshot() {
 	texture->end();
 	string imagePath =
 			CCFileUtils::sharedFileUtils()->getWritablePath().c_str();
-	CCLog(imagePath.c_str());
-	//保存为png
+		//保存为png
 	bool result = texture->saveToFile("screenshot.png", kCCImageFormatPNG);
 	if (result) {
 		imagePath += "screenshot.png";
-		CCLog(imagePath.c_str());
+
 	}
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	sdk->directShare(SINA,

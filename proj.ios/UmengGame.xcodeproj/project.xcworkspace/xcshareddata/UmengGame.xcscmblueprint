@@ -1,0 +1,44 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "F78826EF98D12C3C6D269100EB52D2980BA2356B",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E6A38861-F642-4622-AF0A-4DECFCA05C5E" : 0,
+    "F78826EF98D12C3C6D269100EB52D2980BA2356B" : 0,
+    "852ED3691A47A99B0D19C820A500AE9772B2A44E" : 0,
+    "48A01F77-4655-4A6F-B8A3-95BB1C2AF9A0" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "ADE117DC-2F3C-4AD0-BFE7-3EB32FF70E38",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E6A38861-F642-4622-AF0A-4DECFCA05C5E" : "",
+    "F78826EF98D12C3C6D269100EB52D2980BA2356B" : "UmengSocialCocos2dxSDK",
+    "852ED3691A47A99B0D19C820A500AE9772B2A44E" : "",
+    "48A01F77-4655-4A6F-B8A3-95BB1C2AF9A0" : "cocos2d-x"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "UmengGame",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "proj.ios\/UmengGame.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cocos2d\/cocos2d-x.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "48A01F77-4655-4A6F-B8A3-95BB1C2AF9A0"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/cocos2d\/cocos2d-x.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "852ED3691A47A99B0D19C820A500AE9772B2A44E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/github.umeng.com\/SDK\/UmengSocialCocos2dxSDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E6A38861-F642-4622-AF0A-4DECFCA05C5E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "http:\/\/yejiahuan%2540umeng.com@github.umeng.com\/SDK\/UmengSocialCocos2dxSDK.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "F78826EF98D12C3C6D269100EB52D2980BA2356B"
+    }
+  ]
+}
