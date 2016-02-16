@@ -135,7 +135,16 @@ public:
 	 * @param appsecret 微信或者微信朋友圈的appsecret
 	 */
 	void setWeiXinAppInfo(const char* appid, const char* appsecret);
-
+    
+    /**
+     * 设置新浪微博appkey，appsecret，redicretURL
+     *
+     * @param appkey 新浪微博appkey
+     * @param appsecret 新浪微博appsecret
+     * @param redicretURL 新浪微博redicretURL
+     */
+    void setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL);
+    
 	/**
 	 * 设置人人网的app id,app key,app secret信息
 	 *

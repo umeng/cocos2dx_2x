@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 
+#define CC_ShareToWeibo    1
 #define CC_ShareToWechat       1
 #define CC_ShareToQQOrQzone    1
 #define CC_ShareToLaiWang      1
@@ -59,6 +60,9 @@ public:
     
     //设置QQ互联appid，appkey
     static void setQQAppIdAndAppKey(const char *appId,const char *appKey);
+    
+    // 设置新浪微博appkey，appsecret
+    static void setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL);
 
     //设置微信appid,appSecret
     static void setWechatAppId(const char *appId, const char *appSecret);

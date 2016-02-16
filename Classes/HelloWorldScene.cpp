@@ -117,6 +117,8 @@ bool HelloWorld::init() {
 	// 设置微信的app id, app key
 	sdk->setWeiXinAppInfo("wxdc1e388c3822c80b",
 			"a393c1527aaccb95f3a4c88d6d1455f6");
+    // 设置新浪微博appkey, appsecret, redirectURL
+    sdk->setSinaAppKey("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com/sina2/callback");
 	// 设置易信的app key
 	sdk->setYiXinAppKey("yx52dd5c14bbb3430b93e6f2dafcbcc68d");
 	// 设置来往的app id等信息
@@ -338,11 +340,10 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatformShareContent(WEIXIN_CIRCLE, "WEIXIN share 内容",
 			"assets/CloseNormal.png", "WEIXIN share 标题",
 			"http://blog.csdn.net/bboyfeiyu");
-	//
-	sdk->setPlatformShareContent(QQ, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png",
-			"", "");
-	sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png",
-				"", "");
+    //
+    sdk->setPlatformShareContent(QQ, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png",
+                                 "", "");
+    sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",
 			"assets/CloseNormal.png", "QQ-title",
 			"http://blog.csdn.net/bboyfeiyu");
