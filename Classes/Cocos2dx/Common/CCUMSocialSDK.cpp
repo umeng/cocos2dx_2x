@@ -276,6 +276,26 @@ void CCUMSocialSDK::setWeiXinAppInfo(const char* appid, const char* appsecret) {
 #endif
 }
 
+/**
+ * 设置新浪微博appkey，appsecret，redicretURL
+ *
+ * @param appkey 新浪微博appkey
+ * @param appsecret 新浪微博appsecret
+ * @param redicretURL 新浪微博redicretURL
+ */
+void CCUMSocialSDK::setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL)
+{
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    UmSocialControllerIOS::setSinaAppKey(appkey, appSecret, redicretURL);
+    
+#endif
+}
+
+
 /*
  * 设置易信和易信朋友圈的app id
  *

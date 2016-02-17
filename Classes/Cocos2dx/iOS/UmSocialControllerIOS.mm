@@ -10,6 +10,7 @@
 #import "UMSocial.h"
 #import "UMSocialUIObject.h"
 #import <UIKit/UIKit.h>
+#import "WeiboSDK.h"
 
 #import "UMSocialQQHandler.h"
 #import "UMSocialWechatHandler.h"
@@ -18,7 +19,7 @@
 #import "UMSocialFacebookHandler.h"
 #import "UMSocialTwitterHandler.h"
 #import "UMSocialInstagramHandler.h"
-#import "UMSocialSinaHandler.h"
+#import "UMSocialSinaSSOHandler.h"
 //#import "UMSocialTencentWeiboHandler.h"
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
@@ -113,15 +114,18 @@ void UmSocialControllerIOS::setQQAppIdAndAppKey(const char *appId,const char *ap
 }
 
 void UmSocialControllerIOS::setWechatAppId(const char *appId, const char *appSecret){
-    #if CC_ShareToWechat == 1
+#if CC_ShareToWechat == 1
     [UMSocialWechatHandler setWXAppId:getNSStringFromCString(appId) appSecret:getNSStringFromCString(appSecret) url:@"http://www.umeng.com/social"];
-    #endif
+#endif
+}
+
+void UmSocialControllerIOS::setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL){
+#if CC_ShareToWeibo == 1
+    [UMSocialSinaSSOHandler openNewSinaSSOWithAppKey:getNSStringFromCString(appkey) secret:getNSStringFromCString(appSecret) RedirectURL:getNSStringFromCString(redicretURL)];
+#endif
 }
 
 void UmSocialControllerIOS::openSSOAuthorization(int platform, const char * redirectURL){
-    if (platform == SINA) {
-        [UMSocialSinaHandler openSSOWithRedirectURL:getNSStringFromCString(redirectURL)];
-    }
     if (platform == TENCENT_WEIBO) {
 //        [UMSocialTencentWeiboHandler openSSOWithRedirectUrl:getNSStringFromCString(redirectURL)];
     }
