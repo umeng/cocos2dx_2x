@@ -238,6 +238,25 @@ void UmSocialControllerIOS::authorize(int platform, AuthEventHandler callback){
                                               string *uid = new string([snsAccount.usid UTF8String]);
                                               loginData.insert(pair<string, string>("token",*tokenValue));
                                               loginData.insert(pair<string, string>("uid",*uid));
+                                              
+                                              if (snsAccount.userName.length > 0) {
+                                                  string *userName = new string([snsAccount.userName UTF8String]);
+                                                  loginData.insert(pair<string, string>("name",*userName));
+                                              }
+                                              if (snsAccount.iconURL.length > 0) {
+                                                  string *iconUrl = new string([snsAccount.iconURL UTF8String]);
+                                                  loginData.insert(pair<string, string>("icon",*iconUrl));
+                                              }
+                                              
+                                              if (snsAccount.openId.length > 0) {
+                                                  string *openId = new string([snsAccount.openId UTF8String]);
+                                                  loginData.insert(pair<string, string>("openId",*openId));
+                                              }
+                                              if (snsAccount.unionId.length > 0) {
+                                                  string *unionId = new string([snsAccount.unionId UTF8String]);
+                                                  loginData.insert(pair<string, string>("unionId",*unionId));
+                                              }
+                                              
                                               callback(platform, (int)response.responseCode,loginData);
                                           } else {
                                               loginData.insert(pair<string, string>("msg","fail"));
