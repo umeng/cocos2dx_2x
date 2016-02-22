@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.cocos2dx.lib.Cocos2dxActivity;
+import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import android.R;
 import android.app.Activity;
@@ -184,7 +185,7 @@ public class CCUMSocialController {
 		});
 
 	}
-
+	
 	/**
 	 * 删除平台授权
 	 * 
@@ -768,7 +769,10 @@ public static void supportSsoAuthorization(int i,String URL) {
 	private static void runOnMainThread(Runnable runnable) {
 		mSDKHandler.postDelayed(runnable, DELAY_MS);
 	}
-
+	 public static void runNativeCallback(Runnable runnable)
+     {
+           Cocos2dxGLSurfaceView.getInstance().queueEvent(runnable);
+      }
 	/**
 	 * 
 	 * @param platform
@@ -992,7 +996,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 
 		@Override
 		public void onResult(final SHARE_MEDIA share_media) {
-			runOnOpenGLThread(new Runnable() {
+			runNativeCallback(new Runnable() {
 
 				@Override
 				public void run() {
@@ -1003,20 +1007,27 @@ public static void supportSsoAuthorization(int i,String URL) {
 		}
 
 		@Override
-		public void onError(SHARE_MEDIA share_media, Throwable throwable) {
-//			runOnOpenGLThread(new Runnable() {
-//
-//				@Override
-//				public void run() {
-//					OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_SUCCESSED,
-//							share_media.toString()+"share success");
-//				}
-//			});
+		public void onError(final SHARE_MEDIA share_media, final Throwable throwable) {
+			runNativeCallback(new Runnable() {
+
+				@Override
+				public void run() {
+					OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR,
+							share_media.toString()+throwable.getMessage());
+				}
+			});
 		}
 
 		@Override
-		public void onCancel(SHARE_MEDIA share_media) {
+		public void onCancel(final SHARE_MEDIA share_media) {
+			runNativeCallback(new Runnable() {
 
+				@Override
+				public void run() {
+					OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR_CANCEL,
+							share_media.toString()+"share cancle");
+				}
+			});
 		}
 	};
 //	private static SnsPostListener mSocialShareListener = new SnsPostListener() {

@@ -71,6 +71,7 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
 			(HelloWorld*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(
 					layerTag);
 	CCLabelTTF* item = (CCLabelTTF*) hwLayer->getChildByTag(labelTag);
+	CCLog("#### callback!!!!!!");
 	string result = "";
 	if (stCode == 100) {
 		result = "开始分享";
@@ -87,7 +88,7 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
 	istringstream is;
 	is >> platform;
 	result.append(is.str());
-
+	CCLog("#### callback!!!!!! %s\n",result.c_str());
 	item->setString(result.c_str());
 	CCLog("platform num is : %d, %d", platform, stCode);
 
@@ -316,6 +317,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	vector<int>* platforms = new vector<int>();
 	platforms->push_back(SINA);
 	platforms->push_back(RENREN);
+	platforms->push_back(DOUBAN);
 	platforms->push_back(TENCENT_WEIBO);
 	platforms->push_back(INSTAGRAM);
 	platforms->push_back(QZONE);
@@ -334,9 +336,15 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 
 	// 设置新浪微博SSO登录
 	sdk->setSsoAuthorization(RENREN, "http://sns.whalecloud.com");
+
 	//
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
-			"", "");
+			"", "","");
+	sdk->setPlatformShareContent(DOUBAN, "DOUBAN share 内容",
+				"", "","");
+	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",
+				"", "WEIXIN share 标题",
+				"http://blog.csdn.net/bboyfeiyu");
 	//
 	sdk->setPlatformShareContent(WEIXIN_CIRCLE, "WEIXIN share 内容",
 			"assets/CloseNormal.png", "WEIXIN share 标题",
@@ -348,10 +356,10 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",
 			"assets/CloseNormal.png", "QQ-title",
 			"http://blog.csdn.net/bboyfeiyu");
-	sdk->setPlatformShareContent(DOUBAN, "douban share 内容",
-			"assets/CloseNormal.png", "QQ-title",
-			"http://blog.csdn.net/bboyfeiyu");
 
+	sdk->setPlatformShareContent(YIXIN_CIRCLE, "WEIXIN share 内容",
+				"", "",
+				"");
 	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 	sdk->openShare("这是文本分享内容",
