@@ -299,7 +299,7 @@ public class CCUMSocialController {
 					Log.e("xxxxxx","temp="+temp.text+"  "+temp.imagepath);
 					new ShareAction(mActivity).setPlatform(share_media)
 					.withText(temp.text)
-				.withMedia(getUmImage(temp.targeturl))
+				.withMedia(getUmImage(temp.imagepath))
 					.withTargetUrl(temp.targeturl)
 					.withTitle(temp.title)
 					.setCallback(umShareListener)

@@ -87,6 +87,7 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
 	istringstream is;
 	is >> platform;
 	result.append(is.str());
+
 	item->setString(result.c_str());
 	CCLog("platform num is : %d, %d", platform, stCode);
 
@@ -341,7 +342,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 			"assets/CloseNormal.png", "WEIXIN share 标题",
 			"http://blog.csdn.net/bboyfeiyu");
     //
-    sdk->setPlatformShareContent(QQ, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png",
+    sdk->setPlatformShareContent(QQ, "", "http://www.umeng.com/images/pic/home/social/img-1.png",
                                  "", "");
     sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",
