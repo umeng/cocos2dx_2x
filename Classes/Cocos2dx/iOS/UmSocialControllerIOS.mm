@@ -165,6 +165,9 @@ void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* te
             [platformData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
         } else {
             UIImage * image = getUIImageFromFilePath(imagePath);
+            if ([platformString isEqualToString:UMShareToLWSession] || [platformString isEqualToString:UMShareToLWTimeline]) {
+                image = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+            }
             platformData.shareImage = image;
         }
         
@@ -306,6 +309,7 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
         [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
     } else {
         image = getUIImageFromFilePath(imagePath);
+        image = [UIImage imageWithData:UIImagePNGRepresentation(image)];
     }
     
     UMSocialUIObject * delegate = nil;
@@ -365,6 +369,10 @@ void UmSocialControllerIOS::directShare(const char* text, const char* imagePath,
         [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
     } else {
         image = getUIImageFromFilePath(imagePath);
+        NSString *platformStr = getPlatformString(platform);
+        if ([platformStr isEqualToString:UMShareToLWSession] || [platformStr isEqualToString:UMShareToLWTimeline]) {
+            image = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+        }
     }
     
     [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
