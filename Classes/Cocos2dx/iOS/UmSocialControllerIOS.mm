@@ -82,7 +82,7 @@ void UmSocialControllerIOS::setAppKey(const char* appKey){
 }
 
 void UmSocialControllerIOS::initCocos2dxSDK(const char *sdkType, const char *version){
-    [[UMSocialData defaultData] performSelector:@selector(setSdkType:version:) withObject:getNSStringFromCString(sdkType) withObject:getNSStringFromCString(version)];
+//    [[UMSocialData defaultData] performSelector:@selector(setSdkType:version:) withObject:getNSStringFromCString(sdkType) withObject:getNSStringFromCString(version)];
 }
 
 void UmSocialControllerIOS::setTargetUrl(const char *targetUrl){
