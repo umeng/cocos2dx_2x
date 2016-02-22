@@ -19,10 +19,10 @@ static AppDelegate s_sharedApplication;
     // Override point for customization after application launch.
 
     // Add the view controller's view to the window and display.
-    window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
+    _window = [[UIWindow alloc] initWithFrame: [[UIScreen mainScreen] bounds]];
     
     // Init the EAGLView
-    EAGLView *__glView = [EAGLView viewWithFrame: [window bounds]
+    EAGLView *__glView = [EAGLView viewWithFrame: [_window bounds]
                                      pixelFormat: kEAGLColorFormatRGB565
                                      depthFormat: GL_DEPTH24_STENCIL8_OES
                               preserveBackbuffer: NO
@@ -39,15 +39,15 @@ static AppDelegate s_sharedApplication;
     if ( [[UIDevice currentDevice].systemVersion floatValue] < 6.0)
     {
         // warning: addSubView doesn't work on iOS6
-        [window addSubview: viewController.view];
+        [_window addSubview: viewController.view];
     }
     else
     {
         // use this method on ios6
-        [window setRootViewController:viewController];
+        [_window setRootViewController:viewController];
     }
     
-    [window makeKeyAndVisible];
+    [_window makeKeyAndVisible];
     
     [[UIApplication sharedApplication] setStatusBarHidden:true];
     
@@ -111,7 +111,7 @@ static AppDelegate s_sharedApplication;
 
 
 - (void)dealloc {
-    [window release];
+    [_window release];
     [super dealloc];
 }
 

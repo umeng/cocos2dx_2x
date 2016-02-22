@@ -123,7 +123,7 @@ bool HelloWorld::init() {
 	// 设置易信的app key
 	sdk->setYiXinAppKey("yx52dd5c14bbb3430b93e6f2dafcbcc68d");
 	// 设置来往的app id等信息
-	sdk->setLaiwangAppInfo("设置来往和来往动态的app id", "设置来往和来往动态的app key", "我的应用名");
+    sdk->setLaiwangAppInfo("8112117817424282305", "9996ed5039e641658de7b83345fee6c9", "友盟社会化组件");
 	// 设置facebook的app id
 	sdk->setFacebookAppId("506027402887373");
 	// 设置人人网SSO授权的app id, app key, app secret
