@@ -390,7 +390,7 @@ public class CCUMSocialController {
 	      AssetManager am = mActivity.getResources().getAssets();  
 	      try  
 	      {  
-	          InputStream is = am.open(fileName);  
+	          InputStream is = am.open(fileName.replace("assets/", ""));  
 	          image = BitmapFactory.decodeStream(is);  
 	          is.close();  
 	      }  

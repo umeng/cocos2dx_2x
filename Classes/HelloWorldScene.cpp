@@ -341,7 +341,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
 			"", "","");
 	sdk->setPlatformShareContent(DOUBAN, "DOUBAN share 内容",
-				"", "","");
+				"assets/CloseNormal.png", "","");
 	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",
 				"", "WEIXIN share 标题",
 				"http://blog.csdn.net/bboyfeiyu");
@@ -350,7 +350,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 			"assets/CloseNormal.png", "WEIXIN share 标题",
 			"http://blog.csdn.net/bboyfeiyu");
     //
-    sdk->setPlatformShareContent(QQ, "", "http://www.umeng.com/images/pic/home/social/img-1.png",
+    sdk->setPlatformShareContent(QQ, "", "assets/CloseNormal.png",
                                  "", "");
     sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",
