@@ -338,7 +338,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setSsoAuthorization(RENREN, "http://sns.whalecloud.com");
 
 	//
-	sdk->setPlatformShareContent(SINA, "text","", "title","http://www.baidu.com");
+	sdk->setPlatformShareContent(SINA, "text","assets/CloseNormal.png", "title","");
 	sdk->setPlatformShareContent(LAIWANG, "sina share 内容",
 			"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
 	sdk->setPlatformShareContent(LAIWANG_CIRCLE, "sina share 内容",
@@ -352,9 +352,13 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setPlatformShareContent(WEIXIN_CIRCLE, "WEIXIN share 内容",
 			"assets/CloseNormal.png", "WEIXIN share 标题",
 			"http://blog.csdn.net/bboyfeiyu");
+	sdk->setPlatformShareContent(FACEBOOK, "",
+				"http://www.umeng.com/images/pic/home/social/img-1.png", "",
+				"");
     //
     sdk->setPlatformShareContent(QQ, "", "assets/CloseNormal.png",
                                  "", "");
+    sdk->setPlatformShareContent(QZONE, "text", "", "","");
     sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",
 			"assets/CloseNormal.png", "QQ-title",

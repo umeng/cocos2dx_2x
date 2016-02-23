@@ -300,7 +300,7 @@ public class CCUMSocialController {
 					Log.e("xxxxxx","temp="+temp.text+"  "+temp.imagepath);
 					new ShareAction(mActivity).setPlatform(share_media)
 					.withText(temp.text)
-				.withMedia(getUmImage(temp.imagepath))
+					.withMedia(getUmImage(temp.imagepath))
 					.withTargetUrl(temp.targeturl)
 					.withTitle(temp.title)
 					.setCallback(umShareListener)
@@ -1024,8 +1024,16 @@ public static void supportSsoAuthorization(int i,String URL) {
 
 				@Override
 				public void run() {
-					OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR_CANCEL,
-							share_media.toString()+"share cancle");
+					if (share_media == SHARE_MEDIA.QZONE) {
+						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_SUCCESSED,
+								share_media.toString()+"share cancle");
+
+					}
+					else {
+						
+						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR_CANCEL,
+								share_media.toString()+"share cancle");
+					}
 				}
 			});
 		}

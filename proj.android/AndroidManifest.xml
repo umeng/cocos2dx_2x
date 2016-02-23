@@ -31,6 +31,7 @@
        <activity
             android:name="com.umeng.soexample.UmengGame"
             android:screenOrientation="landscape"
+            android:configChanges="orientation|keyboard"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="@string/app_name" >
             <intent-filter>
@@ -57,7 +58,7 @@
            <service android:name="com.sina.weibo.sdk.net.DownloadService"
             android:exported="false"></service>
         <!-- 腾讯SSO授权的Activity注册 -->
-        <activity
+               <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
             android:noHistory="true" >
@@ -67,14 +68,14 @@
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
-                <data android:scheme="tencent100424468" /> <!-- 100498017 -->
+                <data android:scheme="tencent100424468" />
             </intent-filter>
         </activity>
-        <activity android:name="com.tencent.plus.ImageActivity" />
         <activity
             android:name="com.tencent.connect.common.AssistActivity"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    
         <activity
             android:name="com.umeng.socialize.editorpage.ShareActivity"
             android:theme="@style/Theme.UMDefault"
@@ -95,7 +96,7 @@
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="4eaee02c527015373b000003" >
+            android:value="561cae6ae0f55abd990035bf" >
         </meta-data>
 
         <!-- facebook相关 -->
