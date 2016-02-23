@@ -340,6 +340,10 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	//
 	sdk->setPlatformShareContent(SINA, "sina share 内容",
 			"", "","");
+	sdk->setPlatformShareContent(LAIWANG, "sina share 内容",
+			"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
+	sdk->setPlatformShareContent(LAIWANG_CIRCLE, "sina share 内容",
+				"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
 	sdk->setPlatformShareContent(DOUBAN, "DOUBAN share 内容",
 				"assets/CloseNormal.png", "","");
 	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",

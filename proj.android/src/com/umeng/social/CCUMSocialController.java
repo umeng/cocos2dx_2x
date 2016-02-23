@@ -540,7 +540,7 @@ public class CCUMSocialController {
 		Log.d(TAG, "### initCocos2dxSDKInfo, type = " + type + ", version = "
 				+ sdkVersion);
 		// 设置cocos2dx sdk版本号
-		Config.setAdapterSDKInfo(type, sdkVersion);
+//		Config.setAdapterSDKInfo(type, sdkVersion);
 	}
 
 	/**
