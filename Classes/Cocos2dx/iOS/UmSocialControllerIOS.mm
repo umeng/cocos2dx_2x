@@ -153,6 +153,16 @@ id getUIImageFromFilePath(const char* imagePath){
     return returnImage;
 }
 
+UIImage * formatImage(id image) {
+    UIImage *retImage = image;
+    if ([image isKindOfClass:[UIImage class]]) {
+        retImage = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+    } else if ([image isKindOfClass:[NSData class]]) {
+        retImage = [UIImage imageWithData:image];
+    }
+    return retImage;
+}
+
 void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* text,
                                                                 const char* imagePath, const char* title ,
                                                     const char* targetUrl){
@@ -164,9 +174,9 @@ void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* te
         if ([imageString hasPrefix:@"http://"] || [imageString hasPrefix:@"https://"]) {
             [platformData.urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
         } else {
-            UIImage * image = getUIImageFromFilePath(imagePath);
+            id image = getUIImageFromFilePath(imagePath);
             if ([platformString isEqualToString:UMShareToLWSession] || [platformString isEqualToString:UMShareToLWTimeline]) {
-                image = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+                image = formatImage(image);
             }
             platformData.shareImage = image;
         }
@@ -295,9 +305,14 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
         return ;
     }
     
+    BOOL isLW = NO;
     NSMutableArray* array = [NSMutableArray array];
     if (platforms) {
         for (unsigned int i = 0; i < platforms->size(); i++) {
+            NSString *pf = getPlatformString(platforms->at(i));
+            if ([pf isEqualToString:UMShareToLWTimeline] || [pf isEqualToString:UMShareToLWSession]) {
+                isLW = YES;
+            }
             [array addObject:getPlatformString(platforms->at(i))];
         }
     }
@@ -309,7 +324,9 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
         [[UMSocialData defaultData].urlResource setResourceType:UMSocialUrlResourceTypeImage url:imageString];
     } else {
         image = getUIImageFromFilePath(imagePath);
-        image = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+        if (isLW) {
+            image = formatImage(image);
+        }
     }
     
     UMSocialUIObject * delegate = nil;
@@ -371,7 +388,7 @@ void UmSocialControllerIOS::directShare(const char* text, const char* imagePath,
         image = getUIImageFromFilePath(imagePath);
         NSString *platformStr = getPlatformString(platform);
         if ([platformStr isEqualToString:UMShareToLWSession] || [platformStr isEqualToString:UMShareToLWTimeline]) {
-            image = [UIImage imageWithData:UIImagePNGRepresentation(image)];
+            image = formatImage(image);
         }
     }
     
