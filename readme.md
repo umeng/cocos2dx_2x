@@ -1,42 +1,16 @@
-# 友盟社会化组件Cocos2d-x SDK -- 集成文档
 
-* 1.[下载SDK](#social_cocos2dx)
-* 2.[Cocos2d-x集成分享组件](#cocos2dx_integration)
-    * 2.1 [Android平台集成](#cocos2dx_integration_android)
-    * 2.2 [iOS平台集成](#cocos2dx_integration_ios)
-    * 2.3 [在Cocos2d-x游戏中添加分享功能](#cocos2dx_integration_cocos2dx)
-* 3.[授权接口使用说明](#cocos2dx_integration_auth)
-* 4.[添加更多平台  ( 按需集成 )](#cocos2dx_integration_more_platforms)
-	* 4.1 [微信和微信朋友圈集成](#cocos2dx_platforms_weixin_integration)
-	* 4.2 [QQ和QQ空间集成](#cocos2dx_platforms_qq_integration)
-	* 4.3 [来往和来往动态集成](#cocos2dx_platforms_laiwang_integration)
-	* 4.4 [易信和易信朋友圈集成](#cocos2dx_platforms_yixin_integration)
-	* 4.5 [facebook集成](#cocos2dx_platforms_facebook_integration)
-	* 4.6 [instagram集成](#cocos2dx_platforms_instagram_integration)
-	* 4.7 [twitter集成](#cocos2dx_platforms_twitter_integration)
-	* 4.8 [短信分享集成](#cocos2dx_platforms_sms_integration)
-	* 4.9 [邮件分享集成](#cocos2dx_platforms_email_integration)
-* 5.[设置SSO授权](#cocos2dx_sso_auth)
-	* 5.1 [新浪微博的SSO授权](#cocos2dx_sina_sso)
-	* 5.2 [腾讯微博的SSO授权](#cocos2dx_tencent_sso)
-	* 5.3 [人人网的SSO授权](#cocos2dx_renren_sso)
-* 6.[设置平台独立的分享内容](#cocos2dx_platform_sharecontent)
-* 7.[Android混淆问题](#proguard)
-* 8.[技术支持](#support)  
-
-------------
      
-## 概述
+# 概述
    友盟社会化组件，可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。   
    本指南将会手把手教你使用友盟社会化组件Cocos2d-x SDK，用5分钟为APP增加新浪微博、微信、QQ空间等国内外十几个主流平台的分享功能。
    该Cocos2d-x SDK目前支持ios和android平台。
  
-## 前提   
+# 前提   
    该Cocos2d-x分享组件需要依赖友盟社会化组件sdk，因此在您集成时必须将iOS或者Android平台的SDK集成到您的工程中,即压缩包中的Platforms目录下的Android和iOS两个文件夹。      
    如果你之前已经在友盟注册了应用，并获取到了Appkey，可以继续使用它。如果你尚未在友盟[友盟](http://www.umeng.com/)注册开发者账号，需要先注册，注册之后登录你的账号，点击**添加新应用**，填写完应用基本信息后，将进入"下载SDK并添加代码"页面，此页面即可得到Umeng Appkey。进入到"组件"一栏，选择左边的“社会化分享”，然后选择“设置”--“自定义设置”， 然后将你在各个平台获取到的app id和app secret填写到其中，并且保存。    
 
 <b id=social_cocos2dx></b>
-## 1 下载和拷贝Cocos2d-x所需文件 
+#  下载和拷贝Cocos2d-x所需文件 
    首先您需要下载友盟社会化组件 Cocos2d-x SDK (<a href="http://dev.umeng.com/social/cocos2d-x/sdk-download" target="_blank">下载链接</a>),然后将该sdk压缩包解压。
 >压缩包目录说明：  
 >**1. Cocos2dx**    
@@ -49,16 +23,16 @@
    **SDK中默认的添加的平台为新浪微博、腾讯微博、人人网、豆瓣这四个平台，其他的平台需要按[添加更多平台  ( 按需集成 )](#cocos2dx_integration_more_platforms)提供的方式手动添加。**
 	
 <b id=cocos2dx_integration></b>   
-## 2 Cocos2d-x集成友盟分享组件
+#  Cocos2d-x集成友盟分享组件
 <b id=cocos2dx_integration_android></b>
-### 2.1 Android平台集成 
-#### 2.1.1 拷贝所需的jar包和资源文件          
+##  Android平台集成 
+###  拷贝所需的jar包和资源文件          
   解压Cocos2d-x SDK压缩包，进入到Platforms/Android/core文件夹下，将'libs'文件夹中的所有jar文件拷贝到工程中的libs目录中，并且将所有jar文件添加到编译路径(build path)中；
   将Platforms/Android/core/res目录下的所有文件夹拷贝到你的项目工程res目录下对应的文件夹中, 如图所示 :    
   <img src="http://dev.umeng.com/system/resources/W1siZiIsIjIwMTQvMDUvMjkvMTZfMTZfNDJfMjg1X2NvY29zMmRfeF9kaXIucG5nIl1d/cocos2d-x-dir.png" width="500" height="400" style="border:1px solid black">    
   如果您还需要其他的社交平台，您需要按照[添加更多平台  ( 按需集成 )](#cocos2dx_integration_more_platforms)这个章节的步骤来进行手动添加。    
   
-#### 2.1.2 拷贝类文件
+###  拷贝类文件
    将Platforms/Android/controller目录下的com文件夹拷贝到您的Cocos2d-x项目Android平台的src目录下(<font color="red">所有文件的编码为utf-8，如有乱码，请开发者自行进行转码。</font>), 如图所示 :    
      <img src="http://dev.umeng.com/system/images/W1siZiIsIjIwMTQvMDQvMDkvMTVfNTdfMTVfODc2X2NvY29zMmR4X2NvbnRyb2xsZXIucG5nIl1d/cocos2dx-controller.png" width="400" height="160" style="border:1px solid black">        
    在jni/Android.mk中的LOCAL_SRC_FILES下添加如下配置 (注意格式,否则会编译出错) :    
@@ -68,7 +42,7 @@
 ../../Classes/Cocos2dx/Common/CCUMSocialSDK.cpp
 ```   
    
-#### 2.1.3 配置AndroidManifest.xml
+###  配置AndroidManifest.xml
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
@@ -76,13 +50,14 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <application
-        android:debuggable="true"
+      <application
         android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.Black.NoTitleBar" >
-        <activity
-            android:name=".UmengHome"
+        android:name="com.umeng.social.CCApp">
+       <activity
+            android:name="com.umeng.soexample.UmengGame"
+            android:screenOrientation="landscape"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -90,19 +65,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <!-- ###################注册SDK使用的Activity###################### -->
-        <!--分享编辑页-->
         <activity
-            android:name="com.umeng.socialize.view.ShareActivity"
-            android:configChanges="orientation|keyboard"
-            android:launchMode="singleTask"
-            android:noHistory="true"
-            android:theme="@style/Theme.UMDialog"
-            android:windowSoftInputMode="stateVisible|adjustResize" >
+            android:name=".WBShareActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="com.sina.weibo.sdk.action.ACTION_SDK_REQ_ACTIVITY" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
-
-        <!-- ############ QQ空间和QQ SSO授权的Activity注册 ############ -->
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+           <service android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false"></service>
+        <!-- 腾讯SSO授权的Activity注册 -->
         <activity
             android:name="com.tencent.tauth.AuthActivity"
             android:launchMode="singleTask"
@@ -112,31 +92,72 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <!-- 100424468，如果你使用的公用账号，则不需要修改；否则修改成你在QQ开放平台申请的 APP ID-->
-                <data android:scheme="tencent100424468" /> 
+
+                <data android:scheme="tencent100424468" /> <!-- 100498017 -->
             </intent-filter>
         </activity>
         <activity android:name="com.tencent.plus.ImageActivity" />
-        <activity android:name="com.tencent.connect.common.AssistActivity"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:screenOrientation="portrait">
-        </activity>
-        
-        <!-- 微信分享activity注册 -->
         <activity
-            android:name=".wxapi.WXEntryActivity"
+            android:name="com.tencent.connect.common.AssistActivity"
+            android:screenOrientation="portrait"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.umeng.socialize.editorpage.ShareActivity"
+            android:theme="@style/Theme.UMDefault"
+            android:excludeFromRecents="true"
+            />
+        <!-- twitter -->
+        <activity
+            android:name="com.umeng.socialize.handler.TwitterWebActivity"
+            android:configChanges=
+                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"
+            android:label="@string/app_name" />
+
+        <meta-data
+            android:name="UMENG_APPKEY"
+            android:value="4eaee02c527015373b000003" >
+        </meta-data>
+
+        <!-- facebook相关 -->
+        <!-- facebook -->
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider1444817025830662"
+            android:exported="true" />
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <activity
+            android:name="com.facebook.LoginActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <!-- renren need -->
+        <activity
+            android:name="com.renn.rennsdk.oauth.OAuthActivity"
+            android:configChanges="orientation|navigation|keyboardHidden" />
+        <activity
+            android:name="com.sina.weibo.sdk.component.WeiboSdkBrowser"
+            android:configChanges="keyboardHidden|orientation"
+            android:windowSoftInputMode="adjustResize"
+            android:exported="false" >
+        </activity>
+
+        <service android:name="com.sina.weibo.sdk.net.DownloadService"
+            android:exported="false"></service>
+        <activity
+            android:name=".yxapi.YXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-            
-
-<!-- ###################添加UmengAppkey###################### -->
-        <meta-data
-            android:name="UMENG_APPKEY"
-            android:value="这里是您的友盟 app key" >
-        </meta-data>
-
     </application>
 
     <uses-sdk android:minSdkVersion="8" />
@@ -152,13 +173,13 @@
 </manifest>
 ```
    
-#### 2.1.4 添加Android平台的初始化代码
+###  添加Android平台的初始化代码
   在您的Cocos2dxActivity子类的onCreate方法下添加如下代码:    
 ```java         
 // this为Cocos2dxActivity类型, 参数2为描述符,可随意修改.
 CCUMSocialController.initSocialSDK(this, "com.umeng.social.share");
 ```   
-#### 2.1.5 覆写Cocos2dxActivity子类的onActivityResult方法
+###  覆写Cocos2dxActivity子类的onActivityResult方法
    在onActivityResult添加如下代码 : 
 ```java
 // 授权回调    
@@ -166,16 +187,53 @@ CCUMSocialController.onActivityResult(requestCode, resultCode, data);
 super.onActivityResult(requestCode, resultCode, data);
 ```   
    完成以上步骤以后，并且您不需要集成分享到ios平台，您就可以到[在Cocos2d-x游戏中添加分享功能](#cocos2dx_integration_cocos2dx)章节添加分享代码到cocos2d-x游戏中。
+### CCApp类
+该类继承自Application，在该类中设置各个平台的appkey和appid
+### 加入新浪微博的so文件
+在jni中建立prebuild文件夹，放入对应的so文件，在Android.mk中写入这些文件的引用：
+`include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcore
+LOCAL_SRC_FILES := prebuild/armeabi/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)
 
+include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcorev8
+LOCAL_SRC_FILES := prebuild/arm64-v8a/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcorev7
+LOCAL_SRC_FILES := prebuild/armeabi-v7a/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcoremips
+LOCAL_SRC_FILES := prebuild/mips/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcoremips64
+LOCAL_SRC_FILES := prebuild/mips64/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcorex86
+LOCAL_SRC_FILES := prebuild/x86/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)
+
+include $(CLEAR_VARS)
+LOCAL_MODULE := libweibosdkcorex64
+LOCAL_SRC_FILES := prebuild/x86_64/libweibosdkcore.so
+include $(PREBUILT_SHARED_LIBRARY)`
 <b id=cocos2dx_integration_ios></b>  
-### 2.2 iOS平台集成   
+## iOS平台集成   
 
-#### 2.2.1 修改 Xcode 编译选项(cocos2d-x 3.x版本)
+### 修改 Xcode 编译选项(cocos2d-x 3.x版本)
 
 本SDK的库文件默认提供的是包含64位架构的库文件，可是少部分社交平台平台和功能不支持64位的架构，不支持的分享平台和功能有腾讯微博SSO、人人人网SSO、分享到来往等。  
 如果使用上述平台或者功能，并使用cocos2d-x 3.x（发行版）版本新建的工程，需要修改应用编译架构，修改方法为：将Xcode中Build Settings的Architectures修改为`$(ARCHS_STANDARD_32_BIT)`，Valid Architectures删除arm64。另外你使用的cocos2d-x的SDK库文件，应该使用带有32位版本的库文件。   
 
-#### 2.2.2 加入iOS SDK
+### 加入iOS SDK
 
 解压SDK压缩包，将Platforms/iOS文件夹和Cocos2dx文件夹拖入工程目录，并删除Cocos2dx/Android文件夹.   
 
@@ -209,10 +267,10 @@ Facebook|Facebook SDK
 LaiWang|来往 SDK
 YiXin|易信 SDK
 
-#### 2.2.3 添加下面的系统framework
+###  添加下面的系统framework
 Security.framework,libiconv.dylib,SystemConfiguration.framework,CoreGraphics.framework，libsqlite3.dylib，CoreTelephony.framework,libstdc++.dylib,libz.dylib,Social.framework,Accounts.framework。
 
-#### 2.2.4 按需设置各个平台的URL Scheme
+###  按需设置各个平台的URL Scheme
 <table border="1">
   <tr>
     <th> 平台 </th>
@@ -244,7 +302,7 @@ Security.framework,libiconv.dylib,SystemConfiguration.framework,CoreGraphics.fra
   </tr>
 </table> 
 
-#### 2.2.5 在AppDelegate实现系统回调方法
+###  在AppDelegate实现系统回调方法
 在Xcode工程中的ios文件夹下的AppController.mm文件，实现下面的系统回调
 
 ```
@@ -259,7 +317,7 @@ Security.framework,libiconv.dylib,SystemConfiguration.framework,CoreGraphics.fra
 
 
 <b id=cocos2dx_integration_cocos2dx></b>
-#### 2.3 在Cocos2d-x游戏中添加分享功能
+###  在Cocos2d-x游戏中添加分享功能
    将所需的资源添加到对应的工程以后, 您就可以在cocos2d-x中使用该友盟社会化组件的分享、登录功能了。   
   首先将sdk压缩包下的根目录下的Cocos2dx文件夹拷贝到您的工程的Classes目录下，Cocos2dx包括：   
 > * Android文件夹，Android平台的调用实现；   
@@ -460,8 +518,8 @@ void shareCallback(int platform, int stCode, string& errorMsg)
 
 
 <b id=cocos2dx_integration_auth></b>
-### 3 授权接口使用说明
-#### 3.1 授权接口说明   
+##  授权接口使用说明
+###  授权接口说明   
    CCUMSocialSDK类中还提供了授权相关的接口，支持授权的平台有新浪微博、QQ空间、QQ、人人网、豆瓣、腾讯微博、facebook。授权接口使用说明如下 : 
 ```cpp
 CCUMSocialSDK *sdk = CCUMSocialSDK::create("你的友盟appkey");
@@ -475,7 +533,7 @@ sdk->authorize(RENREN, auth_selector(authCallback));
  sdk->deleteAuthorization(RENREN, auth_selector(authCallback));
 ```     
 
-#### 3.2 授权回调说明
+###  授权回调说明
    授权回调类型定义在CCUMTypeDef.h中，当授权成功时, 会将授权信息返回给开发者, 开发者可以通过遍历map来获取数据；    
     当授权失败, 会返回一个字段的数据, key为"msg", 值为错误的信息。如果是删除授权, 也是返回一个字段的数据, key为"msg", 值为"deleteOauth"。开发者可以通过判断返回码和map中的数据来进行相应的处理。    
    请不要在该回调中更新UI，友盟社会化组件Cocos2d-x SDK不保证在分享回调中更新UI一定会被顺利执行。    
@@ -513,12 +571,12 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 ```   
 
 <b id=cocos2dx_integration_more_platforms></b>
-## 4 添加更多平台 ( 按需集成 )     
+##  添加更多平台 ( 按需集成 )     
 	为了减小集成友盟社会化组件SDK占用的内存空间，Android SDK中默认只添加了新浪微博、腾讯微博、人人网、豆瓣这几个平台。其他的平台则需要您手动添加到SDK中。     
 	与Android不用的是，iOS SDK中默认链接了各个平台所需的framework，如果您不需要某个平台，可以将该平台移除。    
 	
 <b id=cocos2dx_platforms_weixin_integration></b> 
-### 4.1.1 集成微信和微信朋友圈     
+###  集成微信和微信朋友圈     
 
    <font color="red">注意，集成微信或者微信朋友圈之前，您必须到<a href="http://open.weixin.qq.com/" target="_blank">微信开放平台</a>中申请app id,app key,并且正确填写应用的信息，对于Android平台您必须确保包名和APP的签名是正确的，然后通过审核后即可分享成功，否则将无法跳转到微信或者微信朋友圈的分享界面。</font>       
 	要集成微信或者微信朋友圈，你需要在Cocos2d-x代码中添加如下代码 :    
@@ -549,7 +607,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 
 <b id=cocos2dx_platforms_qq_integration></b> 
-### 4.1.2 集成QQ和QQ空间
+###  集成QQ和QQ空间
    <font color="red">注意，集成QQ或者QQ空间之前，您必须到<a href="http://open.qq.com/" target="_blank">腾讯开放平台</a>中申请app id,app key,并且正确填写应用的信息，审核通过后即可分享成功。然后将app id填写到AndroidManifext.xml对应的位置中。</font>              
 	在Cocos2d-x游戏中通过如下代码添加QQ空间或者QQ的支持：   
 ```java
@@ -577,7 +635,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 
 <b id=cocos2dx_platforms_laiwang_integration></b> 
-### 4.1.3 集成来往和来往动态     
+###  集成来往和来往动态     
    	通过CCUMSocialSDK类的setLaiwangAppId("")和setLaiwangAppKey()函数来分别设置来往和来往动态的App id、app key，代码如下 :
 ```java
 	// 获取一个CCUMSocialSDK实例
@@ -604,7 +662,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
  	需要设置Xcode的URL scheme，添加“URL Schemes”为来往AppId，“Identifier”为“Laiwang”
    
 <b id=cocos2dx_platforms_yixin_integration></b> 
-### 4.1.4 集成易信和易信朋友圈
+###  集成易信和易信朋友圈
            
    首先到<a href="http://open.yixin.im/" target="_blank">易信开发平台</a>中获取app id, app key等信息。然后在Cocos2d-x代码中，通过CCUMSocialSDK类的setYiXinAppKey("")函数来设置微信的App key，
 ```java
@@ -646,7 +704,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
       
 
  <b id=cocos2dx_platforms_facebook_integration></b> 
-### 4.1.5 集成Facebook       
+###  集成Facebook       
  首先到<a href="https://developers.facebook.com/">facebook开发者网站</a>(需翻墙)上创建应用，然后填写应用签名、包名等信息，然后获取app id等信息,通过facebook审核以后即可进行分享。在Cocos2d-x代码中首先需要设置facebook的app id，并且将facebook添加到sdk中, 代码如下 :
 ```java
 	// 获取一个CCUMSocialSDK实例
@@ -678,7 +736,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	iOS平台集成facebook不再需要其他的设置。但是如果您不需要集成Facebook，可以在Xcode中把UMSocial_Sdk_Extra_Frameworks下把Facebook文件夹删除。并把UmSocialControllerIOS.h 头文件中把宏CC_ShareToFacebook设置为0。
 
 <b id=cocos2dx_platforms_instagram_integration></b> 
-### 4.1.6 集成Instagram
+###  集成Instagram
  
  在Cocos2d-x代码中添加instagram到SDK:
  ```cpp
@@ -704,7 +762,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 
 <b id=cocos2dx_platforms_twitter_integration></b> 
-### 4.1.7 集成Twitter
+###  集成Twitter
 	在Cocos2d-x游戏代码中添加如下代码:
 ```cpp
 	// 获取一个CCUMSocialSDK实例
@@ -729,7 +787,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	
 	
 <b id=cocos2dx_platforms_sms_integration></b> 
-### 4.1.8 集成短信分享
+###  集成短信分享
 	在Cocos2d-x游戏代码中添加如下代码:
 ```cpp
 	// 获取一个CCUMSocialSDK实例
@@ -752,7 +810,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	iOS平台集成短信不再需要其他的设置。     
 	
 <b id=cocos2dx_platforms_email_integration></b> 
-### 4.1.9 集成邮件分享
+###  集成邮件分享
 	在Cocos2d-x游戏代码中添加如下代码:
 ```cpp
 	// 获取一个CCUMSocialSDK实例
@@ -776,9 +834,9 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 
 <b id=cocos2dx_sso_auth></b>
-## 5. 设置SSO授权
+##  设置SSO授权
 <b id=cocos2dx_sina_sso></b>
-### 5.1 新浪微博的SSO授权
+###  新浪微博的SSO授权
    要使用新浪微博SSO授权，首先您需要在新浪微博开放平台填写游戏的相关信息。如有问题，请<a href="http://dev.umeng.com/social/android/detail-share/sso#SSO_2_1" target="_blank">新浪微博SSO授权设置</a>。               
 	针对于Android平台需要支持新浪微博SSO授权，首先您需要将压缩包下的platforms/Android/sns_platforms/sina/src/目录下的com文件夹拷贝到工程中的src目下，并且将libs目录下的SocialSDK_sina.jar拷贝到工程中的libs目录下。然后通过如下代码支持新浪微博的SSO授权 :
 ```java
@@ -798,7 +856,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	这样新浪就支持SSO授权了。     
 	
 <b id=cocos2dx_tencent_sso></b>
-### 5.2 腾讯微博的SSO授权
+###  腾讯微博的SSO授权
 	针对于Android平台的腾讯微博SSO授权，您需要将压缩包内的Platforms/Android/sns_platforms/tencent_wb/目录下的jar包拷贝到您工程的libs目录下，并且添加到"build path"中。然后添加如下代码即可支持SSO授权 : 
 ```java
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
@@ -819,7 +877,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 
 <b id=cocos2dx_renren_sso></b>
-### 5.3 人人网的SSO授权（仅支持Android)
+###  人人网的SSO授权（仅支持Android)
 	由于人人网iOS SSO SDK在横屏下有问题，不支持人人网iOS的SSO授权。  
 	针对于Android平台的人人网SSO授权，您需要将压缩包内的Platforms/Android/sns_platforms/renren/目录下的jar包拷贝到您工程的libs目录下，并且添加到"build path"中。然后添加如下代码即可支持SSO授权 : 
 ```java
@@ -859,7 +917,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 	这样人人网就支持SSO授权了。   
 
 <b id=cocos2dx_platform_sharecontent></b>
-## 6. 设置分平台的分享内容
+##  设置分平台的分享内容
 	通过CCUMSocialSDK的directShare和openShare函数设置的分享内容都是各个平台通用的，即所有平台的分享内容都是一样的。
 	在某些情况下，你需要某些平台的分享内容与其他平台的不一样，那么您可以使用如下接口来设置 : 
 ```java
@@ -879,7 +937,7 @@ sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
       	
 
 <b id=proguard></b>
-## 7. Android混淆         
+##  Android混淆         
   为了保证引用友盟Social SDK jar文件以及腾讯jar文件被混淆，请在proguard.cfg文件中添加以下代码避免被混淆.。   
 ```text
 -dontwarn com.google.android.maps.**
@@ -925,6 +983,6 @@ sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
 混淆过程中遇到的问题,请联系我们.
 
 <b id=support></b>
-## 8 技术支持        
+## 技术支持        
 
 请发邮件至social-support@umeng.com。如果您出现的问题和SDK相关，请说明您使用的是Android的SDK或者是iOS的SDK，我们会尽快回复您。

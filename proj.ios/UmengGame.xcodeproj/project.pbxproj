@@ -25,6 +25,7 @@
 		1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1DF5F4DF0D08C38300B7A737 /* UIKit.framework */; };
 		288765A50DF7441C002DB57D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288765A40DF7441C002DB57D /* CoreGraphics.framework */; };
 		5EC27BC118D5761F00617DB1 /* share.png in Resources */ = {isa = PBXBuildFile; fileRef = 5EC27BBF18D5761F00617DB1 /* share.png */; };
+		63394A101C7D9363007B4DFA /* readme.md in Sources */ = {isa = PBXBuildFile; fileRef = 63394A0F1C7D9363007B4DFA /* readme.md */; };
 		63850E731C5CCBD8005E6D15 /* UMSocialLocalizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 63850E171C5CCBD8005E6D15 /* UMSocialLocalizable.strings */; };
 		63850E741C5CCBD8005E6D15 /* libUMSocial_Sdk_5.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63850E251C5CCBD8005E6D15 /* libUMSocial_Sdk_5.0.a */; };
 		63850E751C5CCBD8005E6D15 /* libUMSocial_Sdk_Comment_5.0.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 63850E261C5CCBD8005E6D15 /* libUMSocial_Sdk_Comment_5.0.a */; };
@@ -147,6 +148,7 @@
 		1DF5F4DF0D08C38300B7A737 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		288765A40DF7441C002DB57D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		5EC27BBF18D5761F00617DB1 /* share.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share.png; sourceTree = "<group>"; };
+		63394A0F1C7D9363007B4DFA /* readme.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = readme.md; path = ../readme.md; sourceTree = "<group>"; };
 		63850E181C5CCBD8005E6D15 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/UMSocialLocalizable.strings; sourceTree = "<group>"; };
 		63850E1A1C5CCBD8005E6D15 /* UMSocial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocial.h; sourceTree = "<group>"; };
 		63850E1B1C5CCBD8005E6D15 /* UMSocialAccountManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMSocialAccountManager.h; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 		29B97314FDCFA39411CA2CEA /* CustomTemplate */ = {
 			isa = PBXGroup;
 			children = (
+				63394A0F1C7D9363007B4DFA /* readme.md */,
 				15A3D87E1682F7B3002FB0C5 /* cocos2dx.xcodeproj */,
 				15AA9C4015B7EC450033D6C2 /* Classes */,
 				15A3DA6B1682F8A6002FB0C5 /* CocosDenshion */,
@@ -872,6 +875,7 @@
 				1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */,
 				D5E82A6619822DDE00DE63A1 /* UMSocialUIObject.mm in Sources */,
 				1AC3624B16D4A1E8000847F2 /* main.m in Sources */,
+				63394A101C7D9363007B4DFA /* readme.md in Sources */,
 				1AFCDA8216D4A25900906EA6 /* RootViewController.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
