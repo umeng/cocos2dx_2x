@@ -344,7 +344,6 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const
     }
 
     [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskAll];
-
     [UMSocialSnsService presentSnsIconSheetView:getViewController()
                                          appKey:appKey
                                       shareText:shareText
