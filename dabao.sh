@@ -1,5 +1,7 @@
 #!/bin/bash
-echo "copy readme !"
+social_cocos_version="5.0"
+
+echo "copy readme.md !"
 cp readme.md release
 echo "copy cocos2dx !"
 cp  -rf Classes/Cocos2dx release/
@@ -18,3 +20,17 @@ cp -rf  androidlib/platforms/sms  release/Platforms/Android/sns_platforms/
 cp -rf  androidlib/platforms/tencentweibo  release/Platforms/Android/sns_platforms/ 
 cp -rf  androidlib/platforms/weixin   release/Platforms/Android/sns_platforms/
 cp -rf  androidlib/platforms/yixin    release/Platforms/Android/sns_platforms/
+
+echo "remove old iOS library"
+rm -rf release/Platforms/iOS
+
+echo "copy iOS library"
+cp -rf Classes/umeng_ios_social_sdk		release/Platforms/
+mv release/Platforms/umeng_ios_social_sdk 	release/platforms/iOS
+
+echo "packaging..."
+cp -rf release UMengSocialCocos2dx_${social_cocos_version}
+zip -r UMengSocialCocos2dx_${social_cocos_version}.zip UMengSocialCocos2dx_${social_cocos_version}
+rm -rf UMengSocialCocos2dx_${social_cocos_version}
+
+echo "packging social cocos2dx-"$social_cocos_version" finish."

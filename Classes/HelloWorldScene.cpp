@@ -356,8 +356,8 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 				"http://www.umeng.com/images/pic/home/social/img-1.png", "",
 				"");
     //
-    sdk->setPlatformShareContent(QQ, "", "assets/CloseNormal.png",
-                                 "", "");
+    sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
+                                 "QQ share 内容", "http://blog.csdn.net/bboyfeiyu");
     sdk->setPlatformShareContent(QZONE, "text", "", "","");
     sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
 	sdk->setPlatformShareContent(RENREN, "renren share 内容",

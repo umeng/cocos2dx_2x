@@ -3,7 +3,7 @@
 # 概述
    友盟社会化组件，可以让移动应用快速具备社会化分享、登录、评论、喜欢等功能，并提供实时、全面的社会化数据统计分析服务。   
    本指南将会手把手教你使用友盟社会化组件Cocos2d-x SDK，用5分钟为APP增加新浪微博、微信、QQ空间等国内外十几个主流平台的分享功能。
-   该Cocos2d-x SDK目前支持ios和android平台。
+   该Cocos2d-x SDK目前支持iOS和Android平台。
  
 # 前提   
    该Cocos2d-x分享组件需要依赖友盟社会化组件sdk，因此在您集成时必须将iOS或者Android平台的SDK集成到您的工程中,即压缩包中的Platforms目录下的Android和iOS两个文件夹。      
@@ -226,12 +226,7 @@ LOCAL_MODULE := libweibosdkcorex64
 LOCAL_SRC_FILES := prebuild/x86_64/libweibosdkcore.so
 include $(PREBUILT_SHARED_LIBRARY)`
 <b id=cocos2dx_integration_ios></b>  
-## iOS平台集成   
-
-### 修改 Xcode 编译选项(cocos2d-x 3.x版本)
-
-本SDK的库文件默认提供的是包含64位架构的库文件，可是少部分社交平台平台和功能不支持64位的架构，不支持的分享平台和功能有腾讯微博SSO、人人人网SSO、分享到来往等。  
-如果使用上述平台或者功能，并使用cocos2d-x 3.x（发行版）版本新建的工程，需要修改应用编译架构，修改方法为：将Xcode中Build Settings的Architectures修改为`$(ARCHS_STANDARD_32_BIT)`，Valid Architectures删除arm64。另外你使用的cocos2d-x的SDK库文件，应该使用带有32位版本的库文件。   
+## iOS平台集成      
 
 ### 加入iOS SDK
 
@@ -252,7 +247,7 @@ UMSocial_Sdk_x.x.x 文件夹的目录结构
 
 文件或文件夹|含义
 ---|---
-libUMSocial_Sdk_x.x.x.a, libUMSocial_Sdk_Comment_3.0.a | 库文件
+libUMSocial_Sdk_x.x.a, libUMSocial_Sdk_Comment_x.x.a | 库文件
 Header| 头文件
 SocialSDKXib| xib文件
 en.lproj，zh-Hans.lproj | 英文和中文语言文件
@@ -262,8 +257,10 @@ UMSocial_Sdk_Extra_Frameworks 文件夹的目录结构
 文件或文件夹|含义
 ---|---
 Wechat|微信
+sinaSSO|新浪微博
 TencentOpenAPI|QQ互联SDK
 Facebook|Facebook SDK
+Twitter|Twitter SDK
 LaiWang|来往 SDK
 YiXin|易信 SDK
 
@@ -279,6 +276,10 @@ Security.framework,libiconv.dylib,SystemConfiguration.framework,CoreGraphics.fra
    <tr>
     <td>微信</td>
     <td>微信应用appId，例如“wxd9a39c7122aa6516”,微信详细集成步骤参考<a href="#social_wechat" style="text-decoration:none">微信集成方法</a></td>
+  </tr>
+   <tr>
+    <td>微博</td>
+    <td>在工程设置项,targets 一栏下,选中自己的 target,在 Info->URL Types 中添加 URL Schemes,格式为“wb”+新浪appkey，例如“wb126663232”</td>
   </tr>
    <tr>
     <td>分享到手机QQ、QQ空间</td>
@@ -459,6 +460,7 @@ void HelloWorld::shareButtonClick()
     sdk->setTargetUrl("http://www.umeng.com/social");   
     // **********************	设置平台信息	***************************
     // sdk->setQQAppIdAndAppKey("设置QQ的app id", "appkey");
+    // sdk->setSinaAppKey("设置新浪appkey", "设置新浪appSecret", "设置新浪redirectURL");
     // sdk->setWeiXinAppInfo("设置微信和朋友圈的app id","app key");
     // sdk->setYiXinAppKey("设置易信和易信朋友圈的app id");
     // sdk->setLaiwangAppInfo("设置来往和来往动态的app id", 
@@ -480,9 +482,12 @@ void HelloWorld::shareButtonClick()
 ***特别说明 :***     
    使用CCUMSocialSDK对象设置各个平台的app id或者app key.CCUMSocialSDK对象可以通过CCUMSocialSDK::create("umeng appkey")函数获取，如果使用UMShareButton可以通过getSocialSDK()函数获取.          
 >1.如果集成了QQ或者QQ空间平台,则必须通过CCUMSocialSDK类的setQQAppIdAndAppKey("appid","appkey")函数来设置QQ或者QQ空间的AppId、AppKey;           
->2.如果集成了微信或者微信朋友圈平台,则必须通过CCUMSocialSDK类的setWeiXinAppInfo("","")函数来设置微信或者朋友圈的App id和app key;        
->3.如果集成了易信或者易信朋友圈平台,则必须通过CCUMSocialSDK类的setYiXinAppKey("")函数来设置微信的App key;        
->4.如果集成了来往或者来往动态平台,则必须通过CCUMSocialSDK类的setLaiwangAppInfo("app id ", "app key", "app Name")来设置来往和来往动态的App id、App key、App Name(应用名).
+>2.如果集成了微信或者微信朋友圈平台,则必须通过CCUMSocialSDK类的setWeiXinAppInfo("","")函数来设置微信或者朋友圈的App id和app key;   
+>3.iOS:如果集成了新浪微博平台,则必须通过CCUMSocialSDK类的setSinaAppKey("","","")函数来设置微博的appkey和appSecret;      
+>4.如果集成了易信或者易信朋友圈平台,则必须通过CCUMSocialSDK类的setYiXinAppKey("")函数来设置微信的App key;        
+>5.如果集成了来往或者来往动态平台,则必须通过CCUMSocialSDK类的setLaiwangAppInfo("app id ", "app key", "app Name")来设置来往和来往动态的App id、App key、App Name(应用名).  
+>6.iOS:如果集成了Facebook平台,则必须通过CCUMSocialSDK类的setFacebookAppId("")函数来设置Facebook的app id;   
+>7.iOS:如果集成了Twitter平台,则必须通过CCUMSocialSDK类的openTwitterForiOS("","")函数来设置Twitter的appKey和appSecret;  
    在设置完平台的app id或者app key之后，需要调用CCUMSocialSDK对象的setPlatforms函数将所需的平台添加到sdk中，这样该平台才会在sdk得到支持。    
    最后,点击对应的按钮则会弹出如下界面 :    
   <img src="http://dev.umeng.com/system/images/W1siZiIsIjIwMTQvMDQvMDkvMTVfNTdfNTVfMjk5X2NvY29zMmR4X29wZW5TaGFyZS5wbmciXV0/cocos2dx-openShare.png" width="450" height="300" style="border:1px solid black">      
@@ -838,7 +843,7 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 <b id=cocos2dx_sina_sso></b>
 ###  新浪微博的SSO授权
    要使用新浪微博SSO授权，首先您需要在新浪微博开放平台填写游戏的相关信息。如有问题，请<a href="http://dev.umeng.com/social/android/detail-share/sso#SSO_2_1" target="_blank">新浪微博SSO授权设置</a>。               
-	针对于Android平台需要支持新浪微博SSO授权，首先您需要将压缩包下的platforms/Android/sns_platforms/sina/src/目录下的com文件夹拷贝到工程中的src目下，并且将libs目录下的SocialSDK_sina.jar拷贝到工程中的libs目录下。然后通过如下代码支持新浪微博的SSO授权 :
+	针对于Android平台需要支持新浪微博SSO授权，首先您需要将压缩包下的platforms/Android/sns_platforms/sina/src/目录下的com文件夹拷贝到工程中的src目下，并且将libs目录下的SocialSDK_sina.jar拷贝到工程中的libs目录下。然后通过如下代码支持新浪微博的SSO授权 :	
 ```java
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	// 设置平台，按照您的需要添加平台
@@ -852,6 +857,9 @@ void authCallback(int platform, int stCode, map<string, string>& data)
 
 	// 设置新浪微博SSO授权,参数2修改为你的授权回调地址
 	sdk->setSsoAuthorization(SINA,"http://sns.whalecloud.com/sina2/callback");
+	// iOS通过以下设置
+	sdk->setSinaAppKey("app key", "app secret", "http://sns.whalecloud.com/sina2/callback");
+
 ```     
 	这样新浪就支持SSO授权了。     
 	

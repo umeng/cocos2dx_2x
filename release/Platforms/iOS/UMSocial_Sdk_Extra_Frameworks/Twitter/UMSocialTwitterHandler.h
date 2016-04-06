@@ -16,4 +16,11 @@
  */
 +(void)openTwitter;
 
+/**
+ 设置twitter应用key、secret
+ 
+ */
++(void)setTwitterAppKey:(NSString *)appKey withSecret:(NSString *)secret;
+
+
 @end
