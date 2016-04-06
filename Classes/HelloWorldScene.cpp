@@ -338,7 +338,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 	sdk->setSsoAuthorization(RENREN, "http://sns.whalecloud.com");
 
 	//
-	sdk->setPlatformShareContent(SINA, "text","assets/CloseNormal.png", "title","");
+	sdk->setPlatformShareContent(SINA, "text","assets/CloseNormal.png", "title","http://dev.umeng.com");
 	sdk->setPlatformShareContent(LAIWANG, "sina share 内容",
 			"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
 	sdk->setPlatformShareContent(LAIWANG_CIRCLE, "sina share 内容",
