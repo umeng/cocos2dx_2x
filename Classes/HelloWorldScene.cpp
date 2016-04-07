@@ -310,73 +310,73 @@ void HelloWorld::isAuthorizedShareCallback(CCObject* pSender) {
 
 // 弹出分享面板
 void HelloWorld::menuShareCallback(CCObject* pSender) {
-	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
-	vector<int>* platforms = new vector<int>();
-	platforms->push_back(SINA);
-	platforms->push_back(RENREN);
-	platforms->push_back(DOUBAN);
-	platforms->push_back(TENCENT_WEIBO);
-	platforms->push_back(INSTAGRAM);
-	platforms->push_back(QZONE);
-	platforms->push_back(QQ);
-	platforms->push_back(SMS);
-	platforms->push_back(YIXIN);
-	platforms->push_back(YIXIN_CIRCLE);
-	platforms->push_back(LAIWANG);
-	platforms->push_back(LAIWANG_CIRCLE);
-	platforms->push_back(WEIXIN);
-	platforms->push_back(WEIXIN_CIRCLE);
-	platforms->push_back(TWITTER);
-	platforms->push_back(FACEBOOK);
-	// 设置平台
-	sdk->setPlatforms(platforms);
-
-	// 设置新浪微博SSO登录
-	sdk->setSsoAuthorization(RENREN, "http://sns.whalecloud.com");
-
-	//
-	sdk->setPlatformShareContent(SINA, "text","assets/CloseNormal.png", "title","http://dev.umeng.com");
-	sdk->setPlatformShareContent(LAIWANG, "sina share 内容",
-			"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
-	sdk->setPlatformShareContent(LAIWANG_CIRCLE, "sina share 内容",
-				"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
-	sdk->setPlatformShareContent(DOUBAN, "DOUBAN share 内容",
-				"assets/CloseNormal.png", "","");
-	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",
-				"", "WEIXIN share 标题",
-				"http://blog.csdn.net/bboyfeiyu");
-	//
-	sdk->setPlatformShareContent(WEIXIN_CIRCLE, "WEIXIN share 内容",
-			"assets/CloseNormal.png", "WEIXIN share 标题",
-			"http://blog.csdn.net/bboyfeiyu");
-	sdk->setPlatformShareContent(FACEBOOK, "",
-				"http://www.umeng.com/images/pic/home/social/img-1.png", "",
-				"");
-    //
-    sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
-                                 "QQ share 内容", "http://blog.csdn.net/bboyfeiyu");
-    sdk->setPlatformShareContent(QZONE, "text", "", "","");
-    sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
-	sdk->setPlatformShareContent(RENREN, "renren share 内容",
-			"assets/CloseNormal.png", "QQ-title",
-			"http://blog.csdn.net/bboyfeiyu");
-
-	sdk->setPlatformShareContent(YIXIN_CIRCLE, "WEIXIN share 内容",
-				"", "",
-				"");
-	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	sdk->openShare("这是文本分享内容",
-			"http://www.umeng.com/images/pic/home/social/img-1.png",
-			share_selector(shareCallback));
-
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-	printf("CC_PLATFORM_IOS !!!\n");
+//	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+//	vector<int>* platforms = new vector<int>();
+//	platforms->push_back(SINA);
+//	platforms->push_back(RENREN);
+//	platforms->push_back(DOUBAN);
+//	platforms->push_back(TENCENT_WEIBO);
+//	platforms->push_back(INSTAGRAM);
+//	platforms->push_back(QZONE);
+//	platforms->push_back(QQ);
+//	platforms->push_back(SMS);
+//	platforms->push_back(YIXIN);
+//	platforms->push_back(YIXIN_CIRCLE);
+//	platforms->push_back(LAIWANG);
+//	platforms->push_back(LAIWANG_CIRCLE);
+//	platforms->push_back(WEIXIN);
+//	platforms->push_back(WEIXIN_CIRCLE);
+//	platforms->push_back(TWITTER);
+//	platforms->push_back(FACEBOOK);
+//	// 设置平台
+//	sdk->setPlatforms(platforms);
+//
+//	// 设置新浪微博SSO登录
+//	sdk->setSsoAuthorization(RENREN, "http://sns.whalecloud.com");
+//
+//	//
+//	sdk->setPlatformShareContent(SINA, "text","assets/CloseNormal.png", "title","http://dev.umeng.com");
+//	sdk->setPlatformShareContent(LAIWANG, "sina share 内容",
+//			"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
+//	sdk->setPlatformShareContent(LAIWANG_CIRCLE, "sina share 内容",
+//				"http://www.umeng.com/images/pic/home/social/img-1.png", "","");
+//	sdk->setPlatformShareContent(DOUBAN, "DOUBAN share 内容",
+//				"assets/CloseNormal.png", "","");
+//	sdk->setPlatformShareContent(WEIXIN, "WEIXIN share 内容",
+//				"", "WEIXIN share 标题",
+//				"http://blog.csdn.net/bboyfeiyu");
+//	//
+//	sdk->setPlatformShareContent(WEIXIN_CIRCLE, "WEIXIN share 内容",
+//			"assets/CloseNormal.png", "WEIXIN share 标题",
+//			"http://blog.csdn.net/bboyfeiyu");
+//	sdk->setPlatformShareContent(FACEBOOK, "",
+//				"http://www.umeng.com/images/pic/home/social/img-1.png", "",
+//				"");
+//    //
+//    sdk->setPlatformShareContent(QQ, "QQ share 内容", "assets/CloseNormal.png",
+//                                 "QQ share 内容", "http://blog.csdn.net/bboyfeiyu");
+//    sdk->setPlatformShareContent(QZONE, "text", "", "","");
+//    sdk->setPlatformShareContent(SMS, "QQ hello", "http://www.umeng.com/images/pic/home/social/img-1.png","", "");
+//	sdk->setPlatformShareContent(RENREN, "renren share 内容",
+//			"assets/CloseNormal.png", "QQ-title",
+//			"http://blog.csdn.net/bboyfeiyu");
+//
+//	sdk->setPlatformShareContent(YIXIN_CIRCLE, "WEIXIN share 内容",
+//				"", "",
+//				"");
+//	// 打开分享面板, 注册分享回调, android 和 IOS的图片地址格式不一致，因此分开设置
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//	sdk->openShare("这是文本分享内容",
+//			"http://www.umeng.com/images/pic/home/social/img-1.png",
+//			share_selector(shareCallback));
+//
+//#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+//	printf("CC_PLATFORM_IOS !!!\n");
 //    this->saveScreenshot();
 //    setAppKey("4eaee02c527015373b000003");
 //    int platform[2] = {SINA,TENCENT_WEIBO};
 //	sdk->openShare("Umeng Social Cocos2d-x SDK V1.0","share.png", share_selector(shareCallback));
-#endif
+//#endif
 }
 
 /**

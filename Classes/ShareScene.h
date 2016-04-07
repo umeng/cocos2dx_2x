@@ -23,6 +23,7 @@ public:
     void sinaShare(CCObject* pSender);
     void wxShare(CCObject* pSender);
     void boardShare(CCObject* pSender);
+    void boardcustomShare(CCObject* pSender);
     // a selector callback
     void menuCloseCallback(CCObject* pSender);
     

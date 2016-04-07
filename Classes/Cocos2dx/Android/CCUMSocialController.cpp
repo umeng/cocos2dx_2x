@@ -19,7 +19,7 @@ using namespace std;
 AuthEventHandler authCallback = NULL;
 // 分享回调
 ShareEventHandler shareCallback = NULL;
-
+BoardEventHandler boardCallback = NULL;
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnAuthorizeStart
@@ -94,7 +94,20 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
 
 	}
 }
+/*
+ * Class:     com_umeng_social_CCUMSocialController
+ * Method:    OnShareStart
+ * Function : 开始分享的回调函数
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
+		jint platform) {
+	if (boardCallback != NULL) {
+		// 参数1代表平台, 参数2代表状态, 比如start, cancel, complete, 参数3代表状态码, 200为成功.
+		boardCallback(platform);
 
+	}
+}
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnShareComplete
@@ -202,7 +215,27 @@ void doOpenShare(vector<int>* platforms,const char* text, const char* title,cons
 		releaseMethod(mi);
 	}
 }
+void doCutomOpenShare(vector<int>* platforms,BoardEventHandler callback) {
+	boardCallback = callback;
+	if (boardCallback != NULL) {
+		CCLog("#### 分享回调不为NULL");
 
+	}
+	JniMethodInfo mi;
+	bool isHave = getMethod(mi, "openCustomShare", "([I)V");
+	int* platformArr = platforms->data();
+	int length = platforms->size();
+
+	// 创建数组对象,且不能在函数末尾删除引用
+	jintArray iArr = mi.env->NewIntArray(length);
+	// 将nums数组中的内容设置到jintArray对象中,
+	mi.env->SetIntArrayRegion(iArr, 0, length, platformArr);
+	if (isHave) {
+
+		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID,iArr);
+		releaseMethod(mi);
+	}
+}
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义

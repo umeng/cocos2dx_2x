@@ -68,7 +68,9 @@ bool Share::init()
     CCMenuItemFont *boardButton = CCMenuItemFont::create("打开分享面板", this,
                                                          menu_selector(Share::boardShare));
     boardButton->setPosition(ccp(visibleSize.width/2, 240));
-
+    CCMenuItemFont *boardcustomButton = CCMenuItemFont::create("打开分享不同内容分享面板", this,
+                                                         menu_selector(Share::boardcustomShare));
+    boardcustomButton->setPosition(ccp(visibleSize.width/2, 160));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
@@ -84,6 +86,7 @@ bool Share::init()
     pMenu->addChild(shareButton, 1);
     pMenu->addChild(authButton, 1);
     pMenu->addChild(boardButton, 1);
+        pMenu->addChild(boardcustomButton, 1);
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
     
@@ -117,6 +120,22 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
     CCLog("#### callback!!!!!! %s\n",result.c_str());
   
     CCLog("platform num is : %d, %d", platform, stCode);
+    
+}
+void boardCallback(int platform) {
+    
+       CCLog("platform num is : %d", platform);
+    if (platform == QQ) {
+        CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+        sdk->directShare(QQ,
+                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
+                         share_selector(shareCallback));
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+      
+#endif
+
+    }
     
 }
 void shareCallBack(int platform, int stCode, const char * errorMsg) {
@@ -182,8 +201,31 @@ void Share::boardShare(CCObject* pSender) {
     platforms->push_back(TWITTER);
     platforms->push_back(FACEBOOK);
     sdk->setPlatforms(platforms);
-    sdk->openShare(platforms, "来自分享面板", "title", "", "", share_selector(shareCallback));
+    sdk->openShareBoard(platforms, "来自分享面板", "title", "", "");
 
+}
+void Share::boardcustomShare(CCObject* pSender) {
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    vector<int>* platforms = new vector<int>();
+    platforms->push_back(SINA);
+    platforms->push_back(RENREN);
+    platforms->push_back(DOUBAN);
+    platforms->push_back(TENCENT_WEIBO);
+    platforms->push_back(INSTAGRAM);
+    platforms->push_back(QZONE);
+    platforms->push_back(QQ);
+    platforms->push_back(SMS);
+    platforms->push_back(YIXIN);
+    platforms->push_back(YIXIN_CIRCLE);
+    platforms->push_back(LAIWANG);
+    platforms->push_back(LAIWANG_CIRCLE);
+    platforms->push_back(WEIXIN);
+    platforms->push_back(WEIXIN_CIRCLE);
+    platforms->push_back(TWITTER);
+    platforms->push_back(FACEBOOK);
+    sdk->setPlatforms(platforms);
+    sdk->openCustomShare(platforms, board_selector(boardCallback));
+    
 }
 void Share::menuCloseCallback(CCObject* pSender)
 {

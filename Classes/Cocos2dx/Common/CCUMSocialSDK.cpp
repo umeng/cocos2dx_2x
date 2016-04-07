@@ -210,6 +210,30 @@ void CCUMSocialSDK::openShare(vector<int>* platforms,const char* text, const cha
 //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
 #endif
 }
+void CCUMSocialSDK::openShareBoard(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    // 设置分享内容
+    //	setShareTextContent(text);
+    //	// 设置图片内容
+    //	setShareImagePath(imgName);
+    // 打开分享面板
+    doOpenShare(platforms,text,title,imgName,targeturl,NULL);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+#endif
+}
+
+
+void CCUMSocialSDK::openCustomShare(vector<int>* platforms,BoardEventHandler callback) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+   
+    doCutomOpenShare(platforms,callback);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+#endif
+}
 
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面

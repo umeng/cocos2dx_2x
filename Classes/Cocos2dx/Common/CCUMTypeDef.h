@@ -77,15 +77,23 @@ typedef void (*AuthEventHandler)(int platform, int stCode,
  * @param stCode 状态码, 200代表分享成功, 100代表开始分享
  * @param errorMsg 错误信息, Android平台中没有错误信息返回
  */
-typedef void (*ShareEventHandler)(int platform, int stCode,
-		const string& errorMsg);
-
+    typedef void (*ShareEventHandler)(int platform, int stCode,
+    const string& errorMsg);
+    /**
+     * 分享面板回调函数指针类型
+     * @param platform 平台
+ 
+     */
+typedef void (*BoardEventHandler)(int platform);
 /// 授权回调selector
 #define auth_selector(_SELECTOR) (AuthEventHandler)(&_SELECTOR)
 
 /// 分享回调selector
 
 #define share_selector(_SELECTOR) (ShareEventHandler)(&_SELECTOR)
+    
+/// 分享面板回调selector
+#define board_selector(_SELECTOR) (BoardEventHandler)(&_SELECTOR)
 
 }
 }

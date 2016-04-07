@@ -281,43 +281,35 @@ public class CCUMSocialController {
 		Log.d(TAG, "@@@@ openShare");
 
 	}
+	public static void openCustomShare(final int[] platforms) {
+		// 注册回调接口, 默认将分享回调注册要sdk
+
+//		openBoardAction.setShareboardclickCallback(mSocialShareListener);
+		checkActivity();
+		SHARE_MEDIA [] dis = new SHARE_MEDIA[platforms.length];
+		if (platforms != null && platforms.length > 0) {
+			for (int i = 0;i<platforms.length;i++){
+				dis[i] = getPlatform(platforms[i]);
+			}
+		}
+		final SHARE_MEDIA [] disfinal = dis;
+		// 在UI线程执行打开分享面板操作
+		runOnMainThread(new Runnable() {
+			@Override
+			public void run() {
+				// 打开分享面板
+				new ShareAction(mActivity).setDisplayList(disfinal).setShareboardclickCallback(shareBoardlistener).open();
+			}
+		});
+
+		Log.d(TAG, "@@@@ openShare");
+
+	}
 	private static ShareBoardlistener shareBoardlistener = new ShareBoardlistener() {
 
 		@Override
 		public void onclick(SnsPlatform snsPlatform, final SHARE_MEDIA share_media) {
-			runOnMainThread(new Runnable() {
-
-				@Override
-				public void run() {
-					platformShareCotent temp = map.get(share_media.toString());
-					if (temp == null) {
-						temp = new platformShareCotent();
-					}
-					if(TextUtils.isEmpty(temp.text)){
-						temp.text = null;
-					}
-					if(TextUtils.isEmpty(temp.imagepath)){
-						temp.imagepath = null;
-					}
-					if(TextUtils.isEmpty(temp.title)){
-						temp.title = null;
-						Log.e("xxxxxx","temptitle="+temp.title);
-					}
-					if(TextUtils.isEmpty(temp.targeturl)){
-						temp.targeturl = null;
-						Log.e("xxxxxx","temptargeturl="+temp.targeturl);
-					}
-					Log.e("xxxxxx","temp="+temp.text+"  "+temp.imagepath);
-					new ShareAction(mActivity).setPlatform(share_media)
-					.withText(temp.text)
-					.withMedia(getUmImage(temp.imagepath))
-					.withTargetUrl(temp.targeturl)
-					.withTitle(temp.title)
-					.setCallback(umShareListener)
-							.share();
-					
-				}
-			});
+			OnBoard(getPlatformInt(share_media));
 
 		}
 	};
@@ -1105,6 +1097,13 @@ public static void supportSsoAuthorization(int i,String URL) {
 	 */
 	private native static void OnShareComplete(int platform, int eCode,
 			String descriptor);
+	/**
+	 * 回调分享的board方法到native层
+	 * 
+	 * @param platform
+	 *            平台
+	 */
+	private native static void OnBoard(int platform);
 
 	/**
 	 * 通过整型获取对应的平台, C++中使用enum常量来代表平台
