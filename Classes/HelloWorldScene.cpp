@@ -1,4 +1,6 @@
 #include "HelloWorldScene.h"
+#include "AuthScene.h"
+
 #include <string>
 #include "Cocos2dx/Common/CCUMSocialSDK.h"
 #include "Cocos2dx/ShareButton/UMShareButton.h"
@@ -42,7 +44,7 @@ CCScene* HelloWorld::scene() {
  * @param stCode 返回码, 200代表授权成功, 100代表开始授权, 0代表授权出错, -1代表取消授权
  * @param data 授权时返回的数据
  */
-void authCallback(int platform, int stCode, map<string, string>& data) {
+void authCallbackaa(int platform, int stCode, map<string, string>& data) {
 	if (stCode == 100) {
 		CCLog("#### 授权开始");
 	} else if (stCode == 200) {
@@ -115,21 +117,7 @@ bool HelloWorld::init() {
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	sdk->setTargetUrl("http://www.umeng.com/social");
 	//    // 设置QQ的app id, app key
-	sdk->setQQAppIdAndAppKey("100424468", "c7394704798a158208a74ab60104f0ba");
-	// 设置微信的app id, app key
-	sdk->setWeiXinAppInfo("wxdc1e388c3822c80b",
-			"a393c1527aaccb95f3a4c88d6d1455f6");
-    // 设置新浪微博appkey, appsecret, redirectURL
-    sdk->setSinaAppKey("3921700954", "04b48b094faeb16683c32669824ebdad", "http://sns.whalecloud.com/sina2/callback");
-	// 设置易信的app key
-	sdk->setYiXinAppKey("yx52dd5c14bbb3430b93e6f2dafcbcc68d");
-	// 设置来往的app id等信息
-    sdk->setLaiwangAppInfo("8112117817424282305", "9996ed5039e641658de7b83345fee6c9", "友盟社会化组件");
-	// 设置facebook的app id
-	sdk->setFacebookAppId("506027402887373");
-	// 设置人人网SSO授权的app id, app key, app secret
-	sdk->setRenrenAppInfo("272694", "44b2d8a028fe499db326c77a6ec24350",
-			"e2fd480e33104a5da5c6249480d39d90");
+	
 	sdk->openTwitterForiOS("fB5tvRpna1CKK97xZUslbxiet", "YcbSvseLIwZ4hZg9YmgJPP5uWzd4zr6BpBKGZhf07zzh3oj62K");
 	// 设置用户点击一条图文分享时用户跳转到的目标页面, 一般为app主页或者下载页面
 
@@ -264,23 +252,32 @@ bool HelloWorld::init() {
 
 // 直接分享的按钮回调
 void HelloWorld::directShareCallback(CCObject* pSender) {
+//	 CCTransitionScene * reScene = NULL;
+//	    CCScene * s = Auth::scene();
+//	    float t = 1.2f;
 
-	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+	//    CCTransitionJumpZoom
+	//    作用： 创建一个跳动的过渡动画
+	//    参数1：过渡动作的时间
+	//    参数2：切换到目标场景的对象
+//	    reScene = CCTransitionJumpZoom ::create(t , s);
+//	    CCDirector::sharedDirector()->replaceScene(reScene);
+//	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-	sdk->directShare(QQ,
-			"Umeng Social Cocos2d-x SDK -->  directShare   testing", "sdfsd",
-			share_selector(shareCallback));
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-//    setAppKey("4eaee02c527015373b000003");
-//    int platform[2] = {0,1};
-//    openShareWithImagePath(platform, 2, "share text", "cat.gif", NULL);
-
-	sdk->setPlatformShareContent(SINA, "sina share 内容",
-			"assets/CloseNormal.png", "sina-title");
-
-	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
-#endif
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//	sdk->directShare(QQ,
+//			"Umeng Social Cocos2d-x SDK -->  directShare   testing", "sdfsd",
+//			share_selector(shareCallback));
+//#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+////    setAppKey("4eaee02c527015373b000003");
+////    int platform[2] = {0,1};
+////    openShareWithImagePath(platform, 2, "share text", "cat.gif", NULL);
+//
+//	sdk->setPlatformShareContent(SINA, "sina share 内容",
+//			"assets/CloseNormal.png", "sina-title");
+//
+//	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
+//#endif
 }
 
 // 授权某个平台的按钮回调
@@ -289,14 +286,14 @@ void HelloWorld::authorizeCallback(CCObject* pSender) {
 	static int count = 0;
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	CCLog("授权");
-	sdk->authorize(QQ, auth_selector(authCallback));
+	sdk->authorize(QQ, auth_selector(authCallbackaa));
 }
 
 // 删除某个平台的按钮回调
 void HelloWorld::deleteAuthorizeCallback(CCObject* pSender) {
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
 	CCLog("删除腾讯微博授权");
-	sdk->deleteAuthorization(SINA, auth_selector(authCallback));
+//	sdk->deleteAuthorization(SINA, auth_selector(authCallback));
 }
 
 // 判断某个平台的按钮回调
@@ -378,7 +375,7 @@ void HelloWorld::menuShareCallback(CCObject* pSender) {
 //    this->saveScreenshot();
 //    setAppKey("4eaee02c527015373b000003");
 //    int platform[2] = {SINA,TENCENT_WEIBO};
-	sdk->openShare("Umeng Social Cocos2d-x SDK V1.0","share.png", share_selector(shareCallback));
+//	sdk->openShare("Umeng Social Cocos2d-x SDK V1.0","share.png", share_selector(shareCallback));
 #endif
 }
 
@@ -402,9 +399,9 @@ void HelloWorld::saveScreenshot() {
 
 	}
 	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
-	sdk->directShare(SINA,
-			"Umeng Social Cocos2d-x SDK -->  directShare   testing",
-			imagePath.c_str(), share_selector(shareCallback));
+//	sdk->directShare(SINA,
+//			"Umeng Social Cocos2d-x SDK -->  directShare   testing",
+//			imagePath.c_str(), share_selector(shareCallback));
 }
 
 void HelloWorld::menuCloseCallback(CCObject* pSender) {

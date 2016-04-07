@@ -125,8 +125,8 @@ void UMShareButton::setPlatforms(vector<int>* platforms) {
  */
 void UMShareButton::openShareBoard() {
 	if (mSocialSDK != NULL) {
-		mSocialSDK->openShare(mShareText.c_str(), mImageName.c_str(),
-				mCallback);
+//		mSocialSDK->openShare(mShareText.c_str(), mImageName.c_str(),
+//				mCallback);
 	}
 }
 

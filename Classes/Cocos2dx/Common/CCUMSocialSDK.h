@@ -92,8 +92,7 @@ public:
 	 // *******************************************
 	 * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
 	 */
-	void openShare(const char* text, const char* imgName,
-			ShareEventHandler callback);
+	void openShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback);
 
 	/**
 	 * 直接分享到某个平台，不打开分享面板和内容编辑页面
@@ -111,8 +110,8 @@ public:
 	 // *******************************************
 	 * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
 	 */
-	void directShare(int platform, const char* text, const char* imgName,
-			ShareEventHandler callback);
+	void directShare(int platform, const char* text,const char* title,const char* targeturl,
+			const char* imgName, ShareEventHandler callback);
 
 	/**
 	 * 设置SDK的target url, 即用户点击某条分享时跳转到的目标页面
@@ -126,7 +125,7 @@ public:
 	 * @param appid	QQ空间或者QQ的app id
 	 * @param appKey QQ空间或者QQ的app key
 	 */
-	void setQQAppIdAndAppKey(const char* appid, const char* appkey);
+//	void setQQAppIdAndAppKey(const char* appid, const char* appkey);
 
 	/**
 	 * 设置微信和微信朋友圈的app id
@@ -134,7 +133,7 @@ public:
 	 * @param appid 微信或者微信朋友圈的appid
 	 * @param appsecret 微信或者微信朋友圈的appsecret
 	 */
-	void setWeiXinAppInfo(const char* appid, const char* appsecret);
+//	void setWeiXinAppInfo(const char* appid, const char* appsecret);
     
     /**
      * 设置新浪微博appkey，appsecret，redicretURL
@@ -143,7 +142,7 @@ public:
      * @param appsecret 新浪微博appsecret
      * @param redicretURL 新浪微博redicretURL
      */
-    void setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL);
+//    void setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL);
     
 	/**
 	 * 设置人人网的app id,app key,app secret信息
@@ -152,15 +151,15 @@ public:
 	 * @param appKey 人人网的app key
 	 * @param appsecret 人人网的appsecret
 	 */
-	void setRenrenAppInfo(const char* appid, const char* appkey,
-			const char* appsecret);
+//	void setRenrenAppInfo(const char* appid, const char* appkey,
+//			const char* appsecret);
 
 	/**
 	 * 设置易信和易信朋友圈的app id
 	 *
 	 * @param appid 易信或者易信朋友圈的app id
 	 */
-	void setYiXinAppKey(const char* appid);
+//	void setYiXinAppKey(const char* appid);
 
 	/**
 	 * 设置来往和来往动态的app id
@@ -169,15 +168,15 @@ public:
 	 * @param appKey  来往的app key
 	 * @param appid	应用名, 一般为你的应用名
 	 */
-	void setLaiwangAppInfo(const char* appid, const char* appkey,
-			const char* appName);
+//	void setLaiwangAppInfo(const char* appid, const char* appkey,
+//			const char* appName);
 
 	/**
 	 * 设置Facebook的appid
 	 *
 	 * @param appid   Facebook应用的app id
 	 */
-	void setFacebookAppId(const char *appid);
+//	void setFacebookAppId(const char *appid);
 
     /**  设置twitter应用key、secret
 	 *   打开Twitter开关，只对iOS平台生效

@@ -12,6 +12,7 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import android.R;
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -126,6 +127,7 @@ public class CCUMSocialController {
 	private static 	HashMap<String , platformShareCotent> map = new HashMap<String , platformShareCotent>();   
 	private static ShareAction openBoardAction;
 	private static ShareAction shareAction;
+	private static ArrayList<Integer> platforms = new ArrayList<Integer>();
 	public static void initSocialSDK(final Activity activity, String descriptor) {
 
 		runOnMainThread(new Runnable() {
@@ -254,18 +256,25 @@ public class CCUMSocialController {
 	 * @param registerCallback
 	 *            是否注册回调接口
 	 */
-	public static void openShare() {
+	public static void openShare(final int[] platforms,final String text,final String title,final String targeturl,final String image) {
 		// 注册回调接口, 默认将分享回调注册要sdk
 
 //		openBoardAction.setShareboardclickCallback(mSocialShareListener);
 		checkActivity();
-
+		SHARE_MEDIA [] dis = new SHARE_MEDIA[platforms.length];
+		if (platforms != null && platforms.length > 0) {
+			for (int i = 0;i<platforms.length;i++){
+				dis[i] = getPlatform(platforms[i]);
+			}
+		}
+		final SHARE_MEDIA [] disfinal = dis;
 		// 在UI线程执行打开分享面板操作
 		runOnMainThread(new Runnable() {
 			@Override
 			public void run() {
 				// 打开分享面板
-			openBoardAction.setShareboardclickCallback(shareBoardlistener).open();
+				new ShareAction(mActivity).setDisplayList(disfinal).withText(text).setCallback(umShareListener)
+				.withTitle(title).withTargetUrl(targeturl).withMedia(getUmImage(image)).open();
 			}
 		});
 
@@ -318,7 +327,7 @@ public class CCUMSocialController {
 	 * @param platform
 	 *            平台对应的字符串
 	 */
-	public static void directShare(final int platform) {
+	public static void directShare(final int platform,final String text,final String title,final String targeturl,final String image) {
 
 		// 检测平台的有效性
 		if (!isPlatformValid(platform)) {
@@ -332,30 +341,28 @@ public class CCUMSocialController {
 
 			@Override
 			public void run() {
-				platformShareCotent temp = map.get(getPlatform(platform).toString());
-				if (temp == null) {
-					temp = new platformShareCotent();
-				}
-				if(TextUtils.isEmpty(temp.text)){
-					temp.text = null;
-				}
-				if(TextUtils.isEmpty(temp.imagepath)){
-					temp.imagepath = null;
-				}
-				if(TextUtils.isEmpty(temp.title)){
-					temp.title = null;
-					Log.e("xxxxxx","temptitle="+temp.title);
-				}
-				if(TextUtils.isEmpty(temp.targeturl)){
-					temp.targeturl = null;
-					Log.e("xxxxxx","temptargeturl="+temp.targeturl);
-				}
-				Log.e("xxxxxx","temp="+temp.text+"  "+temp.imagepath);
+//				platformShareCotent temp = map.get(getPlatform(platform).toString());
+				
+//				if(TextUtils.isEmpty(text)){
+//					text = null;
+//				}
+//				if(TextUtils.isEmpty(image)){
+//					image = null;
+//				}
+//				if(TextUtils.isEmpty(title)){
+//					title = null;
+//					
+//				}
+//				if(TextUtils.isEmpty(targeturl)){
+//					targeturl = null;
+//					
+//				}
+			
 				new ShareAction(mActivity).setPlatform(getPlatform(platform))
-				.withText(temp.text)
-			.withMedia(getUmImage(temp.imagepath))
-				.withTargetUrl(temp.targeturl)
-				.withTitle(temp.title)
+				.withText(text)
+			.withMedia(getUmImage(image))
+				.withTargetUrl(targeturl)
+				.withTitle(title)
 				.setCallback(umShareListener)
 						.share();
 //				shareAction.setPlatform(getPlatform(platform));
@@ -691,7 +698,7 @@ public class CCUMSocialController {
 	 *            平台的顺序数组
 	 */
 	public static void setPlatforms(final int[] platforms) {
-
+			
 		// 运行在主线程
 		runOnMainThread(new Runnable() {
 

@@ -65,6 +65,10 @@
 		63B8242A1BE89BB5003A2812 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B824291BE89BB5003A2812 /* CoreData.framework */; };
 		63B8242C1BE89BC1003A2812 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 63B8242B1BE89BC1003A2812 /* CoreText.framework */; };
 		7855E0E1153FEF240059DD9A /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 7855E0DF153FEF240059DD9A /* Default.png */; };
+		7BDF3E411CB5162A00361084 /* AuthScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF3E3F1CB5162900361084 /* AuthScene.cpp */; };
+		7BDF3E441CB519AF00361084 /* EntranceScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF3E421CB519AF00361084 /* EntranceScene.cpp */; };
+		7BDF3E471CB521EB00361084 /* ShareScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF3E451CB521EB00361084 /* ShareScene.cpp */; };
+		7BDF3E4A1CB521FE00361084 /* GetScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7BDF3E481CB521FE00361084 /* GetScene.cpp */; };
 		BF171245129291EC00B8313A /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB012928DE900B8313A /* OpenGLES.framework */; };
 		BF1712461292920000B8313A /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB212928DE900B8313A /* libxml2.dylib */; };
 		BF1712471292920000B8313A /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = BF170DB412928DE900B8313A /* libz.dylib */; };
@@ -233,6 +237,14 @@
 		63B824291BE89BB5003A2812 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		63B8242B1BE89BC1003A2812 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		7855E0DF153FEF240059DD9A /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = SOURCE_ROOT; };
+		7BDF3E3F1CB5162900361084 /* AuthScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = AuthScene.cpp; path = ../Classes/AuthScene.cpp; sourceTree = "<group>"; };
+		7BDF3E401CB5162900361084 /* AuthScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AuthScene.h; path = ../Classes/AuthScene.h; sourceTree = "<group>"; };
+		7BDF3E421CB519AF00361084 /* EntranceScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = EntranceScene.cpp; path = ../Classes/EntranceScene.cpp; sourceTree = "<group>"; };
+		7BDF3E431CB519AF00361084 /* EntranceScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EntranceScene.h; path = ../Classes/EntranceScene.h; sourceTree = "<group>"; };
+		7BDF3E451CB521EB00361084 /* ShareScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ShareScene.cpp; path = ../Classes/ShareScene.cpp; sourceTree = "<group>"; };
+		7BDF3E461CB521EB00361084 /* ShareScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShareScene.h; path = ../Classes/ShareScene.h; sourceTree = "<group>"; };
+		7BDF3E481CB521FE00361084 /* GetScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = GetScene.cpp; path = ../Classes/GetScene.cpp; sourceTree = "<group>"; };
+		7BDF3E491CB521FE00361084 /* GetScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GetScene.h; path = ../Classes/GetScene.h; sourceTree = "<group>"; };
 		BF170DB012928DE900B8313A /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		BF170DB212928DE900B8313A /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		BF170DB412928DE900B8313A /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
@@ -398,6 +410,14 @@
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
 				1AFAF8B516D35DE700DB1158 /* HelloWorldScene.cpp */,
 				1AFAF8B616D35DE700DB1158 /* HelloWorldScene.h */,
+				7BDF3E3F1CB5162900361084 /* AuthScene.cpp */,
+				7BDF3E401CB5162900361084 /* AuthScene.h */,
+				7BDF3E421CB519AF00361084 /* EntranceScene.cpp */,
+				7BDF3E431CB519AF00361084 /* EntranceScene.h */,
+				7BDF3E451CB521EB00361084 /* ShareScene.cpp */,
+				7BDF3E461CB521EB00361084 /* ShareScene.h */,
+				7BDF3E481CB521FE00361084 /* GetScene.cpp */,
+				7BDF3E491CB521FE00361084 /* GetScene.h */,
 			);
 			name = Classes;
 			path = ../classes;
@@ -863,12 +883,16 @@
 				15A3DAEC1682F8A6002FB0C5 /* CDOpenALSupport.m in Sources */,
 				15A3DAED1682F8A6002FB0C5 /* CocosDenshion.m in Sources */,
 				15A3DAEE1682F8A6002FB0C5 /* SimpleAudioEngine.mm in Sources */,
+				7BDF3E471CB521EB00361084 /* ShareScene.cpp in Sources */,
 				D5E82A6519822DDE00DE63A1 /* UmSocialControllerIOS.mm in Sources */,
+				7BDF3E441CB519AF00361084 /* EntranceScene.cpp in Sources */,
 				D5E82A6F19822E1800DE63A1 /* CCUMSocialSDK.cpp in Sources */,
 				D5E82A6A19822DF500DE63A1 /* UMShareButton.cpp in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				D5E82A7519822EE600DE63A1 /* UMSocialCObject.m in Sources */,
 				D5E82A7619822EE600DE63A1 /* UMSocialCSDK.mm in Sources */,
+				7BDF3E4A1CB521FE00361084 /* GetScene.cpp in Sources */,
+				7BDF3E411CB5162A00361084 /* AuthScene.cpp in Sources */,
 				1AFAF8B716D35DE700DB1158 /* AppDelegate.cpp in Sources */,
 				1AFAF8B816D35DE700DB1158 /* HelloWorldScene.cpp in Sources */,
 				1AC3624916D4A1E8000847F2 /* AppController.mm in Sources */,

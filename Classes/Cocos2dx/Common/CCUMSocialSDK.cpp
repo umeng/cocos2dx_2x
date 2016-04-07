@@ -197,18 +197,17 @@ bool CCUMSocialSDK::isAuthorized(int platform) {
  // *******************************************
  * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
  */
-void CCUMSocialSDK::openShare(const char* text, const char* imgName,
-		ShareEventHandler callback) {
+void CCUMSocialSDK::openShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 	// 设置分享内容
-	setShareTextContent(text);
-	// 设置图片内容
-	setShareImagePath(imgName);
+//	setShareTextContent(text);
+//	// 设置图片内容
+//	setShareImagePath(imgName);
 	// 打开分享面板
-	doOpenShare(callback);
+	doOpenShare(platforms,text,title,imgName,targeturl,callback);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+//	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
 #endif
 }
 
@@ -228,13 +227,13 @@ void CCUMSocialSDK::openShare(const char* text, const char* imgName,
  // *******************************************
  * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
  */
-void CCUMSocialSDK::directShare(int platform, const char* text,
+void CCUMSocialSDK::directShare(int platform, const char* text,const char* title,const char* targeturl,
 		const char* imgName, ShareEventHandler callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
-	setShareTextContent(text);
-	setShareImagePath(imgName);
-	doDirectShare(platform, callback);
+//	setShareTextContent(text);
+//	setShareImagePath(imgName);
+	doDirectShare(text,title,targeturl,imgName,platform, callback);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 	UmSocialControllerIOS::directShare(text, imgName, platform, callback);
@@ -247,34 +246,34 @@ void CCUMSocialSDK::directShare(int platform, const char* text,
  *
  * @param appid
  */
-void CCUMSocialSDK::setQQAppIdAndAppKey(const char* appid, const char* appKey) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-	setQQAndQzoneAppIdWithAppKey(appid, appKey);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-	UmSocialControllerIOS::setQQAppIdAndAppKey(appid, appKey);
-
-#endif
-}
+//void CCUMSocialSDK::setQQAppIdAndAppKey(const char* appid, const char* appKey) {
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//
+//	setQQAndQzoneAppIdWithAppKey(appid, appKey);
+//
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//
+//	UmSocialControllerIOS::setQQAppIdAndAppKey(appid, appKey);
+//
+//#endif
+//}
 
 /*
  * 设置微信和微信朋友圈的app id
  *
  * @param appid
  */
-void CCUMSocialSDK::setWeiXinAppInfo(const char* appid, const char* appsecret) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-	setWeiXinPlatformInfo(appid, appsecret);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-	UmSocialControllerIOS::setWechatAppId(appid,appsecret);
-
-#endif
-}
+//void CCUMSocialSDK::setWeiXinAppInfo(const char* appid, const char* appsecret) {
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//
+//	setWeiXinPlatformInfo(appid, appsecret);
+//
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//
+//	UmSocialControllerIOS::setWechatAppId(appid,appsecret);
+//
+//#endif
+//}
 
 /**
  * 设置新浪微博appkey，appsecret，redicretURL
@@ -283,17 +282,17 @@ void CCUMSocialSDK::setWeiXinAppInfo(const char* appid, const char* appsecret) {
  * @param appsecret 新浪微博appsecret
  * @param redicretURL 新浪微博redicretURL
  */
-void CCUMSocialSDK::setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL)
-{
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-    
-    
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    
-    UmSocialControllerIOS::setSinaAppKey(appkey, appSecret, redicretURL);
-    
-#endif
-}
+//void CCUMSocialSDK::setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL)
+//{
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//    
+//    
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//    
+//    UmSocialControllerIOS::setSinaAppKey(appkey, appSecret, redicretURL);
+//    
+//#endif
+//}
 
 
 /*
@@ -301,17 +300,17 @@ void CCUMSocialSDK::setSinaAppKey(const char *appkey, const char *appSecret, con
  *
  * @param appid
  */
-void CCUMSocialSDK::setYiXinAppKey(const char* appKey) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-	setYiXinPlatformAppKey(appKey);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-	UmSocialControllerIOS::setYiXinAppKey(appKey);
-
-#endif
-}
+//void CCUMSocialSDK::setYiXinAppKey(const char* appKey) {
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//
+//	setYiXinPlatformAppKey(appKey);
+//
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//
+//	UmSocialControllerIOS::setYiXinAppKey(appKey);
+//
+//#endif
+//}
 
 /*
  * 设置来往和来往动态的app id
@@ -320,20 +319,20 @@ void CCUMSocialSDK::setYiXinAppKey(const char* appKey) {
  * @param appKey  来往的app key
  * @param appid	应用名, 一般为你的应用名
  */
-void CCUMSocialSDK::setLaiwangAppInfo(const char* appid, const char* appKey,
-		const char* appName) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-	setLaiwangPlatformAppId(appid);
-	setLaiwangPlatformAppKey(appKey);
-	setLaiwangPlatformAppName(appName);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-	UmSocialControllerIOS::setLaiwangAppInfo(appid, appKey, appName);
-
-#endif
-}
+//void CCUMSocialSDK::setLaiwangAppInfo(const char* appid, const char* appKey,
+//		const char* appName) {
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//
+//	setLaiwangPlatformAppId(appid);
+//	setLaiwangPlatformAppKey(appKey);
+//	setLaiwangPlatformAppName(appName);
+//
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//
+//	UmSocialControllerIOS::setLaiwangAppInfo(appid, appKey, appName);
+//
+//#endif
+//}
 
 /*
  * 设置SDK的target url, 即用户点击某条分享时跳转到的目标页面
@@ -355,18 +354,18 @@ void CCUMSocialSDK::setTargetUrl(const char* targetUrl) {
  * 设置 facebook appId
  * @param appid facebook的app id
  */
-void CCUMSocialSDK::setFacebookAppId(const char *appid) {
-
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-
-	setFacebookPlatformAppId(appid);
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-	UmSocialControllerIOS::setFacebookAppId(appid);
-
-#endif
-
-}
+//void CCUMSocialSDK::setFacebookAppId(const char *appid) {
+//
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//
+//	setFacebookPlatformAppId(appid);
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//
+//	UmSocialControllerIOS::setFacebookAppId(appid);
+//
+//#endif
+//
+//}
 
 /*
  * 针对iOS平台打开分享到Twitter的开关
@@ -428,14 +427,14 @@ void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
  * @param appKey 人人网的app key
  * @param appsecret 人人网的appsecret
  */
-void CCUMSocialSDK::setRenrenAppInfo(const char* appid, const char* appkey,
-		const char* appsecret) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	setRenrenSsoAppInfo(appid, appkey, appsecret);
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	// TODO
-#endif
-}
+//void CCUMSocialSDK::setRenrenAppInfo(const char* appid, const char* appkey,
+//		const char* appsecret) {
+//#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+//	setRenrenSsoAppInfo(appid, appkey, appsecret);
+//#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+//	// TODO
+//#endif
+//}
 
 /*
  * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台. 在设置SSO时请确保您在友盟官方绑定了这些平台的app id, app key等信息.

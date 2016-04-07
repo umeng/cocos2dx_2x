@@ -43,7 +43,10 @@ LOCAL_MODULE_FILENAME := libcocos2dcpp
 
 LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/AppDelegate.cpp \
-                   ../../Classes/HelloWorldScene.cpp \
+                   ../../Classes/AuthScene.cpp \
+                   ../../Classes/EntranceScene.cpp \
+                   ../../Classes/ShareScene.cpp \
+                   ../../Classes/GetScene.cpp \
                    ../../Classes/Cocos2dx/Android/CCUMSocialController.cpp  \
                    ../../Classes/Cocos2dx/ShareButton/UMShareButton.cpp \
                    ../../Classes/Cocos2dx/Common/CCUMSocialSDK.cpp 
