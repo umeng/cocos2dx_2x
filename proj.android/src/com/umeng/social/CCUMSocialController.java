@@ -443,7 +443,27 @@ public class CCUMSocialController {
 		shareAction.withText(text);
 		openBoardAction.withText(text);
 	}
+	/**
+	 * 获取用户信息
+	 * 
+	 * @param text
+	 */
+	public static void getplatformInfo(final int platform) {
+		
+		checkActivity();
 
+		// 在UI线程执行授权操作
+		runOnMainThread(new Runnable() {
+
+			@Override
+			public void run() {
+//				OnAuthorizeStart(platform);
+				Log.e("xxxx run");
+				mShareAPI.getPlatformInfo(mActivity, getPlatform(platform), mAuthListener);
+
+			}
+		});
+	}
 	/**
 	 * 设置要分享的图片路径或者url,或者资源名
 	 * 

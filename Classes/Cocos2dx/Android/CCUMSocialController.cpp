@@ -186,7 +186,17 @@ bool isPlatformAuthorized(int platform) {
 	}
 	return isAuthorized;
 }
+void getPlatformInfos(int platform) {
+	JniMethodInfo mi;
+	bool isHave = getMethod(mi, "getplatformInfo", "(I)V");
+	jboolean isAuthorized = false;
+	if (isHave) {
+		isAuthorized = mi.env->CallStaticBooleanMethod(mi.classID, mi.methodID,
+				platform);
+		releaseMethod(mi);
+	}
 
+}
 /*
  * 打开分享面板
  * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义

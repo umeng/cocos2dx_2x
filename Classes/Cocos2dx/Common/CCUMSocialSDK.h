@@ -95,6 +95,7 @@ public:
 	void openShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback);
     void openShareBoard(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl);
     void openCustomShare(vector<int>* platforms,BoardEventHandler callback);
+    void getPlatformInfo(int platforms,AuthEventHandler callback);
 	/**
 	 * 直接分享到某个平台，不打开分享面板和内容编辑页面
 	 * @param platform 要分享到的目标平台，参考CCUMTypeDef.h中的Platform枚举定义

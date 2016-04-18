@@ -67,38 +67,38 @@ void authCallbackaa(int platform, int stCode, map<string, string>& data) {
  * @param platform 要分享到的目标平台
  * @param stCode 返回码, 200代表分享成功, 100代表开始分享
  * @param errorMsg 分享失败时的错误信息,android平台没有错误信息
- */
-void shareCallback(int platform, int stCode, string& errorMsg) {
-	HelloWorld* hwLayer =
-			(HelloWorld*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(
-					layerTag);
-	CCLabelTTF* item = (CCLabelTTF*) hwLayer->getChildByTag(labelTag);
-	CCLog("#### callback!!!!!!");
-	string result = "";
-	if (stCode == 100) {
-		result = "开始分享";
-		CCLog("#### HelloWorld 开始分享");
-	} else if (stCode == 200) {
-		result = "分享成功";
-		CCLog("#### HelloWorld 分享成功 --> Cocos2d-x SDK ");
-	} else {
-		result = "分享失败";
-        CCLog("#### HelloWorld 分享出错 --> Cocos2d-x SDK ");
-        cout << errorMsg << endl;
-	}
+// */
+//void shareCallback(int platform, int stCode, string& errorMsg) {
+//	HelloWorld* hwLayer =
+//			(HelloWorld*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(
+//					layerTag);
+//	CCLabelTTF* item = (CCLabelTTF*) hwLayer->getChildByTag(labelTag);
+//	CCLog("#### callback!!!!!!");
+//	string result = "";
+//	if (stCode == 100) {
+//		result = "开始分享";
+//		CCLog("#### HelloWorld 开始分享");
+//	} else if (stCode == 200) {
+//		result = "分享成功";
+//		CCLog("#### HelloWorld 分享成功 --> Cocos2d-x SDK ");
+//	} else {
+//		result = "分享失败";
+//        CCLog("#### HelloWorld 分享出错 --> Cocos2d-x SDK ");
+//        cout << errorMsg << endl;
+//	}
+//
+//	istringstream is;
+//	is >> platform;
+//	result.append(is.str());
+//	CCLog("#### callback!!!!!! %s\n",result.c_str());
+//	item->setString(result.c_str());
+//	CCLog("platform num is : %d, %d", platform, stCode);
+//
+//}
 
-	istringstream is;
-	is >> platform;
-	result.append(is.str());
-	CCLog("#### callback!!!!!! %s\n",result.c_str());
-	item->setString(result.c_str());
-	CCLog("platform num is : %d, %d", platform, stCode);
-
-}
-
-void shareCallBack(int platform, int stCode, const char * errorMsg) {
-	printf("%s\n", errorMsg);
-}
+//void shareCallBack(int platform, int stCode, const char * errorMsg) {
+//	printf("%s\n", errorMsg);
+//}
 
 void authCallBack(int platform, int stCode, const char* usid,
 		const char *token) {
@@ -167,9 +167,9 @@ bool HelloWorld::init() {
 					origin.y + pCloseItem->getContentSize().height / 2));
 
 	// 友盟share button, 参数1为正常情况下的图片, 参数2为用户点击后的图片, 参数3为友盟app key, 参数四为分享回调.
-	UMShareButton *shareButton = UMShareButton::create("share.png",
-			"CloseSelected.png", "4eaee02c527015373b000003",
-			share_selector(shareCallback));
+//	UMShareButton *shareButton = UMShareButton::create("share.png",
+//			"CloseSelected.png", "4eaee02c527015373b000003",
+//			share_selector(shareCallback));
 	vector<int>* platforms = new vector<int>();
 	platforms->push_back(SINA);
 	platforms->push_back(FACEBOOK);
@@ -180,23 +180,23 @@ bool HelloWorld::init() {
 	platforms->push_back(YIXIN);
 	platforms->push_back(WEIXIN);
 	// 设置平台
-	shareButton->setPlatforms(platforms);
-	// 设置分享内容
-	shareButton->setShareContent("这是通过UMShareButton设置的分享内容");
+//	shareButton->setPlatforms(platforms);
+//	// 设置分享内容
+//	shareButton->setShareContent("这是通过UMShareButton设置的分享内容");
+//
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+//
+//	shareButton->setShareImage(NULL);
+//
+//#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+//
+//	shareButton->setShareImage("share.png");
+//
+//#endif
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-
-	shareButton->setShareImage(NULL);
-
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-
-	shareButton->setShareImage("share.png");
-
-#endif
-
-	// 设置分享回调
-	shareButton->setShareCallback(share_selector(shareCallback));
-	shareButton->setPosition(ccp(480, 150));
+//	// 设置分享回调
+//	shareButton->setShareCallback(share_selector(shareCallback));
+//	shareButton->setPosition(ccp(480, 150));
 
 	CCMenuItemFont *umshareTextButton = CCMenuItemFont::create("友盟ShareButton");
 	umshareTextButton->setPosition(ccp(480, 60));
@@ -205,7 +205,7 @@ bool HelloWorld::init() {
 	CCMenu* pMenu = CCMenu::create();
 	pMenu->addChild(pCloseItem, 1);
 	// 友盟share button
-	pMenu->addChild(shareButton, 1);
+	//pMenu->addChild(shareButton, 1);
 	pMenu->addChild(umshareTextButton, 1);
 
 	// 文字按钮

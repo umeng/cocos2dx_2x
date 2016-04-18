@@ -8,6 +8,14 @@
 
 #include "GetScene.h"
 #include "EntranceScene.h"
+#include <iostream>
+#include <vector>
+#include <map>
+#include <string>
+#include "Cocos2dx/Common/CCUMSocialSDK.h"
+USING_NS_CC;
+
+USING_NS_UM_SOCIAL;
 USING_NS_CC;
 
 CCScene* Get::scene()
@@ -77,14 +85,40 @@ bool Get::init()
     
     return true;
 }
-void Get::qqGet(CCObject* pSender) {
+void getCallback(int platform, int stCode, map<string, string>& data) {
+    if (stCode == 100) {
+        CCLog("#### 授权开始");
+    } else if (stCode == 200) {
+        CCLog("#### 授权完成");
+    } else if (stCode == 0) {
+        CCLog("#### 授权出错");
+    } else if (stCode == -1) {
+        CCLog("#### 取消授权");
+    }
     
+    // 输入授权数据, 如果授权失败,则会输出错误信息
+    map<string, string>::iterator it = data.begin();
+    for (; it != data.end(); ++it) {
+        CCLog("#### data  %s -> %s.", it->first.c_str(), it->second.c_str());
+    }
+}
+void Get::qqGet(CCObject* pSender) {
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    
+    sdk->getPlatformInfo(QQ, auth_selector(getCallback));
+
 }
 void Get::sinaGet(CCObject* pSender) {
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
     
+    sdk->getPlatformInfo(SINA, auth_selector(getCallback));
+
 }
 void Get::wxGet(CCObject* pSender) {
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
     
+    sdk->getPlatformInfo(WEIXIN, auth_selector(getCallback));
+
 }
 
 void Get::menuCloseCallback(CCObject* pSender)

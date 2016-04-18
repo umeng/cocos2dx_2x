@@ -181,7 +181,14 @@ bool CCUMSocialSDK::isAuthorized(int platform) {
 
 #endif
 }
-
+void CCUMSocialSDK::getPlatformInfo(int platforms,AuthEventHandler callback) {
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+  
+	getPlatformInfos(platforms);
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+#endif
+}
 /*
  * 打开分享面板
  * @param text 要分享的文字内容
