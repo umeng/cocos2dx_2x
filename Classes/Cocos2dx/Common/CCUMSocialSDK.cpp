@@ -184,7 +184,7 @@ bool CCUMSocialSDK::isAuthorized(int platform) {
 void CCUMSocialSDK::getPlatformInfo(int platforms,AuthEventHandler callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
   
-	getPlatformInfos(platforms);
+	getPlatformInfos(platforms,callback);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
     //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
 #endif

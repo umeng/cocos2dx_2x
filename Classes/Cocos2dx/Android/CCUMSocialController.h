@@ -36,7 +36,7 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeSta
  * Signature: ([Ljava/lang/String;I)V
  */
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeComplete(
-		JNIEnv *, jclass, jint, jint, jobjectArray);
+		JNIEnv *, jclass, jint, jint, jobjectArray,jobjectArray );
 
 /*
  * Class:     com_umeng_social_CCUMSocialController
@@ -100,7 +100,7 @@ bool isPlatformAuthorized(int platform);
  */
 void doOpenShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback);
 void doCutomOpenShare(vector<int>* platforms,BoardEventHandler callback) ;
-void getPlatformInfos(int platform) ;
+void getPlatformInfos(int platform,AuthEventHandler callback) ;
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义
@@ -226,7 +226,7 @@ void setPlatformDepShareContent(int platform, const char* text,
 //  */
 // void supportPlatform(int platform) ;
 
-void getData(JNIEnv *env, jobjectArray data, map<string, string>& outputMap);
+void getData(JNIEnv *env, jobjectArray data,jobjectArray key, map<string, string>& outputMap);
 
 #ifdef __cplusplus
 }

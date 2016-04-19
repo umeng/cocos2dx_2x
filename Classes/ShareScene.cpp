@@ -16,14 +16,15 @@
 USING_NS_CC;
 
 USING_NS_UM_SOCIAL;
-
+int sharelabelTag = 222;
+int sharelayerTag = 111;
 CCScene* Share::scene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
     
     Share *layer = Share::create();
-    
+    layer->setTag(sharelayerTag);
     // add layer as a child to scene
     scene->addChild(layer);
     
@@ -89,7 +90,17 @@ bool Share::init()
         pMenu->addChild(boardcustomButton, 1);
     pMenu->setPosition(CCPointZero);
     this->addChild(pMenu, 1);
-    
+    CCLabelTTF* sharelabel = CCLabelTTF::create("Umeng Social Cocos2d-x SDK",
+      			"Arial", 34);
+    sharelabel->setTag(sharelabelTag);
+      	// position the label on the center of the screen
+    sharelabel->setPosition(
+      			ccp(origin.x + visibleSize.width / 2,
+      					origin.y + visibleSize.height
+      							- pLabel->getContentSize().height-50));
+
+      	// add the label as a child to this layer
+      	this->addChild(sharelabel, 1);
     return true;
 }
 /*
@@ -101,16 +112,25 @@ bool Share::init()
 void shareCallback(int platform, int stCode, string& errorMsg) {
     
        CCLog("#### callback!!!!!!");
+       Share* hwLayer =(Share*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(
+                       					sharelayerTag);
+                       	CCLabelTTF* item = (CCLabelTTF*) hwLayer->getChildByTag(sharelabelTag);
     string result = "";
-    if (stCode == 100) {
-        result = "开始分享";
-        CCLog("#### HelloWorld 开始分享");
-    } else if (stCode == 200) {
+   if (stCode == 200) {
         result = "分享成功";
         CCLog("#### HelloWorld 分享成功 --> Cocos2d-x SDK ");
-    } else {
+
+                 	item->setString("share success");
+    } else if (stCode == -1) {
+    	 result = "分享取消";
+    	   CCLog("#### HelloWorld 分享取消 --> Cocos2d-x SDK ");
+
+    	                 	item->setString("share cancel");
+    }
+    	else {
         result = "分享失败";
         CCLog("#### HelloWorld 分享出错 --> Cocos2d-x SDK ");
+        item->setString("share fail");
         cout << errorMsg << endl;
     }
     

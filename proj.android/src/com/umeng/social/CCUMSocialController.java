@@ -219,7 +219,7 @@ public class CCUMSocialController {
 							public void run() {
 								// 删除授权的回调, 开发者可以通过字符串来判断
 								OnAuthorizeComplete(platform, StatusCode.ST_CODE_SUCCESSED,
-										new String[]{"deleteOauth"});
+										new String[]{"deleteOauth"},new String[]{"deleteOauth"});
 							}
 						});
 					}
@@ -232,7 +232,7 @@ public class CCUMSocialController {
 							public void run() {
 								// 删除授权的回调, 开发者可以通过字符串来判断
 								OnAuthorizeComplete(platform, StatusCode.ST_CODE_ERROR,
-										new String[]{throwable.getMessage()});
+										new String[]{throwable.getMessage()},new String[]{"deleteOauth"});
 							}
 						});
 					}
@@ -907,36 +907,40 @@ public static void supportSsoAuthorization(int i,String URL) {
 		@Override
 		public void onComplete(final SHARE_MEDIA share_media, int i, final Map<String, String> map) {
 			// 运行在gl线程
+			
 			runOnOpenGLThread(new Runnable() {
 
 				@Override
 				public void run() {
+					Log.e("authcallback ff");
 					OnAuthorizeComplete(getPlatformInt(share_media),
-							StatusCode.ST_CODE_SUCCESSED, getAuthMap(map));
+							StatusCode.ST_CODE_SUCCESSED, getAuthMap(map),getAuthKey(map));
 				}
 			});
 		}
 
 		@Override
 		public void onError(final SHARE_MEDIA share_media, int i, final Throwable throwable) {
+			
 			runOnOpenGLThread(new Runnable() {
 
 				@Override
 				public void run() {
 					OnAuthorizeComplete(getPlatformInt(share_media), 0,
-							new String[] { throwable.getMessage() });
+							new String[] { throwable.getMessage() },new String[] { "error" });
 				}
 			});
 		}
 
 		@Override
 		public void onCancel(final SHARE_MEDIA share_media, int i) {
+			
 			runOnOpenGLThread(new Runnable() {
 
 				@Override
 				public void run() {
 					OnAuthorizeComplete(getPlatformInt(share_media), -1,
-							new String[] { "cancel" });
+							new String[] { "cancel" },new String[] { "cancel" });
 				}
 			});
 		}
@@ -970,26 +974,62 @@ public static void supportSsoAuthorization(int i,String URL) {
 			}
 		}
 		private String[] getAuthMap(Map<String, String> data) {
-			if (data != null
-					&& (data.containsKey("access_token") || data
-					.containsKey("access_secret"))) {
-				String[] authData = new String[3];
-				// 有的字段为secret
-				if (data.containsKey("access_secret")) {
-					authData[0] = data.get("access_secret");
-				} else {
-					authData[0] = data.get("access_token");
-				}
-				if (data.containsKey("uid")) {
-					authData[1] = data.get("uid");
-				} else {
-					authData[1] = "";
-				}
-
+//			if (data != null
+//					&& (data.containsKey("access_token") || data
+//					.containsKey("access_secret"))) {
+//				String[] authData = new String[3];
+//				// 有的字段为secret
+//				if (data.containsKey("access_secret")) {
+//					authData[0] = data.get("access_secret");
+//				} else {
+//					authData[0] = data.get("access_token");
+//				}
+//				if (data.containsKey("uid")) {
+//					authData[1] = data.get("uid");
+//				} else {
+//					authData[1] = "";
+//				}
+//
+//				return authData;
+//			} else {
+				String[] authData = new String[data.size()];
+				int i = 0;
+				for (String key : data.keySet()) {
+					Log.e("xxxxxx stringvalue="+ data.get(key));
+					authData[i] = data.get(key);
+					i++;
+					  }
 				return authData;
-			} else {
-				return new String[] {};
-			}
+//			}
+		}
+		private String[] getAuthKey(Map<String, String> data) {
+//			if (data != null
+//					&& (data.containsKey("access_token") || data
+//					.containsKey("access_secret"))) {
+//				String[] authData = new String[3];
+//				// 有的字段为secret
+//				if (data.containsKey("access_secret")) {
+//					authData[0] = data.get("access_secret");
+//				} else {
+//					authData[0] = data.get("access_token");
+//				}
+//				if (data.containsKey("uid")) {
+//					authData[1] = data.get("uid");
+//				} else {
+//					authData[1] = "";
+//				}
+//
+//				return authData;
+//			} else {
+				String[] authData = new String[data.size()];
+				int i = 0;
+				for (String key : data.keySet()) {
+					Log.e("xxxxxx stringkey="+key);
+					authData[i] = key;
+					i++;
+					  }
+				return authData;
+//			}
 		}
 	};
 
@@ -1007,7 +1047,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 	 *            平台
 	 */
 	private native static void OnAuthorizeComplete(int platform, int stCode,
-			String[] value);
+			String[] value,String[] key);
 
 	/******************************************************************************
 	 * 分享回调接口,会调用native层对应的回调方法, 开发者可以在Java或者native层进行相应的处理
@@ -1044,16 +1084,16 @@ public static void supportSsoAuthorization(int i,String URL) {
 
 				@Override
 				public void run() {
-					if (share_media == SHARE_MEDIA.QZONE) {
-						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_SUCCESSED,
-								share_media.toString()+"share cancle");
-
-					}
-					else {
+//					if (share_media == SHARE_MEDIA.QZONE) {
+//						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_SUCCESSED,
+//								share_media.toString()+"share cancle");
+//
+//					}
+//					else {
 						
-						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR_CANCEL,
+						OnShareComplete(getPlatformInt(share_media), -1,
 								share_media.toString()+"share cancle");
-					}
+//					}
 				}
 			});
 		}

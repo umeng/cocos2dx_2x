@@ -46,11 +46,11 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeSta
  */
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeComplete(
 		JNIEnv *env, jclass clz, jint platform, jint stCode,
-		jobjectArray data) {
+		jobjectArray data,jobjectArray key) {
 	if (authCallback != NULL) {
 		map<string, string> dataMap;
 		// 获取数据
-		getData(env, data, dataMap);
+		getData(env, data, key,dataMap);
 		authCallback(platform, stCode, dataMap);
 	}
 
@@ -60,24 +60,36 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeCom
  *
  *
  */
-void getData(JNIEnv *env, jobjectArray data, map<string, string>& outputMap) {
+void getData(JNIEnv *env, jobjectArray data,jobjectArray key, map<string, string>& outputMap) {
 	jsize count = env->GetArrayLength(data);
 
-	if (count > 1) {
-		// token
-		jstring token = (jstring) env->GetObjectArrayElement(data, 0);
-		// uid
-		jstring uid = (jstring) env->GetObjectArrayElement(data, 1);
-		const char* pToken = env->GetStringUTFChars(token, NULL);
-		const char* pUid = env->GetStringUTFChars(uid, NULL);
-		outputMap.insert(make_pair("token", pToken));
-		outputMap.insert(make_pair("uid", pUid));
-	} else if (count == 1) {
-		// 错误消息
-		jstring msg = (jstring) env->GetObjectArrayElement(data, 0);
-		const char* pMsg = env->GetStringUTFChars(msg, NULL);
-		outputMap.insert(make_pair("msg", pMsg));
+	for(int i=0;i<env->GetArrayLength(data);i++){
+		jsize temp = i;
+		jstring jkey = (jstring) env->GetObjectArrayElement(key, temp);
+		jstring value = (jstring) env->GetObjectArrayElement(data,temp);
+		if(jkey == NULL ||value == NULL){
+			continue;
+		}
+
+		const char* pkey = env->GetStringUTFChars(jkey, NULL);
+		const char* pvalue = env->GetStringUTFChars(value, NULL);
+		outputMap.insert(make_pair( pkey, pvalue));
 	}
+//	if (count > 1) {
+//		// token
+//		jstring token = (jstring) env->GetObjectArrayElement(data, 0);
+//		// uid
+//		jstring uid = (jstring) env->GetObjectArrayElement(data, 1);
+//		const char* pToken = env->GetStringUTFChars(token, NULL);
+//		const char* pUid = env->GetStringUTFChars(uid, NULL);
+//		outputMap.insert(make_pair("token", pToken));
+//		outputMap.insert(make_pair("uid", pUid));
+//	} else if (count == 1) {
+//		// 错误消息
+//		jstring msg = (jstring) env->GetObjectArrayElement(data, 0);
+//		const char* pMsg = env->GetStringUTFChars(msg, NULL);
+//		outputMap.insert(make_pair("msg", pMsg));
+//	}
 }
 
 /*
@@ -186,8 +198,9 @@ bool isPlatformAuthorized(int platform) {
 	}
 	return isAuthorized;
 }
-void getPlatformInfos(int platform) {
+void getPlatformInfos(int platform,AuthEventHandler callback) {
 	JniMethodInfo mi;
+	authCallback = callback;
 	bool isHave = getMethod(mi, "getplatformInfo", "(I)V");
 	jboolean isAuthorized = false;
 	if (isHave) {

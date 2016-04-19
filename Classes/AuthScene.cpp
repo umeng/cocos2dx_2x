@@ -22,14 +22,15 @@ USING_NS_UM_SOCIAL;
 #else
 #define PATH_SEPARATOR ':'
 #endif
-
+int labelTag = 456;
+int layerTag = 123;
 CCScene* Auth::scene()
 {
     // 'scene' is an autorelease object
     CCScene *scene = CCScene::create();
     
     Auth *layer = Auth::create();
-    
+    layer->setTag(layerTag);
     // add layer as a child to scene
     scene->addChild(layer);
     
@@ -129,7 +130,17 @@ bool Auth::init()
     pMenu->setPosition(CCPointZero);
 
     this->addChild(pMenu, 1);
-    
+    CCLabelTTF* authlabel = CCLabelTTF::create("Umeng Social Cocos2d-x SDK",
+    			"Arial", 34);
+    authlabel->setTag(labelTag);
+    	// position the label on the center of the screen
+    authlabel->setPosition(
+    			ccp(origin.x + visibleSize.width / 2,
+    					origin.y + visibleSize.height
+    							- pLabel->getContentSize().height-50));
+
+    	// add the label as a child to this layer
+    	this->addChild(authlabel, 1);
     return true;
 }
 /*
@@ -139,17 +150,26 @@ bool Auth::init()
  * @param data 授权时返回的数据
  */
 void authCallback(int platform, int stCode, map<string, string>& data) {
-    if (stCode == 100) {
-        CCLog("#### 授权开始");
-    } else if (stCode == 200) {
+	CCLog("#### 授权回调");
+	 Auth* hwLayer =(Auth*) CCDirector::sharedDirector()->getRunningScene()->getChildByTag(
+	           					layerTag);
+	           	CCLabelTTF* item = (CCLabelTTF*) hwLayer->getChildByTag(labelTag);
+	           	string result = "";
+	if (stCode == 200) {
         CCLog("#### 授权完成");
+        result = "授权完成";
+//           	item->setString("auth or delete success");
     } else if (stCode == 0) {
+//    	item->setString("auth or delete fail");
+    	 result = "授权出错";
         CCLog("#### 授权出错");
     } else if (stCode == -1) {
+//    	item->setString("auth or delete cancel");
+    	 result = "取消授权";
         CCLog("#### 取消授权");
     }
-    
-    // 输入授权数据, 如果授权失败,则会输出错误信息
+
+	item->setString(result.c_str());
     map<string, string>::iterator it = data.begin();
     for (; it != data.end(); ++it) {
         CCLog("#### data  %s -> %s.", it->first.c_str(), it->second.c_str());
