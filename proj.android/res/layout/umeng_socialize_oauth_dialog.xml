@@ -21,7 +21,7 @@
             android:layout_height="20dp"
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
-            android:button="@drawable/umeng_socialize_oauth_check"
+            android:visibility="gone"
             android:checked="true" />
 
         <TextView
@@ -32,6 +32,7 @@
             android:layout_toRightOf="@id/umeng_socialize_follow_check"
             android:textSize="16sp"
             android:text="关注官方微博"
+            android:visibility="gone"
             android:textColor="#f8f8f8" />
     </RelativeLayout>
 

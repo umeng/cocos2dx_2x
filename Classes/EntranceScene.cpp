@@ -55,17 +55,19 @@ bool Entrance::init()
 
     CCMenuItemFont *authButton = CCMenuItemFont::create("授权", this,
                                                              menu_selector(Entrance::gotoAuth));
-    authButton->setPosition(ccp(visibleSize.width/2, 480));
-    
+
+    authButton->setPosition(ccp(visibleSize.width/2, 680));
+
     // 底层API分享
     CCMenuItemFont *shareButton = CCMenuItemFont::create("分享", this,
                                                               menu_selector(Entrance::gotoShare));
-    shareButton->setPosition(ccp(visibleSize.width/2, 400));
-    
+    shareButton->setPosition(ccp(visibleSize.width/2, 500));
+
     // 授权某平台
     CCMenuItemFont *getInfoButton = CCMenuItemFont::create("获取用户信息", this,
                                                             menu_selector(Entrance::gotoGetPlatform));
     getInfoButton->setPosition(ccp(visibleSize.width/2, 320));
+
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",

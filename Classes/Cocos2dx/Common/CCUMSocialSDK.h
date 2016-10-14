@@ -29,7 +29,7 @@ namespace social {
  */
 class CCUMSocialSDK {
 private:
-	CCUMSocialSDK(const char* umAppKey);
+	CCUMSocialSDK();
 	void initSDK();
 public:
 
@@ -37,7 +37,7 @@ public:
 	 * 构建CCUMSocialSDK对象
 	 * @param appKey 友盟app key
 	 */
-	static CCUMSocialSDK* create(const char* appKey);
+	static CCUMSocialSDK* create();
 
 	/*
 	 * 设置友盟app key

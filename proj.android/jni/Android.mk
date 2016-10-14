@@ -47,10 +47,10 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/EntranceScene.cpp \
                    ../../Classes/ShareScene.cpp \
                    ../../Classes/GetScene.cpp \
-                   ../../Classes/Cocos2dx/Android/CCUMSocialController.cpp  \
+                   ../../Classes/Cocos2dx/Android/CCUMSocialController.cpp \
                    ../../Classes/Cocos2dx/ShareButton/UMShareButton.cpp \
-                   ../../Classes/Cocos2dx/Common/CCUMSocialSDK.cpp 
-                 
+                   ../../Classes/Cocos2dx/Common/CCUMSocialSDK.cpp
+
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/../../Classes
 

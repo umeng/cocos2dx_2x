@@ -48,7 +48,7 @@ UMShareButton::UMShareButton(const char *normalImage, const char *selectedImage,
 			menu_selector(UMShareButton::shareCallback));
 #endif
 	// 构造CCUMSocialSDK对象
-	mSocialSDK = CCUMSocialSDK::create(umAppKey);
+	mSocialSDK = CCUMSocialSDK::create();
 }
 
 /*

@@ -449,7 +449,7 @@ public class CCUMSocialController {
 	 * @param text
 	 */
 	public static void getplatformInfo(final int platform) {
-		
+		Log.e("xxxx run");
 		checkActivity();
 
 		// 在UI线程执行授权操作
@@ -457,8 +457,8 @@ public class CCUMSocialController {
 
 			@Override
 			public void run() {
-//				OnAuthorizeStart(platform);
-				Log.e("xxxx run");
+
+				
 				mShareAPI.getPlatformInfo(mActivity, getPlatform(platform), mAuthListener);
 
 			}
@@ -912,7 +912,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 
 				@Override
 				public void run() {
-					Log.e("authcallback ff");
+					Log.e("xxxxxxauthcallback ff");
 					OnAuthorizeComplete(getPlatformInt(share_media),
 							StatusCode.ST_CODE_SUCCESSED, getAuthMap(map),getAuthKey(map));
 				}
@@ -974,24 +974,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 			}
 		}
 		private String[] getAuthMap(Map<String, String> data) {
-//			if (data != null
-//					&& (data.containsKey("access_token") || data
-//					.containsKey("access_secret"))) {
-//				String[] authData = new String[3];
-//				// 有的字段为secret
-//				if (data.containsKey("access_secret")) {
-//					authData[0] = data.get("access_secret");
-//				} else {
-//					authData[0] = data.get("access_token");
-//				}
-//				if (data.containsKey("uid")) {
-//					authData[1] = data.get("uid");
-//				} else {
-//					authData[1] = "";
-//				}
-//
-//				return authData;
-//			} else {
+
 				String[] authData = new String[data.size()];
 				int i = 0;
 				for (String key : data.keySet()) {
@@ -1000,7 +983,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 					i++;
 					  }
 				return authData;
-//			}
+
 		}
 		private String[] getAuthKey(Map<String, String> data) {
 //			if (data != null

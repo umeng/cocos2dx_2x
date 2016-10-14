@@ -56,17 +56,17 @@ bool Get::init()
     
     CCMenuItemFont *authButton = CCMenuItemFont::create("qq", this,
                                                         menu_selector(Get::qqGet));
-    authButton->setPosition(ccp(visibleSize.width/2, 480));
+    authButton->setPosition(ccp(visibleSize.width/2, 680));
     
     // 底层API分享
     CCMenuItemFont *shareButton = CCMenuItemFont::create("新浪", this,
                                                          menu_selector(Get::sinaGet));
-    shareButton->setPosition(ccp(visibleSize.width/2, 400));
+    shareButton->setPosition(ccp(visibleSize.width/2, 540));
     
     // 授权某平台
     CCMenuItemFont *getInfoButton = CCMenuItemFont::create("微信", this,
                                                            menu_selector(Get::wxGet));
-    getInfoButton->setPosition(ccp(visibleSize.width/2, 320));
+    getInfoButton->setPosition(ccp(visibleSize.width/2, 400));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
@@ -120,19 +120,19 @@ void getCallback(int platform, int stCode, map<string, string>& data) {
     item->setString(result.c_str());
 }
 void Get::qqGet(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
-    
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
+    CCLog("#### qqGet");
     sdk->getPlatformInfo(QQ, auth_selector(getCallback));
 
 }
 void Get::sinaGet(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
     sdk->getPlatformInfo(SINA, auth_selector(getCallback));
 
 }
 void Get::wxGet(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
     sdk->getPlatformInfo(WEIXIN, auth_selector(getCallback));
 

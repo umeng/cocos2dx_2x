@@ -39,7 +39,7 @@
             android:id="@+id/umeng_socialize_title_middle_left"
             android:layout_width="98dp"
             android:layout_height="fill_parent"
-            android:background="@drawable/umeng_socialize_title_tab_button_left"
+
             android:text="@string/umeng_socialize_near_At"
             android:textColor="#ffffff"
             android:textSize="12sp" />
@@ -49,7 +49,7 @@
             android:layout_width="98dp"
             android:layout_height="fill_parent"
             android:layout_toRightOf="@id/umeng_socialize_title_middle_left"
-            android:background="@drawable/umeng_socialize_title_tab_button_right"
+
             android:text="@string/umeng_socialize_friends"
             android:textColor="#ffffff"
             android:textSize="12sp" />

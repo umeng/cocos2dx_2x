@@ -57,52 +57,52 @@ bool Auth::init()
     
     // add the label as a child to this layer
     this->addChild(pLabel, 1);
-
+    int width = 200;
     CCMenuItemFont *qqButton = CCMenuItemFont::create("qq授权", this,
                                                         menu_selector(Auth::qqAuth));
-    qqButton->setPosition(ccp(visibleSize.width/2-qqButton->getContentSize().width, 480));
+    qqButton->setPosition(ccp(visibleSize.width/2-width, 780));
     
     // 底层API分享
     CCMenuItemFont *sinaButton = CCMenuItemFont::create("新浪授权", this,
                                                          menu_selector(Auth::sinaAuth));
-    sinaButton->setPosition(ccp(visibleSize.width/2-sinaButton->getContentSize().width, 400));
+    sinaButton->setPosition(ccp(visibleSize.width/2-width, 640));
     
     // 授权某平台
     CCMenuItemFont *wxButton = CCMenuItemFont::create("微信授权", this,
                                                            menu_selector(Auth::wxAuth));
-    wxButton->setPosition(ccp(visibleSize.width/2-wxButton->getContentSize().width, 320));
+    wxButton->setPosition(ccp(visibleSize.width/2-width,500));
     CCMenuItemFont *doubanButton = CCMenuItemFont::create("豆瓣授权", this,
                                                       menu_selector(Auth::doubanAuth));
-    doubanButton->setPosition(ccp(visibleSize.width/2-doubanButton->getContentSize().width, 240));
+    doubanButton->setPosition(ccp(visibleSize.width/2-width, 360));
     CCMenuItemFont *renrenButton = CCMenuItemFont::create("人人授权", this,
                                                       menu_selector(Auth::renrenAuth));
-    renrenButton->setPosition(ccp(visibleSize.width/2-renrenButton->getContentSize().width, 160));
+    renrenButton->setPosition(ccp(visibleSize.width/2-width, 220));
     CCMenuItemFont *facebookButton = CCMenuItemFont::create("facebook授权", this,
                                                       menu_selector(Auth::facebookAuth));
-    facebookButton->setPosition(ccp(visibleSize.width/2-facebookButton->getContentSize().width, 80));
+    facebookButton->setPosition(ccp(visibleSize.width/2-width, 80));
     
     CCMenuItemFont *delqqButton = CCMenuItemFont::create("qq删除授权", this,
                                                         menu_selector(Auth::qqAuthDel));
-    delqqButton->setPosition(ccp(visibleSize.width/2+delqqButton->getContentSize().width, 480));
+    delqqButton->setPosition(ccp(visibleSize.width/2+width, 780));
     
     // 底层API分享
     CCMenuItemFont *delsinaButton = CCMenuItemFont::create("新浪删除授权", this,
                                                          menu_selector(Auth::sinaAuthDel));
-    delsinaButton->setPosition(ccp(visibleSize.width/2+delsinaButton->getContentSize().width, 400));
+    delsinaButton->setPosition(ccp(visibleSize.width/2+width, 640));
     
     // 授权某平台
     CCMenuItemFont *delwxButton = CCMenuItemFont::create("微信删除授权", this,
                                                            menu_selector(Auth::wxAuthDel));
-    delwxButton->setPosition(ccp(visibleSize.width/2+delwxButton->getContentSize().width, 320));
+    delwxButton->setPosition(ccp(visibleSize.width/2+width, 500));
     CCMenuItemFont *deldoubanButton = CCMenuItemFont::create("豆瓣删除授权", this,
                                                           menu_selector(Auth::doubanAuthDel));
-    deldoubanButton->setPosition(ccp(visibleSize.width/2+doubanButton->getContentSize().width, 240));
+    deldoubanButton->setPosition(ccp(visibleSize.width/2+width, 360));
     CCMenuItemFont *delrenrenButton = CCMenuItemFont::create("人人删除授权", this,
                                                           menu_selector(Auth::renrenAuthDel));
-    delrenrenButton->setPosition(ccp(visibleSize.width/2+renrenButton->getContentSize().width, 160));
+    delrenrenButton->setPosition(ccp(visibleSize.width/2+width, 220));
     CCMenuItemFont *delfacebookButton = CCMenuItemFont::create("facebook删除授权", this,
                                                             menu_selector(Auth::facebookAuthDel));
-    delfacebookButton->setPosition(ccp(visibleSize.width/2+facebookButton->getContentSize().width, 80));
+    delfacebookButton->setPosition(ccp(visibleSize.width/2+width, 80));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
@@ -158,6 +158,14 @@ void authCallback(int platform, int stCode, map<string, string>& data) {
 	if (stCode == 200) {
         CCLog("#### 授权完成");
         result = "授权完成";
+
+        map<string, string>::iterator it = data.begin();
+
+        	for (; it != data.end(); ++it) {
+        		CCLog("#### data  %s -> %s.", it->first.c_str(), it->second.c_str());
+
+        	}
+
 //           	item->setString("auth or delete success");
     } else if (stCode == 0) {
 //    	item->setString("auth or delete fail");
@@ -167,18 +175,20 @@ void authCallback(int platform, int stCode, map<string, string>& data) {
 //    	item->setString("auth or delete cancel");
     	 result = "取消授权";
         CCLog("#### 取消授权");
+    }else {
+    	   CCLog("#### 未知类型");
     }
 
 	item->setString(result.c_str());
-    map<string, string>::iterator it = data.begin();
-    for (; it != data.end(); ++it) {
-        CCLog("#### data  %s -> %s.", it->first.c_str(), it->second.c_str());
-    }
+//    map<string, string>::iterator it = data.begin();
+//    for (; it != data.end(); ++it) {
+//        CCLog("#### data  %s -> %s.", it->first.c_str(), it->second.c_str());
+//    }
 }
-void authCallBack(int platform, int stCode, const char* usid,
-                  const char *token) {
-    printf("%d %d %s %s", platform, stCode, usid, token);
-}
+//void authCallBack(int platform, int stCode, const char* usid,
+//                  const char *token) {
+//    printf("%d %d %s %s", platform, stCode, usid, token);
+//}
 
 
 
@@ -186,62 +196,62 @@ void authCallBack(int platform, int stCode, const char* usid,
 
 
 void Auth::qqAuth(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("授权");
     sdk->authorize(QQ, auth_selector(authCallback));
 }
 void Auth::sinaAuth(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("授权");
     sdk->authorize(SINA, auth_selector(authCallback));
 }
 void Auth::wxAuth(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("授权");
     sdk->authorize(WEIXIN, auth_selector(authCallback));
 }
 void Auth::qqAuthDel(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(QQ, auth_selector(authCallback));
 }
 void Auth::sinaAuthDel(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(SINA, auth_selector(authCallback));
 }
 void Auth::wxAuthDel(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(WEIXIN, auth_selector(authCallback));
 }
 void Auth::doubanAuth(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("授权");
     sdk->authorize(DOUBAN, auth_selector(authCallback));
 }
 void Auth::renrenAuth(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     CCLog("授权");
     sdk->authorize(RENREN, auth_selector(authCallback));
 }
 void Auth::facebookAuth(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("授权");
     sdk->authorize(FACEBOOK, auth_selector(authCallback));
 }
 void Auth::doubanAuthDel(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(DOUBAN, auth_selector(authCallback));
 }
 void Auth::renrenAuthDel(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(RENREN, auth_selector(authCallback));
 }
 void Auth::facebookAuthDel(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(FACEBOOK, auth_selector(authCallback));
 }

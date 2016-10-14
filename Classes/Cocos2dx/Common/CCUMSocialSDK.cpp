@@ -36,11 +36,11 @@ CCUMSocialSDK* CCUMSocialSDK::_instance = NULL;
  * 构造函数, 必须传递友盟appKey
  * @param appKey 友盟appKey
  */
-CCUMSocialSDK::CCUMSocialSDK(const char* appKey) :
+CCUMSocialSDK::CCUMSocialSDK() :
 		mPlatforms(new vector<int>()), _wrapperType("Cocos2d-x"), _wrapperVersion(
 				"2.0") {
 
-	setAppKey(appKey);
+
 	initSDK();
 }
 
@@ -64,12 +64,10 @@ void CCUMSocialSDK::initSDK() {
  * @param appKey 友盟app key
  */
 
-CCUMSocialSDK* CCUMSocialSDK::create(const char* appKey) {
+CCUMSocialSDK* CCUMSocialSDK::create() {
 
 	if (_instance == NULL) {
-		_instance = new CCUMSocialSDK(appKey);
-	} else if (appKey != NULL) {
-		_instance->setAppKey(appKey);
+		_instance = new CCUMSocialSDK();
 	}
 	return _instance;
 }

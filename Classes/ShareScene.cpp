@@ -55,23 +55,23 @@ bool Share::init()
     
     CCMenuItemFont *authButton = CCMenuItemFont::create("qq", this,
                                                         menu_selector(Share::qqShare));
-    authButton->setPosition(ccp(visibleSize.width/2, 480));
+    authButton->setPosition(ccp(visibleSize.width/2,680));
     
     // 底层API分享
     CCMenuItemFont *shareButton = CCMenuItemFont::create("新浪", this,
                                                          menu_selector(Share::sinaShare));
-    shareButton->setPosition(ccp(visibleSize.width/2, 400));
+    shareButton->setPosition(ccp(visibleSize.width/2, 560));
     
     // 授权某平台
     CCMenuItemFont *getInfoButton = CCMenuItemFont::create("微信", this,
                                                            menu_selector(Share::wxShare));
-    getInfoButton->setPosition(ccp(visibleSize.width/2, 320));
+    getInfoButton->setPosition(ccp(visibleSize.width/2, 440));
     CCMenuItemFont *boardButton = CCMenuItemFont::create("打开分享面板", this,
                                                          menu_selector(Share::boardShare));
-    boardButton->setPosition(ccp(visibleSize.width/2, 240));
+    boardButton->setPosition(ccp(visibleSize.width/2, 320));
     CCMenuItemFont *boardcustomButton = CCMenuItemFont::create("打开分享不同内容分享面板", this,
                                                          menu_selector(Share::boardcustomShare));
-    boardcustomButton->setPosition(ccp(visibleSize.width/2, 160));
+    boardcustomButton->setPosition(ccp(visibleSize.width/2, 200));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
@@ -146,7 +146,7 @@ void boardCallback(int platform) {
     
        CCLog("platform num is : %d", platform);
     if (platform == QQ) {
-        CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+        CCUMSocialSDK *sdk = CCUMSocialSDK::create();
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
         sdk->directShare(QQ,
                          "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
@@ -155,6 +155,15 @@ void boardCallback(int platform) {
       
 #endif
 
+    }else{
+    	   CCUMSocialSDK *sdk = CCUMSocialSDK::create();
+    	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    	        sdk->directShare(other,
+    	                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
+    	                         share_selector(shareCallback));
+    	#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+
+    	#endif
     }
     
 }
@@ -162,11 +171,11 @@ void boardCallback(int platform) {
 //    printf("%s\n", errorMsg);
 //}
 void Share::qqShare(CCObject* pSender) {
-    	CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    	CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
     #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     	sdk->directShare(QQ,
-    			"Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"","",
+    			"Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"http://dev.umeng.com","http://dev.umeng.com/images/tab2_1.png",
     			share_selector(shareCallback));
     #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
 //    	sdk->setPlatformShareContent(SINA, "sina share 内容",
@@ -175,12 +184,12 @@ void Share::qqShare(CCObject* pSender) {
     #endif
  }
 void Share::sinaShare(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     /*setSsoAuthorization方法是用来修改新浪的回调地址REDIRECT_URL,如果默认就是http://sns.whalecloud.com，可以不用修改*/
 //    sdk->setSsoAuthorization(SINA, "http://sns.whalecloud.com");
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     sdk->directShare(SINA,
-                     "Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"","",
+                     "Umeng Social Cocos2d-x SDK -->  sinashare   testing","title" ,"","",
                      share_selector(shareCallback));
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     //    	sdk->setPlatformShareContent(SINA, "sina share 内容",
@@ -189,11 +198,11 @@ void Share::sinaShare(CCObject* pSender) {
 #endif
 }
 void Share::wxShare(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     sdk->directShare(WEIXIN,
-                     "Umeng Social Cocos2d-x SDK -->  qqshare   testing", "title" ,"","",
+                     "Umeng Social Cocos2d-x SDK -->  wxshare   testing", "title" ,"","",
                      share_selector(shareCallback));
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     //    	sdk->setPlatformShareContent(SINA, "sina share 内容",
@@ -202,20 +211,16 @@ void Share::wxShare(CCObject* pSender) {
 #endif
 }
 void Share::boardShare(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     vector<int>* platforms = new vector<int>();
     platforms->push_back(SINA);
     platforms->push_back(RENREN);
     platforms->push_back(DOUBAN);
     platforms->push_back(TENCENT_WEIBO);
-    platforms->push_back(INSTAGRAM);
     platforms->push_back(QZONE);
     platforms->push_back(QQ);
     platforms->push_back(SMS);
-    platforms->push_back(YIXIN);
-    platforms->push_back(YIXIN_CIRCLE);
-    platforms->push_back(LAIWANG);
-    platforms->push_back(LAIWANG_CIRCLE);
+
     platforms->push_back(WEIXIN);
     platforms->push_back(WEIXIN_CIRCLE);
     platforms->push_back(TWITTER);
@@ -225,20 +230,17 @@ void Share::boardShare(CCObject* pSender) {
 
 }
 void Share::boardcustomShare(CCObject* pSender) {
-    CCUMSocialSDK *sdk = CCUMSocialSDK::create("4eaee02c527015373b000003");
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     vector<int>* platforms = new vector<int>();
     platforms->push_back(SINA);
     platforms->push_back(RENREN);
     platforms->push_back(DOUBAN);
     platforms->push_back(TENCENT_WEIBO);
-    platforms->push_back(INSTAGRAM);
+
     platforms->push_back(QZONE);
     platforms->push_back(QQ);
     platforms->push_back(SMS);
-    platforms->push_back(YIXIN);
-    platforms->push_back(YIXIN_CIRCLE);
-    platforms->push_back(LAIWANG);
-    platforms->push_back(LAIWANG_CIRCLE);
+
     platforms->push_back(WEIXIN);
     platforms->push_back(WEIXIN_CIRCLE);
     platforms->push_back(TWITTER);

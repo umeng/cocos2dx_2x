@@ -75,21 +75,7 @@ void getData(JNIEnv *env, jobjectArray data,jobjectArray key, map<string, string
 		const char* pvalue = env->GetStringUTFChars(value, NULL);
 		outputMap.insert(make_pair( pkey, pvalue));
 	}
-//	if (count > 1) {
-//		// token
-//		jstring token = (jstring) env->GetObjectArrayElement(data, 0);
-//		// uid
-//		jstring uid = (jstring) env->GetObjectArrayElement(data, 1);
-//		const char* pToken = env->GetStringUTFChars(token, NULL);
-//		const char* pUid = env->GetStringUTFChars(uid, NULL);
-//		outputMap.insert(make_pair("token", pToken));
-//		outputMap.insert(make_pair("uid", pUid));
-//	} else if (count == 1) {
-//		// 错误消息
-//		jstring msg = (jstring) env->GetObjectArrayElement(data, 0);
-//		const char* pMsg = env->GetStringUTFChars(msg, NULL);
-//		outputMap.insert(make_pair("msg", pMsg));
-//	}
+
 }
 
 /*
@@ -204,7 +190,7 @@ void getPlatformInfos(int platform,AuthEventHandler callback) {
 	bool isHave = getMethod(mi, "getplatformInfo", "(I)V");
 	jboolean isAuthorized = false;
 	if (isHave) {
-		isAuthorized = mi.env->CallStaticBooleanMethod(mi.classID, mi.methodID,
+		 mi.env->CallStaticVoidMethod(mi.classID, mi.methodID,
 				platform);
 		releaseMethod(mi);
 	}
