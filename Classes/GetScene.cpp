@@ -56,17 +56,17 @@ bool Get::init()
     
     CCMenuItemFont *authButton = CCMenuItemFont::create("qq", this,
                                                         menu_selector(Get::qqGet));
-    authButton->setPosition(ccp(visibleSize.width/2, 680));
+    authButton->setPosition(ccp(visibleSize.width/2, 380));
     
     // 底层API分享
     CCMenuItemFont *shareButton = CCMenuItemFont::create("新浪", this,
                                                          menu_selector(Get::sinaGet));
-    shareButton->setPosition(ccp(visibleSize.width/2, 540));
+    shareButton->setPosition(ccp(visibleSize.width/2, 240));
     
     // 授权某平台
     CCMenuItemFont *getInfoButton = CCMenuItemFont::create("微信", this,
                                                            menu_selector(Get::wxGet));
-    getInfoButton->setPosition(ccp(visibleSize.width/2, 400));
+    getInfoButton->setPosition(ccp(visibleSize.width/2, 100));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",

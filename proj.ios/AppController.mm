@@ -4,7 +4,7 @@
 #import "AppDelegate.h"
 #import "RootViewController.h"
 
-#import "UMSocial.h"
+#import <UMSocialCore/UMSocialCore.h>
 
 @implementation AppController
 

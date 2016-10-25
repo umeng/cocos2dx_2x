@@ -60,46 +60,46 @@ bool Auth::init()
     int width = 200;
     CCMenuItemFont *qqButton = CCMenuItemFont::create("qq授权", this,
                                                         menu_selector(Auth::qqAuth));
-    qqButton->setPosition(ccp(visibleSize.width/2-width, 780));
+    qqButton->setPosition(ccp(visibleSize.width/2-width, 580));
     
     // 底层API分享
     CCMenuItemFont *sinaButton = CCMenuItemFont::create("新浪授权", this,
                                                          menu_selector(Auth::sinaAuth));
-    sinaButton->setPosition(ccp(visibleSize.width/2-width, 640));
+    sinaButton->setPosition(ccp(visibleSize.width/2-width, 400));
     
     // 授权某平台
     CCMenuItemFont *wxButton = CCMenuItemFont::create("微信授权", this,
                                                            menu_selector(Auth::wxAuth));
-    wxButton->setPosition(ccp(visibleSize.width/2-width,500));
+    wxButton->setPosition(ccp(visibleSize.width/2-width,320));
     CCMenuItemFont *doubanButton = CCMenuItemFont::create("豆瓣授权", this,
                                                       menu_selector(Auth::doubanAuth));
-    doubanButton->setPosition(ccp(visibleSize.width/2-width, 360));
+    doubanButton->setPosition(ccp(visibleSize.width/2-width, 240));
     CCMenuItemFont *renrenButton = CCMenuItemFont::create("人人授权", this,
                                                       menu_selector(Auth::renrenAuth));
-    renrenButton->setPosition(ccp(visibleSize.width/2-width, 220));
+    renrenButton->setPosition(ccp(visibleSize.width/2-width, 160));
     CCMenuItemFont *facebookButton = CCMenuItemFont::create("facebook授权", this,
                                                       menu_selector(Auth::facebookAuth));
     facebookButton->setPosition(ccp(visibleSize.width/2-width, 80));
     
     CCMenuItemFont *delqqButton = CCMenuItemFont::create("qq删除授权", this,
                                                         menu_selector(Auth::qqAuthDel));
-    delqqButton->setPosition(ccp(visibleSize.width/2+width, 780));
+    delqqButton->setPosition(ccp(visibleSize.width/2+width, 580));
     
     // 底层API分享
     CCMenuItemFont *delsinaButton = CCMenuItemFont::create("新浪删除授权", this,
                                                          menu_selector(Auth::sinaAuthDel));
-    delsinaButton->setPosition(ccp(visibleSize.width/2+width, 640));
+    delsinaButton->setPosition(ccp(visibleSize.width/2+width, 400));
     
     // 授权某平台
     CCMenuItemFont *delwxButton = CCMenuItemFont::create("微信删除授权", this,
                                                            menu_selector(Auth::wxAuthDel));
-    delwxButton->setPosition(ccp(visibleSize.width/2+width, 500));
+    delwxButton->setPosition(ccp(visibleSize.width/2+width, 320));
     CCMenuItemFont *deldoubanButton = CCMenuItemFont::create("豆瓣删除授权", this,
                                                           menu_selector(Auth::doubanAuthDel));
-    deldoubanButton->setPosition(ccp(visibleSize.width/2+width, 360));
+    deldoubanButton->setPosition(ccp(visibleSize.width/2+width, 240));
     CCMenuItemFont *delrenrenButton = CCMenuItemFont::create("人人删除授权", this,
                                                           menu_selector(Auth::renrenAuthDel));
-    delrenrenButton->setPosition(ccp(visibleSize.width/2+width, 220));
+    delrenrenButton->setPosition(ccp(visibleSize.width/2+width, 160));
     CCMenuItemFont *delfacebookButton = CCMenuItemFont::create("facebook删除授权", this,
                                                             menu_selector(Auth::facebookAuthDel));
     delfacebookButton->setPosition(ccp(visibleSize.width/2+width, 80));
