@@ -55,23 +55,23 @@ bool Share::init()
     
     CCMenuItemFont *authButton = CCMenuItemFont::create("qq", this,
                                                         menu_selector(Share::qqShare));
-    authButton->setPosition(ccp(visibleSize.width/2,680));
+    authButton->setPosition(ccp(visibleSize.width/2,480));
     
     // 底层API分享
     CCMenuItemFont *shareButton = CCMenuItemFont::create("新浪", this,
                                                          menu_selector(Share::sinaShare));
-    shareButton->setPosition(ccp(visibleSize.width/2, 560));
+    shareButton->setPosition(ccp(visibleSize.width/2, 360));
     
     // 授权某平台
     CCMenuItemFont *getInfoButton = CCMenuItemFont::create("微信", this,
                                                            menu_selector(Share::wxShare));
-    getInfoButton->setPosition(ccp(visibleSize.width/2, 440));
+    getInfoButton->setPosition(ccp(visibleSize.width/2, 240));
     CCMenuItemFont *boardButton = CCMenuItemFont::create("打开分享面板", this,
                                                          menu_selector(Share::boardShare));
-    boardButton->setPosition(ccp(visibleSize.width/2, 320));
+    boardButton->setPosition(ccp(visibleSize.width/2, 120));
     CCMenuItemFont *boardcustomButton = CCMenuItemFont::create("打开分享不同内容分享面板", this,
                                                          menu_selector(Share::boardcustomShare));
-    boardcustomButton->setPosition(ccp(visibleSize.width/2, 200));
+    boardcustomButton->setPosition(ccp(visibleSize.width/2, 60));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",

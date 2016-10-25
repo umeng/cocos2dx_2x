@@ -24,6 +24,7 @@ USING_NS_UM_SOCIAL;
 #endif
 int labelTag = 456;
 int layerTag = 123;
+
 CCScene* Auth::scene()
 {
     // 'scene' is an autorelease object
@@ -60,7 +61,7 @@ bool Auth::init()
     int width = 200;
     CCMenuItemFont *qqButton = CCMenuItemFont::create("qq授权", this,
                                                         menu_selector(Auth::qqAuth));
-    qqButton->setPosition(ccp(visibleSize.width/2-width, 580));
+    qqButton->setPosition(ccp(visibleSize.width/2-width, 480));
     
     // 底层API分享
     CCMenuItemFont *sinaButton = CCMenuItemFont::create("新浪授权", this,
