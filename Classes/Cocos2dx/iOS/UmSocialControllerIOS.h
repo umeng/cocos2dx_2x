@@ -38,7 +38,8 @@ public:
     
     //授权某社交平台
     static void authorize(int platform, AuthEventHandler callback);
-    
+    //获取用户信息
+    static void getinfo(int platform, AuthEventHandler callback);
     //解除某平台授权
     static void deleteAuthorization(int platform,AuthEventHandler callback);
     
@@ -46,13 +47,13 @@ public:
     static bool isAuthorized(int platform);
     
     //打开分享面板
-    static void openShareWithImagePath(vector<int>* platform, const char* text, const char* imagePath,ShareEventHandler callback);
+    static void openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback);
     
 //    //设置分享的平台
     static void setSharePlatforms(vector<int>* platform);
     
     //直接分享到各个社交平台
-    static void directShare(const char* text, const char* imagePath, int platform, ShareEventHandler callback);
+    static void directShare(const char* text, const char* title, const char* targeturl,const char* imagePath, int platform, ShareEventHandler callback);
     
     //打开SDK的log输出
     static void openLog(bool flag);

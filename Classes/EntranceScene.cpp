@@ -54,7 +54,7 @@ bool Entrance::init()
     this->addChild(pLabel, 1);
 
     CCMenuItemFont *authButton = CCMenuItemFont::create("授权", this,
-                                                             menu_selector(Entrance::gotoAuth));
+                                                        menu_selector(Entrance::gotoAuth));
 
     authButton->setPosition(ccp(visibleSize.width/2, 480));
 

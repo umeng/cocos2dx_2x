@@ -8,6 +8,7 @@
 
 #include "UmSocialControllerIOS.h"
 #import <UIKit/UIKit.h>
+#import "UMSocialUIManager.h"
 #import <UMSocialCore/UMSocialCore.h>
 //#import "UMSocialTencentWeiboHandler.h"
 
@@ -15,23 +16,38 @@
 
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
+int const platforms[17] = {
+    UMSocialPlatformType_Sina
+    , UMSocialPlatformType_WechatSession
+    , UMSocialPlatformType_WechatTimeLine
+    , UMSocialPlatformType_QQ
+    , UMSocialPlatformType_Qzone
+    , UMSocialPlatformType_Renren
+    , UMSocialPlatformType_Douban
+    , UMSocialPlatformType_LaiWangSession
+    , UMSocialPlatformType_LaiWangTimeLine
+    , UMSocialPlatformType_YixinSession
+    , UMSocialPlatformType_YixinTimeLine
+    , UMSocialPlatformType_Facebook
+    , UMSocialPlatformType_Twitter
+    , UMSocialPlatformType_Instagram
+    , UMSocialPlatformType_Sms
+    , UMSocialPlatformType_Email
+    , UMSocialPlatformType_TencentWb
+};
 
 int getPlatformString(int platform){
-    int const platforms[17] = {
-        UMSocialPlatformType_Sina
-        , UMSocialPlatformType_WechatSession
-        , UMSocialPlatformType_WechatTimeLine
-        , UMSocialPlatformType_QQ
-        , UMSocialPlatformType_Qzone
-        , UMSocialPlatformType_Renren
-        , UMSocialPlatformType_Douban
-        , UMSocialPlatformType_Facebook
-        , UMSocialPlatformType_Twitter
-      };
     
     return platforms[platform];
 }
-
+int getPlatformself(int platform){
+    for (int i = 0 ; i<17; i++) {
+        if (platform == platforms[i]) {
+            return i;
+        }
+    }
+    return -1;
+}
 NSString* getNSStringFromCString(const char* cstr){
     if (cstr) {
         return [NSString stringWithUTF8String:cstr];
@@ -98,32 +114,178 @@ void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* te
 
 
 
+void UmSocialControllerIOS::getinfo(int platform, AuthEventHandler callback){
+    [[UMSocialManager defaultManager]  getUserInfoWithPlatform:getPlatformString(platform) currentViewController:getViewController() completion:^(id result, NSError *error) {
+        NSString *message = nil;
+        int code = 200;
+        map<string,string> loginData;
+        if (error) {
+            NSLog(@"get fail with error %@", error);
+            message = @"Auth fail";
+            code = error.code;
+            loginData.insert(pair<string, string>("message",   *new string([message UTF8String])));
+        }else{
+            if ([result isKindOfClass:[UMSocialUserInfoResponse class]]) {
+                UMSocialUserInfoResponse *resp = result;
+                // 授权信息
+                loginData.insert(pair<string, string>("uid",  *new string([resp.uid UTF8String])));
+                loginData.insert(pair<string, string>("accessToken",  *new string([ resp.accessToken UTF8String])));
+                
+                loginData.insert(pair<string, string>("refreshToken",  *new string([resp.refreshToken UTF8String])));
+                loginData.insert(pair<string, string>("name",  *new string([resp.name UTF8String])));
+                loginData.insert(pair<string, string>("iconurl",  *new string([ resp.iconurl UTF8String])));
+                
+                loginData.insert(pair<string, string>("gender",  *new string([resp.gender UTF8String])));
+                
+                
+            }
+            else{
+                NSLog(@"Auth fail with unknow error");
+                loginData.insert(pair<string, string>("message",  "get fail with unknow error"));
+            }
+        }
+        callback(platform, code,loginData);
+    }];
 
+}
 
 
 
 
 void UmSocialControllerIOS::authorize(int platform, AuthEventHandler callback){
-    
+    [[UMSocialManager defaultManager]  authWithPlatform:getPlatformString(platform) currentViewController:getViewController() completion:^(id result, NSError *error) {
+        NSString *message = nil;
+        int code = 200;
+         map<string,string> loginData;
+        if (error) {
+            NSLog(@"Auth fail with error %@", error);
+            message = @"Auth fail";
+            code = error.code;
+             loginData.insert(pair<string, string>("message",   *new string([message UTF8String])));
+        }else{
+            if ([result isKindOfClass:[UMSocialAuthResponse class]]) {
+                UMSocialAuthResponse *resp = result;
+                // 授权信息
+                                  loginData.insert(pair<string, string>("uid",  *new string([resp.uid UTF8String])));
+                loginData.insert(pair<string, string>("accessToken",  *new string([ resp.accessToken UTF8String])));
+
+                loginData.insert(pair<string, string>("refreshToken",  *new string([resp.refreshToken UTF8String])));
+
+             
+
+                        }
+            else{
+                NSLog(@"Auth fail with unknow error");
+                loginData.insert(pair<string, string>("message",  "Auth fail with unknow error"));
+            }
+        }
+           callback(platform, code,loginData);
+    }];
   
 }
 
 void UmSocialControllerIOS::deleteAuthorization(int platform, AuthEventHandler callback){
-   
+    [[UMSocialManager defaultManager] cancelAuthWithPlatform:getPlatformString(platform) completion:^(id result, NSError *error) {
+          map<string,string> loginData;
+        if (!error) {
+            loginData.insert(pair<string, string>("message",  "success"));
+ 
+            callback(platform, 200,loginData);
+        }else {
+            loginData.insert(pair<string, string>("message",  "fail"));
+            
+            callback(platform, -1,loginData);
+        }
+        
+    }];
 }
 
 bool UmSocialControllerIOS::isAuthorized(int platform){
-   
+    bool isAuthorized = NO;
+    isAuthorized =[[UMSocialDataManager defaultManager] isAuth:getPlatformString(platform)];
     
-    return YES;
+    return isAuthorized;
 }
+id getUIImageFromFilePath(const char* imagePath){
+    id returnImage = nil;
+    if (imagePath) {
+        NSString *imageString = getNSStringFromCString(imagePath);
+        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
+            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
+                                                             ofType:@"gif"];
+            returnImage = [NSData dataWithContentsOfFile:path];
+        } else if ([imageString rangeOfString:@"/"].length > 0){
+            NSString *path = [[NSBundle mainBundle] pathForResource:imageString ofType:nil];
+            returnImage = [NSData dataWithContentsOfFile:path];
+        } else {
+            returnImage = [UIImage imageNamed:imageString];
+        }
+        
+    }
+    return returnImage;
+}
+void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback){
+    id image = nil;
+    image = getUIImageFromFilePath(imagePath);
+    UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    if (targeturl==NULL) {
+        if (image==nil) {
+            
+            messageObject.text =  [NSString stringWithUTF8String:text];
+        }else{
+            UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+            [shareObject setShareImage:image];
+            messageObject.shareObject = shareObject;
+        }
+    }else{
+        messageObject.text = [NSString stringWithUTF8String:text];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithUTF8String:title] descr:[NSString stringWithUTF8String:text] thumImage:image];
+        //设置网页地址
+        shareObject.webpageUrl =[NSString stringWithUTF8String:targeturl];
+        
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject;
+        
+        
+    }
 
-void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platforms, const char* text, const char* imagePath,ShareEventHandler callback){
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMShareMenuSelectionView *shareSelectionView, UMSocialPlatformType platformType) {
+        
+        [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:getViewController() completion:^(id data, NSError *error) {
+            int code;
+            NSString* message;
+            if (error) {
+                code = error.code;
+                NSLog(@"************Share fail with error %@*********",error);
+                message =@"************Share fail with error %@*********";
+            }else{
+                code = 200;
+                if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                    UMSocialShareResponse *resp = data;
+                    //分享结果消息
+                    NSLog(@"response message is %@",resp.message);
+                    //第三方原始返回的数据
+                    NSLog(@"response originalResponse data is %@",resp.originalResponse);
+                    code = 200;
+                    message =@"success";
+                }else{
+                    NSLog(@"response data is %@",data);
+                    message =@"unkonw fail";
+                }
+            }
+            callback(getPlatformself(platformType), code,string([message UTF8String]));
+        
+        }];
+        
+    }];
     
   }
 
 void UmSocialControllerIOS::setSharePlatforms(vector<int>* platform)
 {
+    
+    
+    
    }
 
 
@@ -132,7 +294,53 @@ void UmSocialControllerIOS::openLog(bool flag)
    [[UMSocialManager defaultManager] openLog:YES];
 }
 
-void UmSocialControllerIOS::directShare(const char* text, const char* imagePath,int platform, ShareEventHandler callback){
-    
-   
+void UmSocialControllerIOS::directShare(const char* text, const char* title, const char* targeturl,const char* imagePath, int platform, ShareEventHandler callback){
+    id image = nil;
+    image = getUIImageFromFilePath(imagePath);
+     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
+    if (targeturl==NULL) {
+        if (image==nil) {
+         
+            messageObject.text =  [NSString stringWithUTF8String:text];
+        }else{
+              UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
+              [shareObject setShareImage:image];
+            messageObject.shareObject = shareObject;
+        }
+    }else{
+        messageObject.text = [NSString stringWithUTF8String:text];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithUTF8String:title] descr:[NSString stringWithUTF8String:text] thumImage:image];
+        //设置网页地址
+        shareObject.webpageUrl =[NSString stringWithUTF8String:targeturl];
+        
+        //分享消息对象设置分享内容对象
+        messageObject.shareObject = shareObject;
+
+
+    }
+    [[UMSocialManager defaultManager] shareToPlatform:getPlatformString(platform) messageObject:messageObject currentViewController:getViewController() completion:^(id data, NSError *error) {
+        int code;
+        NSString* message;
+        if (error) {
+            code = error.code;
+            NSLog(@"************Share fail with error %@*********",error);
+            message =@"************Share fail with error %@*********";
+                    }else{
+             code = 200;
+            if ([data isKindOfClass:[UMSocialShareResponse class]]) {
+                UMSocialShareResponse *resp = data;
+                //分享结果消息
+                NSLog(@"response message is %@",resp.message);
+                //第三方原始返回的数据
+                NSLog(@"response originalResponse data is %@",resp.originalResponse);
+                 code = 200;
+                   message =@"success";
+            }else{
+                NSLog(@"response data is %@",data);
+                 message =@"unkonw fail";
+            }
+        }
+        callback(platform, code,string([message UTF8String]));
+
+    }];
 }

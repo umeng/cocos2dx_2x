@@ -147,23 +147,19 @@ void boardCallback(int platform) {
        CCLog("platform num is : %d", platform);
     if (platform == QQ) {
         CCUMSocialSDK *sdk = CCUMSocialSDK::create();
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
         sdk->directShare(QQ,
                          "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
                          share_selector(shareCallback));
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-      
-#endif
 
-    }else{
+
+    }
+    else{
     	   CCUMSocialSDK *sdk = CCUMSocialSDK::create();
-    	#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    	        sdk->directShare(other,
+        	        sdk->directShare(platform,
     	                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
     	                         share_selector(shareCallback));
-    	#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-
-    	#endif
+    	
     }
     
 }
@@ -173,42 +169,27 @@ void boardCallback(int platform) {
 void Share::qqShare(CCObject* pSender) {
     	CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+ 
     	sdk->directShare(QQ,
     			"Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"http://dev.umeng.com","http://dev.umeng.com/images/tab2_1.png",
     			share_selector(shareCallback));
-    #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-//    	sdk->setPlatformShareContent(SINA, "sina share 内容",
-//    			"assets/CloseNormal.png", "sina-title");
-//    	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
-    #endif
+
  }
 void Share::sinaShare(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create();
-    /*setSsoAuthorization方法是用来修改新浪的回调地址REDIRECT_URL,如果默认就是http://sns.whalecloud.com，可以不用修改*/
-//    sdk->setSsoAuthorization(SINA, "http://sns.whalecloud.com");
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+
     sdk->directShare(SINA,
                      "Umeng Social Cocos2d-x SDK -->  sinashare   testing","title" ,"","",
                      share_selector(shareCallback));
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    //    	sdk->setPlatformShareContent(SINA, "sina share 内容",
-    //    			"assets/CloseNormal.png", "sina-title");
-    //    	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
-#endif
+
 }
 void Share::wxShare(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     sdk->directShare(WEIXIN,
                      "Umeng Social Cocos2d-x SDK -->  wxshare   testing", "title" ,"","",
                      share_selector(shareCallback));
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    //    	sdk->setPlatformShareContent(SINA, "sina share 内容",
-    //    			"assets/CloseNormal.png", "sina-title");
-    //    	sdk->directShare(SINA, "Umeng Social Cocos2d-x SDK -->  directShare   testing", "http://www.baidu.com/img/bdlogo.gif", share_selector(shareCallback));
-#endif
+
 }
 void Share::boardShare(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create();

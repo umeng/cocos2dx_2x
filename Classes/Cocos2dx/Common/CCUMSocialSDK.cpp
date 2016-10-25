@@ -86,7 +86,7 @@ void CCUMSocialSDK::setAppKey(const char* appkey) {
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
 
-	UmSocialControllerIOS::setAppKey(appkey);
+	//UmSocialControllerIOS::setAppKey(appkey);
 
 #endif
 }
@@ -111,13 +111,8 @@ void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
 	// 设置平台
 	setSocialPlatforms(mPlatforms);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	//intagram打开开关
-	for (int i = 0; i < platforms->size(); i++) {
-		int platformType = platforms->at(i);
-		if (platformType == INSTAGRAM) {
-			UmSocialControllerIOS::openInstagram();
-        }
-    }
+	
+    
 	UmSocialControllerIOS::setSharePlatforms(mPlatforms);
 #endif
 
@@ -184,7 +179,7 @@ void CCUMSocialSDK::getPlatformInfo(int platforms,AuthEventHandler callback) {
   
 	getPlatformInfos(platforms,callback);
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+    	UmSocialControllerIOS::getinfo(platforms, callback);
 #endif
 }
 /*
@@ -212,7 +207,7 @@ void CCUMSocialSDK::openShare(vector<int>* platforms,const char* text, const cha
 	doOpenShare(platforms,text,title,imgName,targeturl,callback);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-//	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+	UmSocialControllerIOS::openShareWithImagePath(platforms,text,title,imgName,targeturl,callback);
 #endif
 }
 void CCUMSocialSDK::openShareBoard(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl) {
@@ -265,7 +260,7 @@ void CCUMSocialSDK::directShare(int platform, const char* text,const char* title
 	doDirectShare(text,title,targeturl,imgName,platform, callback);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::directShare(text, imgName, platform, callback);
+	UmSocialControllerIOS::directShare(text,title,targeturl,imgName,platform, callback);
 
 #endif
 }
@@ -402,7 +397,7 @@ void CCUMSocialSDK::setTargetUrl(const char* targetUrl) {
  */
 void CCUMSocialSDK::openTwitterForiOS(const char *appKey, const char* appSecret) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::openTwitter(appKey, appSecret);
+//	UmSocialControllerIOS::openTwitter(appKey, appSecret);
 #endif
 }
 
@@ -412,7 +407,7 @@ void CCUMSocialSDK::openTwitterForiOS(const char *appKey, const char* appSecret)
  */
 void CCUMSocialSDK::openInstagramForiOS() {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::openInstagram();
+	//UmSocialControllerIOS::openInstagram();
 #endif
 }
 
@@ -477,6 +472,6 @@ void CCUMSocialSDK::setSsoAuthorization(int platform, const char *redirectURL) {
 	supportSsoAuthorization(platform, redirectURL);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::openSSOAuthorization(platform, redirectURL);
+	//UmSocialControllerIOS::openSSOAuthorization(platform, redirectURL);
 #endif
 }
