@@ -85,7 +85,6 @@
 		D568333918FE7E320084AC3F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D568333818FE7E320084AC3F /* Accounts.framework */; };
 		D568333B18FE7E370084AC3F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D568333A18FE7E370084AC3F /* Social.framework */; };
 		D5E82A6519822DDE00DE63A1 /* UmSocialControllerIOS.mm in Sources */ = {isa = PBXBuildFile; fileRef = D5E82A6219822DDE00DE63A1 /* UmSocialControllerIOS.mm */; };
-		D5E82A6A19822DF500DE63A1 /* UMShareButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E82A6819822DF500DE63A1 /* UMShareButton.cpp */; };
 		D5E82A6F19822E1800DE63A1 /* CCUMSocialSDK.cpp in Sources */ = {isa = PBXBuildFile; fileRef = D5E82A6C19822E1800DE63A1 /* CCUMSocialSDK.cpp */; };
 		D5E82A7819822FBE00DE63A1 /* dog.gif in Resources */ = {isa = PBXBuildFile; fileRef = D5E82A7719822FBE00DE63A1 /* dog.gif */; };
 		D5E82A7A1982379700DE63A1 /* cat.gif in Resources */ = {isa = PBXBuildFile; fileRef = D5E82A791982379700DE63A1 /* cat.gif */; };
@@ -234,8 +233,6 @@
 		D568333A18FE7E370084AC3F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		D5E82A6119822DDE00DE63A1 /* UmSocialControllerIOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UmSocialControllerIOS.h; sourceTree = "<group>"; };
 		D5E82A6219822DDE00DE63A1 /* UmSocialControllerIOS.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = UmSocialControllerIOS.mm; sourceTree = "<group>"; };
-		D5E82A6819822DF500DE63A1 /* UMShareButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UMShareButton.cpp; sourceTree = "<group>"; };
-		D5E82A6919822DF500DE63A1 /* UMShareButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UMShareButton.h; sourceTree = "<group>"; };
 		D5E82A6C19822E1800DE63A1 /* CCUMSocialSDK.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CCUMSocialSDK.cpp; sourceTree = "<group>"; };
 		D5E82A6D19822E1800DE63A1 /* CCUMSocialSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUMSocialSDK.h; sourceTree = "<group>"; };
 		D5E82A6E19822E1800DE63A1 /* CCUMTypeDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCUMTypeDef.h; sourceTree = "<group>"; };
@@ -359,9 +356,7 @@
 			isa = PBXGroup;
 			children = (
 				631191031C969F6900243942 /* umeng_ios_social_sdk */,
-				D5E82A7019822EE600DE63A1 /* UmengCSDK */,
 				D5E82A6B19822E1800DE63A1 /* Common */,
-				D5E82A6719822DF500DE63A1 /* ShareButton */,
 				D5E82A6019822DDE00DE63A1 /* iOS */,
 				1AFAF8B316D35DE700DB1158 /* AppDelegate.cpp */,
 				1AFAF8B416D35DE700DB1158 /* AppDelegate.h */,
@@ -648,16 +643,6 @@
 			path = ../Classes/Cocos2dx/iOS;
 			sourceTree = "<group>";
 		};
-		D5E82A6719822DF500DE63A1 /* ShareButton */ = {
-			isa = PBXGroup;
-			children = (
-				D5E82A6819822DF500DE63A1 /* UMShareButton.cpp */,
-				D5E82A6919822DF500DE63A1 /* UMShareButton.h */,
-			);
-			name = ShareButton;
-			path = ../Classes/Cocos2dx/ShareButton;
-			sourceTree = "<group>";
-		};
 		D5E82A6B19822E1800DE63A1 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,14 +652,6 @@
 			);
 			name = Common;
 			path = ../Classes/Cocos2dx/Common;
-			sourceTree = "<group>";
-		};
-		D5E82A7019822EE600DE63A1 /* UmengCSDK */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = UmengCSDK;
-			path = ../Classes/UmengCSDK;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -790,7 +767,6 @@
 				D5E82A6519822DDE00DE63A1 /* UmSocialControllerIOS.mm in Sources */,
 				7BDF3E441CB519AF00361084 /* EntranceScene.cpp in Sources */,
 				D5E82A6F19822E1800DE63A1 /* CCUMSocialSDK.cpp in Sources */,
-				D5E82A6A19822DF500DE63A1 /* UMShareButton.cpp in Sources */,
 				15A3DAEF1682F8A6002FB0C5 /* SimpleAudioEngine_objc.m in Sources */,
 				7B8BD6371DBF37A7003430C4 /* UMShareMenuSelectionView.m in Sources */,
 				7B8BD6381DBF37A7003430C4 /* UMSocialShareScrollView.m in Sources */,

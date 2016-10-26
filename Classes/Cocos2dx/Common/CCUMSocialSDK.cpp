@@ -199,11 +199,7 @@ void CCUMSocialSDK::getPlatformInfo(int platforms,AuthEventHandler callback) {
  */
 void CCUMSocialSDK::openShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback) {
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	// 设置分享内容
-//	setShareTextContent(text);
-//	// 设置图片内容
-//	setShareImagePath(imgName);
-	// 打开分享面板
+
 	doOpenShare(platforms,text,title,imgName,targeturl,callback);
 
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
@@ -231,7 +227,7 @@ void CCUMSocialSDK::openCustomShare(vector<int>* platforms,BoardEventHandler cal
     doCutomOpenShare(platforms,callback);
     
 #elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-    //	UmSocialControllerIOS::openShareWithImagePath(mPlatforms, text, imgName, callback);
+   	UmSocialControllerIOS::openCustomShareBoard(platforms, callback);
 #endif
 }
 

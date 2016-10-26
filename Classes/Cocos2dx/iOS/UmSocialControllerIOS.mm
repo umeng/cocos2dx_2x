@@ -13,10 +13,10 @@
 //#import "UMSocialTencentWeiboHandler.h"
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-
+int const platformlength = 17;
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
-int const platforms[17] = {
+int const platforms[platformlength] = {
     UMSocialPlatformType_Sina
     , UMSocialPlatformType_WechatSession
     , UMSocialPlatformType_WechatTimeLine
@@ -36,12 +36,12 @@ int const platforms[17] = {
     , UMSocialPlatformType_TencentWb
 };
 
-int getPlatformString(int platform){
+UMSocialPlatformType getPlatformString(int platform){
     
     return platforms[platform];
 }
 int getPlatformself(int platform){
-    for (int i = 0 ; i<17; i++) {
+    for (int i = 0 ; i<platformlength; i++) {
         if (platform == platforms[i]) {
             return i;
         }
@@ -94,7 +94,13 @@ void UmSocialControllerIOS::setTargetUrl(const char *targetUrl){
 
 
 
-
+string asserstring(NSString* str){
+    if (str == nil || str.length == 0) {
+        return "nil";
+    }else{
+        return  string([str UTF8String]);
+    }
+}
 
 UIImage * formatImage(id image) {
     UIImage *retImage = image;
@@ -123,19 +129,19 @@ void UmSocialControllerIOS::getinfo(int platform, AuthEventHandler callback){
             NSLog(@"get fail with error %@", error);
             message = @"Auth fail";
             code = error.code;
-            loginData.insert(pair<string, string>("message",   *new string([message UTF8String])));
+            loginData.insert(pair<string, string>("message",  asserstring(message)));
         }else{
             if ([result isKindOfClass:[UMSocialUserInfoResponse class]]) {
                 UMSocialUserInfoResponse *resp = result;
                 // 授权信息
-                loginData.insert(pair<string, string>("uid",  *new string([resp.uid UTF8String])));
-                loginData.insert(pair<string, string>("accessToken",  *new string([ resp.accessToken UTF8String])));
+                loginData.insert(pair<string, string>("uid", asserstring(resp.uid)));
+                loginData.insert(pair<string, string>("accessToken",asserstring(resp.accessToken)));
                 
-                loginData.insert(pair<string, string>("refreshToken",  *new string([resp.refreshToken UTF8String])));
-                loginData.insert(pair<string, string>("name",  *new string([resp.name UTF8String])));
-                loginData.insert(pair<string, string>("iconurl",  *new string([ resp.iconurl UTF8String])));
+                loginData.insert(pair<string, string>("refreshToken", asserstring(resp.refreshToken)));
+                loginData.insert(pair<string, string>("name", asserstring(resp.name)));
+                loginData.insert(pair<string, string>("iconurl", asserstring(resp.iconurl)));
                 
-                loginData.insert(pair<string, string>("gender",  *new string([resp.gender UTF8String])));
+                loginData.insert(pair<string, string>("gender",asserstring(resp.gender)));
                 
                 
             }
@@ -161,15 +167,15 @@ void UmSocialControllerIOS::authorize(int platform, AuthEventHandler callback){
             NSLog(@"Auth fail with error %@", error);
             message = @"Auth fail";
             code = error.code;
-             loginData.insert(pair<string, string>("message",   *new string([message UTF8String])));
+             loginData.insert(pair<string, string>("message", asserstring(message)));
         }else{
             if ([result isKindOfClass:[UMSocialAuthResponse class]]) {
                 UMSocialAuthResponse *resp = result;
                 // 授权信息
-                                  loginData.insert(pair<string, string>("uid",  *new string([resp.uid UTF8String])));
-                loginData.insert(pair<string, string>("accessToken",  *new string([ resp.accessToken UTF8String])));
+                                  loginData.insert(pair<string, string>("uid",asserstring(resp.uid)));
+                loginData.insert(pair<string, string>("accessToken",asserstring(resp.accessToken) ));
 
-                loginData.insert(pair<string, string>("refreshToken",  *new string([resp.refreshToken UTF8String])));
+                loginData.insert(pair<string, string>("refreshToken",asserstring(resp.refreshToken)));
 
              
 
@@ -224,8 +230,13 @@ id getUIImageFromFilePath(const char* imagePath){
     }
     return returnImage;
 }
+ void UmSocialControllerIOS::openCustomShareBoard(vector<int>* platform, BoardEventHandler callback){
+       [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMShareMenuSelectionView *shareSelectionView, UMSocialPlatformType platformType) {
+           callback(getPlatformself(platformType));
+       }];
+}
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback){
-    id image = nil;
+       id image = nil;
     image = getUIImageFromFilePath(imagePath);
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
     if (targeturl==NULL) {
@@ -340,7 +351,7 @@ void UmSocialControllerIOS::directShare(const char* text, const char* title, con
                  message =@"unkonw fail";
             }
         }
-        callback(platform, code,string([message UTF8String]));
+        callback(platform, code,asserstring(message));
 
     }];
 }

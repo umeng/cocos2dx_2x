@@ -48,7 +48,8 @@ public:
     
     //打开分享面板
     static void openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback);
-    
+    //打开自定义分享面板
+    static void openCustomShareBoard(vector<int>* platform, BoardEventHandler callback);
 //    //设置分享的平台
     static void setSharePlatforms(vector<int>* platform);
     

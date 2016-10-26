@@ -84,7 +84,7 @@ bool Auth::init()
     
     CCMenuItemFont *delqqButton = CCMenuItemFont::create("qq删除授权", this,
                                                         menu_selector(Auth::qqAuthDel));
-    delqqButton->setPosition(ccp(visibleSize.width/2+width, 580));
+    delqqButton->setPosition(ccp(visibleSize.width/2+width, 480));
     
     // 底层API分享
     CCMenuItemFont *delsinaButton = CCMenuItemFont::create("新浪删除授权", this,
