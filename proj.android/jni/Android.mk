@@ -48,7 +48,6 @@ LOCAL_SRC_FILES := hellocpp/main.cpp \
                    ../../Classes/ShareScene.cpp \
                    ../../Classes/GetScene.cpp \
                    ../../Classes/Cocos2dx/Android/CCUMSocialController.cpp \
-                   ../../Classes/Cocos2dx/ShareButton/UMShareButton.cpp \
                    ../../Classes/Cocos2dx/Common/CCUMSocialSDK.cpp
 
 
