@@ -216,15 +216,11 @@ id getUIImageFromFilePath(const char* imagePath){
     id returnImage = nil;
     if (imagePath) {
         NSString *imageString = getNSStringFromCString(imagePath);
-        if ([imageString.lowercaseString hasSuffix:@".gif"]) {
-            NSString *path = [[NSBundle mainBundle] pathForResource:[[imageString componentsSeparatedByString:@"."] objectAtIndex:0]
-                                                             ofType:@"gif"];
-            returnImage = [NSData dataWithContentsOfFile:path];
-        } else if ([imageString rangeOfString:@"/"].length > 0){
-            NSString *path = [[NSBundle mainBundle] pathForResource:imageString ofType:nil];
-            returnImage = [NSData dataWithContentsOfFile:path];
-        } else {
-            returnImage = [UIImage imageNamed:imageString];
+
+        if ([imageString hasPrefix:@"http"]) {
+            returnImage = imageString;
+        }else{
+             returnImage = [UIImage imageNamed:imageString];
         }
         
     }

@@ -845,7 +845,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CFLAGS = "-O2";
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.umeng.game;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Umeng.UMSocial;
 				PRODUCT_NAME = UmengGame;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
@@ -905,7 +905,7 @@
 				);
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "-ObjC";
-				PRODUCT_BUNDLE_IDENTIFIER = com.umeng.game;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Umeng.UMSocial;
 				PRODUCT_NAME = UmengGame;
 				PROVISIONING_PROFILE = "";
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
