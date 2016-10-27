@@ -114,6 +114,10 @@ public:
 	 */
 	void directShare(int platform, const char* text,const char* title,const char* targeturl,
 			const char* imgName, ShareEventHandler callback);
+    void directShareAndroid(int platform, const char* text,const char* title,const char* targeturl,
+                            const char* imgName, ShareEventHandler callback);
+    void directShareIos(int platform, const char* text,const char* title,const char* targeturl,
+                        const char* imgName, ShareEventHandler callback);
 
 	/**
 	 * 设置SDK的target url, 即用户点击某条分享时跳转到的目标页面

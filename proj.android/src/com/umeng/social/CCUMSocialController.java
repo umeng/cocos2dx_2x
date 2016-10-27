@@ -375,7 +375,8 @@ public class CCUMSocialController {
 		}else if(url.startsWith("assets")){
 			return new UMImage(mActivity, getImageFromAssetsFile(url));
 		}else if(url.startsWith("res")){
-			int pic = mActivity. getResources().getIdentifier(url, "drawable",mActivity.getPackageName());
+			Log.e("xxxxxx url="+url.replace("res/", ""));
+			int pic = mActivity. getResources().getIdentifier(url.replace("res/", ""), "drawable",mActivity.getPackageName());
 			return new UMImage(mActivity, pic);
 		}else if(url.startsWith("/sdcard")){
 			return new UMImage(mActivity, new File(url));

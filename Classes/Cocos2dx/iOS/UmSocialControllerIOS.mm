@@ -303,12 +303,16 @@ void UmSocialControllerIOS::openLog(bool flag)
 
 void UmSocialControllerIOS::directShare(const char* text, const char* title, const char* targeturl,const char* imagePath, int platform, ShareEventHandler callback){
     id image = nil;
+    NSString* nstargeturl = [NSString stringWithUTF8String:targeturl];
+      NSString* nstext = [NSString stringWithUTF8String:text];
+    NSString* nstitle = [NSString stringWithUTF8String:title];
+
     image = getUIImageFromFilePath(imagePath);
      UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];
-    if (targeturl==NULL) {
+    if (nstargeturl==nil||nstargeturl.length==0) {
         if (image==nil) {
          
-            messageObject.text =  [NSString stringWithUTF8String:text];
+            messageObject.text =  nstext;
         }else{
               UMShareImageObject *shareObject = [[UMShareImageObject alloc] init];
               [shareObject setShareImage:image];
@@ -316,9 +320,9 @@ void UmSocialControllerIOS::directShare(const char* text, const char* title, con
         }
     }else{
         messageObject.text = [NSString stringWithUTF8String:text];
-        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithUTF8String:title] descr:[NSString stringWithUTF8String:text] thumImage:image];
+        UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:nstitle descr:[NSString stringWithUTF8String:text] thumImage:image];
         //设置网页地址
-        shareObject.webpageUrl =[NSString stringWithUTF8String:targeturl];
+        shareObject.webpageUrl =nstargeturl;
         
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;

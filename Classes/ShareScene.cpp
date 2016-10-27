@@ -170,16 +170,28 @@ void Share::qqShare(CCObject* pSender) {
     	CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     
  
-    	sdk->directShare(QQ,
-    			"Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"http://dev.umeng.com","http://dev.umeng.com/images/tab2_1.png",
-    			share_selector(shareCallback));
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+    
+    sdk->directShareAndroid(QQ,
+                            "Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"","res/closenormal",
+                            share_selector(shareCallback));
+    
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+    
+    sdk->directShareIos(QQ,
+                        "Umeng Social Cocos2d-x SDK -->  qqshare   testing","title" ,"","CloseNormal",
+                        share_selector(shareCallback));
+    
+    
+#endif
+
 
  }
 void Share::sinaShare(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create();
 
     sdk->directShare(SINA,
-                     "Umeng Social Cocos2d-x SDK -->  sinashare   testing","title" ,"","",
+                     "Umeng Social Cocos2d-x SDK -->  sinashare   testing","title" ,"","CloseSelected.png",
                      share_selector(shareCallback));
 
 }

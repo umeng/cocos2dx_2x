@@ -260,7 +260,29 @@ void CCUMSocialSDK::directShare(int platform, const char* text,const char* title
 
 #endif
 }
-
+void CCUMSocialSDK::directShareAndroid(int platform, const char* text,const char* title,const char* targeturl,
+                                       const char* imgName, ShareEventHandler callback){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    
+    doDirectShare(text,title,targeturl,imgName,platform, callback);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    
+    
+#endif
+}
+void CCUMSocialSDK::directShareIos(int platform, const char* text,const char* title,const char* targeturl,
+                                   const char* imgName, ShareEventHandler callback){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+    UmSocialControllerIOS::directShare(text,title,targeturl,imgName,platform, callback);
+    
+#endif
+}
 /*
  * 设置QQ的app id
  *
