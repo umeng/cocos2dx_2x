@@ -172,20 +172,24 @@ void UmSocialControllerIOS::authorize(int platform, AuthEventHandler callback){
             if ([result isKindOfClass:[UMSocialAuthResponse class]]) {
                 UMSocialAuthResponse *resp = result;
                 // 授权信息
-                                  loginData.insert(pair<string, string>("uid",asserstring(resp.uid)));
-                loginData.insert(pair<string, string>("accessToken",asserstring(resp.accessToken) ));
-
-                loginData.insert(pair<string, string>("refreshToken",asserstring(resp.refreshToken)));
-
-             
-
-                        }
+                if (resp.uid) {
+                    loginData.insert(pair<string, string>("uid",asserstring(resp.uid)));
+                }
+                
+                if (resp.accessToken) {
+                    loginData.insert(pair<string, string>("accessToken",asserstring(resp.accessToken) ));
+                }
+                
+                if (resp.refreshToken) {
+                   loginData.insert(pair<string, string>("refreshToken",asserstring(resp.refreshToken)));
+                }
+            }
             else{
                 NSLog(@"Auth fail with unknow error");
                 loginData.insert(pair<string, string>("message",  "Auth fail with unknow error"));
             }
         }
-           callback(platform, code,loginData);
+        callback(platform, code,loginData);
     }];
   
 }
