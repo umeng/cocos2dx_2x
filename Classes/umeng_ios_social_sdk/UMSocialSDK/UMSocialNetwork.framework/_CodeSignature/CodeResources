@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/UMSocialHttpFactory.h</key>
 		<data>
-		YlqVoYajQxVaa15zBAnAex1lelQ=
+		q94DV3am5krhodWjq7W/TXczLpQ=
 		</data>
 		<key>Headers/UMSocialNetwork.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		15vOhM5HouS/6G7XKa+XMtqSW9I=
+		RZXrS2dUU9JEAhhYZCFgo46Wq7U=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -36,29 +36,71 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/UMSocialHttpFactory.h</key>
-		<data>
-		YlqVoYajQxVaa15zBAnAex1lelQ=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			q94DV3am5krhodWjq7W/TXczLpQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			Oltm3AAj58AovA0d2h2skAPVRJpyA9stfg1GZlKSBZ4=
+			</data>
+		</dict>
 		<key>Headers/UMSocialNetwork.h</key>
-		<data>
-		cxQ7oWWEEgjac4NrT9ck9qx2QJQ=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			cxQ7oWWEEgjac4NrT9ck9qx2QJQ=
+			</data>
+			<key>hash2</key>
+			<data>
+			x+4auK92TztjF7dWoRb37j/FYSsCxm7utnUL9dsbS5c=
+			</data>
+		</dict>
 		<key>Headers/UMSocialTask.h</key>
-		<data>
-		x7pbEBP/Yms2IKbaqj+rEdX0gYE=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			x7pbEBP/Yms2IKbaqj+rEdX0gYE=
+			</data>
+			<key>hash2</key>
+			<data>
+			a4lX9W8eOP6gK6zzkoDhGESFd6OHvLUav3d0JOmdbZw=
+			</data>
+		</dict>
 		<key>Headers/UMSocialTaskConfig.h</key>
-		<data>
-		MxWpS6vtjEkIES4JlOBL7c6pRqg=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			MxWpS6vtjEkIES4JlOBL7c6pRqg=
+			</data>
+			<key>hash2</key>
+			<data>
+			k1Fh/uxo9FZ00lbG0gxF65a0GLHckyRN7+FxSbCWe7Q=
+			</data>
+		</dict>
 		<key>Headers/UMSocialTaskManager.h</key>
-		<data>
-		akWGn68ySirAnQJOilTdL1Bd5zY=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			akWGn68ySirAnQJOilTdL1Bd5zY=
+			</data>
+			<key>hash2</key>
+			<data>
+			VluQfsivslxMW/gZoqpMyfsD84XwWzmCPt+hHLC+VB0=
+			</data>
+		</dict>
 		<key>Modules/module.modulemap</key>
-		<data>
-		8sB74u52qsfeRB00o5gdJ1ENl+w=
-		</data>
+		<dict>
+			<key>hash</key>
+			<data>
+			8sB74u52qsfeRB00o5gdJ1ENl+w=
+			</data>
+			<key>hash2</key>
+			<data>
+			FlmF9vJDUl6I+oy2cai2qgMyqF6r76JZ0iy4icBV5as=
+			</data>
+		</dict>
 	</dict>
 	<key>rules</key>
 	<dict>

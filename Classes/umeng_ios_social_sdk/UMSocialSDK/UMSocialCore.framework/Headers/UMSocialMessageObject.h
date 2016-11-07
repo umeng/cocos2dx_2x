@@ -13,6 +13,14 @@
 
 
 /**
+ *  文本标题
+ *  @disucss v6.0.3版本后增加的一个字段，
+ *  @disucss 该字段目前只有Tumblr平台会使用到。
+ *  @discuss 该字段以后会在需要文本title字段中扩展，具体请参看官方文档。
+ */
+@property (nonatomic,copy)NSString* title;
+
+/**
  * @param text 文本内容
  * @note 非纯文本分享文本
  */
@@ -22,6 +30,11 @@
  * 分享的所媒体内容对象
  */
 @property (nonatomic, strong) id shareObject;
+
+/**
+ * 其他相关参数，见相应平台说明
+ */
+@property (nonatomic, strong) NSDictionary *moreInfo;
 
 + (UMSocialMessageObject *)messageObject;
 
@@ -50,7 +63,6 @@
  */
 @property (nonatomic, strong) id thumbImage;
 
-
 /**
  * @param title 标题
  * @param descr 描述
@@ -62,6 +74,9 @@
                  thumImage:(id)thumImage;
 
 + (void)um_imageDataWithImage:(id)image completion:(void (^)(NSData *image))completion;
+
+#pragma mark - 6.0.3新版本的函数
++ (void)um_imageDataWithImage:(id)image withCompletion:(void (^)(NSData *imageData,NSError* error))completion;
 
 @end
 
