@@ -190,10 +190,7 @@ void authCallback(int platform, int stCode, map<string, string>& data) {
     }
 
 	item->setString(result.c_str());
-//    map<string, string>::iterator it = data.begin();
-//    for (; it != data.end(); ++it) {
-//        CCLog("#### data  %s -> %s.", it->first.c_str(), it->second.c_str());
-//    }
+
 }
 //void authCallBack(int platform, int stCode, const char* usid,
 //                  const char *token) {

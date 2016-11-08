@@ -19,7 +19,7 @@ static AppDelegate s_sharedApplication;
     
     // 获取友盟social版本号
     NSLog(@"UMeng social version: %@", [UMSocialGlobal umSocialSDKVersion]);
-    
+    [UMSocialGlobal shareInstance].type = @"Cocos2d-x";
     //设置友盟appkey
     [[UMSocialManager defaultManager] setUmSocialAppkey:@"57b432afe0f55a9832001a0a"];
     
