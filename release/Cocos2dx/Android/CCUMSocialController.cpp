@@ -19,7 +19,7 @@ using namespace std;
 AuthEventHandler authCallback = NULL;
 // 分享回调
 ShareEventHandler shareCallback = NULL;
-
+BoardEventHandler boardCallback = NULL;
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnAuthorizeStart
@@ -46,11 +46,11 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeSta
  */
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeComplete(
 		JNIEnv *env, jclass clz, jint platform, jint stCode,
-		jobjectArray data) {
+		jobjectArray data,jobjectArray key) {
 	if (authCallback != NULL) {
 		map<string, string> dataMap;
 		// 获取数据
-		getData(env, data, dataMap);
+		getData(env, data, key,dataMap);
 		authCallback(platform, stCode, dataMap);
 	}
 
@@ -60,24 +60,22 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnAuthorizeCom
  *
  *
  */
-void getData(JNIEnv *env, jobjectArray data, map<string, string>& outputMap) {
+void getData(JNIEnv *env, jobjectArray data,jobjectArray key, map<string, string>& outputMap) {
 	jsize count = env->GetArrayLength(data);
 
-	if (count > 1) {
-		// token
-		jstring token = (jstring) env->GetObjectArrayElement(data, 0);
-		// uid
-		jstring uid = (jstring) env->GetObjectArrayElement(data, 1);
-		const char* pToken = env->GetStringUTFChars(token, NULL);
-		const char* pUid = env->GetStringUTFChars(uid, NULL);
-		outputMap.insert(make_pair("token", pToken));
-		outputMap.insert(make_pair("uid", pUid));
-	} else if (count == 1) {
-		// 错误消息
-		jstring msg = (jstring) env->GetObjectArrayElement(data, 0);
-		const char* pMsg = env->GetStringUTFChars(msg, NULL);
-		outputMap.insert(make_pair("msg", pMsg));
+	for(int i=0;i<env->GetArrayLength(data);i++){
+		jsize temp = i;
+		jstring jkey = (jstring) env->GetObjectArrayElement(key, temp);
+		jstring value = (jstring) env->GetObjectArrayElement(data,temp);
+		if(jkey == NULL ||value == NULL){
+			continue;
+		}
+
+		const char* pkey = env->GetStringUTFChars(jkey, NULL);
+		const char* pvalue = env->GetStringUTFChars(value, NULL);
+		outputMap.insert(make_pair( pkey, pvalue));
 	}
+
 }
 
 /*
@@ -94,7 +92,20 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
 
 	}
 }
+/*
+ * Class:     com_umeng_social_CCUMSocialController
+ * Method:    OnShareStart
+ * Function : 开始分享的回调函数
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
+		jint platform) {
+	if (boardCallback != NULL) {
+		// 参数1代表平台, 参数2代表状态, 比如start, cancel, complete, 参数3代表状态码, 200为成功.
+		boardCallback(platform);
 
+	}
+}
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnShareComplete
@@ -173,40 +184,93 @@ bool isPlatformAuthorized(int platform) {
 	}
 	return isAuthorized;
 }
+void getPlatformInfos(int platform,AuthEventHandler callback) {
+	JniMethodInfo mi;
+	authCallback = callback;
+	bool isHave = getMethod(mi, "getplatformInfo", "(I)V");
+	jboolean isAuthorized = false;
+	if (isHave) {
+		 mi.env->CallStaticVoidMethod(mi.classID, mi.methodID,
+				platform);
+		releaseMethod(mi);
+	}
 
+}
 /*
  * 打开分享面板
  * @param callback 分享回调,具体参考CCUMTypeDef.h中的定义
  */
-void doOpenShare(ShareEventHandler callback) {
+void doOpenShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback) {
 	shareCallback = callback;
 	if (shareCallback != NULL) {
 		CCLog("#### 分享回调不为NULL");
 
 	}
 	JniMethodInfo mi;
-	bool isHave = getMethod(mi, "openShare", "()V");
+	bool isHave = getMethod(mi, "openShare", "([ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
+	int* platformArr = platforms->data();
+	int length = platforms->size();
+
+	// 创建数组对象,且不能在函数末尾删除引用
+	jintArray iArr = mi.env->NewIntArray(length);
+	// 将nums数组中的内容设置到jintArray对象中,
+	mi.env->SetIntArrayRegion(iArr, 0, length, platformArr);
 	if (isHave) {
-		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID);
+		jstring text_content = mi.env->NewStringUTF(text);
+						jstring image = mi.env->NewStringUTF(imgName);
+						jstring share_title = mi.env->NewStringUTF(title);
+						jstring share_target_url = mi.env->NewStringUTF(targeturl);
+		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID,iArr,text_content,share_title,share_target_url,image);
 		releaseMethod(mi);
 	}
 }
+void doCutomOpenShare(vector<int>* platforms,BoardEventHandler callback) {
+	boardCallback = callback;
+	if (boardCallback != NULL) {
+		CCLog("#### 分享回调不为NULL");
 
+	}
+	JniMethodInfo mi;
+	bool isHave = getMethod(mi, "openCustomShare", "([I)V");
+	int* platformArr = platforms->data();
+	int length = platforms->size();
+
+	// 创建数组对象,且不能在函数末尾删除引用
+	jintArray iArr = mi.env->NewIntArray(length);
+	// 将nums数组中的内容设置到jintArray对象中,
+	mi.env->SetIntArrayRegion(iArr, 0, length, platformArr);
+	if (isHave) {
+
+		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID,iArr);
+		releaseMethod(mi);
+	}
+}
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义
  * @param callback 分享回调，具体参考CCUMTypeDef.h中的定义
  */
-void doDirectShare(int platform, ShareEventHandler callback) {
+	void doDirectShare(const char* text,const char* title,const char* targeturl,
+			const char* imgName,int platform, ShareEventHandler callback) {
 	shareCallback = callback;
 	if (shareCallback != NULL) {
 		CCLog("#### 授权回调不为NULL");
 
 	}
 	JniMethodInfo mi;
-	bool isHave = getMethod(mi, "directShare", "(I)V");
+	bool isHave = getMethod(mi, "directShare", "(ILjava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)V");
 	if (isHave) {
-		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform);
+		jstring text_content = mi.env->NewStringUTF(text);
+				jstring image = mi.env->NewStringUTF(imgName);
+				jstring share_title = mi.env->NewStringUTF(title);
+				jstring share_target_url = mi.env->NewStringUTF(targeturl);
+				mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform,
+								text_content,share_title,share_target_url,image);
+//		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID, platform);
+				mi.env->DeleteLocalRef(text_content);
+				mi.env->DeleteLocalRef(image);
+				mi.env->DeleteLocalRef(share_title);
+				mi.env->DeleteLocalRef(share_target_url);
 		releaseMethod(mi);
 	}
 

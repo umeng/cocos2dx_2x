@@ -28,8 +28,7 @@ using namespace umeng::social;
 class UmSocialControllerIOS {
 public:
     
-    //设置SDK的appkey
-    static void setAppKey(const char* appKey);
+   
     
     //初始化sdk
     static void initCocos2dxSDK(const char *sdkType, const char *version);
@@ -39,7 +38,8 @@ public:
     
     //授权某社交平台
     static void authorize(int platform, AuthEventHandler callback);
-    
+    //获取用户信息
+    static void getinfo(int platform, AuthEventHandler callback);
     //解除某平台授权
     static void deleteAuthorization(int platform,AuthEventHandler callback);
     
@@ -47,49 +47,28 @@ public:
     static bool isAuthorized(int platform);
     
     //打开分享面板
-    static void openShareWithImagePath(vector<int>* platform, const char* text, const char* imagePath,ShareEventHandler callback);
-    
+    static void openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback);
+    //打开自定义分享面板
+    static void openCustomShareBoard(vector<int>* platform, BoardEventHandler callback);
 //    //设置分享的平台
     static void setSharePlatforms(vector<int>* platform);
     
     //直接分享到各个社交平台
-    static void directShare(const char* text, const char* imagePath, int platform, ShareEventHandler callback);
+    static void directShare(const char* text, const char* title, const char* targeturl,const char* imagePath, int platform, ShareEventHandler callback);
     
     //打开SDK的log输出
     static void openLog(bool flag);
     
-    //设置QQ互联appid，appkey
-    static void setQQAppIdAndAppKey(const char *appId,const char *appKey);
+  
     
-    // 设置新浪微博appkey，appsecret
-    static void setSinaAppKey(const char *appkey, const char *appSecret, const char *redicretURL);
-
-    //设置微信appid,appSecret
-    static void setWechatAppId(const char *appId, const char *appSecret);
-
-    //打开各个平台SSO开关,redirectURL
-    static void openSSOAuthorization(int platform, const char *redirectURL);
+    
     
     //分别设置各个分享平台内容
     static void setPlatformShareContent(int platform, const char* text,
                                  const char* imagePath, const char* title,
                                  const char* targetUrl);
     
-    //设置来往appid，appkey
-    static void setLaiwangAppInfo(const char *appId, const char *appKey, const char * appName);
-
-    //设置易信appid
-    static void setYiXinAppKey(const char *appKey);
-    
-    //设置Facebook的appid
-    static void setFacebookAppId(const char *appId);
-
-    //打开Twitter的开关
-    static void openTwitter(const char *appKey, const char* appSecret);
-
-    //打开Instagram的开关
-    static void openInstagram();
-    
+      
 private:
     static string m_appKey;
 };

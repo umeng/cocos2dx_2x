@@ -103,13 +103,13 @@
         <!-- facebook相关 -->
         <!-- facebook -->
         <activity
-            android:name="com.facebook.FacebookActivity"
+              android:name="com.umeng.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <provider
-            android:name="com.facebook.FacebookContentProvider"
+           android:name="com.umeng.facebook.FacebookContentProvider"
             android:authorities="com.facebook.app.FacebookContentProvider487692214752558"
             android:exported="true" />
 
