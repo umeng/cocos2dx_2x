@@ -53,8 +53,8 @@
 		7B8BD6331DBF37A7003430C4 /* UMSocialCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BD6111DBF37A7003430C4 /* UMSocialCore.framework */; };
 		7B8BD6341DBF37A7003430C4 /* UMSocialNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BD6121DBF37A7003430C4 /* UMSocialNetwork.framework */; };
 		7B8BD6351DBF37A7003430C4 /* UMSocialSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7B8BD6151DBF37A7003430C4 /* UMSocialSDKResources.bundle */; };
-		7B8BD6361DBF37A7003430C4 /* UMShareMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD6171DBF37A7003430C4 /* UMShareMenuItem.m */; };
-		7B8BD6371DBF37A7003430C4 /* UMShareMenuSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD6191DBF37A7003430C4 /* UMShareMenuSelectionView.m */; };
+		7B8BD6361DBF37A7003430C4 /* UMShareMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD6171DBF37A7003430C4 /* UMShareMenuItem.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
+		7B8BD6371DBF37A7003430C4 /* UMShareMenuSelectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD6191DBF37A7003430C4 /* UMShareMenuSelectionView.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
 		7B8BD6381DBF37A7003430C4 /* UMSocialShareScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD61B1DBF37A7003430C4 /* UMSocialShareScrollView.m */; };
 		7B8BD6391DBF37A7003430C4 /* UMSocialUIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8BD61D1DBF37A7003430C4 /* UMSocialUIManager.m */; };
 		7B8BD63D1DBF5211003430C4 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B8BD63C1DBF5211003430C4 /* libc++.tbd */; };

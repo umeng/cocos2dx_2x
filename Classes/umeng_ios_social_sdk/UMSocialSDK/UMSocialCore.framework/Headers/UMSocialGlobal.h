@@ -41,7 +41,7 @@
  *  type字符串
  *  @discuss type是新加入的字段，目前默认值为@"native"
  */
-@property(atomic,readwrite, strong)NSString* type;
+@property(atomic,readwrite, copy)NSString* type;
 
 
 /**
@@ -50,6 +50,20 @@
  *  @return 返回当前的版本号
  */
 +(NSString*)umSocialSDKVersion;
+
+
+/**
+ *  thumblr平台需要作为标示的字段 tag
+ *  @discuss 默认的tag是UMSocial_ThumblrTag，用户可以自己设置自己的tag
+ */
+@property(atomic,readwrite,copy)NSString* thumblr_Tag;
+
+
+/**
+ *  对平台的分享文本的时候，做规定的截断，默认开启
+ *  @dicuss 针对特定平台(比如:微信，qq,sina等)对当前的分享信息中的文本截断到合理的位置从而能成功分享
+ */
+@property(atomic,readwrite,assign)BOOL isTruncateShareText;
 
 @end
 

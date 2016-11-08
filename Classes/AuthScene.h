@@ -27,10 +27,11 @@ public:
     void doubanAuth(CCObject* pSender);
     void renrenAuth(CCObject* pSender);
     void facebookAuth(CCObject* pSender);
+    void twitterAuth(CCObject* pSender);
     void doubanAuthDel(CCObject* pSender);
     void renrenAuthDel(CCObject* pSender);
     void facebookAuthDel(CCObject* pSender);
-
+    void twitterAuthDel(CCObject* pSender);
 
    
     // a selector callback

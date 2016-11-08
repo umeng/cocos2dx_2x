@@ -74,13 +74,16 @@ bool Auth::init()
     wxButton->setPosition(ccp(visibleSize.width/2-width,320));
     CCMenuItemFont *doubanButton = CCMenuItemFont::create("豆瓣授权", this,
                                                       menu_selector(Auth::doubanAuth));
-    doubanButton->setPosition(ccp(visibleSize.width/2-width, 240));
+    doubanButton->setPosition(ccp(visibleSize.width/2-width, 250));
     CCMenuItemFont *renrenButton = CCMenuItemFont::create("人人授权", this,
                                                       menu_selector(Auth::renrenAuth));
-    renrenButton->setPosition(ccp(visibleSize.width/2-width, 160));
-    CCMenuItemFont *facebookButton = CCMenuItemFont::create("facebook授权", this,
-                                                      menu_selector(Auth::facebookAuth));
-    facebookButton->setPosition(ccp(visibleSize.width/2-width, 80));
+    renrenButton->setPosition(ccp(visibleSize.width/2-width, 180));
+    CCMenuItemFont *facebookButton = CCMenuItemFont::create("Facebook授权", this,
+                                                            menu_selector(Auth::facebookAuth));
+    facebookButton->setPosition(ccp(visibleSize.width/2-width, 120));
+    CCMenuItemFont *twitterButton = CCMenuItemFont::create("Twitter授权", this,
+                                                            menu_selector(Auth::twitterAuth));
+    twitterButton->setPosition(ccp(visibleSize.width/2-width, 60));
     
     CCMenuItemFont *delqqButton = CCMenuItemFont::create("qq删除授权", this,
                                                         menu_selector(Auth::qqAuthDel));
@@ -97,13 +100,16 @@ bool Auth::init()
     delwxButton->setPosition(ccp(visibleSize.width/2+width, 320));
     CCMenuItemFont *deldoubanButton = CCMenuItemFont::create("豆瓣删除授权", this,
                                                           menu_selector(Auth::doubanAuthDel));
-    deldoubanButton->setPosition(ccp(visibleSize.width/2+width, 240));
+    deldoubanButton->setPosition(ccp(visibleSize.width/2+width, 250));
     CCMenuItemFont *delrenrenButton = CCMenuItemFont::create("人人删除授权", this,
                                                           menu_selector(Auth::renrenAuthDel));
-    delrenrenButton->setPosition(ccp(visibleSize.width/2+width, 160));
-    CCMenuItemFont *delfacebookButton = CCMenuItemFont::create("facebook删除授权", this,
-                                                            menu_selector(Auth::facebookAuthDel));
-    delfacebookButton->setPosition(ccp(visibleSize.width/2+width, 80));
+    delrenrenButton->setPosition(ccp(visibleSize.width/2+width, 180));
+    CCMenuItemFont *delfacebookButton = CCMenuItemFont::create("Facebook删除授权", this,
+                                                               menu_selector(Auth::facebookAuthDel));
+    delfacebookButton->setPosition(ccp(visibleSize.width/2+width, 120));
+    CCMenuItemFont *delTwitterButton = CCMenuItemFont::create("Twitter删除授权", this,
+                                                               menu_selector(Auth::twitterAuthDel));
+    delTwitterButton->setPosition(ccp(visibleSize.width/2+width, 60));
     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
@@ -128,6 +134,9 @@ bool Auth::init()
     pMenu->addChild(deldoubanButton, 1);
     pMenu->addChild(delrenrenButton, 1);
     pMenu->addChild(delfacebookButton, 1);
+    pMenu->addChild(delTwitterButton, 1);
+    pMenu->addChild(twitterButton, 1);
+    
     pMenu->setPosition(CCPointZero);
 
     this->addChild(pMenu, 1);
@@ -241,6 +250,11 @@ void Auth::facebookAuth(CCObject* pSender) {
     CCLog("授权");
     sdk->authorize(FACEBOOK, auth_selector(authCallback));
 }
+void Auth::twitterAuth(CCObject* pSender) {
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
+    CCLog("授权");
+    sdk->authorize(TWITTER, auth_selector(authCallback));
+}
 void Auth::doubanAuthDel(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
@@ -255,6 +269,11 @@ void Auth::facebookAuthDel(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
     CCLog("删除授权");
     sdk->deleteAuthorization(FACEBOOK, auth_selector(authCallback));
+}
+void Auth::twitterAuthDel(CCObject* pSender) {
+    CCUMSocialSDK *sdk = CCUMSocialSDK::create( );
+    CCLog("删除授权");
+    sdk->deleteAuthorization(TWITTER, auth_selector(authCallback));
 }
 void Auth::menuCloseCallback(CCObject* pSender)
 {

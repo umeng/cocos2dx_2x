@@ -55,19 +55,6 @@
   currentViewController:(id)currentViewController
              completion:(UMSocialRequestCompletionHandler)completion;
 
-
-/**
- *  授权平台
- *
- *  @param platformType @see UMSocialPlatformType
- *  @param currentViewController 用于弹出类似邮件分享、短信分享等这样的系统页面
- *  @discuss currentViewController 只对sms,email等平台需要传入viewcontroller的平台，其他不需要的平台可以传入nil
- *  @param completion   回调
- */
-- (void)authWithPlatform:(UMSocialPlatformType)platformType
-   currentViewController:(id)currentViewController
-              completion:(UMSocialRequestCompletionHandler)completion;
-
 /**
  *  取消授权
  *
@@ -85,7 +72,6 @@
 - (void)getUserInfoWithPlatform:(UMSocialPlatformType)platformType
           currentViewController:(id)currentViewController
                      completion:(UMSocialRequestCompletionHandler)completion;
-
 
 /**
  *  获得从sso或者web端回调到本app的回调
@@ -139,6 +125,20 @@
 -(BOOL) isInstall:(UMSocialPlatformType)platformType;
 
 -(BOOL) isSupport:(UMSocialPlatformType)platformType;
+
+
+#pragma mark - DEPRECATED METHOD
+/**
+ *  授权平台（废弃 - 请使用-getUserInfoWithPlatform:currentViewController:completion接口进行授权）
+ *
+ *  @param platformType @see UMSocialPlatformType
+ *  @param currentViewController 用于弹出类似邮件分享、短信分享等这样的系统页面
+ *  @discuss currentViewController 只对sms,email等平台需要传入viewcontroller的平台，其他不需要的平台可以传入nil
+ *  @param completion   回调
+ */
+- (void)authWithPlatform:(UMSocialPlatformType)platformType
+   currentViewController:(id)currentViewController
+              completion:(UMSocialRequestCompletionHandler)completion __attribute__((deprecated));
 
 @end
 

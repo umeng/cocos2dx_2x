@@ -252,37 +252,37 @@ typedef NS_ENUM(NSInteger,UMSocialPlatformType)
     UMSocialPlatformType_UnKnown            = -2,
     //预定义的平台
     UMSocialPlatformType_Predefine_Begin    = -1,
-    UMSocialPlatformType_Sina,          //新浪
-    UMSocialPlatformType_WechatSession, //微信聊天
-    UMSocialPlatformType_WechatTimeLine,//微信朋友圈
-    UMSocialPlatformType_WechatFavorite,//微信收藏
-    UMSocialPlatformType_QQ,            //QQ聊天页面
-    UMSocialPlatformType_Qzone,         //qq空间
-    UMSocialPlatformType_TencentWb,     //腾讯微博
-    UMSocialPlatformType_AlipaySession, //支付宝聊天页面
-    UMSocialPlatformType_YixinSession,  //易信聊天页面
-    UMSocialPlatformType_YixinTimeLine, //易信朋友圈
-    UMSocialPlatformType_YixinFavorite, //易信收藏
-    UMSocialPlatformType_LaiWangSession,//点点虫（原来往）聊天页面
-    UMSocialPlatformType_LaiWangTimeLine,//点点虫动态
-    UMSocialPlatformType_Sms,           //短信
-    UMSocialPlatformType_Email,         //邮件
-    UMSocialPlatformType_Renren,        //人人
-    UMSocialPlatformType_Facebook,      //Facebook
-    UMSocialPlatformType_Twitter,       //Twitter
-    UMSocialPlatformType_Douban,        //豆瓣
-    UMSocialPlatformType_KakaoTalk,     //KakaoTalk（暂未支持）
-    UMSocialPlatformType_Pinterest,     //Pinterest（暂未支持）
-    UMSocialPlatformType_Line,          //Line
+    UMSocialPlatformType_Sina               = 0, //新浪
+    UMSocialPlatformType_WechatSession      = 1, //微信聊天
+    UMSocialPlatformType_WechatTimeLine     = 2,//微信朋友圈
+    UMSocialPlatformType_WechatFavorite     = 3,//微信收藏
+    UMSocialPlatformType_QQ                 = 4,//QQ聊天页面
+    UMSocialPlatformType_Qzone              = 5,//qq空间
+    UMSocialPlatformType_TencentWb          = 6,//腾讯微博
+    UMSocialPlatformType_AlipaySession      = 7,//支付宝聊天页面
+    UMSocialPlatformType_YixinSession       = 8,//易信聊天页面
+    UMSocialPlatformType_YixinTimeLine      = 9,//易信朋友圈
+    UMSocialPlatformType_YixinFavorite      = 10,//易信收藏
+    UMSocialPlatformType_LaiWangSession     = 11,//点点虫（原来往）聊天页面
+    UMSocialPlatformType_LaiWangTimeLine    = 12,//点点虫动态
+    UMSocialPlatformType_Sms                = 13,//短信
+    UMSocialPlatformType_Email              = 14,//邮件
+    UMSocialPlatformType_Renren             = 15,//人人
+    UMSocialPlatformType_Facebook           = 16,//Facebook
+    UMSocialPlatformType_Twitter            = 17,//Twitter
+    UMSocialPlatformType_Douban             = 18,//豆瓣
+    UMSocialPlatformType_KakaoTalk          = 19,//KakaoTalk（暂未支持）
+    UMSocialPlatformType_Pinterest          = 20,//Pinterest（暂未支持）
+    UMSocialPlatformType_Line               = 21,//Line
     
-    UMSocialPlatformType_Linkedin,      //领英
+    UMSocialPlatformType_Linkedin           = 22,//领英
     
-    UMSocialPlatformType_Flickr,        //Flickr
+    UMSocialPlatformType_Flickr             = 23,//Flickr
 
-    UMSocialPlatformType_Tumblr,        //Tumblr（暂未支持）
-    UMSocialPlatformType_Instagram,     //Instagram
-    UMSocialPlatformType_Whatsapp,      //Whatsapp
-    UMSocialPlatformType_Predefine_end,
+    UMSocialPlatformType_Tumblr             = 24,//Tumblr（暂未支持）
+    UMSocialPlatformType_Instagram          = 25,//Instagram
+    UMSocialPlatformType_Whatsapp           = 26,//Whatsapp
+    UMSocialPlatformType_Predefine_end      = 999,
     
     //用户自定义的平台
     UMSocialPlatformType_UserDefine_Begin = 1000,
