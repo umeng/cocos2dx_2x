@@ -33,6 +33,7 @@ import android.util.Log;
 
 import com.umeng.social.CCUMSocialController;
 import com.umeng.socialize.Config;
+import com.umeng.socialize.UMShareAPI;
 
 
 public class UmengGame extends Cocos2dxActivity {
@@ -50,8 +51,9 @@ public class UmengGame extends Cocos2dxActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mActivity = this;
+		UMShareAPI.get(this);
 		CCUMSocialController.initSocialSDK(mActivity, "com.umeng.social");
-		Config.shareType = "cocos2dx";
+		Config.shareType = "Cocos2d-x";
 		Log.d("", "####  UmengGame onCreate");
 
 	}

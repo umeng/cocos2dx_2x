@@ -24,7 +24,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.facebook.share.model.ShareContent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMAuthListener;

@@ -77,7 +77,7 @@ UIViewController* getViewController(){
 
 
 void UmSocialControllerIOS::initCocos2dxSDK(const char *sdkType, const char *version){
-  [UMSocialGlobal shareInstance].type = @"react native";
+  [UMSocialGlobal shareInstance].type = @"Cocos2d-x";
     
 }
 

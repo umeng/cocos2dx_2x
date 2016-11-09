@@ -12,6 +12,7 @@ import org.cocos2dx.lib.Cocos2dxActivity;
 import org.cocos2dx.lib.Cocos2dxGLSurfaceView;
 
 import android.R;
+import android.R.integer;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.res.AssetManager;
@@ -23,7 +24,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
 
-import com.facebook.share.model.ShareContent;
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
 import com.umeng.socialize.UMAuthListener;
@@ -126,6 +126,7 @@ public class CCUMSocialController {
 	private static 	HashMap<String , platformShareCotent> map = new HashMap<String , platformShareCotent>();   
 	private static ShareAction openBoardAction;
 	private static ShareAction shareAction;
+	private static ArrayList<Integer> platforms = new ArrayList<Integer>();
 	public static void initSocialSDK(final Activity activity, String descriptor) {
 
 		runOnMainThread(new Runnable() {
@@ -144,6 +145,7 @@ public class CCUMSocialController {
 			throw new IllegalArgumentException(
 					"initSocialSDK函数的activity参数必须设置为Cocos2dxActivity类型, 且不为null. ");
 		}
+		Config.UseCocos = 1;
 		openBoardAction = new ShareAction(activity);
 		shareAction = new ShareAction(activity);
 		// mController.getConfig().closeToast();
@@ -216,7 +218,7 @@ public class CCUMSocialController {
 							public void run() {
 								// 删除授权的回调, 开发者可以通过字符串来判断
 								OnAuthorizeComplete(platform, StatusCode.ST_CODE_SUCCESSED,
-										new String[]{"deleteOauth"});
+										new String[]{"deleteOauth"},new String[]{"deleteOauth"});
 							}
 						});
 					}
@@ -229,7 +231,7 @@ public class CCUMSocialController {
 							public void run() {
 								// 删除授权的回调, 开发者可以通过字符串来判断
 								OnAuthorizeComplete(platform, StatusCode.ST_CODE_ERROR,
-										new String[]{throwable.getMessage()});
+										new String[]{throwable.getMessage()},new String[]{"deleteOauth"});
 							}
 						});
 					}
@@ -253,18 +255,49 @@ public class CCUMSocialController {
 	 * @param registerCallback
 	 *            是否注册回调接口
 	 */
-	public static void openShare() {
+	public static void openShare(final int[] platforms,final String text,final String title,final String targeturl,final String image) {
 		// 注册回调接口, 默认将分享回调注册要sdk
 
 //		openBoardAction.setShareboardclickCallback(mSocialShareListener);
 		checkActivity();
-
+		SHARE_MEDIA [] dis = new SHARE_MEDIA[platforms.length];
+		if (platforms != null && platforms.length > 0) {
+			for (int i = 0;i<platforms.length;i++){
+				dis[i] = getPlatform(platforms[i]);
+			}
+		}
+		final SHARE_MEDIA [] disfinal = dis;
 		// 在UI线程执行打开分享面板操作
 		runOnMainThread(new Runnable() {
 			@Override
 			public void run() {
 				// 打开分享面板
-			openBoardAction.setShareboardclickCallback(shareBoardlistener).open();
+				new ShareAction(mActivity).setDisplayList(disfinal).withText(text).setCallback(umShareListener)
+				.withTitle(title).withTargetUrl(targeturl).withMedia(getUmImage(image)).open();
+			}
+		});
+
+		Log.d(TAG, "@@@@ openShare");
+
+	}
+	public static void openCustomShare(final int[] platforms) {
+		// 注册回调接口, 默认将分享回调注册要sdk
+
+//		openBoardAction.setShareboardclickCallback(mSocialShareListener);
+		checkActivity();
+		SHARE_MEDIA [] dis = new SHARE_MEDIA[platforms.length];
+		if (platforms != null && platforms.length > 0) {
+			for (int i = 0;i<platforms.length;i++){
+				dis[i] = getPlatform(platforms[i]);
+			}
+		}
+		final SHARE_MEDIA [] disfinal = dis;
+		// 在UI线程执行打开分享面板操作
+		runOnMainThread(new Runnable() {
+			@Override
+			public void run() {
+				// 打开分享面板
+				new ShareAction(mActivity).setDisplayList(disfinal).setShareboardclickCallback(shareBoardlistener).open();
 			}
 		});
 
@@ -275,39 +308,7 @@ public class CCUMSocialController {
 
 		@Override
 		public void onclick(SnsPlatform snsPlatform, final SHARE_MEDIA share_media) {
-			runOnMainThread(new Runnable() {
-
-				@Override
-				public void run() {
-					platformShareCotent temp = map.get(share_media.toString());
-					if (temp == null) {
-						temp = new platformShareCotent();
-					}
-					if(TextUtils.isEmpty(temp.text)){
-						temp.text = null;
-					}
-					if(TextUtils.isEmpty(temp.imagepath)){
-						temp.imagepath = null;
-					}
-					if(TextUtils.isEmpty(temp.title)){
-						temp.title = null;
-						Log.e("xxxxxx","temptitle="+temp.title);
-					}
-					if(TextUtils.isEmpty(temp.targeturl)){
-						temp.targeturl = null;
-						Log.e("xxxxxx","temptargeturl="+temp.targeturl);
-					}
-					Log.e("xxxxxx","temp="+temp.text+"  "+temp.imagepath);
-					new ShareAction(mActivity).setPlatform(share_media)
-					.withText(temp.text)
-					.withMedia(getUmImage(temp.imagepath))
-					.withTargetUrl(temp.targeturl)
-					.withTitle(temp.title)
-					.setCallback(umShareListener)
-							.share();
-					
-				}
-			});
+			OnBoard(getPlatformInt(share_media));
 
 		}
 	};
@@ -317,7 +318,7 @@ public class CCUMSocialController {
 	 * @param platform
 	 *            平台对应的字符串
 	 */
-	public static void directShare(final int platform) {
+	public static void directShare(final int platform,final String text,final String title,final String targeturl,final String image) {
 
 		// 检测平台的有效性
 		if (!isPlatformValid(platform)) {
@@ -331,30 +332,28 @@ public class CCUMSocialController {
 
 			@Override
 			public void run() {
-				platformShareCotent temp = map.get(getPlatform(platform).toString());
-				if (temp == null) {
-					temp = new platformShareCotent();
-				}
-				if(TextUtils.isEmpty(temp.text)){
-					temp.text = null;
-				}
-				if(TextUtils.isEmpty(temp.imagepath)){
-					temp.imagepath = null;
-				}
-				if(TextUtils.isEmpty(temp.title)){
-					temp.title = null;
-					Log.e("xxxxxx","temptitle="+temp.title);
-				}
-				if(TextUtils.isEmpty(temp.targeturl)){
-					temp.targeturl = null;
-					Log.e("xxxxxx","temptargeturl="+temp.targeturl);
-				}
-				Log.e("xxxxxx","temp="+temp.text+"  "+temp.imagepath);
+//				platformShareCotent temp = map.get(getPlatform(platform).toString());
+				
+//				if(TextUtils.isEmpty(text)){
+//					text = null;
+//				}
+//				if(TextUtils.isEmpty(image)){
+//					image = null;
+//				}
+//				if(TextUtils.isEmpty(title)){
+//					title = null;
+//					
+//				}
+//				if(TextUtils.isEmpty(targeturl)){
+//					targeturl = null;
+//					
+//				}
+			
 				new ShareAction(mActivity).setPlatform(getPlatform(platform))
-				.withText(temp.text)
-			.withMedia(getUmImage(temp.imagepath))
-				.withTargetUrl(temp.targeturl)
-				.withTitle(temp.title)
+				.withText(text)
+			.withMedia(getUmImage(image))
+				.withTargetUrl(targeturl)
+				.withTitle(title)
 				.setCallback(umShareListener)
 						.share();
 //				shareAction.setPlatform(getPlatform(platform));
@@ -375,7 +374,8 @@ public class CCUMSocialController {
 		}else if(url.startsWith("assets")){
 			return new UMImage(mActivity, getImageFromAssetsFile(url));
 		}else if(url.startsWith("res")){
-			int pic = mActivity. getResources().getIdentifier(url, "drawable",mActivity.getPackageName());
+			Log.e("xxxxxx url="+url.replace("res/", ""));
+			int pic = mActivity. getResources().getIdentifier(url.replace("res/", ""), "drawable",mActivity.getPackageName());
 			return new UMImage(mActivity, pic);
 		}else if(url.startsWith("/sdcard")){
 			return new UMImage(mActivity, new File(url));
@@ -443,7 +443,27 @@ public class CCUMSocialController {
 		shareAction.withText(text);
 		openBoardAction.withText(text);
 	}
+	/**
+	 * 获取用户信息
+	 * 
+	 * @param text
+	 */
+	public static void getplatformInfo(final int platform) {
+		Log.e("xxxx run");
+		checkActivity();
 
+		// 在UI线程执行授权操作
+		runOnMainThread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				
+				mShareAPI.getPlatformInfo(mActivity, getPlatform(platform), mAuthListener);
+
+			}
+		});
+	}
 	/**
 	 * 设置要分享的图片路径或者url,或者资源名
 	 * 
@@ -690,7 +710,7 @@ public class CCUMSocialController {
 	 *            平台的顺序数组
 	 */
 	public static void setPlatforms(final int[] platforms) {
-
+			
 		// 运行在主线程
 		runOnMainThread(new Runnable() {
 
@@ -887,36 +907,40 @@ public static void supportSsoAuthorization(int i,String URL) {
 		@Override
 		public void onComplete(final SHARE_MEDIA share_media, int i, final Map<String, String> map) {
 			// 运行在gl线程
+			
 			runOnOpenGLThread(new Runnable() {
 
 				@Override
 				public void run() {
+					Log.e("xxxxxxauthcallback ff");
 					OnAuthorizeComplete(getPlatformInt(share_media),
-							StatusCode.ST_CODE_SUCCESSED, getAuthMap(map));
+							StatusCode.ST_CODE_SUCCESSED, getAuthMap(map),getAuthKey(map));
 				}
 			});
 		}
 
 		@Override
 		public void onError(final SHARE_MEDIA share_media, int i, final Throwable throwable) {
+			
 			runOnOpenGLThread(new Runnable() {
 
 				@Override
 				public void run() {
 					OnAuthorizeComplete(getPlatformInt(share_media), 0,
-							new String[] { throwable.getMessage() });
+							new String[] { throwable.getMessage() },new String[] { "error" });
 				}
 			});
 		}
 
 		@Override
 		public void onCancel(final SHARE_MEDIA share_media, int i) {
+			
 			runOnOpenGLThread(new Runnable() {
 
 				@Override
 				public void run() {
 					OnAuthorizeComplete(getPlatformInt(share_media), -1,
-							new String[] { "cancel" });
+							new String[] { "cancel" },new String[] { "cancel" });
 				}
 			});
 		}
@@ -950,26 +974,45 @@ public static void supportSsoAuthorization(int i,String URL) {
 			}
 		}
 		private String[] getAuthMap(Map<String, String> data) {
-			if (data != null
-					&& (data.containsKey("access_token") || data
-					.containsKey("access_secret"))) {
-				String[] authData = new String[3];
-				// 有的字段为secret
-				if (data.containsKey("access_secret")) {
-					authData[0] = data.get("access_secret");
-				} else {
-					authData[0] = data.get("access_token");
-				}
-				if (data.containsKey("uid")) {
-					authData[1] = data.get("uid");
-				} else {
-					authData[1] = "";
-				}
 
+				String[] authData = new String[data.size()];
+				int i = 0;
+				for (String key : data.keySet()) {
+					Log.e("xxxxxx stringvalue="+ data.get(key));
+					authData[i] = data.get(key);
+					i++;
+					  }
 				return authData;
-			} else {
-				return new String[] {};
-			}
+
+		}
+		private String[] getAuthKey(Map<String, String> data) {
+//			if (data != null
+//					&& (data.containsKey("access_token") || data
+//					.containsKey("access_secret"))) {
+//				String[] authData = new String[3];
+//				// 有的字段为secret
+//				if (data.containsKey("access_secret")) {
+//					authData[0] = data.get("access_secret");
+//				} else {
+//					authData[0] = data.get("access_token");
+//				}
+//				if (data.containsKey("uid")) {
+//					authData[1] = data.get("uid");
+//				} else {
+//					authData[1] = "";
+//				}
+//
+//				return authData;
+//			} else {
+				String[] authData = new String[data.size()];
+				int i = 0;
+				for (String key : data.keySet()) {
+					Log.e("xxxxxx stringkey="+key);
+					authData[i] = key;
+					i++;
+					  }
+				return authData;
+//			}
 		}
 	};
 
@@ -987,7 +1030,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 	 *            平台
 	 */
 	private native static void OnAuthorizeComplete(int platform, int stCode,
-			String[] value);
+			String[] value,String[] key);
 
 	/******************************************************************************
 	 * 分享回调接口,会调用native层对应的回调方法, 开发者可以在Java或者native层进行相应的处理
@@ -1024,16 +1067,16 @@ public static void supportSsoAuthorization(int i,String URL) {
 
 				@Override
 				public void run() {
-					if (share_media == SHARE_MEDIA.QZONE) {
-						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_SUCCESSED,
-								share_media.toString()+"share cancle");
-
-					}
-					else {
+//					if (share_media == SHARE_MEDIA.QZONE) {
+//						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_SUCCESSED,
+//								share_media.toString()+"share cancle");
+//
+//					}
+//					else {
 						
-						OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR_CANCEL,
+						OnShareComplete(getPlatformInt(share_media), -1,
 								share_media.toString()+"share cancle");
-					}
+//					}
 				}
 			});
 		}
@@ -1097,6 +1140,13 @@ public static void supportSsoAuthorization(int i,String URL) {
 	 */
 	private native static void OnShareComplete(int platform, int eCode,
 			String descriptor);
+	/**
+	 * 回调分享的board方法到native层
+	 * 
+	 * @param platform
+	 *            平台
+	 */
+	private native static void OnBoard(int platform);
 
 	/**
 	 * 通过整型获取对应的平台, C++中使用enum常量来代表平台

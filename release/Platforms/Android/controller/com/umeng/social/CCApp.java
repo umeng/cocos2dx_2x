@@ -10,7 +10,7 @@ import com.umeng.socialize.PlatformConfig;
 public class CCApp extends Application{
     {
         //微信    wx12342956d1cab4f9,a5ae111de7d9ea137e88a5e02c07c94d
-        PlatformConfig.setWeixin("wx967daebe835fbeac", "5bb696d9ccd75a38c8a0bfe0675559b3");
+        PlatformConfig.setWeixin("wxdc1e388c3822c80b", "3baf1193c85774b3fd9d18447d76cab0");
         //豆瓣平台目前只能在服务器端配置
         //PlatformConfig.setDouban( );
         //新浪微博

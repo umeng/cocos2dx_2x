@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "UMSocial.h"
 #include "CCUMTypeDef.h"
 
 using namespace umeng::social;

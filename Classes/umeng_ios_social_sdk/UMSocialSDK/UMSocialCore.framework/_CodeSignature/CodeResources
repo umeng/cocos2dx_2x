@@ -62,7 +62,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Ev+Iwbk6ef1fCy4fxi8bkgUxnKY=
+		J+E0bv2tzxqDdvSEVgfNn4cOgVw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -72,170 +72,65 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/UMSocialCore.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			3vE7kVvXPNPqSeFZDX2a04W5dSA=
-			</data>
-			<key>hash2</key>
-			<data>
-			SKUPStkUxEu6+Kpvgebjzx0xG/nW2EASlDr10MYDKXo=
-			</data>
-		</dict>
+		<data>
+		3vE7kVvXPNPqSeFZDX2a04W5dSA=
+		</data>
 		<key>Headers/UMSocialCoreImageUtils.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ZyVixN3oTQSWnqt+dNsLZIC3fog=
-			</data>
-			<key>hash2</key>
-			<data>
-			b+gRZBo2XXubX5+YlstaIxuAOhBh9tzcOwjouAjx0i4=
-			</data>
-		</dict>
+		<data>
+		ZyVixN3oTQSWnqt+dNsLZIC3fog=
+		</data>
 		<key>Headers/UMSocialDataManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			zNTt3pYjS9VGy7w2GbwT0QxldME=
-			</data>
-			<key>hash2</key>
-			<data>
-			NfPgamDDI/3wJeI7y/ass8DjDC/w0i3POtThWPfvAPc=
-			</data>
-		</dict>
+		<data>
+		zNTt3pYjS9VGy7w2GbwT0QxldME=
+		</data>
 		<key>Headers/UMSocialGlobal.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			yxwLSWacMa/00fdqy5I39fXh0e4=
-			</data>
-			<key>hash2</key>
-			<data>
-			axJja1tyOyWvv3G52ozG66W57ffycCkGJi9W+ofo1z0=
-			</data>
-		</dict>
+		<data>
+		yxwLSWacMa/00fdqy5I39fXh0e4=
+		</data>
 		<key>Headers/UMSocialHandler.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			wsuYY7J68t76044kt0DsLlBDgxU=
-			</data>
-			<key>hash2</key>
-			<data>
-			u6r7cIczVCkJotF2grYpwhf4VWGhKk4kX/ZTD1BKKyE=
-			</data>
-		</dict>
+		<data>
+		wsuYY7J68t76044kt0DsLlBDgxU=
+		</data>
 		<key>Headers/UMSocialImageUtil.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			GnEYkqVZxNBtzrGIkzjY0lk7xIs=
-			</data>
-			<key>hash2</key>
-			<data>
-			j+AYpmZuJ6v3oYlYbItV1LiGccqABzc2DN87ozaxU5Y=
-			</data>
-		</dict>
+		<data>
+		GnEYkqVZxNBtzrGIkzjY0lk7xIs=
+		</data>
 		<key>Headers/UMSocialManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			MWp3K88a0e37dtwRl+sMzDeIOkg=
-			</data>
-			<key>hash2</key>
-			<data>
-			toWxJ6Sn96Wz/BTAWPSRR5PkYue0KlMwQoDwRtroVYE=
-			</data>
-		</dict>
+		<data>
+		MWp3K88a0e37dtwRl+sMzDeIOkg=
+		</data>
 		<key>Headers/UMSocialMessageObject.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			160k7ZZE5keyO8J6oXMENZTf92E=
-			</data>
-			<key>hash2</key>
-			<data>
-			R2AoKRzQOy4FWufnWFCtXRzQHMdPIjtzKhLIUiHHuXM=
-			</data>
-		</dict>
+		<data>
+		160k7ZZE5keyO8J6oXMENZTf92E=
+		</data>
 		<key>Headers/UMSocialPlatformConfig.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			8NcVAOSyHm5Eg7/Z16SLl3/I5h8=
-			</data>
-			<key>hash2</key>
-			<data>
-			0ecsZDhhtuW8pCYHz7YL2XLiOwTRrC5Jg38h3xQK5Lw=
-			</data>
-		</dict>
+		<data>
+		8NcVAOSyHm5Eg7/Z16SLl3/I5h8=
+		</data>
 		<key>Headers/UMSocialPlatformProvider.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			en4oaLfwga9gT2hHRR6/fgkYHWg=
-			</data>
-			<key>hash2</key>
-			<data>
-			BP7JpNbSJZQuInLLITRxF2X7owM5EM+BsWh928h2mDg=
-			</data>
-		</dict>
+		<data>
+		en4oaLfwga9gT2hHRR6/fgkYHWg=
+		</data>
 		<key>Headers/UMSocialResponse.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			H406/dX3hqYOmYAi/UU9jHGSuPk=
-			</data>
-			<key>hash2</key>
-			<data>
-			AKenp2I6Jw9BmYY5S5V5F4T24fkI2IhAlL82n+h1BBg=
-			</data>
-		</dict>
+		<data>
+		H406/dX3hqYOmYAi/UU9jHGSuPk=
+		</data>
 		<key>Headers/UMSocialSOAuthViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			yHPsyFc4hC8ZdpZlGM3etDiCw9A=
-			</data>
-			<key>hash2</key>
-			<data>
-			WGeJwa5HsfGIBJXlgraSEo1++NyzCGs3RLHnFwk15a0=
-			</data>
-		</dict>
+		<data>
+		yHPsyFc4hC8ZdpZlGM3etDiCw9A=
+		</data>
 		<key>Headers/UMSocialShareEditViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			3Fxjj9GtyIPE6kNnxzHnVoyOZKo=
-			</data>
-			<key>hash2</key>
-			<data>
-			QMdQ+SipNED0zEqjNg4FyW3ffqSWvT/+phsEsuC0T54=
-			</data>
-		</dict>
+		<data>
+		3Fxjj9GtyIPE6kNnxzHnVoyOZKo=
+		</data>
 		<key>Headers/UMSociallogMacros.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			djHE0z/kV1Ph+TtKS/U42WYr8nQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			Een1HKY1DVW0pPGNEDw4vy00mK4DxOU7a61L2GUVc7M=
-			</data>
-		</dict>
+		<data>
+		djHE0z/kV1Ph+TtKS/U42WYr8nQ=
+		</data>
 		<key>Modules/module.modulemap</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			amT4vPHjYIObn3/aEi3x+Ja+TK8=
-			</data>
-			<key>hash2</key>
-			<data>
-			9lIRmBKvdgm9YNaCOGxeF0kUlafvb0x3p8BufnD6Wls=
-			</data>
-		</dict>
+		<data>
+		amT4vPHjYIObn3/aEi3x+Ja+TK8=
+		</data>
 	</dict>
 	<key>rules</key>
 	<dict>
