@@ -16,7 +16,7 @@
 int const platformlength = 17;
 string UmSocialControllerIOS::m_appKey = "";
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
-int const platforms[platformlength] = {
+UMSocialPlatformType const platforms[platformlength] = {
     UMSocialPlatformType_Sina
     , UMSocialPlatformType_WechatSession
     , UMSocialPlatformType_WechatTimeLine

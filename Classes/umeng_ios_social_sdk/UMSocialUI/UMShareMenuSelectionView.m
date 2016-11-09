@@ -128,7 +128,7 @@ static NSString *kUMSSharePlatformItemView = @"UMSSharePlatformItemView";
         self.pageViews = [NSArray arrayWithArray:pageViews];
         
         //页面切换block
-        __weak typeof(self) weakSelf = self;
+        __weak UMShareMenuSelectionView *weakSelf = self;
         self.contentViewWithIndex = ^(UMSocialShareScrollView *scrollView, NSInteger index, DJXScrollSubViewLocation location){
             UIView *pageView = nil;
             if (location == DJX_leftView) {
@@ -473,9 +473,9 @@ static NSString *kUMSSharePlatformItemView = @"UMSSharePlatformItemView";
     [cell reloadDataWithImage:[UIImage imageNamed:UMSocialPlatformIconWithName(imageName)] platformName:platformName];
     cell.index = platformType_int;
     
-    __weak typeof(self) weakSelf = self;
+    __weak UMShareMenuSelectionView * weakSelf = self;
     cell.tapActionBlock = ^(NSInteger index){
-        __strong typeof(UMShareMenuSelectionView *)strongSelf = weakSelf;
+        __strong UMShareMenuSelectionView *strongSelf = weakSelf;
         strongSelf.selectionPlatform = index;
         if (strongSelf.shareSelectionBlock) {
             [strongSelf hiddenShareMenuView];
