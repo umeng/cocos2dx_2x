@@ -21,7 +21,7 @@
 @property (nonatomic,copy)NSString* title;
 
 /**
- * @param text 文本内容
+ * text 文本内容
  * @note 非纯文本分享文本
  */
 @property (nonatomic, copy) NSString  *text;
