@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
+
 
 /**
  新浪微博
@@ -152,7 +154,7 @@ typedef void (^UMSocialRequestCompletionHandler)(id result,NSError *error);
 /**
  *  授权，分享，UserProfile等操作的回调
  *
- *  @param result 表示回调的结果
+ *  @param shareResponse 表示回调的结果
  *  @param error  表示回调的错误码
  */
 typedef void (^UMSocialShareCompletionHandler)(id shareResponse,NSError *error);
@@ -195,6 +197,7 @@ typedef NS_ENUM(NSInteger, UMSocialPlatformErrorType) {
     UMSocialPlatformErrorType_SourceError       = 2011,             // 第三方错误
     
     UMSocialPlatformErrorType_ProtocolNotOverride = 2013,   // 对应的	UMSocialPlatformProvider的方法没有实现
+    UMSocialPlatformErrorType_NotUsingHttps      = 2014,   // 没有用https的请求,@see UMSocialGlobal isUsingHttpsWhenShareContent
     
 };
 
@@ -271,15 +274,15 @@ typedef NS_ENUM(NSInteger,UMSocialPlatformType)
     UMSocialPlatformType_Facebook           = 16,//Facebook
     UMSocialPlatformType_Twitter            = 17,//Twitter
     UMSocialPlatformType_Douban             = 18,//豆瓣
-    UMSocialPlatformType_KakaoTalk          = 19,//KakaoTalk（暂未支持）
-    UMSocialPlatformType_Pinterest          = 20,//Pinterest（暂未支持）
+    UMSocialPlatformType_KakaoTalk          = 19,//KakaoTalk
+    UMSocialPlatformType_Pinterest          = 20,//Pinteres
     UMSocialPlatformType_Line               = 21,//Line
     
     UMSocialPlatformType_Linkedin           = 22,//领英
     
     UMSocialPlatformType_Flickr             = 23,//Flickr
 
-    UMSocialPlatformType_Tumblr             = 24,//Tumblr（暂未支持）
+    UMSocialPlatformType_Tumblr             = 24,//Tumblr
     UMSocialPlatformType_Instagram          = 25,//Instagram
     UMSocialPlatformType_Whatsapp           = 26,//Whatsapp
     UMSocialPlatformType_Predefine_end      = 999,
@@ -315,29 +318,65 @@ typedef NS_ENUM(NSInteger,UMSocialPlatformType)
 @property(nonatomic,strong)NSString* appSecret;
 @property(nonatomic,strong)NSString* redirectURL;
 
+
 /**
+ *  根据平台类型获得平台名称
  *
- *  @param platformType @see UMSocialPlatformType
+ *  @param platformType 平台类型
+ *  @see UMSocialPlatformType
  *
- *  @return 平台名称
+ *  @return 返回对应的平台名称
  */
 + (NSString *)platformNameWithPlatformType:(UMSocialPlatformType)platformType;
 
 /**
+ *  根据平台的类型返回对应平台的对象
  *
- *  @param platformType @see UMSocialPlatformType
+ *  @param platformType 平台类型
  *
- *  @return 平台handler
+ *  @return 返回对应的平台对象
  */
 + (id)platformHandlerWithPlatformType:(UMSocialPlatformType)platformType;
 
+
 /**
+ *  创建错误类型
  *
- *  @param errorType @see UMSocialPlatformErrorType
- *  @param userInfo  @see 错误信息
+ *  @param errorType 平台类型
+ *  @param userInfo  用户的自定义信息userInfo
  *
- *  @return 如果平台有效就返回YES，否则返回NO
+ *  @return 返回错误对象
  */
 + (NSError *)errorWithSocialErrorType:(UMSocialPlatformErrorType)errorType userInfo:(id)userInfo;
+
+@end
+
+
+/**
+ * 云端授权/分享编辑页面配置类
+ * 云端授权/分享页面目前适用于腾讯微博、豆瓣、人人的授权和分享编辑页面的自定义配置
+ */
+@interface UMSocialCloudViewConfig : NSObject
+
+
+/**
+ 授权页面
+ */
+@property (nonatomic, strong) NSString *authViewTitle;
+@property (nonatomic, strong) UIColor *authViewTitleColor;
+@property( nonatomic, strong) UIColor *authViewNavBarColor;
+// button仅需改动title或image即可，touch事件内部触发
+@property (nonatomic, strong) UIButton *authViewCloseButton;
+
+@property (nonatomic, strong) NSString *editViewTitle;
+@property (nonatomic, strong) UIColor *editViewTitleColor;
+@property( nonatomic, strong) UIColor *editViewNavBarColor;
+// button仅需改动title或image即可，touch事件内部触发
+@property (nonatomic, strong) UIButton *editViewCloseButton;
+@property (nonatomic, strong) UIButton *editViewShareButton;
+
+
+
++ (instancetype)sharedInstance;
 
 @end

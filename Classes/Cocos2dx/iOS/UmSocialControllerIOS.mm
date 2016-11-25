@@ -8,7 +8,7 @@
 
 #include "UmSocialControllerIOS.h"
 #import <UIKit/UIKit.h>
-#import "UMSocialUIManager.h"
+#import <UShareUI/UShareUI.h>
 #import <UMSocialCore/UMSocialCore.h>
 //#import "UMSocialTencentWeiboHandler.h"
 
@@ -122,7 +122,7 @@ void UmSocialControllerIOS::getinfo(int platform, AuthEventHandler callback){
         if (error) {
             NSLog(@"get fail with error %@", error);
             message = @"Auth fail";
-            code = error.code;
+            code = (int)error.code;
             loginData.insert(pair<string, string>("message",  asserstring(message)));
         }else{
             if ([result isKindOfClass:[UMSocialUserInfoResponse class]]) {
@@ -173,7 +173,7 @@ void UmSocialControllerIOS::authorize(int platform, AuthEventHandler callback){
         if (error) {
             NSLog(@"Auth fail with error %@", error);
             message = @"Auth fail";
-            code = error.code;
+            code = (int)error.code;
              loginData.insert(pair<string, string>("message", asserstring(message)));
         }else{
             if ([result isKindOfClass:[UMSocialAuthResponse class]]) {
@@ -238,9 +238,10 @@ id getUIImageFromFilePath(const char* imagePath){
     return returnImage;
 }
  void UmSocialControllerIOS::openCustomShareBoard(vector<int>* platform, BoardEventHandler callback){
-       [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMShareMenuSelectionView *shareSelectionView, UMSocialPlatformType platformType) {
-           callback(getPlatformself(platformType));
-       }];
+     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+         callback(getPlatformself((int)platformType));
+     }];
+     
 }
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback){
        id image = nil;
@@ -266,14 +267,15 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const 
         
         
     }
-
-    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMShareMenuSelectionView *shareSelectionView, UMSocialPlatformType platformType) {
+    
+    [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
+        
         
         [[UMSocialManager defaultManager] shareToPlatform:platformType messageObject:messageObject currentViewController:getViewController() completion:^(id data, NSError *error) {
             int code;
             NSString* message;
             if (error) {
-                code = error.code;
+                code = (int)error.code;
                 NSLog(@"************Share fail with error %@*********",error);
                 message =@"************Share fail with error %@*********";
             }else{
@@ -291,11 +293,11 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const 
                     message =@"unkonw fail";
                 }
             }
-            callback(getPlatformself(platformType), code,string([message UTF8String]));
-        
+            callback(getPlatformself((int)platformType), code,string([message UTF8String]));
         }];
         
     }];
+    
     
   }
 
