@@ -119,11 +119,7 @@ public:
     void directShareIos(int platform, const char* text,const char* title,const char* targeturl,
                         const char* imgName, ShareEventHandler callback);
 
-	/**
-	 * 设置SDK的target url, 即用户点击某条分享时跳转到的目标页面
-	 * @param url 用户点击某条分享时跳转到的目标页面通常为app的主页或者下载链接等
-	 */
-	void setTargetUrl(const char* targetUrl);
+	
 
 	/**
 	 * 设置QQ和QQ空间的app id, 两个平台共用套app id, appKey
@@ -184,18 +180,7 @@ public:
 	 */
 //	void setFacebookAppId(const char *appid);
 
-    /**  设置twitter应用key、secret
-	 *   打开Twitter开关，只对iOS平台生效
-	 *  @param appKey   twitter应用的app key
-     *  @param appSecret   twitter应用的app secret
-	 */
-	void openTwitterForiOS(const char *appKey, const char* appSecret);
-
-	/** Deprecated，使用'setPlatforms'方法传入相应平台参数进行控制
-	 * 打开Instagram开关，只对iOS平台生效
-	 *
-	 */
-	void openInstagramForiOS();
+   
 
 	/**
 	 *  是否开启log
@@ -203,25 +188,8 @@ public:
 	 */
 	void setLogEnable(bool flag);
 
-	/**
-	 * 分平台设置分享内容
-	 * @param platform 平台的整形枚举
-	 * @param text 该平台分享内容的文本
-	 * @param imagePath 该平台分享内容的图片url链接、或者本地路径，或者资源名或者是asset中的图片.具体参考setShareImageName方法
-	 * @param title 分享时的标题, 默认为空字符串
-	 * @param targetUrl 分享消息被点击时跳转到的目标url ( 不是所有平台都支持此项功能 ) , 默认为空字符串
-	 */
-	void setPlatformShareContent(int platform, const char* text,
-			const char* imagePath, const char* title = NULL,
-			const char* targetUrl = NULL);
 
-	/**
-	 * 设置平台的sso授权，目前支持的平台有新浪微博、人人网、腾讯微博三个平台. 在设置SSO时请确保您在友盟官方绑定了这些平台的app id, app key等信息.iOS仅支持新浪微博、腾讯微博，不支持人人网平台。
-	 * 且人人网的app id, app key必须在本地先通过setRenrenAppInfo来设置.
-	 * @param  platform 要支持SSO授权的平台
-     * @param redirectURL 该授权平台的回调URL，该URL需要和开放平台应用管理上设置的回调URL一致
-	 */
-	void setSsoAuthorization(int platform, const char *redirectURL);
+	
 
 private:
 	static CCUMSocialSDK *_instance;
