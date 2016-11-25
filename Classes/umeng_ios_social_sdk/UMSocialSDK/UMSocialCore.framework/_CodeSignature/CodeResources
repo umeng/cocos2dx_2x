@@ -66,7 +66,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		Ev+Iwbk6ef1fCy4fxi8bkgUxnKY=
+		J+E0bv2tzxqDdvSEVgfNn4cOgVw=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -76,181 +76,69 @@
 	<key>files2</key>
 	<dict>
 		<key>Headers/UMSBaeViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			LobHNRcxueYHcQ47Go8rUPFudjQ=
-			</data>
-			<key>hash2</key>
-			<data>
-			SV5lmL2YodR1VAdE6aQdr67i3Iz1+wrB2zXOoj5yHFE=
-			</data>
-		</dict>
+		<data>
+		LobHNRcxueYHcQ47Go8rUPFudjQ=
+		</data>
 		<key>Headers/UMSocialCore.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			h9eQjAgjSxIwiW+aziuaUMnWAkk=
-			</data>
-			<key>hash2</key>
-			<data>
-			SCKC+jdUGq9Y96b4PLvOfPi3IU3Bzqt57vnjMAMS3zw=
-			</data>
-		</dict>
+		<data>
+		h9eQjAgjSxIwiW+aziuaUMnWAkk=
+		</data>
 		<key>Headers/UMSocialCoreImageUtils.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			ZyVixN3oTQSWnqt+dNsLZIC3fog=
-			</data>
-			<key>hash2</key>
-			<data>
-			b+gRZBo2XXubX5+YlstaIxuAOhBh9tzcOwjouAjx0i4=
-			</data>
-		</dict>
+		<data>
+		ZyVixN3oTQSWnqt+dNsLZIC3fog=
+		</data>
 		<key>Headers/UMSocialDataManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			zNTt3pYjS9VGy7w2GbwT0QxldME=
-			</data>
-			<key>hash2</key>
-			<data>
-			NfPgamDDI/3wJeI7y/ass8DjDC/w0i3POtThWPfvAPc=
-			</data>
-		</dict>
+		<data>
+		zNTt3pYjS9VGy7w2GbwT0QxldME=
+		</data>
 		<key>Headers/UMSocialGlobal.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			tkOUhEqXZMUT89lCEWCZMDMuF2k=
-			</data>
-			<key>hash2</key>
-			<data>
-			//Phbrvfo90/+Vibmg2q6BQjKnUdP+8TZH9QQudgQVA=
-			</data>
-		</dict>
+		<data>
+		tkOUhEqXZMUT89lCEWCZMDMuF2k=
+		</data>
 		<key>Headers/UMSocialHandler.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			st+iwnC+/qJIDiv5J07BvvtEFzE=
-			</data>
-			<key>hash2</key>
-			<data>
-			EfGSEjiKb1amGXlt3TrTiS61hYGJSbYPIcGRCS78p2s=
-			</data>
-		</dict>
+		<data>
+		st+iwnC+/qJIDiv5J07BvvtEFzE=
+		</data>
 		<key>Headers/UMSocialImageUtil.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			GnEYkqVZxNBtzrGIkzjY0lk7xIs=
-			</data>
-			<key>hash2</key>
-			<data>
-			j+AYpmZuJ6v3oYlYbItV1LiGccqABzc2DN87ozaxU5Y=
-			</data>
-		</dict>
+		<data>
+		GnEYkqVZxNBtzrGIkzjY0lk7xIs=
+		</data>
 		<key>Headers/UMSocialManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			OFptlwwQ9Ya4cApg2egC7SE4qZk=
-			</data>
-			<key>hash2</key>
-			<data>
-			RcB8m7Q35OfSK+ER6jAx0xVgRSYzkOstWEAnZjLhJqI=
-			</data>
-		</dict>
+		<data>
+		OFptlwwQ9Ya4cApg2egC7SE4qZk=
+		</data>
 		<key>Headers/UMSocialMessageObject.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			0tGHyaIxIqGy814sQT9vAYONLTw=
-			</data>
-			<key>hash2</key>
-			<data>
-			KFEDEJc+qKsNrG0PwsCcCiyv9VGBXB9L/B5sQTxEUGg=
-			</data>
-		</dict>
+		<data>
+		0tGHyaIxIqGy814sQT9vAYONLTw=
+		</data>
 		<key>Headers/UMSocialPlatformConfig.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			q1eBBlb0uJaIDUy92zITMQ8zhhc=
-			</data>
-			<key>hash2</key>
-			<data>
-			b8QFJ6vqGevGRRwvIG0bzCrzuGWwDG3oVszeAFEjFeE=
-			</data>
-		</dict>
+		<data>
+		q1eBBlb0uJaIDUy92zITMQ8zhhc=
+		</data>
 		<key>Headers/UMSocialPlatformProvider.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			7EmcT0whf7P+RZlHFHOf23LzZNY=
-			</data>
-			<key>hash2</key>
-			<data>
-			WuNbOTaXJ0i9BQj0BJD0rZA5bNOu+V6ATuVdQM0S0qU=
-			</data>
-		</dict>
+		<data>
+		7EmcT0whf7P+RZlHFHOf23LzZNY=
+		</data>
 		<key>Headers/UMSocialResponse.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			H406/dX3hqYOmYAi/UU9jHGSuPk=
-			</data>
-			<key>hash2</key>
-			<data>
-			AKenp2I6Jw9BmYY5S5V5F4T24fkI2IhAlL82n+h1BBg=
-			</data>
-		</dict>
+		<data>
+		H406/dX3hqYOmYAi/UU9jHGSuPk=
+		</data>
 		<key>Headers/UMSocialSOAuthViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			/5aQ7PyO78XkaILjpZ0X/3203Fc=
-			</data>
-			<key>hash2</key>
-			<data>
-			WIvv9yEUmYq+SEMIAJHpzXKJCwbrTeRby8y8iYXCtt8=
-			</data>
-		</dict>
+		<data>
+		/5aQ7PyO78XkaILjpZ0X/3203Fc=
+		</data>
 		<key>Headers/UMSocialShareEditViewController.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			K0z/pJwTwKzJEDSPFGO2WNLScyA=
-			</data>
-			<key>hash2</key>
-			<data>
-			PbbomQR4Lt+LjSqIW7wZvy1u5cNXJTUxed/TK0EECHM=
-			</data>
-		</dict>
+		<data>
+		K0z/pJwTwKzJEDSPFGO2WNLScyA=
+		</data>
 		<key>Headers/UMSociallogMacros.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			mQ+g4GFR2RxLF0JwpHilZ2rNJEA=
-			</data>
-			<key>hash2</key>
-			<data>
-			FOJdSxo1r2tW8qi0XaRLtRXYGH3fFWt1GYTsXm/YDqI=
-			</data>
-		</dict>
+		<data>
+		mQ+g4GFR2RxLF0JwpHilZ2rNJEA=
+		</data>
 		<key>Modules/module.modulemap</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			amT4vPHjYIObn3/aEi3x+Ja+TK8=
-			</data>
-			<key>hash2</key>
-			<data>
-			9lIRmBKvdgm9YNaCOGxeF0kUlafvb0x3p8BufnD6Wls=
-			</data>
-		</dict>
+		<data>
+		amT4vPHjYIObn3/aEi3x+Ja+TK8=
+		</data>
 	</dict>
 	<key>rules</key>
 	<dict>

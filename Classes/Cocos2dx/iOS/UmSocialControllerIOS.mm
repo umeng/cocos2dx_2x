@@ -256,7 +256,7 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const 
             [shareObject setShareImage:image];
             messageObject.shareObject = shareObject;
         }
-    }else{
+    }else if(targeturl){
         messageObject.text = [NSString stringWithUTF8String:text];
         UMShareWebpageObject *shareObject = [UMShareWebpageObject shareObjectWithTitle:[NSString stringWithUTF8String:title] descr:[NSString stringWithUTF8String:text] thumImage:image];
         //设置网页地址
@@ -264,8 +264,9 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const 
         
         //分享消息对象设置分享内容对象
         messageObject.shareObject = shareObject;
-        
-        
+    }
+    else{
+        messageObject.text = [NSString stringWithUTF8String:text];
     }
     
     [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
