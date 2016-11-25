@@ -72,18 +72,13 @@ bool Auth::init()
     CCMenuItemFont *wxButton = CCMenuItemFont::create("微信授权", this,
                                                            menu_selector(Auth::wxAuth));
     wxButton->setPosition(ccp(visibleSize.width/2-width,320));
-    CCMenuItemFont *doubanButton = CCMenuItemFont::create("豆瓣授权", this,
-                                                      menu_selector(Auth::doubanAuth));
-    doubanButton->setPosition(ccp(visibleSize.width/2-width, 250));
-    CCMenuItemFont *renrenButton = CCMenuItemFont::create("人人授权", this,
-                                                      menu_selector(Auth::renrenAuth));
-    renrenButton->setPosition(ccp(visibleSize.width/2-width, 180));
-    CCMenuItemFont *facebookButton = CCMenuItemFont::create("Facebook授权", this,
-                                                            menu_selector(Auth::facebookAuth));
-    facebookButton->setPosition(ccp(visibleSize.width/2-width, 120));
-    CCMenuItemFont *twitterButton = CCMenuItemFont::create("Twitter授权", this,
-                                                            menu_selector(Auth::twitterAuth));
-    twitterButton->setPosition(ccp(visibleSize.width/2-width, 60));
+    CCMenuItemFont *fbButton = CCMenuItemFont::create("facebook授权", this,
+                                                      menu_selector(Auth::facebookAuth));
+    fbButton->setPosition(ccp(visibleSize.width/2-width, 250));
+    CCMenuItemFont *twitterButton = CCMenuItemFont::create("twitter授权", this,
+                                                      menu_selector(Auth::twitterAuth));
+    twitterButton->setPosition(ccp(visibleSize.width/2-width, 180));
+
     
     CCMenuItemFont *delqqButton = CCMenuItemFont::create("qq删除授权", this,
                                                         menu_selector(Auth::qqAuthDel));
@@ -98,19 +93,13 @@ bool Auth::init()
     CCMenuItemFont *delwxButton = CCMenuItemFont::create("微信删除授权", this,
                                                            menu_selector(Auth::wxAuthDel));
     delwxButton->setPosition(ccp(visibleSize.width/2+width, 320));
-    CCMenuItemFont *deldoubanButton = CCMenuItemFont::create("豆瓣删除授权", this,
-                                                          menu_selector(Auth::doubanAuthDel));
-    deldoubanButton->setPosition(ccp(visibleSize.width/2+width, 250));
-    CCMenuItemFont *delrenrenButton = CCMenuItemFont::create("人人删除授权", this,
-                                                          menu_selector(Auth::renrenAuthDel));
-    delrenrenButton->setPosition(ccp(visibleSize.width/2+width, 180));
-    CCMenuItemFont *delfacebookButton = CCMenuItemFont::create("Facebook删除授权", this,
-                                                               menu_selector(Auth::facebookAuthDel));
-    delfacebookButton->setPosition(ccp(visibleSize.width/2+width, 120));
-    CCMenuItemFont *delTwitterButton = CCMenuItemFont::create("Twitter删除授权", this,
-                                                               menu_selector(Auth::twitterAuthDel));
-    delTwitterButton->setPosition(ccp(visibleSize.width/2+width, 60));
-    CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
+    CCMenuItemFont *delfbbutton = CCMenuItemFont::create("facebook删除授权", this,
+                                                          menu_selector(Auth::facebookAuthDel));
+    delfbbutton->setPosition(ccp(visibleSize.width/2+width, 250));
+    CCMenuItemFont *deltwitterButton = CCMenuItemFont::create("twitter删除授权", this,
+                                                          menu_selector(Auth::twitterAuthDel));
+    deltwitterButton->setPosition(ccp(visibleSize.width/2-width, 180));
+     CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
                                                           this,
@@ -128,14 +117,11 @@ bool Auth::init()
     pMenu->addChild(delsinaButton, 1);
     pMenu->addChild(delwxButton, 1);
     
-    pMenu->addChild(doubanButton, 1);
-    pMenu->addChild(renrenButton, 1);
-    pMenu->addChild(facebookButton, 1);
-    pMenu->addChild(deldoubanButton, 1);
-    pMenu->addChild(delrenrenButton, 1);
-    pMenu->addChild(delfacebookButton, 1);
-    pMenu->addChild(delTwitterButton, 1);
+    pMenu->addChild(fbButton, 1);
     pMenu->addChild(twitterButton, 1);
+    pMenu->addChild(delfbbutton, 1);
+    pMenu->addChild(deltwitterButton, 1);
+ 
     
     pMenu->setPosition(CCPointZero);
 

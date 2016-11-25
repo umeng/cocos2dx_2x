@@ -207,13 +207,13 @@ void Share::boardShare(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     vector<int>* platforms = new vector<int>();
     platforms->push_back(SINA);
-    platforms->push_back(RENREN);
-    platforms->push_back(DOUBAN);
+    platforms->push_back(WEIXIN);
+    platforms->push_back(WEIXIN_CIRCLE);
     platforms->push_back(QZONE);
     platforms->push_back(QQ);
 
-    platforms->push_back(WEIXIN);
-    platforms->push_back(WEIXIN_CIRCLE);
+    platforms->push_back(FACEBOOK);
+    platforms->push_back(TWITTER);
 
     sdk->setPlatforms(platforms);
     sdk->openShare(platforms, "来自分享面板", "title", "", "",share_selector(shareCallback));
@@ -223,16 +223,13 @@ void Share::boardcustomShare(CCObject* pSender) {
     CCUMSocialSDK *sdk = CCUMSocialSDK::create();
     vector<int>* platforms = new vector<int>();
     platforms->push_back(SINA);
-    platforms->push_back(RENREN);
-    platforms->push_back(DOUBAN);
-
-    platforms->push_back(QZONE);
-    platforms->push_back(QQ);
-
-
     platforms->push_back(WEIXIN);
     platforms->push_back(WEIXIN_CIRCLE);
-  
+    platforms->push_back(QZONE);
+    platforms->push_back(QQ);
+    
+    platforms->push_back(FACEBOOK);
+    platforms->push_back(TWITTER);
     sdk->setPlatforms(platforms);
     sdk->openCustomShare(platforms, board_selector(boardCallback));
     

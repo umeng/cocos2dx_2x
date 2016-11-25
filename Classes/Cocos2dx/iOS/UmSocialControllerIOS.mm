@@ -13,8 +13,7 @@
 //#import "UMSocialTencentWeiboHandler.h"
 
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
-int const platformlength = 17;
-string UmSocialControllerIOS::m_appKey = "";
+int const platformlength = 18;
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
 UMSocialPlatformType const platforms[platformlength] = {
     UMSocialPlatformType_Sina
@@ -34,6 +33,7 @@ UMSocialPlatformType const platforms[platformlength] = {
     , UMSocialPlatformType_Sms
     , UMSocialPlatformType_Email
     , UMSocialPlatformType_TencentWb
+    ,UMSocialPlatformType_Whatsapp
 };
 
 UMSocialPlatformType getPlatformString(int platform){
@@ -81,8 +81,7 @@ void UmSocialControllerIOS::initCocos2dxSDK(const char *sdkType, const char *ver
     
 }
 
-void UmSocialControllerIOS::setTargetUrl(const char *targetUrl){
-  }
+
 
 //bool UmSocialControllerIOS::openURL(const char *url){
 //    
@@ -112,11 +111,6 @@ UIImage * formatImage(id image) {
     return retImage;
 }
 
-void UmSocialControllerIOS::setPlatformShareContent(int platform, const char* text,
-                                                                const char* imagePath, const char* title ,
-                                                    const char* targetUrl){
-   
-}
 
 
 
@@ -305,9 +299,7 @@ void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const 
     
   }
 
-void UmSocialControllerIOS::setSharePlatforms(vector<int>* platform)
-{
-}
+
 
 
 void UmSocialControllerIOS::openLog(bool flag)

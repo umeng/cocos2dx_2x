@@ -60,7 +60,9 @@ enum Platform {
 	/// 邮件
 	EMAIL = 15,
 	/// 腾讯微博
-	TENCENT_WEIBO = 16
+	TENCENT_WEIBO = 16,
+    WHATSAPP = 17
+    
 };
 
 /**
