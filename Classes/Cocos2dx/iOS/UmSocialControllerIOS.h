@@ -33,8 +33,6 @@ public:
     //初始化sdk
     static void initCocos2dxSDK(const char *sdkType, const char *version);
 
-    //设置分享的url
-    static void setTargetUrl(const char * targetUrl);
     
     //授权某社交平台
     static void authorize(int platform, AuthEventHandler callback);
@@ -50,8 +48,7 @@ public:
     static void openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback);
     //打开自定义分享面板
     static void openCustomShareBoard(vector<int>* platform, BoardEventHandler callback);
-//    //设置分享的平台
-    static void setSharePlatforms(vector<int>* platform);
+
     
     //直接分享到各个社交平台
     static void directShare(const char* text, const char* title, const char* targeturl,const char* imagePath, int platform, ShareEventHandler callback);
@@ -63,14 +60,9 @@ public:
     
     
     
-    //分别设置各个分享平台内容
-    static void setPlatformShareContent(int platform, const char* text,
-                                 const char* imagePath, const char* title,
-                                 const char* targetUrl);
-    
+       
       
-private:
-    static string m_appKey;
+
 };
 
 #endif /* defined(__UmengGame__UmSocialControllerIOS__) */

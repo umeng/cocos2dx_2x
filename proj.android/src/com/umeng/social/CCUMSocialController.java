@@ -35,6 +35,7 @@ import com.umeng.socialize.common.ResContainer;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.media.UMImage;
 import com.umeng.socialize.net.utils.SocializeNetUtils;
+import com.umeng.socialize.shareboard.ShareBoardConfig;
 import com.umeng.socialize.shareboard.SnsPlatform;
 import com.umeng.socialize.utils.Log;
 import com.umeng.socialize.utils.ShareBoardlistener;
@@ -230,7 +231,7 @@ public class CCUMSocialController {
 							@Override
 							public void run() {
 								// 删除授权的回调, 开发者可以通过字符串来判断
-								OnAuthorizeComplete(platform, StatusCode.ST_CODE_ERROR,
+								OnAuthorizeComplete(platform, 0,
 										new String[]{throwable.getMessage()},new String[]{"deleteOauth"});
 							}
 						});
@@ -271,9 +272,15 @@ public class CCUMSocialController {
 		runOnMainThread(new Runnable() {
 			@Override
 			public void run() {
+				//自定义分享面板
+				  ShareBoardConfig config = new ShareBoardConfig();
+	                config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);
+	                config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR); // 圆角背景
+	                config.setTitleVisibility(false); // 隐藏title
+	                config.setCancelButtonVisibility(false); // 隐藏取消按钮
 				// 打开分享面板
 				new ShareAction(mActivity).setDisplayList(disfinal).withText(text).setCallback(umShareListener)
-				.withTitle(title).withTargetUrl(targeturl).withMedia(getUmImage(image)).open();
+				.withTitle(title).withTargetUrl(targeturl).withMedia(getUmImage(image)).open(config);
 			}
 		});
 
@@ -1055,7 +1062,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 
 				@Override
 				public void run() {
-					OnShareComplete(getPlatformInt(share_media), StatusCode.ST_CODE_ERROR,
+					OnShareComplete(getPlatformInt(share_media), 0,
 							share_media.toString()+throwable.getMessage());
 				}
 			});
@@ -1199,6 +1206,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 		mPlatformsList.add(14, SHARE_MEDIA.SMS);
 		mPlatformsList.add(15, SHARE_MEDIA.EMAIL);
 		mPlatformsList.add(16, SHARE_MEDIA.TENCENT);
+		mPlatformsList.add(16, SHARE_MEDIA.WHATSAPP);
 	}
 
 }
