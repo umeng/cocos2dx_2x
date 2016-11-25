@@ -92,33 +92,6 @@ void CCUMSocialSDK::setAppKey(const char* appkey) {
 }
 
 /*
- * 设置SDK中的所有平台
- *@param    platforms SDK中包含的所有平台
- */
-void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
-	if (platforms != NULL && platforms->size() > 0) {
-		mPlatforms = platforms;
-	} else {
-		mPlatforms->push_back(SINA);
-		mPlatforms->push_back(TENCENT_WEIBO);
-		mPlatforms->push_back(RENREN);
-		mPlatforms->push_back(DOUBAN);
-		mPlatforms->push_back(SMS);
-		mPlatforms->push_back(EMAIL);
-	}
-
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	// 设置平台
-	setSocialPlatforms(mPlatforms);
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	
-    
-	UmSocialControllerIOS::setSharePlatforms(mPlatforms);
-#endif
-
-}
-
-/*
  * 返回SDK中设置的所有平台
  */
 vector<int>* CCUMSocialSDK::getPlatforms() {
@@ -376,21 +349,7 @@ void CCUMSocialSDK::directShareIos(int platform, const char* text,const char* ti
 //#endif
 //}
 
-/*
- * 设置SDK的target url, 即用户点击某条分享时跳转到的目标页面
- * @param url 用户点击某条分享时跳转到的目标页面通常为app的主页或者下载链接等
- */
-void CCUMSocialSDK::setTargetUrl(const char* targetUrl) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
-	setShareTargetUrl(targetUrl);
-
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-
-	UmSocialControllerIOS::setTargetUrl(targetUrl);
-
-#endif
-}
 
 /*
  * 设置 facebook appId
@@ -445,22 +404,6 @@ void CCUMSocialSDK::setLogEnable(bool flag) {
 #endif
 }
 
-/*
- * 分平台设置分享内容
- * @param platform 平台的整形枚举
- * @param text 该平台分享内容的文本
- * @param imagePath 该平台分享内容的图片url链接、或者本地路径，或者资源名或者是asset中的图片.具体参考setShareImageName方法
- * @param title 分享时的标题, 默认为空字符串
- * @param targetUrl 分享消息被点击时跳转到的目标url ( 不是所有平台都支持此项功能 ) , 默认为空字符串
- */
-void CCUMSocialSDK::setPlatformShareContent(int platform, const char* text,
-		const char* imagePath, const char* title, const char* targetUrl) {
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	setPlatformDepShareContent(platform, text, imagePath, title, targetUrl);
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	UmSocialControllerIOS::setPlatformShareContent(platform, text, imagePath, title, targetUrl);
-#endif
-}
 
 /*
  * 设置人人网的app id,app key,app secret信息
