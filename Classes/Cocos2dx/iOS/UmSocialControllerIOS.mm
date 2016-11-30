@@ -238,12 +238,36 @@ id getUIImageFromFilePath(const char* imagePath){
     return returnImage;
 }
  void UmSocialControllerIOS::openCustomShareBoard(vector<int>* platform, BoardEventHandler callback){
+     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:platform->size()];
+     for (int i:*platform) {
+         
+         int d = i;
+         UMSocialPlatformType type = getPlatformString(d);
+         [arr addObject:@(type)];
+         
+     }
+     
+     [UMSocialUIManager setPreDefinePlatforms:[arr copy]];
+     
+
      [UMSocialUIManager showShareMenuViewInWindowWithPlatformSelectionBlock:^(UMSocialPlatformType platformType, NSDictionary *userInfo) {
          callback(getPlatformself((int)platformType));
      }];
      
 }
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback){
+    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:platform->size()];
+    for (int i:*platform) {
+        
+        int d = i;
+        UMSocialPlatformType type = getPlatformString(d);
+        [arr addObject:@(type)];
+        
+    }
+    
+    [UMSocialUIManager setPreDefinePlatforms:[arr copy]];
+     [UMSocialShareUIConfig shareInstance].shareTitleViewConfig.isShow = NO;
+[UMSocialShareUIConfig shareInstance].shareCancelControlConfig.isShow = NO;
        id image = nil;
     image = getUIImageFromFilePath(imagePath);
     UMSocialMessageObject *messageObject = [UMSocialMessageObject messageObject];

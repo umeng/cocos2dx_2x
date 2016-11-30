@@ -95,28 +95,7 @@ void CCUMSocialSDK::setAppKey(const char* appkey) {
  * 设置SDK中的所有平台
  *@param    platforms SDK中包含的所有平台
  */
-void CCUMSocialSDK::setPlatforms(vector<int>* platforms) {
-	if (platforms != NULL && platforms->size() > 0) {
-		mPlatforms = platforms;
-	} else {
-		mPlatforms->push_back(SINA);
-		mPlatforms->push_back(TENCENT_WEIBO);
-		mPlatforms->push_back(RENREN);
-		mPlatforms->push_back(DOUBAN);
-		mPlatforms->push_back(SMS);
-		mPlatforms->push_back(EMAIL);
-	}
 
-#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
-	// 设置平台
-	setSocialPlatforms(mPlatforms);
-#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
-	
-    
-	//UmSocialControllerIOS::setSharePlatforms(mPlatforms);
-#endif
-
-}
 
 
 vector<int>* CCUMSocialSDK::getPlatforms() {

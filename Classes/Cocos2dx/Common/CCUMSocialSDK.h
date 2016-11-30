@@ -65,11 +65,7 @@ public:
 	 */
 	bool isAuthorized(int platform);
 
-	/**
-	 * 设置SDK中的所有平台
-	 *@param    platforms SDK中包含的所有平台
-	 */
-	void setPlatforms(vector<int>* platforms);
+
 
 	/**
 	 * 返回SDK中设置的所有平台
