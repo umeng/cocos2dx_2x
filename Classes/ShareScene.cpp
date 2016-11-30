@@ -215,7 +215,9 @@ void Share::boardShare(CCObject* pSender) {
     platforms->push_back(FACEBOOK);
     platforms->push_back(TWITTER);
 
-     sdk->openShare(platforms, "来自分享面板", "title", "", "http://www.umeng.com",share_selector(shareCallback));
+    //sdk->setPlatforms(platforms);
+    sdk->openShare(platforms, "来自分享面板", "title", "CloseNormal", "http://www.umeng.com",share_selector(shareCallback));
+
 
 }
 void Share::boardcustomShare(CCObject* pSender) {
