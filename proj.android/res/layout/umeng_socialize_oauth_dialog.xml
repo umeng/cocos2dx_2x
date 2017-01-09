@@ -80,24 +80,23 @@
             android:visibility="gone" />
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/webView_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/umeng_socialize_follow"
-        android:layout_below="@id/umeng_socialize_titlebar"
-        android:orientation="horizontal"
-        android:visibility="visible" />
-
-    <!--<WebView-->
-        <!--android:id="@+id/webView"-->
-        <!--android:layout_width="fill_parent"-->
-        <!--android:layout_height="fill_parent"-->
-        <!--android:background="#F2F5F6"-->
-
+    <!--<LinearLayout-->
+        <!--android:id="@+id/webView_container"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
         <!--android:layout_above="@id/umeng_socialize_follow"-->
         <!--android:layout_below="@id/umeng_socialize_titlebar"-->
-        <!--android:visibility="gone" />-->
+        <!--android:orientation="horizontal"-->
+        <!--android:visibility="visible" />-->
+
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#F2F5F6"
+        android:layout_above="@id/umeng_socialize_follow"
+        android:layout_below="@id/umeng_socialize_titlebar"
+        android:visibility="visible" />
 
     <RelativeLayout
         android:id="@+id/progress_bar_parent"

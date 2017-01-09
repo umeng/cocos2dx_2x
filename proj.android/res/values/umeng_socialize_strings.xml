@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-
+    <dimen name="alphabet_size">12dip</dimen>
+    <dimen name="umeng_socialize_pad_window_height">350dip</dimen>
+    <dimen name="umeng_socialize_pad_window_width">580dip</dimen>
     <!-- 平台名称 -->
     <string name="umeng_socialize_text_tencent_key">腾讯微博</string>
     <string name="umeng_socialize_text_wenxin_fav">微信收藏</string>
@@ -20,6 +22,9 @@
     <string name="umeng_socialize_cancel_btn_str">取消</string>
     <string name="umeng_socialize_send_btn_str">发送</string>
 
+    <string name="umeng_socialize_female">女</string>
+    <string name="umeng_socialize_male">男</string>
+
     <string name="umeng_socialize_share">分享</string>
 
     <string name="umeng_socialize_mail">邮件</string>
@@ -32,6 +37,7 @@
     <string name="umeng_socialize_text_evernote_key">印象笔记</string>
     <string name="umeng_socialize_text_ydnote_key">有道云笔记</string>
     <string name="umeng_socialize_text_facebook_key">Facebook</string>
+    <string name="umeng_socialize_text_facebookmessager_key">Facebook Messager</string>
     <string name="umeng_socialize_text_twitter_key">Twitter</string>
     <string name="umeng_socialize_text_instagram_key">Instagram</string>
     <string name="umeng_socialize_text_pinterest_key">Pinterest</string>
@@ -46,4 +52,7 @@
     <string name="umeng_socialize_text_kakao_key">KakaoTalk</string>
     <string name="umeng_socialize_text_googleplus_key">GooglePlus</string>
     <string name="umeng_socialize_text_more_key">更多</string>
+    <string name="umeng_socialize_text_dingding_key">钉钉</string>
+    <string name="umeng_socialize_text_vkontakte_key">VKontakte</string>
+    <string name="umeng_socialize_text_dropbox_key">DropBox</string>
 </resources>

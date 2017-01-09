@@ -109,6 +109,17 @@
            android:layout_centerInParent="true"
             android:src="@color/umeng_socialize_color_group" />
         </RelativeLayout>
+    <TextView
+        android:layout_width="280dp"
+        android:id="@+id/umeng_web_title"
+        android:layout_toRightOf="@id/umeng_image_edge"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:textColor="#575A5C"
+        android:singleLine="true"
+        android:textSize="14sp"
+        android:visibility="gone"
+        android:layout_height="wrap_content" />
 
     <ImageView
         android:id="@+id/umeng_del"

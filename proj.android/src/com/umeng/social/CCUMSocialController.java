@@ -146,7 +146,7 @@ public class CCUMSocialController {
 			throw new IllegalArgumentException(
 					"initSocialSDK函数的activity参数必须设置为Cocos2dxActivity类型, 且不为null. ");
 		}
-		Config.UseCocos = 1;
+		
 		openBoardAction = new ShareAction(activity);
 		shareAction = new ShareAction(activity);
 		// mController.getConfig().closeToast();
