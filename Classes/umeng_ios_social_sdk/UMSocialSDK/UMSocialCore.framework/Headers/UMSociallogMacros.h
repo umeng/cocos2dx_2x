@@ -29,7 +29,8 @@ FOUNDATION_EXPORT NSString* const UMSocialLogVerboseLevelString;
 /**
  *  根据等级打印日志
  *
- *  @param flagString  @see  below  UMSocialLogClosedFlagString...and so on
+ *  @param flagString  控制打印分级的标志字符串 
+ *  @see  below  UMSocialLogClosedFlagString...and so on
  *  @param file        打印日志的文件
  *  @param function    打印日志的函数
  *  @param line        打印的日志的行数

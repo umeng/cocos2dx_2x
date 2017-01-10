@@ -98,7 +98,7 @@ bool Auth::init()
     delfbbutton->setPosition(ccp(visibleSize.width/2+width, 250));
     CCMenuItemFont *deltwitterButton = CCMenuItemFont::create("twitter删除授权", this,
                                                           menu_selector(Auth::twitterAuthDel));
-    deltwitterButton->setPosition(ccp(visibleSize.width/2-width, 180));
+    deltwitterButton->setPosition(ccp(visibleSize.width/2+width, 180));
      CCMenuItemImage *pCloseItem = CCMenuItemImage::create(
                                                           "CloseNormal.png",
                                                           "CloseSelected.png",
