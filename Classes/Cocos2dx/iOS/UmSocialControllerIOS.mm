@@ -15,6 +15,32 @@
 #define UMSYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
 int const platformlength = 18;
 //UMSocialUIDelegateObject * UmSocialControllerIOS::m_socialDelegate = nil;
+
+@interface UMSocialBriage :NSObject<UMSocialShareMenuViewDelegate>
+{
+@public BoardDismissEventHandler callback;
+}
+
++ (UMSocialBriage *)defaultManage;
+
+@end
+@implementation UMSocialBriage
++ (UMSocialBriage *)defaultManager
+{
+    static UMSocialBriage *instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (!instance) {
+            instance = [[self alloc] init];
+        }
+    });
+    return instance;
+}
+- (void)UMSocialShareMenuViewDidDisappear
+{
+    callback();
+}
+@end
 UMSocialPlatformType const platforms[platformlength] = {
     UMSocialPlatformType_Sina
     , UMSocialPlatformType_WechatSession
@@ -254,6 +280,11 @@ id getUIImageFromFilePath(const char* imagePath){
          callback(getPlatformself((int)platformType));
      }];
      
+}
+void UmSocialControllerIOS::setDismissCallback(BoardDismissEventHandler callback){
+   
+    [UMSocialUIManager setShareMenuViewDelegate:[UMSocialBriage defaultManager]];
+    [UMSocialBriage defaultManager]->callback = callback;
 }
 void UmSocialControllerIOS::openShareWithImagePath(vector<int>* platform, const char* text, const char* title,const char* imagePath,const char* targeturl,ShareEventHandler callback){
     NSMutableArray *arr = [NSMutableArray arrayWithCapacity:platform->size()];

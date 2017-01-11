@@ -55,7 +55,10 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
  */
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareComplete(
 		JNIEnv *, jclass, jint, jint, jstring);
-
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
+		jint platform);
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoardDismiss(
+		);
 /*
  * 获取某个方法的对象
  * @param mi 方法对象， 传递的是引用
@@ -101,6 +104,7 @@ bool isPlatformAuthorized(int platform);
 void doOpenShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback);
 void doCutomOpenShare(vector<int>* platforms,BoardEventHandler callback) ;
 void getPlatformInfos(int platform,AuthEventHandler callback) ;
+void setDismissCallback(BoardDismissEventHandler callback) ;
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义

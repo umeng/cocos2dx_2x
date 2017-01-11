@@ -23,6 +23,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.text.TextUtils;
+import android.widget.PopupWindow.OnDismissListener;
 
 import com.umeng.socialize.Config;
 import com.umeng.socialize.ShareAction;
@@ -74,7 +75,7 @@ public class CCUMSocialController {
 	private static Handler mSDKHandler = new Handler(Looper.getMainLooper());
 	private static final int DELAY_MS = 50;
 	private static String DESCRIPTOR;
-
+	private static  ShareBoardConfig config = new ShareBoardConfig();
 	// ******* 以下字段的调用都在supportPlatfrom函数中 *********
 	/**
 	 * QQ和QQ空间app id
@@ -249,7 +250,16 @@ public class CCUMSocialController {
 		Log.d(TAG, "@@@@ deleteAuthorization");
 
 	}
-
+	public static void setDismissCallback(){
+		config.setOnDismissListener(new OnDismissListener() {
+			
+			@Override
+			public void onDismiss() {
+			OnBoardDismiss();
+				
+			}
+		});
+	}
 	/**
 	 * 打开分享面板
 	 * 
@@ -273,7 +283,7 @@ public class CCUMSocialController {
 			@Override
 			public void run() {
 				//自定义分享面板
-				  ShareBoardConfig config = new ShareBoardConfig();
+				
 	                config.setShareboardPostion(ShareBoardConfig.SHAREBOARD_POSITION_CENTER);
 	                config.setMenuItemBackgroundShape(ShareBoardConfig.BG_SHAPE_CIRCULAR); // 圆角背景
 	                config.setTitleVisibility(false); // 隐藏title
@@ -304,7 +314,8 @@ public class CCUMSocialController {
 			@Override
 			public void run() {
 				// 打开分享面板
-				new ShareAction(mActivity).setDisplayList(disfinal).setShareboardclickCallback(shareBoardlistener).open();
+				new ShareAction(mActivity).setDisplayList(disfinal).setShareboardclickCallback(shareBoardlistener)
+				.open(config);
 			}
 		});
 
@@ -1154,6 +1165,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 	 *            平台
 	 */
 	private native static void OnBoard(int platform);
+	private native static void OnBoardDismiss();
 
 	/**
 	 * 通过整型获取对应的平台, C++中使用enum常量来代表平台

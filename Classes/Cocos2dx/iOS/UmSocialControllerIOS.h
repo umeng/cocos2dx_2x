@@ -49,7 +49,7 @@ public:
     //打开自定义分享面板
     static void openCustomShareBoard(vector<int>* platform, BoardEventHandler callback);
 
-    
+     static void setDismissCallback(BoardDismissEventHandler callback);
     //直接分享到各个社交平台
     static void directShare(const char* text, const char* title, const char* targeturl,const char* imagePath, int platform, ShareEventHandler callback);
     

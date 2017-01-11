@@ -207,7 +207,15 @@ void CCUMSocialSDK::openCustomShare(vector<int>* platforms,BoardEventHandler cal
    	UmSocialControllerIOS::openCustomShareBoard(platforms, callback);
 #endif
 }
-
+void CCUMSocialSDK::setBoardDismissCallback(BoardDismissEventHandler callback){
+#if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+    
+    setDismissCallback(callback);
+    
+#elif CC_TARGET_PLATFORM == CC_PLATFORM_IOS
+   	UmSocialControllerIOS::setDismissCallback(callback);
+#endif
+}
 /*
  * 直接分享到某个平台，不打开分享面板和内容编辑页面
  * @param platform 要分享到的目标平台， 参考CCUMTypeDef.h中的Platform枚举定义

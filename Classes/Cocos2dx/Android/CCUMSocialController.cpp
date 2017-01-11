@@ -20,6 +20,7 @@ AuthEventHandler authCallback = NULL;
 // 分享回调
 ShareEventHandler shareCallback = NULL;
 BoardEventHandler boardCallback = NULL;
+BoardDismissEventHandler boardDismissCallback = NULL;
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnAuthorizeStart
@@ -95,7 +96,7 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnShareStart
- * Function : 开始分享的回调函数
+ * Function : 点击面板的回调
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
@@ -103,6 +104,20 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
 	if (boardCallback != NULL) {
 		// 参数1代表平台, 参数2代表状态, 比如start, cancel, complete, 参数3代表状态码, 200为成功.
 		boardCallback(platform);
+
+	}
+}
+/*
+ * Class:     com_umeng_social_CCUMSocialController
+ * Method:    OnShareStart
+ * Function : 点击面板的关闭回调
+ * Signature: ()V
+ */
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoardDismiss(
+		) {
+	if (boardDismissCallback != NULL) {
+
+		boardDismissCallback();
 
 	}
 }
@@ -223,6 +238,16 @@ void doOpenShare(vector<int>* platforms,const char* text, const char* title,cons
 		mi.env->CallStaticVoidMethod(mi.classID, mi.methodID,iArr,text_content,share_title,share_target_url,image);
 		releaseMethod(mi);
 	}
+}
+void setDismissCallback(BoardDismissEventHandler callback) {
+	boardDismissCallback = callback;
+	JniMethodInfo mi;
+	bool isHave = getMethod(mi, "setDismissCallback", "()V");
+	if (isHave) {
+
+			mi.env->CallStaticVoidMethod(mi.classID, mi.methodID);
+			releaseMethod(mi);
+		}
 }
 void doCutomOpenShare(vector<int>* platforms,BoardEventHandler callback) {
 	boardCallback = callback;

@@ -91,6 +91,7 @@ public:
 	void openShare(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl,ShareEventHandler callback);
     void openShareBoard(vector<int>* platforms,const char* text, const char* title,const char* imgName,const char* targeturl);
     void openCustomShare(vector<int>* platforms,BoardEventHandler callback);
+    void setBoardDismissCallback(BoardDismissEventHandler callback);
     void getPlatformInfo(int platforms,AuthEventHandler callback);
 	/**
 	 * 直接分享到某个平台，不打开分享面板和内容编辑页面

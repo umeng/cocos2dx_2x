@@ -163,6 +163,11 @@ void boardCallback(int platform) {
     }
     
 }
+void boardDismissCallback() {
+    
+    CCLog("dismiss");
+    
+}
 //void shareCallBack(int platform, int stCode, const char * errorMsg) {
 //    printf("%s\n", errorMsg);
 //}
@@ -216,6 +221,7 @@ void Share::boardShare(CCObject* pSender) {
     platforms->push_back(TWITTER);
 
     //sdk->setPlatforms(platforms);
+    sdk->setBoardDismissCallback(boarddismiss_selector(boardDismissCallback));
     sdk->openShare(platforms, "来自分享面板", "title", "CloseNormal", "http://www.umeng.com",share_selector(shareCallback));
 
 
@@ -232,6 +238,7 @@ void Share::boardcustomShare(CCObject* pSender) {
     platforms->push_back(FACEBOOK);
     platforms->push_back(TWITTER);
     //sdk->setPlatforms(platforms);
+    sdk->setBoardDismissCallback(boarddismiss_selector(boardDismissCallback));
     sdk->openCustomShare(platforms, board_selector(boardCallback));
     
 }
