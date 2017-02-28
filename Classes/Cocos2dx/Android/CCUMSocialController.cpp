@@ -99,14 +99,13 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
  * Function : 点击面板的回调
  * Signature: ()V
  */
-JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
-		jint platform) {
-	if (boardCallback != NULL) {
-		// 参数1代表平台, 参数2代表状态, 比如start, cancel, complete, 参数3代表状态码, 200为成功.
-		boardCallback(platform);
-
-	}
-}
+//JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
+//		JNIEnv *env, jclass clz, jint platform) {
+//	if (boardCallback != NULL) {
+//		boardCallback(platform);
+//
+//	}
+//}
 /*
  * Class:     com_umeng_social_CCUMSocialController
  * Method:    OnShareStart
@@ -114,7 +113,7 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
  * Signature: ()V
  */
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoardDismiss(
-		) {
+		JNIEnv *env, jclass clz	) {
 	if (boardDismissCallback != NULL) {
 
 		boardDismissCallback();
@@ -132,6 +131,13 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareComplet
 		jstring descriptor) {
 	if (shareCallback != NULL) {
 		shareCallback(platform, stCode, "");
+	}
+}
+JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
+		JNIEnv *env, jclass clz, jint platform) {
+	if (boardCallback != NULL) {
+		boardCallback(platform);
+
 	}
 }
 

@@ -56,9 +56,9 @@ JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareStart(
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnShareComplete(
 		JNIEnv *, jclass, jint, jint, jstring);
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoard(
-		jint platform);
+		JNIEnv *, jclass, jint );
 JNIEXPORT void JNICALL Java_com_umeng_social_CCUMSocialController_OnBoardDismiss(
-		);
+		JNIEnv *, jclass);
 /*
  * 获取某个方法的对象
  * @param mi 方法对象， 传递的是引用

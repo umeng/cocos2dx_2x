@@ -35,6 +35,7 @@ import com.umeng.socialize.bean.StatusCode;
 import com.umeng.socialize.common.ResContainer;
 import com.umeng.socialize.common.SocializeConstants;
 import com.umeng.socialize.media.UMImage;
+import com.umeng.socialize.media.UMWeb;
 import com.umeng.socialize.net.utils.SocializeNetUtils;
 import com.umeng.socialize.shareboard.ShareBoardConfig;
 import com.umeng.socialize.shareboard.SnsPlatform;
@@ -242,6 +243,12 @@ public class CCUMSocialController {
 					public void onCancel(SHARE_MEDIA share_media, int i) {
 
 					}
+
+					@Override
+					public void onStart(SHARE_MEDIA arg0) {
+						// TODO Auto-generated method stub
+						
+					}
 				});
 
 			}
@@ -289,8 +296,19 @@ public class CCUMSocialController {
 	                config.setTitleVisibility(false); // 隐藏title
 	                config.setCancelButtonVisibility(false); // 隐藏取消按钮
 				// 打开分享面板
-				new ShareAction(mActivity).setDisplayList(disfinal).withText(text).setCallback(umShareListener)
-				.withTitle(title).withTargetUrl(targeturl).withMedia(getUmImage(image)).open(config);
+	              ShareAction shareAction = new ShareAction(mActivity);
+	              if (TextUtils.isEmpty(targeturl)) {
+	            	  shareAction.setDisplayList(disfinal).withText(text).setCallback(umShareListener)
+	  				.withMedia(getUmImage(image)).open(config);
+				}else {
+					UMWeb web = new UMWeb(targeturl);
+					web.setThumb(getUmImage(image));
+					web.setTitle(title);
+					web.setDescription(text);
+					shareAction.setDisplayList(disfinal).withText(text).setCallback(umShareListener)
+					.withMedia(web).open(config);
+				}
+				
 			}
 		});
 
@@ -326,6 +344,7 @@ public class CCUMSocialController {
 
 		@Override
 		public void onclick(SnsPlatform snsPlatform, final SHARE_MEDIA share_media) {
+			Log.e("xxxxxx  share_media="+share_media+"    "+getPlatformInt(share_media));
 			OnBoard(getPlatformInt(share_media));
 
 		}
@@ -337,7 +356,7 @@ public class CCUMSocialController {
 	 *            平台对应的字符串
 	 */
 	public static void directShare(final int platform,final String text,final String title,final String targeturl,final String image) {
-
+		 Log.e("xxxxxx 44444");
 		// 检测平台的有效性
 		if (!isPlatformValid(platform)) {
 			return;
@@ -366,18 +385,22 @@ public class CCUMSocialController {
 //					targeturl = null;
 //					
 //				}
-			
-				new ShareAction(mActivity).setPlatform(getPlatform(platform))
-				.withText(text)
-			.withMedia(getUmImage(image))
-				.withTargetUrl(targeturl)
-				.withTitle(title)
-				.setCallback(umShareListener)
-						.share();
-//				shareAction.setPlatform(getPlatform(platform));
-//				shareAction.withFollow()
-//				shareAction.setCallback(umShareListener);
-//				shareAction.share();
+				 Log.e("xxxxxx 33333");
+				  ShareAction shareAction = new ShareAction(mActivity);
+	              if (TextUtils.isEmpty(targeturl)) {
+	            	  Log.e("xxxxxx 1111");
+	            	  shareAction.setPlatform(getPlatform(platform)).withText(text).setCallback(umShareListener)
+	  				.withMedia(getUmImage(image)).share();
+				}else {
+					 Log.e("xxxxxx 2222");
+					UMWeb web = new UMWeb(targeturl);
+					web.setThumb(getUmImage(image));
+					web.setTitle(title);
+					web.setDescription(text);
+					shareAction.setPlatform(getPlatform(platform)).withText(text).setCallback(umShareListener)
+					.withMedia(web).share();
+				}
+		
 			}
 		});
 
@@ -589,7 +612,7 @@ public class CCUMSocialController {
 	public static void setTargetUrl(String targetUrl) {
 		if (!TextUtils.isEmpty(targetUrl)
 				&& SocializeNetUtils.startWithHttp(targetUrl)) {
-			shareAction.withTargetUrl(targetUrl);
+		//	shareAction.withTargetUrl(targetUrl);
 		}
 		Log.d(TAG, "### target url : " + TARGET_URL);
 	}
@@ -611,7 +634,7 @@ public class CCUMSocialController {
 	public static void setPlatformShareContent(String targetUrl) {
 		if (!TextUtils.isEmpty(targetUrl)
 				&& SocializeNetUtils.startWithHttp(targetUrl)) {
-			shareAction.withTargetUrl(targetUrl);
+			//shareAction.withTargetUrl(targetUrl);
 		}
 		Log.d(TAG, "### target url : " + TARGET_URL);
 	}
@@ -756,7 +779,7 @@ public static void setRenrenAppInfo(String i,String appid,String appkey) {
 
 	}
 public static void supportSsoAuthorization(int i,String URL) {
-			Config.REDIRECT_URL = URL;
+		//	Config.REDIRECT_URL = URL;
 	
 
 }
@@ -1032,6 +1055,12 @@ public static void supportSsoAuthorization(int i,String URL) {
 				return authData;
 //			}
 		}
+
+		@Override
+		public void onStart(SHARE_MEDIA arg0) {
+			// TODO Auto-generated method stub
+			
+		}
 	};
 
 	/**
@@ -1097,6 +1126,12 @@ public static void supportSsoAuthorization(int i,String URL) {
 //					}
 				}
 			});
+		}
+
+		@Override
+		public void onStart(SHARE_MEDIA arg0) {
+			// TODO Auto-generated method stub
+			
 		}
 	};
 //	private static SnsPostListener mSocialShareListener = new SnsPostListener() {
@@ -1190,6 +1225,7 @@ public static void supportSsoAuthorization(int i,String URL) {
 	 *         object was not found.
 	 */
 	private static int getPlatformInt(SHARE_MEDIA platform) {
+		Log.e("xxxxxx platform="+platform);
 		return mPlatformsList.indexOf(platform);
 	}
 

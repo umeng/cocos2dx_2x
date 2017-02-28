@@ -143,21 +143,23 @@ void shareCallback(int platform, int stCode, string& errorMsg) {
     
 }
 void boardCallback(int platform) {
-    
+	  CCLog("xxxxxx boardCallback:%d",platform);
        CCLog("platform num is : %d", platform);
     if (platform == QQ) {
+    	 CCLog("xxxxxx wwww");
         CCUMSocialSDK *sdk = CCUMSocialSDK::create();
 
         sdk->directShare(QQ,
-                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
+                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","res/closenormal",
                          share_selector(shareCallback));
 
 
     }
     else{
+    	  CCLog("xxxxxx aaaa");
     	   CCUMSocialSDK *sdk = CCUMSocialSDK::create();
         	        sdk->directShare(platform,
-    	                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","",
+    	                         "Umeng Social Cocos2d-x SDK -->  qqshare   DIFFERENT CONTENT","title" ,"","CloseSelected.png",
     	                         share_selector(shareCallback));
     	
     }
